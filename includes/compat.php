@@ -11,7 +11,7 @@
  */
 
 /**
- * adds compat handling for WP versions pre-*.
+ * Adds compat handling for WP versions pre-*.
  *
  * @category pre-all
  */
@@ -19,8 +19,9 @@
 /**
  * Adds the new  input types to the comment-form
  *
- * @param string $form
- * @return string
+ * @param array $fields The input fields.
+ *
+ * @return array
  */
 function autonomie_comment_autocomplete( $fields ) {
 	$fields['author'] = preg_replace( '/<input/', '<input autocomplete="nickname name" enterkeyhint="next" ', $fields['author'] );
@@ -34,7 +35,8 @@ add_filter( 'comment_form_default_fields', 'autonomie_comment_autocomplete' );
 /**
  * Adds the new HTML5 input types to the comment-text-area
  *
- * @param string $field
+ * @param string $field The comment field.
+ *
  * @return string
  */
 function autonomie_comment_field_input_type( $field ) {
@@ -45,7 +47,7 @@ add_filter( 'comment_form_field_comment', 'autonomie_comment_field_input_type' )
 /**
  * Fix archive for "standard" post type
  *
- * @param WP_Query $query
+ * @param WP_Query $query The query object.
  */
 function autonomie_query_format_standard( $query ) {
 	if (
@@ -90,7 +92,7 @@ add_action( 'pre_get_posts', 'autonomie_query_format_standard' );
  *
  * @see https://www.webrocker.de/2019/08/20/wordpress-filter-for-lazy-loading-src/
  *
- * @param string $content
+ * @param string $content The content of a post.
  *
  * @return string the filtered content
  */
@@ -103,7 +105,7 @@ add_filter( 'the_content', 'autonomie_add_lazy_loading', 99 );
 
 add_filter(
 	'wp_lazy_loading_enabled',
-	function( $default, $tag_name, $context ) {
+	function ( $default, $tag_name, $context ) {
 		if ( 'the_content' === $context ) {
 			return false;
 		}

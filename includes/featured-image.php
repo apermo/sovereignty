@@ -1,8 +1,11 @@
 <?php
 /**
- * Adds post-thumbnail support :)
+ * Adds post-thumbnail support.
  *
  * @since Autonomie 1.0.0
+ *
+ * @param string $before The HTML to output before the post thumbnail.
+ * @param string $after  The HTML to output after the post thumbnail.
  */
 function autonomie_the_post_thumbnail( $before = '', $after = '' ) {
 	if ( autonomie_has_full_width_featured_image() ) {
@@ -43,9 +46,13 @@ function autonomie_the_post_thumbnail( $before = '', $after = '' ) {
 }
 
 /**
- * Adds post-thumbnail support :)
+ * Adds post-thumbnail support.
  *
  * @since Autonomie 1.0.0
+ *
+ * @param string $content The content of a post.
+ *
+ * @return string The filtered content
  */
 function autonomie_content_post_thumbnail( $content ) {
 	if ( '' !== get_the_post_thumbnail() ) {
@@ -84,7 +91,12 @@ function autonomie_content_post_thumbnail( $content ) {
 add_filter( 'the_content', 'autonomie_content_post_thumbnail' );
 
 /**
- * Add a checkbox for Post Covers to the featured image metabox
+ * Adds a checkbox for Post Covers to the featured image metabox.
+ *
+ * @param string $content The content of the featured image metabox.
+ * @param int    $post_id The ID of the post being edited.
+ *
+ * @return string The filtered content.
  */
 function autonomie_featured_image_meta( $content, $post_id ) {
 	// Text for checkbox
@@ -104,6 +116,8 @@ add_filter( 'admin_post_thumbnail_html', 'autonomie_featured_image_meta', 10, 2 
  * Safe the Post Covers
  *
  * @param int $post_id The ID of the post being saved.
+ *
+ * @return int The ID of the post being saved.
  */
 function autonomie_save_post( $post_id ) {
 	// if this is an autosave, our form has not been submitted, so we don't want to do anything.
@@ -139,13 +153,11 @@ function autonomie_save_post( $post_id ) {
 add_action( 'save_post', 'autonomie_save_post', 5, 1 );
 
 /**
- * Return true if Auto-Set Featured Image as Post Cover is enabled and it hasn't
- * been disabled for this post.
+ * Checks if Auto-Set Featured Image as Post Cover is enabled and it hasn't been disabled for this post.
  *
- * Returns true if the current post has Full Width Featured Image enabled.
- *
- * Returns false if not a Single post type or there is no Featured Image selected
- * or none of the above conditions are true.
+ * @return bool True: if the current post has Full Width Featured Image enabled.
+ *              False: if not a Single post type or there is no Featured Image selected
+ *              or none of the above conditions are true.
  */
 function autonomie_has_full_width_featured_image() {
 	// If this isn't a Single post type or we don't have a Featured Image set
@@ -164,7 +176,7 @@ function autonomie_has_full_width_featured_image() {
 }
 
 /**
- * Enqueue theme scripts
+ * Enqueues theme scripts.
  *
  * @uses wp_enqueue_scripts() To enqueue scripts
  *
@@ -184,7 +196,11 @@ function autonomie_enqueue_featured_image_scripts() {
 add_action( 'wp_enqueue_scripts', 'autonomie_enqueue_featured_image_scripts' );
 
 /**
- * Add full-width-featured-image to body class when displaying a post with Full Width Featured Image enabled
+ * Adds full-width-featured-image to body class when displaying a post with Full Width Featured Image enabled
+ *
+ * @param array $classes An array of body classes.
+ *
+ * @return array An array of body classes.
  */
 function autonomie_full_width_featured_image_post_class( $classes ) {
 	if ( is_singular() && autonomie_has_full_width_featured_image() ) {
@@ -195,7 +211,7 @@ function autonomie_full_width_featured_image_post_class( $classes ) {
 add_filter( 'post_class', 'autonomie_full_width_featured_image_post_class' );
 
 /**
- * Register the `full_width_featured_image` meta
+ * Register the `full_width_featured_image` meta.
  *
  * @return void
  */
@@ -213,9 +229,7 @@ function autonomie_register_meta() {
 add_action( 'init', 'autonomie_register_meta' );
 
 /**
- * Enqueue the required block editor assets/JS files
- *
- * @return void
+ * Enqueues the required block editor assets/JS files
  */
 function autonomie_enqueue_block_editor_assets() {
 	wp_enqueue_script(

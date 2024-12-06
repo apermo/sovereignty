@@ -19,6 +19,8 @@
  * Adds custom classes to the array of body classes.
  *
  * @since Autonomie 1.0.0
+ *
+ * @param array $classes Classes for the body element.
  */
 function autonomie_body_classes( $classes ) {
 	$classes[] = get_theme_mod( 'autonomie_columns', 'multi' ) . '-column';
@@ -29,7 +31,7 @@ function autonomie_body_classes( $classes ) {
 		$classes[] = 'feed';
 	}
 
-	// Adds a class of single-author to blogs with only 1 published author
+	// Adds a class of single-author to blogs with only 1 published author.
 	if ( ! is_multi_author() ) {
 		$classes[] = 'single-author';
 	}
@@ -46,15 +48,17 @@ add_filter( 'body_class', 'autonomie_body_classes' );
  * Adds custom classes to the array of post classes.
  *
  * @since Autonomie 1.0.0
+ *
+ * @param array $classes Classes for the post element.
  */
 function autonomie_post_classes( $classes ) {
 	$classes = array_diff( $classes, array( 'hentry' ) );
 
 	if ( ! is_singular() ) {
 		return autonomie_get_post_classes( $classes );
-	} else {
-		return $classes;
 	}
+
+	return $classes;
 }
 add_filter( 'post_class', 'autonomie_post_classes', 99 );
 
@@ -62,6 +66,8 @@ add_filter( 'post_class', 'autonomie_post_classes', 99 );
  * Adds custom classes to the array of comment classes.
  *
  * @since Autonomie 1.4.0
+ *
+ * @param array $classes Classes for the comment element.
  */
 function autonomie_comment_classes( $classes ) {
 	$classes[] = 'h-entry';
@@ -75,12 +81,16 @@ add_filter( 'comment_class', 'autonomie_comment_classes', 99 );
 
 /**
  * Encapsulates post-classes to use them on different tags.
+ *
+ * @param array $classes Classes for the post element.
+ *
+ * @return array
  */
 function autonomie_get_post_classes( $classes = array() ) {
-	// Adds a class for microformats v2
+	// Adds a class for microformats v2.
 	$classes[] = 'h-entry';
 
-	// add hentry to the same tag as h-entry
+	// Adds hentry to the same tag as h-entry.
 	$classes[] = 'hentry';
 
 	return array_unique( $classes );
@@ -90,9 +100,13 @@ function autonomie_get_post_classes( $classes = array() ) {
  * Adds microformats v2 support to the comment_author_link.
  *
  * @since Autonomie 1.0.0
+ *
+ * @param string $link The comment author link.
+ *
+ * @return string
  */
 function autonomie_author_link( $link ) {
-	// Adds a class for microformats v2
+	// Adds a class for microformats v2.
 	return preg_replace( '/(class\s*=\s*[\"|\'])/i', '${1}u-url ', $link );
 }
 add_filter( 'get_comment_author_link', 'autonomie_author_link' );
@@ -101,6 +115,11 @@ add_filter( 'get_comment_author_link', 'autonomie_author_link' );
  * Adds microformats v2 support to the get_avatar() method.
  *
  * @since Autonomie 1.0.0
+ *
+ * @param array $args        Arguments for the get_avatar() method.
+ * @param mixed $id_or_email The Gravatar to retrieve. Accepts a user_id, gravatar md5 hash, user email, WP_User object.
+ *
+ * @return array
  */
 function autonomie_pre_get_avatar_data( $args, $id_or_email ) {
 	if ( ! isset( $args['class'] ) ) {
@@ -133,7 +152,7 @@ add_filter( 'pre_get_avatar_data', 'autonomie_pre_get_avatar_data', 99, 2 );
 /**
  * Add rel-prev attribute to previous_image_link.
  *
- * @param string a-tag
+ * @param string $link An anchor tag.
  *
  * @return string
  */
@@ -145,7 +164,7 @@ add_filter( 'previous_image_link', 'autonomie_semantic_previous_image_link' );
 /**
  * Add rel-next attribute to next_image_link.
  *
- * @param string a-tag
+ * @param string $link An anchor tag.
  *
  * @return string
  */
@@ -155,9 +174,9 @@ function autonomie_semantic_next_image_link( $link ) {
 add_filter( 'next_image_link', 'autonomie_semantic_next_image_link' );
 
 /**
- * Add rel-prev attribute to next_posts_link_attributes.
+ * Adds rel-prev attribute to next_posts_link_attributes.
  *
- * @param string Attributes
+ * @param string $attr Attribute.
  *
  * @return string
  */
@@ -169,7 +188,7 @@ add_filter( 'next_posts_link_attributes', 'autonomie_next_posts_link_attributes'
 /**
  * Add rel-next attribute to previous_posts_link.
  *
- * @param string Attributes
+ * @param string $attr Attribute.
  *
  * @return string
  */
@@ -179,8 +198,11 @@ function autonomie_previous_posts_link_attributes( $attr ) {
 add_filter( 'previous_posts_link_attributes', 'autonomie_previous_posts_link_attributes' );
 
 /**
+ * Changes the search form to use the schema.org markup.
  *
+ * @param string $form The search form.
  *
+ * @return string
  */
 function autonomie_get_search_form( $form ) {
 	$form = preg_replace( '/<form/i', '<search><form itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction"', $form );
@@ -192,16 +214,16 @@ function autonomie_get_search_form( $form ) {
 add_filter( 'get_search_form', 'autonomie_get_search_form' );
 
 /**
- * Add semantics.
+ * Adds semantics.
  *
- * @param string $id The class identifier.
+ * @param string|null $id The class identifier.
  *
  * @return array
  */
 function autonomie_get_semantics( $id = null ) {
 	$classes = array();
 
-	// add default values
+	// Add default values.
 	switch ( $id ) {
 		case 'body':
 			if ( is_search() ) {
@@ -223,7 +245,6 @@ function autonomie_get_semantics( $id = null ) {
 			}
 
 			$classes['itemid'] = array( get_self_link() );
-
 			break;
 		case 'main':
 			break;
@@ -272,12 +293,14 @@ function autonomie_get_semantics( $id = null ) {
  * Echos the semantic classes added via the "autonomie_semantics" filters.
  *
  * @param string $id The class identifier.
+ *
+ * @return string
  */
 function autonomie_get_the_semantics( $id ) {
 	$classes = autonomie_get_semantics( $id );
 
 	if ( ! $classes ) {
-		return;
+		return '';
 	}
 
 	$class = '';
@@ -290,7 +313,7 @@ function autonomie_get_the_semantics( $id ) {
 }
 
 /**
- * Echos the semantic classes added via the "autonomie_semantics" filters.
+ * Prints the semantic classes added via the "autonomie_semantics" filters.
  *
  * @param string $id The class identifier.
  */
@@ -311,9 +334,9 @@ function autonomie_semantics( $id ) {
  *
  * @link https://www.webrocker.de/2016/05/13/add-class-attribute-to-wordpress-the_tags-markup/
  *
- * @param  array $links
+ * @param array $links The term links.
  *
- * @return array
+ * @return bool|array
  */
 function autonomie_term_links_tag( $links ) {
 	$post = get_post();

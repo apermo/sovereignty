@@ -4,11 +4,13 @@ if ( ! function_exists( 'autonomie_content_nav' ) ) :
 	 * Display navigation to next/previous pages when applicable.
 	 *
 	 * @since Autonomie 1.0.0
+	 *
+	 * @param string $nav_id The ID of the nav element.
 	 */
 	function autonomie_content_nav( $nav_id ) {
 		global $wp_query;
 		?>
-		<?php if ( is_home() || is_archive() || is_search() ) : // navigation links for home, archive, and search pages ?>
+		<?php if ( is_home() || is_archive() || is_search() ) : // Navigation links for home, archive, and search pages. ?>
 		<nav id="archive-nav">
 			<div class="assistive-text"><?php _e( 'Post navigation', 'autonomie' ); ?></div>
 			<?php echo paginate_links(); ?>
@@ -16,7 +18,7 @@ if ( ! function_exists( 'autonomie_content_nav' ) ) :
 		<?php endif; ?>
 		<?php
 	}
-endif; // autonomie_content_nav
+endif; // Check if autonomie_content_nav exists.
 
 if ( ! function_exists( 'autonomie_posted_by' ) ) :
 	/**
@@ -51,6 +53,8 @@ if ( ! function_exists( 'autonomie_posted_on' ) ) :
 	 * Create your own autonomie_posted_on to override in a child theme.
 	 *
 	 * @since Autonomie 1.0.0
+	 *
+	 * @param string $type The type of date to display.
 	 */
 	function autonomie_posted_on( $type = 'published' ) {
 		global $query;
@@ -64,20 +68,20 @@ if ( ! function_exists( 'autonomie_posted_on' ) ) :
 		}
 
 		if ( 'updated' === $type ) {
-			// updated
+			// Updated.
 			$time      = get_the_modified_time();
 			$date_c    = get_the_modified_date( 'c' );
 			$date      = get_the_modified_date();
 			$item_prop = 'dateModified';
 		} else {
-			// published
+			// Published.
 			$time      = get_the_time();
 			$date_c    = get_the_date( 'c' );
 			$date      = get_the_date();
 			$item_prop = 'datePublished';
 		}
 
-		// translators: the author byline
+		// translators: the author byline.
 		printf(
 			// translators:
 			'<a href="%1$s" title="%2$s" rel="bookmark" class="url u-url" itemprop="mainEntityOfPage"><time class="entry-date %5$s dt-%5$s" datetime="%3$s" itemprop="%6$s">%4$s</time></a>',
@@ -94,7 +98,7 @@ endif;
 /**
  * Display the id for the post div.
  *
- * @param string $id
+ * @param string $post_id The post id.
  */
 function autonomie_post_id( $post_id = null ) {
 	if ( $post_id ) {

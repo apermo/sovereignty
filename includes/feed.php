@@ -10,9 +10,10 @@
 /**
  * Adds support for "standard" Post-Format
  *
- * @param string $post_format the post format slug
+ * @param string $post_format The post format slug.
+ * @param string $feed        The feed type.
  *
- * @return void
+ * @return string
  */
 function autonomie_get_post_format_archive_feed_link( $post_format, $feed = '' ) {
 	$default_feed = get_default_feed();
@@ -51,6 +52,8 @@ function autonomie_get_post_format_archive_feed_link( $post_format, $feed = '' )
  * @see https://notiz.blog/2019/09/18/eine-posse/
  * @see https://github.com/dshanske/extra-links
  *
+ * @param array $args Arguments.
+ *
  * @return void
  */
 function autonomie_extend_singular_feed_discovery( $args = array() ) {
@@ -76,9 +79,9 @@ function autonomie_extend_singular_feed_discovery( $args = array() ) {
 	$args  = wp_parse_args( $args, $defaults );
 	$feeds = array();
 
-	// Post/Page feeds
+	// Post/Page feeds.
 	if ( is_singular() ) {
-		// add tag feeds
+		// Add tag feeds.
 		foreach ( wp_get_post_terms( get_the_ID(), array( 'post_tag', 'category' ) ) as $term ) {
 			$tax = get_taxonomy( $term->taxonomy );
 
@@ -102,9 +105,9 @@ function autonomie_extend_singular_feed_discovery( $args = array() ) {
 		);
 	}
 
-	// Homepage feeds
+	// Homepage feeds.
 	if ( is_home() ) {
-		// does theme support post formats
+		// Checks for theme support post formats.
 		$post_formats = get_theme_support( 'post-formats' );
 
 		if ( $post_formats ) {
@@ -123,7 +126,7 @@ function autonomie_extend_singular_feed_discovery( $args = array() ) {
 		}
 	}
 
-	// Add "standard" post-format feed discovery
+	// Add "standard" post-format feed discovery.
 	global $wp_query;
 	if (
 		is_archive() &&

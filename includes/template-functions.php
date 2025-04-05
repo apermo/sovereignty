@@ -209,7 +209,7 @@ function autonomie_get_post_format_string() {
  *
  * @param string $post_format
  *
- * @return void
+ * @return string
  */
 function autonomie_get_post_format_link( $post_format ) {
 	if ( in_array( get_post_type(), array( 'page', 'attachment' ), true ) ) {

@@ -64,9 +64,11 @@ function autonomie_query_format_standard( $query ) {
 			}
 			$query->is_tax = null;
 
-			unset( $query->query_vars['post_format'] );
-			unset( $query->query_vars['taxonomy'] );
-			unset( $query->query_vars['term'] );
+			unset(
+				$query->query_vars['post_format'],
+				$query->query_vars['taxonomy'],
+				$query->query_vars['term']
+			);
 
 			$query->set(
 				'tax_query',

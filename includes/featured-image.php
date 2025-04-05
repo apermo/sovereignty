@@ -150,7 +150,7 @@ add_action( 'save_post', 'autonomie_save_post', 5, 1 );
  * or none of the above conditions are true.
  */
 function autonomie_has_full_width_featured_image() {
-	// If this isn't a Single post type or we don't have a Featured Image set
+	// If this isn't a Single post type, or we don't have a Featured Image set.
 	if ( ! ( is_single() || is_page() ) || ! has_post_thumbnail() ) {
 		return false;
 	}

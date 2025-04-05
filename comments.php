@@ -31,9 +31,12 @@
 		<h2 id="comments-title">
 			<?php
 				printf(
-					/* translators: 1: number of comments, 2: post title */
+					/* translators:
+					%1$s: number of comments, mind to add this if your language uses singular for more than just n=1
+					%2$s: post title
+					*/
 					_n(
-						'One thought on &ldquo;%2$s&rdquo;',
+						'One thought on &ldquo;%2$s&rdquo;', // phpcs:ignore WordPress.WP.I18n.MissingSingularPlaceholder -- Translator instructions added.
 						'%1$s thoughts on &ldquo;%2$s&rdquo;',
 						get_comments_number(),
 						'autonomie'

@@ -126,9 +126,9 @@ function autonomie_extend_singular_feed_discovery( $args = array() ) {
 	// Add "standard" post-format feed discovery
 	global $wp_query;
 	if (
-		is_archive() &&
 		isset( $wp_query->query['post_format'] ) &&
-		'post-format-standard' === $wp_query->query['post_format']
+		'post-format-standard' === $wp_query->query['post_format'] &&
+		is_archive()
 	) {
 		$feeds[] = array(
 			'title' => sprintf( $args['posttypetitle'], get_bloginfo( 'name' ), $args['separator'], get_post_format_string( 'standard' ) ),

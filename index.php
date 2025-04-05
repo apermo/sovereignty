@@ -50,4 +50,5 @@ get_header(); ?>
 
 		<?php autonomie_content_nav( 'nav-below' ); ?>
 
-<?php get_footer(); ?>
+<?php
+get_footer();

@@ -25,4 +25,5 @@ get_header(); ?>
 
 		</main><!-- #content -->
 
-<?php get_footer(); ?>
+<?php
+get_footer();

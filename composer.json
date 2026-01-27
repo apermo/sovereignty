@@ -1,6 +1,6 @@
 {
-	"name": "pfefferle/wordpress-autonomie",
-	"description": "Pure Zen",
+	"name": "apermo/sovereignty",
+	"description": "Pure Zen - Fork of Pfefferle's Autonomie Theme",
 	"require": {
 		"php": ">=7.4.0",
 		"composer/installers": "~2.2"
@@ -8,13 +8,17 @@
 	"type": "wordpress-theme",
 	"license": "MIT",
 	"authors": [
+    {
+			"name": "Christoph Daum",
+			"homepage": "https://christoph-daum.com"
+		},  
 		{
 			"name": "Matthias Pfefferle",
 			"homepage": "https://notiz.blog"
 		}
 	],
 	"extra": {
-		"installer-name": "autonomie"
+		"installer-name": "sovereignty"
 	},
 	"config": {
 		"allow-plugins": {

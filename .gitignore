@@ -7,3 +7,4 @@ _build
 composer.lock
 package-lock.json
 .ddev/wordpress/
+plan.md

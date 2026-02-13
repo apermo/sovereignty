@@ -42,14 +42,35 @@ The build compiles these SCSS → CSS outputs:
 
 After editing any `.scss` file, run `npx grunt sass` (or `npx grunt watch`) to recompile. Do NOT edit `style.css` directly — it is generated. The `string-replace` task injects version/author metadata from `package.json` into the `style.css` header.
 
-### Linting
+### Linting & Static Analysis
 
 ```bash
-composer install
-vendor/bin/phpcs --standard=phpcs.xml .
+composer lint          # PHPCS (WordPress coding standard + Slevomat + Yoast)
+composer lint:fix      # Auto-fix PHP lint issues
+composer analyse       # PHPStan level 5 with WordPress stubs
+npm run lint:js        # ESLint (WordPress standard)
+npm run lint:css       # Stylelint (WordPress SCSS config)
+npm run lint:js:fix    # Auto-fix JS lint issues
+npm run lint:css:fix   # Auto-fix CSS lint issues
 ```
 
-Uses WordPress-Core coding standard (see `phpcs.xml`).
+### Pre-commit Hooks (husky)
+
+- **pre-commit**: lint-staged runs PHPCS, ESLint, and Stylelint on staged files only
+- **commit-msg**: commitlint enforces Conventional Commits with 50/72 rule
+
+### IMPORTANT: Always lint before committing
+
+**Before every commit, run the full lint suite on changed files:**
+
+```bash
+composer lint
+composer analyse
+npm run lint:js
+npm run lint:css
+```
+
+Do NOT skip this step. If linting fails, fix the issues before committing. The pre-commit hook catches staged files, but always run the full suite manually to catch issues early.
 
 ## Architecture
 

@@ -54,6 +54,13 @@
     "lint:css:fix": "stylelint --fix 'assets/sass/**/*.scss'",
     "prepare": "husky"
   },
+  "lint-staged": {
+    "*.js": "eslint",
+    "*.scss": "stylelint",
+    "*.php": [
+      "vendor/bin/phpcs"
+    ]
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
@@ -71,6 +78,7 @@
     "grunt-wp-i18n": "^1.0.3",
     "grunt-wp-readme-to-markdown": "^2.1.0",
     "husky": "^9.0.0",
+    "lint-staged": "^16.2.7",
     "sass": "^1.51.0",
     "stylelint": "^16.0.0"
   }

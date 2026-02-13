@@ -1,0 +1,14 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+    level: 5
+    paths:
+        - .
+    excludePaths:
+        - vendor
+        - node_modules
+        - .ddev
+    scanDirectories:
+        - .ddev/wordpress/wp-includes
+        - .ddev/wordpress/wp-admin

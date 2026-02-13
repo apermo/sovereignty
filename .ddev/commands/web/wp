@@ -1,0 +1,7 @@
+#!/bin/bash
+## Description: Run WP-CLI inside the web container
+## Usage: wp [flags] [args]
+## Example: "ddev wp core version" or "ddev wp plugin list"
+## ProjectTypes: php
+
+wp "$@" --path=.ddev/wordpress

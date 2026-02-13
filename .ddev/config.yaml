@@ -1,0 +1,24 @@
+name: sovereignty
+type: php
+docroot: .ddev/wordpress
+php_version: "8.3"
+webserver_type: nginx-fpm
+xdebug_enabled: false
+database:
+    type: mariadb
+    version: "10.11"
+composer_version: "2"
+nodejs_version: "22"
+web_environment:
+    - WP_VERSION=latest
+    - WP_LOCALE=en_US
+    - WP_TITLE=Sovereignty Dev
+    - ADMIN_USER=admin
+    - ADMIN_PASS=admin
+    - ADMIN_EMAIL=admin@example.com
+    - THEME_NAME=sovereignty
+
+hooks:
+    pre-start:
+        - exec-host: |
+              mkdir -p .ddev/wordpress/wp-content/themes/${DDEV_PROJECT}

@@ -1,0 +1,37 @@
+#!/bin/bash
+## Description: Set up the WordPress development environment
+## Usage: orchestrate
+## Example: "ddev orchestrate"
+
+mkdir -p "${DDEV_DOCROOT}"
+pushd "${DDEV_DOCROOT}"
+THEME_FOLDER="${DDEV_DOCROOT}/wp-content/themes/${THEME_NAME:-$DDEV_PROJECT}"
+VALID_ARGS=$(getopt -o f --long force -- "$@")
+if [[ $? -ne 0 ]]; then
+    exit 1;
+fi
+
+eval set -- "$VALID_ARGS"
+while [ : ]; do
+  case "$1" in
+    -f | --force)
+        echo "Removing WordPress installation"
+        shift
+        export RECREATE_ENV=1;
+        popd
+        find "${DDEV_DOCROOT}" -mindepth 1 ! -regex "^${THEME_FOLDER}\(/.*\)?" -delete
+        pushd "${DDEV_DOCROOT}"
+        ;;
+    --) shift;
+        break
+        ;;
+  esac
+done
+
+# Execute all fragments from orchestrate.d
+if [ -d "${0}.d" ]; then
+    for FN in ${0}.d/*.sh ; do
+      echo $FN
+      source "${FN}"
+    done
+fi

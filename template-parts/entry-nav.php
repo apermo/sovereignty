@@ -1,7 +1,7 @@
 <div id="post-nav">
 	<?php
 	$prev_post = get_previous_post( true );
-	if ( $prev_post ) {
+	if ( $prev_post instanceof WP_Post ) {
 		$args = [
 			'posts_per_page' => 1,
 			'include' => [ $prev_post->ID ],
@@ -23,7 +23,7 @@
 
 	$next_post = get_next_post( true );
 
-	if ( $next_post ) {
+	if ( $next_post instanceof WP_Post ) {
 		$args = [
 			'posts_per_page' => 1,
 			'include' => [ $next_post->ID ],

@@ -12,12 +12,10 @@ if ( $categories_list ) :
 	echo $categories_list;
 	?>
 </div>
-<?php endif; // End if categories ?>
+<?php endif; // End if categories. ?>
 
 <?php
-/*
- * translators: used between list items, there is a space after the comma
- */
+// translators: used between list items, there is a space after the comma.
 $tags_list = get_the_tag_list( '<ul><li>', '</li><li>', '</li></ul>' );
 if ( $tags_list ) :
 	?>
@@ -28,4 +26,6 @@ if ( $tags_list ) :
 	echo $tags_list;
 	?>
 </div>
-<?php endif; // End if $tags_list ?>
+	<?php
+endif; // End if $tags_list.
+

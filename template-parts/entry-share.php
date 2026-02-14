@@ -15,7 +15,6 @@
 		<input id="entry-permalink" class="u-url url u-uid uid bookmark" type="text" value="<?php echo esc_url( get_permalink() ); ?>" />
 	</p>
 	<?php
-	// Some comment ;)
 	if ( get_the_title() ) {
 		?>
 	<p>

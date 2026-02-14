@@ -61,7 +61,7 @@ if ( ! function_exists( 'autonomie_posted_on' ) ) :
 			$type = 'published';
 		}
 
-		if ( get_query_var( 'is_now', false ) ) {
+		if ( (bool) get_query_var( 'is_now', false ) ) {
 			$type = 'updated';
 		}
 
@@ -99,7 +99,7 @@ endif;
  * @param string|null $post_id The post id.
  */
 function autonomie_post_id( ?string $post_id = null ): void {
-	if ( $post_id ) {
+	if ( $post_id !== null ) {
 		echo 'id="' . esc_attr( $post_id ) . '"';
 	} else {
 		echo 'id="' . esc_attr( autonomie_get_post_id() ) . '"';

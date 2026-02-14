@@ -57,8 +57,8 @@ function autonomie_query_format_standard( WP_Query $query ): void {
 		$post_formats = get_theme_support( 'post-formats' );
 
 		if (
-			$post_formats &&
-			is_array( $post_formats[0] ) && count( $post_formats[0] )
+			is_array( $post_formats ) &&
+			is_array( $post_formats[0] ) && count( $post_formats[0] ) > 0
 		) {
 			$terms = [];
 			foreach ( $post_formats[0] as $format ) {

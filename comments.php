@@ -48,7 +48,7 @@
 			?>
 		</h2>
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+		<?php if ( get_comment_pages_count() > 1 && (bool) get_option( 'page_comments' ) ) : ?>
 		<nav id="comment-nav-above">
 			<div class="assistive-text"><?php esc_html_e( 'Comment navigation', 'autonomie' ); ?></div>
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'autonomie' ) ); ?></div>
@@ -74,7 +74,7 @@
 			?>
 		</ol>
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+		<?php if ( get_comment_pages_count() > 1 && (bool) get_option( 'page_comments' ) ) : ?>
 		<nav id="comment-nav-below">
 			<div class="assistive-text"><?php esc_html_e( 'Comment navigation', 'autonomie' ); ?></div>
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'autonomie' ) ); ?></div>

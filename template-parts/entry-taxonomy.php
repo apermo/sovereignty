@@ -3,7 +3,7 @@
  * translators: used between list items, there is a space after the comma
  */
 $categories_list = get_the_category_list();
-if ( $categories_list ) :
+if ( $categories_list !== '' ) :
 	?>
 <div class="cat-links">
 	<?php echo esc_html__( 'Categories', 'autonomie' ); ?>

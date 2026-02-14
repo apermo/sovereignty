@@ -26,7 +26,7 @@ function autonomie_get_post_format_archive_feed_link( string $post_format, strin
 		return false;
 	}
 
-	if ( get_option( 'permalink_structure' ) ) {
+	if ( (bool) get_option( 'permalink_structure' ) ) {
 		$link  = trailingslashit( $link );
 		$link .= 'feed/';
 		if ( $feed !== $default_feed ) {
@@ -110,7 +110,7 @@ function autonomie_extend_singular_feed_discovery( array $args = [] ): void {
 		// Does theme support post formats.
 		$post_formats = get_theme_support( 'post-formats' );
 
-		if ( $post_formats ) {
+		if ( is_array( $post_formats ) ) {
 			$post_formats = current( $post_formats );
 		} else {
 			$post_formats = [];

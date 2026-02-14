@@ -144,7 +144,7 @@ function autonomie_pre_get_avatar_data( array $args, $id_or_email ): array { // 
 	if ( empty( $args['alt'] ) ) {
 		$username = get_the_author_meta( 'display_name', $id_or_email );
 
-		if ( $username ) {
+		if ( $username !== '' ) {
 			// translators: %s: username
 			$args['alt'] = sprintf( __( 'User Avatar of %s' ), $username );
 		} else {
@@ -307,7 +307,7 @@ function autonomie_get_semantics( ?string $id = null ): array {
 function autonomie_get_the_semantics( string $id ): string {
 	$classes = autonomie_get_semantics( $id );
 
-	if ( ! $classes ) {
+	if ( $classes === [] ) {
 		return '';
 	}
 
@@ -330,7 +330,7 @@ function autonomie_get_the_semantics( string $id ): string {
 function autonomie_semantics( string $id ): void {
 	$classes = autonomie_get_semantics( $id );
 
-	if ( ! $classes ) {
+	if ( $classes === [] ) {
 		return;
 	}
 

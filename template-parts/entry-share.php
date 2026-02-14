@@ -15,7 +15,7 @@
 		<input id="entry-permalink" class="u-url url u-uid uid bookmark" type="text" value="<?php echo esc_url( get_permalink() ); ?>" />
 	</p>
 	<?php
-	if ( get_the_title() ) {
+	if ( get_the_title() !== '' ) {
 		?>
 	<p>
 		<label for="entry-summary"><?php esc_html_e( 'HTML', 'autonomie' ); ?></label>

@@ -42,7 +42,7 @@ add_filter( 'autonomie_archive_author_meta', 'autonomie_activitypub_archive_auth
 function autonomie_activitypub_followers( int $followers, int $author_id ): int {
 	$activitypub_followers = get_user_option( 'activitypub_followers', $author_id );
 
-	if ( $activitypub_followers ) {
+	if ( is_array( $activitypub_followers ) ) {
 		$activitypub_followers = count( $activitypub_followers );
 	} else {
 		$activitypub_followers = 0;

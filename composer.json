@@ -26,7 +26,8 @@
 		"apermo/wp-coding-standards": "^1.0",
 		"phpstan/phpstan": "^2.0",
 		"szepeviktor/phpstan-wordpress": "^2.0",
-		"roave/security-advisories": "dev-latest"
+		"roave/security-advisories": "dev-latest",
+		"phpstan/phpstan-strict-rules": "^2.0"
 	},
 	"repositories": [
 		{
@@ -37,7 +38,8 @@
 	"scripts": {
 		"lint": "phpcs",
 		"lint:fix": "phpcbf",
-		"analyse": "phpstan analyse"
+		"analyse": "phpstan analyse --memory-limit=2G",
+		"analyse:strict": "phpstan analyse -c phpstan-strict.neon --memory-limit=2G"
 	},
 	"extra": {
 		"installer-name": "sovereignty"

@@ -13,17 +13,18 @@
 /**
  * Add ActivityPub information to the archive author metadata.
  *
- * @param  array $meta      the meta array
- * @param  int   $author_id the author id
+ * @param  array $meta      The meta array.
+ * @param  int   $author_id The author id.
  *
- * @return array            the filtered meta array
+ * @return array            The filtered meta array.
  */
-function autonomie_activitypub_archive_author_meta( $meta, $author_id ) {
+function autonomie_activitypub_archive_author_meta( array $meta, int $author_id ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps, Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	$meta[] = sprintf(
 		// translators:
 		__( '<indie-action do="follow" with="%1$s">Follow <code>%2$s</code> (fediverse)</indie-action>', 'autonomie' ),
-		get_author_posts_url( $author_id ),
-		\Activitypub\get_webfinger_resource( $author_id )
+		get_author_posts_url( $author_id ), // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+		// @phpstan-ignore-next-line
+		\Activitypub\get_webfinger_resource( $author_id ) // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	);
 
 	return $meta;
@@ -31,22 +32,27 @@ function autonomie_activitypub_archive_author_meta( $meta, $author_id ) {
 add_filter( 'autonomie_archive_author_meta', 'autonomie_activitypub_archive_author_meta', 10, 2 );
 
 /**
- * ActivityPub follower counter
+ * ActivityPub follower counter.
  *
  * @param  int $followers The follower counter.
  * @param  int $author_id The author id.
  *
  * @return int            The filtered counter.
  */
-function autonomie_activitypub_followers( $followers, $author_id ) {
+function autonomie_activitypub_followers( int $followers, int $author_id ): int { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps, Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+	// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	$activitypub_followers = get_user_option( 'activitypub_followers', $author_id );
 
+	// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	if ( $activitypub_followers ) {
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		$activitypub_followers = count( $activitypub_followers );
 	} else {
+		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		$activitypub_followers = 0;
 	}
 
+	// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	$followers = $followers + $activitypub_followers;
 
 	return $followers;

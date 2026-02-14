@@ -23,7 +23,8 @@ get_header(); ?>
 					<?php while ( have_posts() ) : the_post(); // phpcs:ignore ?>
 
 						<?php
-							/* Include the Post-Format-specific template for the content.
+							/*
+							 Include the Post-Format-specific template for the content.
 							* If you want to overload this in a child theme then include a file
 							* called content-___.php (where ___ is the Post Format name) and that will be used instead.
 							*/
@@ -38,11 +39,11 @@ get_header(); ?>
 
 					<article id="post-0" class="post no-results not-found">
 						<header class="entry-header">
-							<h2 class="entry-title p-entry-title"><?php _e( 'Nothing Found', 'autonomie' ); ?></h2>
+							<h2 class="entry-title p-entry-title"><?php esc_html_e( 'Nothing Found', 'autonomie' ); ?></h2>
 						</header><!-- .entry-header -->
 
 						<div class="entry-content e-entry-content">
-							<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'autonomie' ); ?></p>
+							<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'autonomie' ); // phpcs:ignore WordPress.Security.EscapeOutput.UnsafePrintingFunction -- Contains HTML entities &rsquo; that esc_html_e() would double-escape. ?></p>
 							<?php get_search_form(); ?>
 						</div><!-- .entry-content -->
 					</article><!-- #post-0 -->

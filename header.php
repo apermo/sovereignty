@@ -21,7 +21,9 @@
 <body <?php body_class(); ?><?php autonomie_semantics( 'body' ); ?>>
 <?php
 /**
- * @see: https://make.wordpress.org/core/2019/04/24/miscellaneous-developer-updates-in-5-2/
+ * Fire the wp_body_open action for theme compatibility.
+ *
+ * @see https://make.wordpress.org/core/2019/04/24/miscellaneous-developer-updates-in-5-2/
  */
 if ( function_exists( 'wp_body_open' ) ) {
 	wp_body_open();
@@ -30,34 +32,34 @@ if ( function_exists( 'wp_body_open' ) ) {
 }
 ?>
 <div id="page">
-	<div class="skip-link screen-reader-text"><a href="#primary" title="<?php esc_attr_e( 'Skip to content', 'autonomie' ); ?>"><?php _e( 'Skip to content', 'autonomie' ); ?></a></div>
+	<div class="skip-link screen-reader-text"><a href="#primary" title="<?php esc_attr_e( 'Skip to content', 'autonomie' ); ?>"><?php esc_html_e( 'Skip to content', 'autonomie' ); ?></a></div>
 	<?php do_action( 'before' ); ?>
 	<header id="site-header" class="site-header">
 		<div class="site-branding">
 			<?php
 			if ( has_custom_logo() ) {
-				echo get_custom_logo();
+				echo get_custom_logo(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Returns safe HTML from core.
 			}
 
 			if ( is_home() ) {
-				$site_title_element = 'h1';
+				$site_title_element = 'h1'; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- WordPress template convention.
 			} else {
-				$site_title_element = 'div';
+				$site_title_element = 'div'; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- WordPress template convention.
 			}
 			?>
-			<<?php echo $site_title_element; ?> id="site-title"<?php autonomie_semantics( 'site-title' ); ?>>
+			<<?php echo esc_html( $site_title_element ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- WordPress template convention. ?> id="site-title"<?php autonomie_semantics( 'site-title' ); ?>>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"<?php autonomie_semantics( 'site-url' ); ?>>
 				<?php bloginfo( 'name' ); ?>
 				</a>
-			</<?php echo $site_title_element; ?>>
+			</<?php echo esc_html( $site_title_element ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- WordPress template convention. ?>>
 
-			<?php get_search_form( true ); ?>
+			<?php get_search_form( [ 'echo' => true ] ); ?>
 		</div>
 
 		<nav id="site-navigation" class="site-navigation">
 			<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'autonomie' ); ?></button>
 
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			<?php wp_nav_menu( [ 'theme_location' => 'primary' ] ); ?>
 		</nav><!-- #site-navigation -->
 
 		<?php get_template_part( 'template-parts/page-banner', autonomie_get_archive_type() ); ?>

@@ -287,12 +287,12 @@ function autonomie_get_archive_author_meta(): string {
 	$meta = [];
 
 	$meta[] = sprintf(
-		// translators: list of followers
+		// translators: list of followers.
 		__( '%s Followers', 'autonomie' ),
 		apply_filters( 'autonomie_archive_author_followers', 0, get_the_author_meta( 'ID' ) )
 	);
 	$meta[] = sprintf(
-		// translators: a post counter
+		// translators: a post counter.
 		__( '%s Posts', 'autonomie' ),
 		count_user_posts( (int) get_the_author_meta( 'ID' ) )
 	);
@@ -329,7 +329,7 @@ function autonomie_get_the_archive_description(): string {
 		// @see https://github.com/raamdev/independent-publisher/blob/513e7ff71312f585f13eb1460b4d9bc74d0b59bd/inc/template-tags.php#L674
 		global $wp_query;
 		$total = $wp_query->found_posts;
-		// translators: Description for search results
+		// translators: Description for search results.
 		$stats_text = sprintf( _n( 'Found %1$s search result for <strong>%2$s</strong>.', 'Found %1$s search results for <strong>%2$s</strong>.', $total, 'autonomie' ), number_format_i18n( $total ), get_search_query() );
 
 		return wpautop( $stats_text );

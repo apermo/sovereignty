@@ -33,7 +33,7 @@ function autonomie_body_classes( array $classes ): array {
 		$classes[] = 'feed';
 	}
 
-	// Adds a class of single-author to blogs with only 1 published author
+	// Adds a class of single-author to blogs with only 1 published author.
 	if ( ! is_multi_author() ) {
 		$classes[] = 'single-author';
 	}

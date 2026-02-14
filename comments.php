@@ -17,7 +17,7 @@
 	</div><!-- #comments -->
 		<?php
 			/*
-			 Stop the rest of comments.php from being processed,
+			 * Stop the rest of comments.php from being processed,
 			 * but don't kill the script entirely -- we still have
 			 * to fully load the template.
 			 */
@@ -48,18 +48,18 @@
 			?>
 		</h2>
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
 		<nav id="comment-nav-above">
 			<div class="assistive-text"><?php esc_html_e( 'Comment navigation', 'autonomie' ); ?></div>
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'autonomie' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'autonomie' ) ); ?></div>
 		</nav>
-		<?php endif; // check for comment navigation ?>
+		<?php endif; ?>
 
 		<ol class="commentlist">
 			<?php
 				/*
-				 Loop through and list the comments. Tell wp_list_comments()
+				 * Loop through and list the comments. Tell wp_list_comments()
 				 * to use autonomie_comment() to format the comments.
 				 * If you want to overload this in a child theme then you can
 				 * define autonomie_comment() and that will be used instead.
@@ -74,15 +74,15 @@
 			?>
 		</ol>
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
+		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
 		<nav id="comment-nav-below">
 			<div class="assistive-text"><?php esc_html_e( 'Comment navigation', 'autonomie' ); ?></div>
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'autonomie' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'autonomie' ) ); ?></div>
 		</nav>
-		<?php endif; // check for comment navigation ?>
+		<?php endif; ?>
 
-	<?php endif; // have_comments() ?>
+	<?php endif; // /have_comments ?>
 
 	<?php
 	// If comments are closed and there are no comments, let's leave a little note, shall we?

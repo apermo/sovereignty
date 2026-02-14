@@ -23,10 +23,10 @@ function autonomie_the_post_thumbnail( string $before = '', string $after = '' )
 
 		$post_format = get_post_format();
 
-		// use `u-photo` on photo/gallery posts
+		// Use `u-photo` on photo/gallery posts.
 		if ( in_array( $post_format, [ 'image', 'gallery' ], true ) ) {
 			$class .= ' u-photo';
-		} else { // otherwise use `u-featured`
+		} else { // Otherwise use `u-featured`.
 			$class .= ' u-featured';
 		}
 
@@ -68,10 +68,10 @@ function autonomie_content_post_thumbnail( string $content ): string {
 
 		$post_format = get_post_format();
 
-		// use `u-photo` on photo/gallery posts
+		// Use `u-photo` on photo/gallery posts.
 		if ( in_array( $post_format, [ 'image', 'gallery' ], true ) ) {
 			$class .= ' u-photo';
-		} else { // otherwise use `u-featured`
+		} else { // Otherwise use `u-featured`.
 			$class .= ' u-featured';
 		}
 
@@ -101,12 +101,9 @@ add_filter( 'the_content', 'autonomie_content_post_thumbnail' );
  * @return string The modified admin post thumbnail HTML.
  */
 function autonomie_featured_image_meta( string $content, int $post_id ): string {
-	// Text for checkbox
 	$text = esc_html__( 'Use as post cover (full-width)', 'autonomie' );
 
-	// Get the current setting
 	$value = esc_attr( get_post_meta( $post_id, 'full_width_featured_image', true ) );
-	// Output the checkbox HTML
 	$label = '<input type="hidden" name="full_width_featured_image" value="0">';
 	$label .= '<label for="full_width_featured_image" class="selectit"><input name="full_width_featured_image" type="checkbox" id="full_width_featured_image" value="1" ' . checked( $value, 1, false ) . '> ' . $text . '</label>';
 
@@ -122,23 +119,23 @@ add_filter( 'admin_post_thumbnail_html', 'autonomie_featured_image_meta', 10, 2 
  * @return void
  */
 function autonomie_save_post( int $post_id ): void {
-	// if this is an autosave, our form has not been submitted, so we don't want to do anything.
+	// If this is an autosave, our form has not been submitted, so we don't want to do anything.
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}
 
-	// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce is verified by WordPress core on the save_post hook.
+	// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce is verified by WordPress core on the save_post hook.
+
 	if ( ! array_key_exists( 'full_width_featured_image', $_POST ) ) {
 		return;
 	}
 
-	// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce is verified by WordPress core on the save_post hook.
 	if ( ! array_key_exists( 'post_type', $_POST ) ) {
 		return;
 	}
 
-	// check the user's permissions.
-	// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- Nonce is verified by WordPress core; post_type is only compared, not stored.
+	// Check the user's permissions.
+	// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- post_type is only compared, not stored.
 	if ( $_POST['post_type'] === 'page' ) {
 		if ( ! current_user_can( 'edit_page', $post_id ) ) {
 			return;
@@ -147,12 +144,10 @@ function autonomie_save_post( int $post_id ): void {
 			return;
 	}
 
-	// sanitize user input.
-	// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce is verified by WordPress core on the save_post hook.
 	$full_width_featured_image = sanitize_text_field( wp_unslash( $_POST['full_width_featured_image'] ) );
-
-	// update the meta field in the database.
 	update_post_meta( $post_id, 'full_width_featured_image', $full_width_featured_image );
+
+	// phpcs:enable WordPress.Security.NonceVerification.Missing
 }
 add_action( 'save_post', 'autonomie_save_post', 5, 1 );
 
@@ -176,11 +171,7 @@ function autonomie_has_full_width_featured_image(): bool {
 	$full_width_featured_image = get_post_meta( get_the_ID(), 'full_width_featured_image', true );
 
 	// If "Use featured image as Post Cover" has been checked in the Featured Image meta box, return true.
-	if ( $full_width_featured_image === '1' ) {
-		return true;
-	}
-
-	return false; // Default
+	return $full_width_featured_image === '1';
 }
 
 /**

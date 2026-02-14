@@ -127,7 +127,7 @@ if ( ! function_exists( 'get_self_link' ) ) {
 	 * @return string Correct link for the atom:self element.
 	 */
 	function get_self_link(): string {
-		$host = @parse_url( home_url() );
+		$host = wp_parse_url( home_url() );
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Polyfill for WP core function.
 		return set_url_scheme( 'http://' . $host['host'] . wp_unslash( $_SERVER['REQUEST_URI'] ) );
 	}

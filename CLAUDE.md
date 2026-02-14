@@ -141,9 +141,7 @@ Do not remove or alter microformat/microdata classes without understanding their
 
 ## Coding Standards
 
-- Follow WordPress-Core coding standard (tabs for indentation in PHP)
-- SCSS uses 2-space indentation
-- JS uses 2-space indentation
+- Tabs for indentation across all file types (see `.editorconfig`)
 - Keep functions pluggable (`function_exists()` check) where the original theme uses them
 - Maintain i18n — all user-facing strings through `__()` / `_e()` / `esc_html__()` with `autonomie` text domain
 

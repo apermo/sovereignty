@@ -134,5 +134,4 @@ function autonomie_activate(): void {
 		]
 	);
 }
-
 add_action( 'after_switch_theme', 'autonomie_activate' );

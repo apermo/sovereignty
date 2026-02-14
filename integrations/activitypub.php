@@ -20,7 +20,7 @@
  */
 function autonomie_activitypub_archive_author_meta( array $meta, int $author_id ): array {
 	$meta[] = sprintf(
-		// translators:
+		// translators: how to follow an author on the fediverse, 1: the author archive URL, 2: the author's webfinger resource.
 		__( '<indie-action do="follow" with="%1$s">Follow <code>%2$s</code> (fediverse)</indie-action>', 'autonomie' ),
 		get_author_posts_url( $author_id ),
 		// @phpstan-ignore-next-line

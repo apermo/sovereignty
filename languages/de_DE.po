@@ -23,13 +23,13 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
 
 #: 404.php:15
-msgid "Well this is somewhat embarrassing, isn&rsquo;t it?"
+msgid "Well this is somewhat embarrassing, isn't it?"
 msgstr "Nun, das ist etwas peinlich, nicht wahr?"
 
 #: 404.php:19
 msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-"searching, or one of the links below, can help."
+"It seems we can't find what you're looking for. Perhaps searching, or one "
+"of the links below, can help."
 msgstr ""
 "Es scheint, dass wir nicht finden können, was Sie suchen. Vielleicht hilft "
 "Ihnen die Suchfunktion oder ein anderer Link auf dieser Seite."
@@ -58,8 +58,8 @@ msgstr "Nichts gefunden"
 
 #: archive.php:45 index.php:42
 msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-"searching can help."
+"It seems we can't find what you're looking for. Perhaps searching can "
+"help."
 msgstr ""
 "Es scheint, dass wir nicht finden können, was du suchst. Vielleicht kann die "
 "Suche helfen."

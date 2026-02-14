@@ -13,11 +13,11 @@ get_header();
 
 			<article id="post-0" class="post error404 not-found">
 				<header class="entry-header">
-					<h1 class="entry-title p-name"><?php _e( 'Well this is somewhat embarrassing, isn&rsquo;t it?', 'autonomie' ); // phpcs:ignore WordPress.Security.EscapeOutput.UnsafePrintingFunction -- Contains HTML entity &rsquo; that esc_html_e() would double-escape. ?></h1>
+					<h1 class="entry-title p-name"><?php esc_html_e( "Well this is somewhat embarrassing, isn't it?", 'autonomie' ); ?></h1>
 				</header>
 
 				<div class="entry-content e-content">
-					<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching, or one of the links below, can help.', 'autonomie' ); // phpcs:ignore WordPress.Security.EscapeOutput.UnsafePrintingFunction -- Contains HTML entities &rsquo; that esc_html_e() would double-escape. ?></p>
+					<p><?php esc_html_e( "It seems we can't find what you're looking for. Perhaps searching, or one of the links below, can help.", 'autonomie' ); ?></p>
 
 					<?php get_search_form(); ?>
 

@@ -43,7 +43,7 @@ get_header(); ?>
 				</header><!-- .entry-header -->
 
 				<div class="entry-content e-entry-content">
-					<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'autonomie' ); // phpcs:ignore WordPress.Security.EscapeOutput.UnsafePrintingFunction -- Contains HTML entities &rsquo; that esc_html_e() would double-escape. ?></p>
+					<p><?php esc_html_e( "It seems we can't find what you're looking for. Perhaps searching can help.", 'autonomie' ); ?></p>
 					<?php get_search_form(); ?>
 				</div><!-- .entry-content -->
 			</article><!-- #post-0 -->

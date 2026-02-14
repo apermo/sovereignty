@@ -22,7 +22,7 @@ function autonomie_get_post_format_archive_feed_link( string $post_format, strin
 	}
 
 	$link = autonomie_get_post_format_link( $post_format );
-	if ( ! $link ) {
+	if ( empty( $link ) ) {
 		return false;
 	}
 
@@ -59,15 +59,15 @@ function autonomie_get_post_format_archive_feed_link( string $post_format, strin
 function autonomie_extend_singular_feed_discovery( array $args = [] ): void {
 	$defaults = [
 		/* translators: Separator between blog name and feed type in feed links */
-		'separator'   => _x( '&raquo;', 'feed link', 'autonomie' ),
+		'separator' => _x( '&raquo;', 'feed link', 'autonomie' ),
 		/* translators: 1: blog name, 2: separator(raquo), 3: post title */
 		'singletitle' => __( '%1$s %2$s %3$s Comments Feed', 'autonomie' ),
 		/* translators: 1: blog name, 2: separator(raquo), 3: category name */
-		'cattitle'    => __( '%1$s %2$s %3$s Category Feed', 'autonomie' ),
+		'cattitle' => __( '%1$s %2$s %3$s Category Feed', 'autonomie' ),
 		/* translators: 1: blog name, 2: separator(raquo), 3: tag name */
-		'tagtitle'    => __( '%1$s %2$s %3$s Tag Feed', 'autonomie' ),
+		'tagtitle' => __( '%1$s %2$s %3$s Tag Feed', 'autonomie' ),
 		/* translators: 1: blog name, 2: separator(raquo), 3: term name, 4: taxonomy singular name */
-		'taxtitle'    => __( '%1$s %2$s %3$s %4$s Feed', 'autonomie' ),
+		'taxtitle' => __( '%1$s %2$s %3$s %4$s Feed', 'autonomie' ),
 		/* translators: 1: blog name, 2: separator(raquo), 3: author name  */
 		'authortitle' => __( '%1$s %2$s Posts by %3$s Feed', 'autonomie' ),
 		/* translators: 1: blog name, 2: separator(raquo), 3: search phrase */
@@ -79,9 +79,9 @@ function autonomie_extend_singular_feed_discovery( array $args = [] ): void {
 	$args  = wp_parse_args( $args, $defaults );
 	$feeds = [];
 
-	// Post/Page feeds
+	// Post/Page feeds.
 	if ( is_singular() ) {
-		// add tag feeds
+		// Add tag feeds.
 		foreach ( wp_get_post_terms( get_the_ID(), [ 'post_tag', 'category' ] ) as $term ) {
 			$tax = get_taxonomy( $term->taxonomy );
 
@@ -105,9 +105,9 @@ function autonomie_extend_singular_feed_discovery( array $args = [] ): void {
 		];
 	}
 
-	// Homepage feeds
+	// Homepage feeds.
 	if ( is_home() ) {
-		// does theme support post formats
+		// Does theme support post formats.
 		$post_formats = get_theme_support( 'post-formats' );
 
 		if ( $post_formats ) {
@@ -126,7 +126,7 @@ function autonomie_extend_singular_feed_discovery( array $args = [] ): void {
 		}
 	}
 
-	// Add "standard" post-format feed discovery
+	// Add "standard" post-format feed discovery.
 	global $wp_query;
 	if (
 		isset( $wp_query->query['post_format'] ) &&

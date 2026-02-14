@@ -147,6 +147,10 @@ Do not remove or alter microformat/microdata classes without understanding their
 - Keep functions pluggable (`function_exists()` check) where the original theme uses them
 - Maintain i18n — all user-facing strings through `__()` / `_e()` / `esc_html__()` with `autonomie` text domain
 
+## Upstream Attribution
+
+When fixing bugs in code inherited from Autonomie (the original theme by Matthias Pfefferle), add `cc @pfefferle` to the commit message body so he has visibility into issues found in the original code.
+
 ## Known Issues
 
 See `plan.md` "Sovereignty: Current State & Issues" section for the full bug list and feature gaps being addressed in the migration.

@@ -30,7 +30,7 @@ if ( function_exists( 'wp_body_open' ) ) {
 }
 ?>
 <div id="page">
-	<div class="skip-link screen-reader-text"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'autonomie' ); ?>"><?php _e( 'Skip to content', 'autonomie' ); ?></a></div>
+	<div class="skip-link screen-reader-text"><a href="#primary" title="<?php esc_attr_e( 'Skip to content', 'autonomie' ); ?>"><?php _e( 'Skip to content', 'autonomie' ); ?></a></div>
 	<?php do_action( 'before' ); ?>
 	<header id="site-header" class="site-header">
 		<div class="site-branding">

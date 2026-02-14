@@ -52,6 +52,8 @@
     "lint:css": "stylelint 'assets/sass/**/*.scss'",
     "lint:js:fix": "eslint --fix 'assets/js/**/*.js'",
     "lint:css:fix": "stylelint --fix 'assets/sass/**/*.scss'",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -64,6 +66,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
+    "@playwright/test": "^1.58.2",
     "@wordpress/eslint-plugin": "^21.0.0",
     "@wordpress/stylelint-config": "^23.0.0",
     "eslint": "^8.57.0",

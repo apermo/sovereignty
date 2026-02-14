@@ -105,18 +105,23 @@ function autonomie_add_lazy_loading( string $content ): string {
 }
 add_filter( 'the_content', 'autonomie_add_lazy_loading', 99 );
 
-add_filter(
-	'wp_lazy_loading_enabled',
-	function ( bool $default, string $tag_name, string $context ): bool { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.defaultFound
-		if ( $context === 'the_content' ) {
-			return false;
-		}
+/**
+ * Disable WP native lazy loading for the_content since we handle it ourselves.
+ *
+ * @param bool   $is_enabled Whether lazy loading is enabled.
+ * @param string $tag_name   The HTML tag name.
+ * @param string $context    The context where lazy loading is applied.
+ *
+ * @return bool
+ */
+function autonomie_disable_native_lazy_loading( bool $is_enabled, string $tag_name, string $context ): bool {
+	if ( $context === 'the_content' ) {
+		return false;
+	}
 
-		return $default;
-	},
-	20,
-	3
-);
+	return $is_enabled;
+}
+add_filter( 'wp_lazy_loading_enabled', 'autonomie_disable_native_lazy_loading', 20, 3 );
 
 if ( ! function_exists( 'get_self_link' ) ) {
 	/**

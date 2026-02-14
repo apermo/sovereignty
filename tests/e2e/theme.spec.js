@@ -18,22 +18,24 @@ test.describe('Theme basics', () => {
 		await expect(siteTitle).toBeVisible();
 	});
 
-	test('navigation menu exists', async ({ page }) => {
+	test('navigation menu is visible', async ({ page }) => {
 		await page.goto('/');
 		const nav = page.locator('#site-navigation');
-		await expect(nav).toBeAttached();
+		await expect(nav).toBeVisible();
 	});
 
-	test('search form is present', async ({ page }) => {
+	test('search form is visible', async ({ page }) => {
 		await page.goto('/');
 		const search = page.locator('input[type="search"]');
-		await expect(search).toBeAttached();
+		await expect(search).toBeVisible();
 	});
 
-	test('skip-to-content link exists', async ({ page }) => {
+	test('skip-to-content link targets main content', async ({ page }) => {
 		await page.goto('/');
-		const skipLink = page.locator('.skip-link a[href="#content"]');
+		const skipLink = page.locator('.skip-link a[href="#primary"]');
 		await expect(skipLink).toBeAttached();
+		const target = page.locator('#primary');
+		await expect(target).toBeAttached();
 	});
 });
 
@@ -46,16 +48,19 @@ test.describe('Error pages', () => {
 });
 
 test.describe('Accessibility', () => {
-	test('page has lang attribute', async ({ page }) => {
+	test('page has valid lang attribute', async ({ page }) => {
 		await page.goto('/');
-		const lang = await page.locator('html').getAttribute('lang');
-		expect(lang).toBeTruthy();
+		await expect(page.locator('html')).toHaveAttribute(
+			'lang',
+			/^[a-z]{2}(-[A-Za-z]+)*$/
+		);
 	});
 
 	test('images have alt attributes', async ({ page }) => {
 		await page.goto('/');
 		const images = page.locator('img');
 		const count = await images.count();
+		expect(count).toBeGreaterThan(0);
 		for (let i = 0; i < count; i++) {
 			const alt = await images.nth(i).getAttribute('alt');
 			expect(alt).not.toBeNull();

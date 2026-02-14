@@ -2,10 +2,10 @@
 @import "mixins";
 
 *,
-*:before,
-*:after,
-*:first-letter,
-*:first-line {
+*::before,
+*::after,
+*::first-letter,
+*::first-line {
 	background: transparent !important;
 	color: #000 !important; /* Black prints faster:
 							   http://www.sanbeiji.com/archives/953 */
@@ -18,11 +18,11 @@ a:visited {
 	text-decoration: underline;
 }
 
-a[href]:after {
+a[href]::after {
 	content: " (" attr(href) ")";
 }
 
-abbr[title]:after {
+abbr[title]::after {
 	content: " (" attr(title) ")";
 }
 
@@ -31,8 +31,8 @@ abbr[title]:after {
  * or use the `javascript:` pseudo protocol
  */
 
-a[href^="#"]:after,
-a[href^="javascript:"]:after {
+a[href^="#"]::after,
+a[href^="javascript:"]::after {
 	content: "";
 }
 

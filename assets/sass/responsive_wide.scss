@@ -11,6 +11,7 @@
 }
 
 .entry-content {
+
 	.wp-block-image,
 	.entry-attachment {
 		width: $wide-width;
@@ -56,6 +57,7 @@
 
 .entry-content,
 .entry-summary {
+
 	> object,
 	> embed,
 	> iframe,
@@ -74,6 +76,7 @@
 
 .entry-content,
 .entry-summary {
+
 	> table,
 	> pre {
 		width: $wide-width;
@@ -90,6 +93,7 @@ figure,
 .wp-block-cover,
 .wp-block-gallery,
 .wp-block-button {
+
 	&.alignleft {
 		float: left;
 		margin-top: .3em;
@@ -106,6 +110,7 @@ figure,
 }
 
 p {
+
 	&.alignleft {
 		font-size: .9em;
 		font-style: italic;
@@ -140,10 +145,11 @@ p {
 }
 
 .alignright {
+
 	figcaption {
 		display: block;
 		height: 68px;
-		margin-top: 0px;
+		margin-top: 0;
 		text-align: left;
 		width: $margin;
 		margin-left: 20px;
@@ -151,7 +157,7 @@ p {
 		word-wrap: break-word;
 		float: right;
 
-		&:before {
+		&::before {
 			width: 25%;
 			margin-right: 75%;
 			border-top: 1px solid $light-gray;
@@ -164,10 +170,11 @@ p {
 }
 
 .alignleft {
+
 	figcaption {
 		display: block;
 		height: 68px;
-		margin-top: 0px;
+		margin-top: 0;
 		text-align: right;
 		width: $margin;
 		margin-right: 20px;
@@ -175,7 +182,7 @@ p {
 		word-wrap: break-word;
 		float: left;
 
-		&:before {
+		&::before {
 			width: 25%;
 			margin-left: 75%;
 			border-top: 1px solid $light-gray;

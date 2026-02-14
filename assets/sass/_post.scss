@@ -1,13 +1,16 @@
 .single,
 .page {
+
 	#primary article {
+
 		&.has-full-width-featured-image {
-			margin-top: 0px;
+			margin-top: 0;
 		}
 	}
 }
 
 .has-full-width-featured-image {
+
 	.entry-header {
 		margin: 0;
 		width: 100%;
@@ -63,8 +66,10 @@
 
 .home,
 .archive {
+
 	#primary article {
-		&:after {
+
+		&::after {
 			content: "";
 			border-top: 1px solid $border-gray;
 			width: 200px;
@@ -82,9 +87,10 @@ h3.entry-title,
 h4.entry-title {
 	margin: 0;
 	padding: 0;
+
 	/*font-size: 3.5em;*/
 	font-size: 2em;
-	line-height: 1.2em;
+	line-height: 1.2;
 
 	a {
 		hyphens: auto;
@@ -103,6 +109,7 @@ h4.entry-title {
 }
 
 .format-quote, .format-aside, .format-status {
+
 	.entry-content {
 		font-size: 1.5em;
 	}
@@ -110,6 +117,7 @@ h4.entry-title {
 
 .type-page,
 .format-standard {
+
 	h1.entry-title,
 	h2.entry-title,
 	h3.entry-title,
@@ -155,6 +163,7 @@ h4.entry-title {
 		}
 
 		&:hover {
+
 			@supports(text-decoration: underline $android-green) {
 				text-decoration: underline $usc-gold;
 				text-decoration: underline var(--color-usc-gold);
@@ -174,7 +183,7 @@ h4.entry-title {
 #entry-share {
 	display: inline-block;
 	font-size: 1em;
-	font-family: "Lato", sans-serif;
+	font-family: Lato, sans-serif;
 	background-color: $background-gray;
 	background-color: var(--color-background-gray);
 	border: none;
@@ -191,13 +200,12 @@ h4.entry-title {
 		color: $dark-green;
 	}
 
-	&:before {
+	&::before {
 		display: inline-block;
-		font: normal 1.1em "Dashicons";
+		font: 400 1.1em Dashicons;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		text-rendering: optimizeLegibility;
-		margin-right: 0;
+		text-rendering: optimizelegibility;
 		position: relative;
 		text-decoration: none;
 		top: 2px;
@@ -217,7 +225,7 @@ h4.entry-title {
 .gallery-caption,
 .page-link,
 .page-links {
-	font-family: "Lato", sans-serif;
+	font-family: Lato, sans-serif;
 	clear: both;
 	color: $gray;
 	color: var(--color-gray);
@@ -240,6 +248,7 @@ h4.entry-title {
 }
 
 .entry-footer .author {
+
 	@include clearfix;
 }
 
@@ -257,19 +266,19 @@ h4.entry-title {
 
 	&.post-format a,
 	&.post-format span,
-	&.post-format .entry-format:before {
+	&.post-format .entry-format::before {
 		color: $lighter-gray;
 		color: var(--color-lighter-gray);
-		font-weight: bold;
+		font-weight: 700;
 		text-transform: lowercase;
 	}
 
-	&.post-format .entry-format:before {
+	&.post-format .entry-format::before {
 		display: inline-block;
-		font: normal 1.1em "Dashicons";
+		font: 400 1.1em Dashicons;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		text-rendering: optimizeLegibility;
+		text-rendering: optimizelegibility;
 		isolation: isolate;
 		margin-right: 5px;
 		position: relative;
@@ -301,13 +310,12 @@ h4.entry-title {
 	font-size: 1em;
 	display: inline-block;
 
-	&:before {
+	&::before {
 		display: inline-block;
-		font: normal 1.1em "Dashicons";
+		font: 400 1.1em Dashicons;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		text-rendering: optimizeLegibility;
-		margin-right: 0;
+		text-rendering: optimizelegibility;
 		position: relative;
 		text-decoration: inherit;
 		top: 2px;
@@ -352,44 +360,44 @@ h4.entry-title {
 		display: none;
 	}
 
-	&.format-quote .post-format .entry-format:before {
+	&.format-quote .post-format .entry-format::before {
 		content: "\f122";
 	}
 
-	&.format-aside .post-format .entry-format:before {
+	&.format-aside .post-format .entry-format::before {
 		content: "\f123";
 	}
 
-	&.format-video .post-format .entry-format:before {
+	&.format-video .post-format .entry-format::before {
 		content: "\f126";
 	}
 
-	&.format-audio .post-format .entry-format:before {
+	&.format-audio .post-format .entry-format::before {
 		content: "\f127";
 	}
 
-	&.format-image .post-format .entry-format:before,
-	&.format-photo .post-format .entry-format:before {
+	&.format-image .post-format .entry-format::before,
+	&.format-photo .post-format .entry-format::before {
 		content: "\f128";
 	}
 
-	&.format-gallery .post-format .entry-format:before {
+	&.format-gallery .post-format .entry-format::before {
 		content: "\f161";
 	}
 
-	&.format-link .post-format .entry-format:before {
+	&.format-link .post-format .entry-format::before {
 		content: "\f103";
 	}
 
-	&.format-status .post-format .entry-format:before {
+	&.format-status .post-format .entry-format::before {
 		content: "\f130";
 	}
 
-	&.format-standard .post-format .entry-format:before {
+	&.format-standard .post-format .entry-format::before {
 		content: "\f478";
 	}
 
-	&.type-page .post-format .entry-type-page:before {
+	&.type-page .post-format .entry-type-page::before {
 		content: "\f105";
 	}
 }
@@ -410,6 +418,7 @@ h4.entry-title {
 }
 
 .entry-content {
+
 	.has-orioles-orange-background-color {
 		background-color: $orioles-orange;
 	}
@@ -503,11 +512,12 @@ h4.entry-title {
 
 .sticky {
 	color: inherit;
+
 	/** nothing special */
 }
 
 .wp-block-footnotes {
-	border-top: solid 1px lightgray;
+	border-top: solid 1px #d3d3d3;
 	margin-top: 2em;
 	padding-top: 2em;
 	font-size: .8em;

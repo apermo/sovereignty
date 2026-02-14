@@ -1,35 +1,37 @@
+@use "sass:color";
+
 // Colors
 
 // grayscale
 $dark-gray: #373d3f;
-$gray: lighten($dark-gray, 10%);
-$light-gray: lighten($dark-gray, 20%);
-$lighter-gray: lighten($dark-gray, 50%);
+$gray: color.adjust($dark-gray, $lightness: 10%);
+$light-gray: color.adjust($dark-gray, $lightness: 20%);
+$lighter-gray: color.adjust($dark-gray, $lightness: 50%);
 
-$border-gray: lighten($dark-gray, 60%);
-$background-gray: lighten($dark-gray, 75%);
+$border-gray: color.adjust($dark-gray, $lightness: 60%);
+$background-gray: color.adjust($dark-gray, $lightness: 75%);
 
 // blue
 $blue: #5fa7c5;
-$dark-blue: darken($blue, 35%);
-$light-blue: lighten($blue, 35%);
+$dark-blue: color.adjust($blue, $lightness: -35%);
+$light-blue: color.adjust($blue, $lightness: 35%);
 
 $blue-jeans: #5bc0eb;
 $lighter-blue: #229fd8;
 
 // green
 $green: #a0c55f;
-$dark-green: darken($green, 35%);
-$light-green: lighten($green, 35%);
+$dark-green: color.adjust($green, $lightness: -35%);
+$light-green: color.adjust($green, $lightness: 35%);
 
 // brown
 $brown: #8c612f;
-$dark-brown: darken($brown, 35%);
-$light-brown: lighten($brown, 35%);
+$dark-brown: color.adjust($brown, $lightness: -35%);
+$light-brown: color.adjust($brown, $lightness: 35%);
 
 // editor colors
 $orioles-orange: #fa5b0f;
-$usc-gold: #ffcc00;
+$usc-gold: #fc0;
 $gargoyle-gas: #fde74c;
 $yellow: #fff9c0;
 $android-green: #9bc53d;

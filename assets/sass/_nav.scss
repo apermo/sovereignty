@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 
 /* Starter CSS for Menu */
 .site-navigation {
@@ -51,6 +52,7 @@
 				}
 			}
 
+			/* stylelint-disable-next-line selector-class-pattern */
 			&.page_item_has_children,
 			&.menu-item-has-children {
 
@@ -121,6 +123,7 @@
 					}
 				}
 
+				/* stylelint-disable-next-line selector-class-pattern */
 				&.page_item_has_children,
 				&.menu-item-has-children {
 

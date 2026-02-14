@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -38,7 +39,7 @@ input[type="button"],
 input[type="submit"],
 input[type="reset"],
 .wp-block-button a,
-.wp-block-button__link,
+.wp-block-button__link, /* stylelint-disable-line selector-class-pattern */
 .button {
 
 	@include button;

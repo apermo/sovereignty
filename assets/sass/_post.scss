@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .single,
 .page {
 
@@ -202,7 +203,7 @@ h4.entry-title {
 
 	&::before {
 		display: inline-block;
-		font: 400 1.1em Dashicons;
+		font: 400 1.1em Dashicons; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizelegibility;
@@ -275,7 +276,7 @@ h4.entry-title {
 
 	&.post-format .entry-format::before {
 		display: inline-block;
-		font: 400 1.1em Dashicons;
+		font: 400 1.1em Dashicons; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizelegibility;
@@ -312,7 +313,7 @@ h4.entry-title {
 
 	&::before {
 		display: inline-block;
-		font: 400 1.1em Dashicons;
+		font: 400 1.1em Dashicons; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizelegibility;

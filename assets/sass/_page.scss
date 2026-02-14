@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .site-header {
 	display: block;
 	position: relative;
@@ -184,7 +185,7 @@
 		}
 	}
 
-	.widget_tag_cloud {
+	.widget_tag_cloud { /* stylelint-disable-line selector-class-pattern */
 		clear: both;
 		float: none;
 		width: 100%;

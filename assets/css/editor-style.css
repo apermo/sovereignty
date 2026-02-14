@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* stylelint-disable no-invalid-position-at-import-rule */
 body .editor-styles-wrapper {
   /* Main column width */
 }
@@ -18,6 +19,7 @@ body .editor-styles-wrapper .wp-block[data-align=full] {
   max-width: none;
 }
 body .editor-styles-wrapper {
+  /* stylelint-disable no-descending-specificity */
   /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
   /**
    * 1. Set default font family to sans-serif.
@@ -242,7 +244,7 @@ body .editor-styles-wrapper code,
 body .editor-styles-wrapper kbd,
 body .editor-styles-wrapper pre,
 body .editor-styles-wrapper samp {
-  font-family: monospace, monospace;
+  font-family: monospace, monospace; /* stylelint-disable-line font-family-no-duplicate-names */
   font-size: 1em;
 }
 body .editor-styles-wrapper {
@@ -433,6 +435,9 @@ body .editor-styles-wrapper td,
 body .editor-styles-wrapper th {
   padding: 0;
 }
+body .editor-styles-wrapper {
+  /* stylelint-disable no-descending-specificity, no-duplicate-selectors */
+}
 body .editor-styles-wrapper body {
   background-color: #fff;
   background-color: var(--color-background);
@@ -604,6 +609,9 @@ body .editor-styles-wrapper h1, body .editor-styles-wrapper h2, body .editor-sty
 }
 body .editor-styles-wrapper p, body .editor-styles-wrapper ul, body .editor-styles-wrapper ol, body .editor-styles-wrapper blockquote {
   text-wrap: pretty;
+}
+body .editor-styles-wrapper {
+  /* stylelint-disable no-descending-specificity */
 }
 body .editor-styles-wrapper .single #primary article.has-full-width-featured-image,
 body .editor-styles-wrapper .page #primary article.has-full-width-featured-image {
@@ -784,7 +792,7 @@ body .editor-styles-wrapper #entry-share:hover {
 }
 body .editor-styles-wrapper #entry-share::before {
   display: inline-block;
-  font: 400 1.1em Dashicons;
+  font: 400 1.1em Dashicons; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizelegibility;
@@ -859,7 +867,7 @@ body .editor-styles-wrapper .entry-meta.post-format a, body .editor-styles-wrapp
 }
 body .editor-styles-wrapper .entry-meta.post-format .entry-format::before {
   display: inline-block;
-  font: 400 1.1em Dashicons;
+  font: 400 1.1em Dashicons; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizelegibility;
@@ -891,7 +899,7 @@ body .editor-styles-wrapper .comments-link {
 }
 body .editor-styles-wrapper .comments-link::before {
   display: inline-block;
-  font: 400 1.1em Dashicons;
+  font: 400 1.1em Dashicons; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizelegibility;

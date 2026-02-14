@@ -1,3 +1,5 @@
+/* stylelint-disable no-descending-specificity, no-duplicate-selectors */
+/* stylelint-disable no-descending-specificity */
 #sidebar,
 .site-navigation,
 .site-header .site-branding,

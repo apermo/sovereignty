@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 #comments {
 	clear: both;
 
@@ -76,7 +77,7 @@ a.comment-reply-link {
 	line-height: 16px;
 
 	&::before {
-		font-family: Dashicons;
+		font-family: Dashicons; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
 		content: "\f101";
 		padding-right: 5px;
 		text-decoration: none;

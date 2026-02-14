@@ -147,7 +147,7 @@ Do not remove or alter microformat/microdata classes without understanding their
 
 ## Upstream Attribution
 
-When fixing bugs in code inherited from Autonomie (the original theme by Matthias Pfefferle), add `cc @pfefferle` to the commit message body so he has visibility into issues found in the original code.
+Only add `cc @pfefferle` to the commit message body when fixing **actual bugs** in code inherited from Autonomie (the original theme by Matthias Pfefferle). Do not tag for style changes, refactoring, linting fixes, or personal preferences. When in doubt, ask before tagging.
 
 ## Known Issues
 

@@ -9,6 +9,3 @@ parameters:
         - vendor
         - node_modules
         - .ddev
-    scanDirectories:
-        - .ddev/wordpress/wp-includes
-        - .ddev/wordpress/wp-admin

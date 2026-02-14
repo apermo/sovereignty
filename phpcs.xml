@@ -15,8 +15,8 @@
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 
-	<!-- Ignore DDEV WordPress installation -->
-	<exclude-pattern>*/.ddev/wordpress/*</exclude-pattern>
+	<!-- Ignore DDEV directories (auto-generated) -->
+	<exclude-pattern>*/.ddev/*</exclude-pattern>
 
 	<!-- Show colors in console -->
 	<arg value="-colors"/>

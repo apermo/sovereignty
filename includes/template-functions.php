@@ -7,13 +7,13 @@ if ( ! function_exists( 'autonomie_content_nav' ) ) :
 	 *
 	 * @param string $nav_id The navigation element ID.
 	 */
-	function autonomie_content_nav( string $nav_id ): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps, Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+	function autonomie_content_nav( string $nav_id ): void {
 		?>
 		<?php if ( is_home() || is_archive() || is_search() ) : // navigation links for home, archive, and search pages ?>
 		<nav id="archive-nav">
 			<div class="assistive-text"><?php esc_html_e( 'Post navigation', 'autonomie' ); ?></div>
 			<?php echo wp_kses_post( paginate_links() ); ?>
-		</nav><!-- #<?php echo esc_html( $nav_id ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps ?> -->
+		</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
 		<?php endif; ?>
 		<?php
 	}
@@ -26,7 +26,7 @@ if ( ! function_exists( 'autonomie_posted_by' ) ) :
 	 *
 	 * @since Autonomie 1.0.0
 	 */
-	function autonomie_posted_by(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+	function autonomie_posted_by(): void {
 		printf(
 			'<address class="byline">
 				<span class="author p-author vcard hcard h-card" itemprop="author" itemscope itemtype="https://schema.org/Person">
@@ -55,7 +55,7 @@ if ( ! function_exists( 'autonomie_posted_on' ) ) :
 	 *
 	 * @param string $type The date type: 'published' or 'updated'.
 	 */
-	function autonomie_posted_on( string $type = 'published' ): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+	function autonomie_posted_on( string $type = 'published' ): void {
 
 		if ( ! in_array( $type, [ 'published', 'updated' ], true ) ) {
 			$type = 'published';
@@ -68,15 +68,15 @@ if ( ! function_exists( 'autonomie_posted_on' ) ) :
 		if ( $type === 'updated' ) {
 			// updated
 			$time = get_the_modified_time();
-			$date_c    = get_the_modified_date( 'c' ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+			$date_c    = get_the_modified_date( 'c' );
 			$date      = get_the_modified_date();
-			$item_prop = 'dateModified'; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+			$item_prop = 'dateModified';
 		} else {
 			// published
 			$time = get_the_time();
-			$date_c    = get_the_date( 'c' ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+			$date_c    = get_the_date( 'c' );
 			$date      = get_the_date();
-			$item_prop = 'datePublished'; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+			$item_prop = 'datePublished';
 		}
 
 		// translators: the author byline
@@ -85,10 +85,10 @@ if ( ! function_exists( 'autonomie_posted_on' ) ) :
 			'<a href="%1$s" title="%2$s" rel="bookmark" class="url u-url" itemprop="mainEntityOfPage"><time class="entry-date %5$s dt-%5$s" datetime="%3$s" itemprop="%6$s">%4$s</time></a>',
 			esc_url( get_permalink() ),
 			esc_attr( $time ),
-			esc_attr( $date_c ), // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+			esc_attr( $date_c ),
 			esc_html( $date ),
 			esc_html( $type ),
-			esc_html( $item_prop ), // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+			esc_html( $item_prop ),
 		);
 	}
 endif;
@@ -98,9 +98,9 @@ endif;
  *
  * @param string|null $post_id The post id.
  */
-function autonomie_post_id( ?string $post_id = null ): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps, Squiz.NamingConventions.ValidVariableName.NotCamelCaps
-	if ( $post_id ) { // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
-		echo 'id="' . esc_attr( $post_id ) . '"'; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+function autonomie_post_id( ?string $post_id = null ): void {
+	if ( $post_id ) {
+		echo 'id="' . esc_attr( $post_id ) . '"';
 	} else {
 		echo 'id="' . esc_attr( autonomie_get_post_id() ) . '"';
 	}
@@ -111,10 +111,10 @@ function autonomie_post_id( ?string $post_id = null ): void { // phpcs:ignore Ge
  *
  * @return string The post-id.
  */
-function autonomie_get_post_id(): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
-	$post_id = 'post-' . get_the_ID(); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+function autonomie_get_post_id(): string {
+	$post_id = 'post-' . get_the_ID();
 
-	return apply_filters( 'autonomie_post_id', $post_id, get_the_ID() ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+	return apply_filters( 'autonomie_post_id', $post_id, get_the_ID() );
 }
 
 /**
@@ -122,7 +122,7 @@ function autonomie_get_post_id(): string { // phpcs:ignore Generic.NamingConvent
  *
  * @param string $class Additional CSS class names.
  */
-function autonomie_main_class( $class = '' ): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps, Universal.NamingConventions.NoReservedKeywordParameterNames.classFound, SlevomatCodingStandard.TypeHints.ParameterTypeHint
+function autonomie_main_class( $class = '' ): void { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.classFound, SlevomatCodingStandard.TypeHints.ParameterTypeHint
 	// Separates class names with a single space, collates class names for body element
 	echo 'class="' . esc_attr( implode( ' ', autonomie_get_main_class( $class ) ) ) . '"';
 }
@@ -134,7 +134,7 @@ function autonomie_main_class( $class = '' ): void { // phpcs:ignore Generic.Nam
  *
  * @return string[] An array of CSS class names.
  */
-function autonomie_get_main_class( $class = '' ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps, Universal.NamingConventions.NoReservedKeywordParameterNames.classFound, SlevomatCodingStandard.TypeHints.ParameterTypeHint
+function autonomie_get_main_class( $class = '' ): array { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.classFound, SlevomatCodingStandard.TypeHints.ParameterTypeHint
 	$classes = [];
 
 	if ( is_singular() ) {
@@ -171,7 +171,7 @@ function autonomie_get_main_class( $class = '' ): array { // phpcs:ignore Generi
  *
  * @return string The archive title.
  */
-function autonomie_get_the_archive_title(): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_get_the_archive_title(): string {
 	if ( is_archive() ) {
 		return get_the_archive_title();
 	}
@@ -190,7 +190,7 @@ function autonomie_get_the_archive_title(): string { // phpcs:ignore Generic.Nam
  *
  * @return bool
  */
-function autonomie_show_page_banner(): bool { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_show_page_banner(): bool {
 	if ( is_home() && ! display_header_text() ) {
 		return false;
 	}
@@ -207,8 +207,7 @@ function autonomie_show_page_banner(): bool { // phpcs:ignore Generic.NamingConv
  *
  * @return string
  */
-function autonomie_get_post_format(): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
-	// phpcs:ignore Universal.Operators.DisallowShortTernary.Found -- Verified correct usage.
+function autonomie_get_post_format(): string {
 	return get_post_format() ?: 'standard';
 }
 
@@ -217,7 +216,7 @@ function autonomie_get_post_format(): string { // phpcs:ignore Generic.NamingCon
  *
  * @return string
  */
-function autonomie_get_post_format_string(): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_get_post_format_string(): string {
 	if ( get_post_type() === 'attachment' ) {
 		return __( 'Attachment', 'autonomie' );
 	}
@@ -240,29 +239,28 @@ function autonomie_get_post_format_string(): string { // phpcs:ignore Generic.Na
  *
  * @return string
  */
-function autonomie_get_post_format_link( string $post_format ): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps, Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+function autonomie_get_post_format_link( string $post_format ): string {
 	if ( in_array( get_post_type(), [ 'page', 'attachment' ], true ) ) {
 		return get_permalink();
 	}
 
-	if ( $post_format !== 'standard' ) { // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
-		return get_post_format_link( $post_format ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+	if ( $post_format !== 'standard' ) {
+		return get_post_format_link( $post_format );
 	}
 
-	global $wp_rewrite; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+	global $wp_rewrite;
 
-	// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	$term_link = $wp_rewrite->get_extra_permastruct( 'post_format' );
 
-	if ( empty( $term_link ) ) { // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
-		$term_link = '?post_format=standard'; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
-		$term_link = home_url( $term_link ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+	if ( empty( $term_link ) ) {
+		$term_link = '?post_format=standard';
+		$term_link = home_url( $term_link );
 	} else {
-		$term_link = str_replace( '%post_format%', 'standard', $term_link ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
-		$term_link = home_url( user_trailingslashit( $term_link, 'category' ) ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+		$term_link = str_replace( '%post_format%', 'standard', $term_link );
+		$term_link = home_url( user_trailingslashit( $term_link, 'category' ) );
 	}
 
-	return $term_link; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+	return $term_link;
 }
 
 /**
@@ -270,7 +268,7 @@ function autonomie_get_post_format_link( string $post_format ): string { // phpc
  *
  * @return string
  */
-function autonomie_get_archive_type(): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_get_archive_type(): string {
 	$type = null;
 
 	if ( is_author() ) {
@@ -285,7 +283,7 @@ function autonomie_get_archive_type(): string { // phpcs:ignore Generic.NamingCo
  *
  * @return string
  */
-function autonomie_get_archive_author_meta(): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_get_archive_author_meta(): string {
 	$meta = [];
 
 	$meta[] = sprintf(
@@ -314,7 +312,7 @@ function autonomie_get_archive_author_meta(): string { // phpcs:ignore Generic.N
  *
  * @return string The page description
  */
-function autonomie_get_the_archive_description(): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_get_the_archive_description(): string {
 	if ( is_home() ) {
 		return get_bloginfo( 'description' );
 	}
@@ -329,12 +327,12 @@ function autonomie_get_the_archive_description(): string { // phpcs:ignore Gener
 
 	if ( is_search() ) {
 		// @see https://github.com/raamdev/independent-publisher/blob/513e7ff71312f585f13eb1460b4d9bc74d0b59bd/inc/template-tags.php#L674
-		global $wp_query; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
-		$total = $wp_query->found_posts; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps, Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
+		global $wp_query;
+		$total = $wp_query->found_posts;
 		// translators: Description for search results
-		$stats_text = sprintf( _n( 'Found %1$s search result for <strong>%2$s</strong>.', 'Found %1$s search results for <strong>%2$s</strong>.', $total, 'autonomie' ), number_format_i18n( $total ), get_search_query() ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+		$stats_text = sprintf( _n( 'Found %1$s search result for <strong>%2$s</strong>.', 'Found %1$s search results for <strong>%2$s</strong>.', $total, 'autonomie' ), number_format_i18n( $total ), get_search_query() );
 
-		return wpautop( $stats_text ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+		return wpautop( $stats_text );
 	}
 
 	// TODO: Consider to add a default return value.
@@ -344,10 +342,10 @@ function autonomie_get_the_archive_description(): string { // phpcs:ignore Gener
 /**
  * Estimated reading time
  */
-function autonomie_reading_time(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_reading_time(): void {
 	$content = get_post_field( 'post_content' );
-	$word_count = str_word_count( wp_strip_all_tags( $content ) ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
-	$readingtime = (int) ceil( $word_count / 200 ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+	$word_count = str_word_count( wp_strip_all_tags( $content ) );
+	$readingtime = (int) ceil( $word_count / 200 );
 
 	printf(
 		// translators: %1$s = reading time in minutes.
@@ -366,7 +364,7 @@ function autonomie_reading_time(): void { // phpcs:ignore Generic.NamingConventi
  *
  * @return void
  */
-function autonomie_the_content(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_the_content(): void {
 	if ( is_search() ) {
 		the_excerpt();
 		return;

@@ -19,20 +19,20 @@
 		<?php
 		if ( ! in_array( get_post_format(), [ 'aside', 'quote', 'status' ], true ) && ! empty( get_the_title() ) ) :
 			if ( is_singular() ) {
-				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+
 				$title_element = 'h1';
 			} else {
-				// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+
 				$title_element = 'h2';
 			}
 			?>
-		<?php // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps, WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<<?php echo esc_html( $title_element ); ?> class="entry-title p-name" itemprop="name headline">
 			<?php // translators: %s: Post title. ?>
 			<a href="<?php the_permalink(); ?>" class="u-url url" title="<?php printf( esc_attr__( 'Permalink to %s', 'autonomie' ), the_title_attribute( [ 'echo' => false ] ) ); ?>" rel="bookmark" itemprop="url">
 				<?php the_title(); ?>
 			</a>
-		<?php // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps, WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</<?php echo esc_html( $title_element ); ?>>
 		<?php endif; ?>
 

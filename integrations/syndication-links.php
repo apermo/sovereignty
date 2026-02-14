@@ -15,7 +15,7 @@
  *
  * @return void
  */
-function autonomie_syndication_links_init(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_syndication_links_init(): void {
 	remove_filter( 'the_content', [ 'Syn_Config', 'the_content' ], 30 );
 }
 add_action( 'init', 'autonomie_syndication_links_init' );
@@ -25,7 +25,7 @@ add_action( 'init', 'autonomie_syndication_links_init' );
  *
  * @return void
  */
-function autonomie_syndication_links_print_scripts(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_syndication_links_print_scripts(): void {
 	wp_dequeue_style( 'syndication-style' );
 }
 add_action( 'wp_print_styles', 'autonomie_syndication_links_print_scripts', 100 );
@@ -35,7 +35,7 @@ add_action( 'wp_print_styles', 'autonomie_syndication_links_print_scripts', 100 
  *
  * @return void
  */
-function autonomie_syndication_links(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_syndication_links(): void {
 	if ( function_exists( 'get_syndication_links' ) ) {
 		echo '<div class="syndication-links">';
 		esc_html_e( 'Syndication Links', 'autonomie' );

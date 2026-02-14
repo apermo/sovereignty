@@ -4,7 +4,7 @@
  *
  * @return void
  */
-function autonomie_widgets_init(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_widgets_init(): void {
 	require get_template_directory() . '/widgets/class-autonomie-author-widget.php';
 	register_widget( 'Autonomie_Author_Widget' );
 
@@ -69,7 +69,7 @@ add_action( 'widgets_init', 'autonomie_widgets_init' );
  *
  * @return array Filtered starter content.
  */
-function autonomie_starter_content_add_widget( array $content, array $config ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_starter_content_add_widget( array $content, array $config ): array {
 	if ( ! isset( $content['widgets']['entry-meta'] ) ) {
 		$content['widgets']['entry-meta'] = [];
 	}
@@ -92,7 +92,7 @@ add_filter( 'get_theme_starter_content', 'autonomie_starter_content_add_widget',
  *
  * @return void
  */
-function autonomie_activate(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_activate(): void {
 	// Set up default widgets for default theme.
 	update_option(
 		'widget_autonomie-author',

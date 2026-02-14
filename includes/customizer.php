@@ -8,9 +8,8 @@
  *
  * @return void
  */
-function autonomie_customize_register( WP_Customize_Manager $wp_customize ): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps, Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- WordPress core parameter name.
+function autonomie_customize_register( WP_Customize_Manager $wp_customize ): void {
 
-	// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- WordPress core parameter name.
 	$wp_customize->add_section(
 		'autonomie_settings_section',
 		[

@@ -1,17 +1,13 @@
 <div id="post-nav">
 	<?php
-	// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	$prev_post = get_previous_post( true );
-	// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	if ( $prev_post ) {
 		$args = [
 			'posts_per_page' => 1,
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps, Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			'include' => [ $prev_post->ID ],
 		];
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		$prev_post = get_posts( $args );
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps, WordPress.WP.GlobalVariablesOverride.Prohibited
+		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		foreach ( $prev_post as $post ) {
 			setup_postdata( $post );
 			?>
@@ -25,19 +21,15 @@
 		} //end foreach
 	} // end if
 
-	// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	$next_post = get_next_post( true );
 
-	// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	if ( $next_post ) {
 		$args = [
 			'posts_per_page' => 1,
-			// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps, Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 			'include' => [ $next_post->ID ],
 		];
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		$next_post = get_posts( $args );
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps, WordPress.WP.GlobalVariablesOverride.Prohibited
+		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		foreach ( $next_post as $post ) {
 			setup_postdata( $post );
 			?>

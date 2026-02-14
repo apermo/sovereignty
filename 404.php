@@ -6,7 +6,8 @@
  * @since Autonomie 1.0.0
  */
 
-get_header(); ?>
+get_header();
+?>
 
 		<main id="primary" <?php autonomie_main_class(); ?><?php autonomie_semantics( 'main' ); ?>>
 
@@ -41,8 +42,8 @@ get_header(); ?>
 
 					<?php
 					/* translators: %1$s: smilie */
-					$archive_content = '<p>' . sprintf( __( 'Try looking in the monthly archives. %1$s', 'autonomie' ), convert_smilies( ':)' ) ) . '</p>'; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
-					the_widget( 'WP_Widget_Archives', [ 'dropdown' => 1 ], [ 'after_title' => '</h2>' . $archive_content ] ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+					$archive_content = '<p>' . sprintf( __( 'Try looking in the monthly archives. %1$s', 'autonomie' ), convert_smilies( ':)' ) ) . '</p>';
+					the_widget( 'WP_Widget_Archives', [ 'dropdown' => 1 ], [ 'after_title' => '</h2>' . $archive_content ] );
 					?>
 
 					<?php the_widget( 'WP_Widget_Tag_Cloud' ); ?>

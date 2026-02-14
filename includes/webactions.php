@@ -9,9 +9,8 @@
  *
  * @return string The new reply link.
  */
-function autonomie_webaction_comment_reply_link( string $link, array $args, WP_Comment $comment, WP_Post $post ): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_webaction_comment_reply_link( string $link, array $args, WP_Comment $comment, WP_Post $post ): string {
 	$permalink = get_permalink( $post->ID );
-	// phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps
 	return '<indie-action do="reply" with="' . esc_url( add_query_arg( 'replytocom', $comment->comment_ID, $permalink ) ) . '">' . $link . '</indie-action>';
 }
 add_filter( 'comment_reply_link', 'autonomie_webaction_comment_reply_link', 10, 4 );
@@ -21,7 +20,7 @@ add_filter( 'comment_reply_link', 'autonomie_webaction_comment_reply_link', 10, 
  *
  * @return void
  */
-function autonomie_webaction_comment_form_before(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_webaction_comment_form_before(): void {
 	$post = get_queried_object();
 	$permalink = get_permalink( $post->ID );
 	echo '<indie-action do="reply" with="' . esc_url( $permalink ) . '">';
@@ -33,7 +32,7 @@ add_action( 'comment_form_before', 'autonomie_webaction_comment_form_before', 0 
  *
  * @return void
  */
-function autonomie_webaction_comment_form_after(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_webaction_comment_form_after(): void {
 	echo '</indie-action>';
 }
 add_action( 'comment_form_after', 'autonomie_webaction_comment_form_after', 0 );

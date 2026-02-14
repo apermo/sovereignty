@@ -31,7 +31,7 @@ get_header(); ?>
 								$attachments = array_values(
 									get_children(
 										[
-											'post_parent' => $post->post_parent, // phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps -- WordPress core property.
+											'post_parent' => $post->post_parent,
 											'post_status' => 'inherit',
 											'post_type' => 'attachment',
 											'post_mime_type' => 'image',
@@ -51,26 +51,25 @@ get_header(); ?>
 								if ( count( $attachments ) > 1 ) {
 									if ( isset( $attachments[ $k ] ) ) {
 										// get the URL of the next image attachment
-										$next_attachment_url = get_attachment_link( $attachments[ $k ]->ID ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+										$next_attachment_url = get_attachment_link( $attachments[ $k ]->ID );
 									} else {
 										// or get the URL of the first image attachment
-										$next_attachment_url = get_attachment_link( $attachments[0]->ID ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+										$next_attachment_url = get_attachment_link( $attachments[0]->ID );
 									}
 								} else {
 									// or, if there's only 1 image, get the URL of the image
-									$next_attachment_url = wp_get_attachment_url(); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+									$next_attachment_url = wp_get_attachment_url();
 								}
 								?>
 
-								<?php // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- WordPress template convention. ?>
 								<a href="<?php echo esc_url( $next_attachment_url ); ?>" title="<?php echo esc_attr( get_the_title() ); ?>" rel="attachment">
 													<?php
-													$attachment_size = apply_filters( 'autonomie_attachment_size', 1200 ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
-													echo wp_get_attachment_image( $post->ID, [ $attachment_size, $attachment_size ], false, [ 'itemprop' => 'image contentURL' ] ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- Filterable image width.
+													$attachment_size = apply_filters( 'autonomie_attachment_size', 1200 );
+													echo wp_get_attachment_image( $post->ID, [ $attachment_size, $attachment_size ], false, [ 'itemprop' => 'image contentURL' ] );
 													?>
 								</a>
 
-								<?php if ( ! empty( $post->post_excerpt ) ) : // phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps -- WordPress core property. ?>
+								<?php if ( ! empty( $post->post_excerpt ) ) : ?>
 								<figcaption class="entry-caption">
 									<?php the_excerpt(); ?>
 								</figcaption>

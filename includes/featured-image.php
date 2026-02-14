@@ -7,7 +7,7 @@
  *
  * @since Autonomie 1.0.0
  */
-function autonomie_the_post_thumbnail( string $before = '', string $after = '' ): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_the_post_thumbnail( string $before = '', string $after = '' ): void {
 	if ( autonomie_has_full_width_featured_image() ) {
 		return;
 	}
@@ -21,11 +21,9 @@ function autonomie_the_post_thumbnail( string $before = '', string $after = '' )
 
 		$class = 'photo';
 
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		$post_format = get_post_format();
 
 		// use `u-photo` on photo/gallery posts
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		if ( in_array( $post_format, [ 'image', 'gallery' ], true ) ) {
 			$class .= ' u-photo';
 		} else { // otherwise use `u-featured`
@@ -58,7 +56,7 @@ function autonomie_the_post_thumbnail( string $before = '', string $after = '' )
  *
  * @since Autonomie 1.0.0
  */
-function autonomie_content_post_thumbnail( string $content ): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_content_post_thumbnail( string $content ): string {
 	if ( get_the_post_thumbnail() !== '' ) {
 		$image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'post-thumbnail' );
 
@@ -68,11 +66,9 @@ function autonomie_content_post_thumbnail( string $content ): string { // phpcs:
 
 		$class = 'alignright photo';
 
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		$post_format = get_post_format();
 
 		// use `u-photo` on photo/gallery posts
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		if ( in_array( $post_format, [ 'image', 'gallery' ], true ) ) {
 			$class .= ' u-photo';
 		} else { // otherwise use `u-featured`
@@ -100,16 +96,16 @@ add_filter( 'the_content', 'autonomie_content_post_thumbnail' );
  * Add a checkbox for Post Covers to the featured image metabox.
  *
  * @param string $content The admin post thumbnail HTML.
- * @param int    $postId  The post ID.
+ * @param int    $post_id  The post ID.
  *
  * @return string The modified admin post thumbnail HTML.
  */
-function autonomie_featured_image_meta( string $content, int $postId ): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_featured_image_meta( string $content, int $post_id ): string {
 	// Text for checkbox
 	$text = esc_html__( 'Use as post cover (full-width)', 'autonomie' );
 
 	// Get the current setting
-	$value = esc_attr( get_post_meta( $postId, 'full_width_featured_image', true ) );
+	$value = esc_attr( get_post_meta( $post_id, 'full_width_featured_image', true ) );
 	// Output the checkbox HTML
 	$label = '<input type="hidden" name="full_width_featured_image" value="0">';
 	$label .= '<label for="full_width_featured_image" class="selectit"><input name="full_width_featured_image" type="checkbox" id="full_width_featured_image" value="1" ' . checked( $value, 1, false ) . '> ' . $text . '</label>';
@@ -121,11 +117,11 @@ add_filter( 'admin_post_thumbnail_html', 'autonomie_featured_image_meta', 10, 2 
 /**
  * Safe the Post Covers
  *
- * @param int $postId The ID of the post being saved.
+ * @param int $post_id The ID of the post being saved.
  *
  * @return void
  */
-function autonomie_save_post( int $postId ): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_save_post( int $post_id ): void {
 	// if this is an autosave, our form has not been submitted, so we don't want to do anything.
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
@@ -144,19 +140,19 @@ function autonomie_save_post( int $postId ): void { // phpcs:ignore Generic.Nami
 	// check the user's permissions.
 	// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- Nonce is verified by WordPress core; post_type is only compared, not stored.
 	if ( $_POST['post_type'] === 'page' ) {
-		if ( ! current_user_can( 'edit_page', $postId ) ) {
+		if ( ! current_user_can( 'edit_page', $post_id ) ) {
 			return;
 		}
-	} elseif ( ! current_user_can( 'edit_post', $postId ) ) {
+	} elseif ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 	}
 
 	// sanitize user input.
 	// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce is verified by WordPress core on the save_post hook.
-	$fullWidthFeaturedImage = sanitize_text_field( wp_unslash( $_POST['full_width_featured_image'] ) );
+	$full_width_featured_image = sanitize_text_field( wp_unslash( $_POST['full_width_featured_image'] ) );
 
 	// update the meta field in the database.
-	update_post_meta( $postId, 'full_width_featured_image', $fullWidthFeaturedImage );
+	update_post_meta( $post_id, 'full_width_featured_image', $full_width_featured_image );
 }
 add_action( 'save_post', 'autonomie_save_post', 5, 1 );
 
@@ -171,16 +167,16 @@ add_action( 'save_post', 'autonomie_save_post', 5, 1 );
  *
  * @return bool Whether the post has a full-width featured image.
  */
-function autonomie_has_full_width_featured_image(): bool { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_has_full_width_featured_image(): bool {
 	// If this isn't a Single post type, or we don't have a Featured Image set.
 	if ( ! ( is_single() || is_page() ) || ! has_post_thumbnail() ) {
 		return false;
 	}
 
-	$fullWidthFeaturedImage = get_post_meta( get_the_ID(), 'full_width_featured_image', true );
+	$full_width_featured_image = get_post_meta( get_the_ID(), 'full_width_featured_image', true );
 
 	// If "Use featured image as Post Cover" has been checked in the Featured Image meta box, return true.
-	if ( $fullWidthFeaturedImage === '1' ) {
+	if ( $full_width_featured_image === '1' ) {
 		return true;
 	}
 
@@ -194,7 +190,7 @@ function autonomie_has_full_width_featured_image(): bool { // phpcs:ignore Gener
  *
  * @since Autonomie 1.0.0
  */
-function autonomie_enqueue_featured_image_scripts(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_enqueue_featured_image_scripts(): void {
 	if ( is_singular() && autonomie_has_full_width_featured_image() ) {
 		$image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
 
@@ -214,7 +210,7 @@ add_action( 'wp_enqueue_scripts', 'autonomie_enqueue_featured_image_scripts' );
  *
  * @return array The modified array of post classes.
  */
-function autonomie_full_width_featured_image_post_class( array $classes ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_full_width_featured_image_post_class( array $classes ): array {
 	if ( is_singular() && autonomie_has_full_width_featured_image() ) {
 		$classes[] = 'has-full-width-featured-image';
 	}
@@ -227,7 +223,7 @@ add_filter( 'post_class', 'autonomie_full_width_featured_image_post_class' );
  *
  * @return void
  */
-function autonomie_register_meta(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_register_meta(): void {
 	register_meta(
 		'post',
 		'full_width_featured_image',
@@ -245,7 +241,7 @@ add_action( 'init', 'autonomie_register_meta' );
  *
  * @return void
  */
-function autonomie_enqueue_block_editor_assets(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_enqueue_block_editor_assets(): void {
 	wp_enqueue_script(
 		'autonomie-block-editor',
 		get_template_directory_uri() . '/assets/js/block-editor.js',

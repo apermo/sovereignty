@@ -42,16 +42,16 @@ if ( function_exists( 'wp_body_open' ) ) {
 			}
 
 			if ( is_home() ) {
-				$site_title_element = 'h1'; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- WordPress template convention.
+				$site_title_element = 'h1';
 			} else {
-				$site_title_element = 'div'; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- WordPress template convention.
+				$site_title_element = 'div';
 			}
 			?>
-			<<?php echo esc_html( $site_title_element ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- WordPress template convention. ?> id="site-title"<?php autonomie_semantics( 'site-title' ); ?>>
+			<<?php echo esc_html( $site_title_element ); ?> id="site-title"<?php autonomie_semantics( 'site-title' ); ?>>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"<?php autonomie_semantics( 'site-url' ); ?>>
 				<?php bloginfo( 'name' ); ?>
 				</a>
-			</<?php echo esc_html( $site_title_element ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps -- WordPress template convention. ?>>
+			</<?php echo esc_html( $site_title_element ); ?>>
 
 			<?php get_search_form( [ 'echo' => true ] ); ?>
 		</div>

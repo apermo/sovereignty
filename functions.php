@@ -33,11 +33,11 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 	 * To override autonomie_setup() in a child theme, add your own autonomie_setup to your child theme's
 	 * functions.php file.
 	 */
-	function autonomie_setup(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+	function autonomie_setup(): void {
 		defined( 'AUTONOMIE_EXCERPT' ) || define( 'AUTONOMIE_EXCERPT', false );
 		defined( 'AUTONOMIE_EXCERPT_COUNT' ) || define( 'AUTONOMIE_EXCERPT_COUNT', 100 );
 
-		$content_width = 900; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+		$content_width = 900;
 
 		/**
 		 * Make theme available for translation
@@ -52,11 +52,11 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 
 		// This theme uses post thumbnails
 		add_theme_support( 'post-thumbnails' );
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+
 		set_post_thumbnail_size( $content_width, 9999 ); // Unlimited height, soft crop
 
 		// Register custom image size for image post formats.
-		add_image_size( 'autonomie-image-post', $content_width, 1250 ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+		add_image_size( 'autonomie-image-post', $content_width, 1250 );
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
@@ -181,13 +181,13 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 		);
 
 		// This theme supports a custom header
-		// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+
 		$custom_header_args = [
 			'width'       => 1250,
 			'height'      => 600,
 			'header-text' => true,
 		];
-		add_theme_support( 'custom-header', $custom_header_args ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+		add_theme_support( 'custom-header', $custom_header_args );
 
 		/**
 		 * Draw attention to supported WebSemantics
@@ -292,7 +292,7 @@ add_action( 'after_setup_theme', 'autonomie_setup' );
 /**
  * Add a pingback url auto-discovery header for singularly identifiable articles.
  */
-function autonomie_pingback_header(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_pingback_header(): void {
 	if ( is_singular() && pings_open() ) {
 		printf( '<link rel="pingback" href="%1$s" />', esc_url( get_bloginfo( 'pingback_url' ) ) );
 	}
@@ -302,7 +302,7 @@ add_action( 'wp_head', 'autonomie_pingback_header' );
 /**
  * Adds a rel-feed if the main page is not a list of posts
  */
-function autonomie_publisher_feed_header(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_publisher_feed_header(): void {
 	if ( is_front_page() && (int) get_option( 'page_for_posts', 0 ) !== 0 ) {
 		printf( PHP_EOL . '<link rel="feed" type="text/html" href="%1$s" title="%2$s" />' . PHP_EOL, esc_url( get_post_type_archive_link( 'post' ) ), esc_attr__( 'POSH Feed', 'autonomie' ) );
 	}
@@ -312,7 +312,7 @@ add_action( 'wp_head', 'autonomie_publisher_feed_header' );
 /**
  * Adds color-scheme meta tag to the head.
  */
-function autonomie_header(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_header(): void {
 	printf( PHP_EOL . '<meta name="supported-color-schemes" content="light dark">' . PHP_EOL );
 }
 add_action( 'wp_head', 'autonomie_header' );
@@ -324,10 +324,9 @@ add_action( 'wp_head', 'autonomie_header' );
  *
  * @global int $content_width
  */
-function autonomie_content_width(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
-	$content_width = 900; // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+function autonomie_content_width(): void {
+	$content_width = 900;
 
-	// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	$GLOBALS['content_width'] = apply_filters( 'autonomie_content_width', $content_width );
 }
 add_action( 'after_setup_theme', 'autonomie_content_width', 0 );
@@ -337,7 +336,7 @@ add_action( 'after_setup_theme', 'autonomie_content_width', 0 );
  *
  * @return array{width: int, height: int}
  */
-function autonomie_embed_defaults(): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_embed_defaults(): array {
 	return [
 		'width'  => 900,
 		'height' => 600,
@@ -348,7 +347,7 @@ add_filter( 'embed_defaults', 'autonomie_embed_defaults' );
 /**
  * Customize the login page logo to use the site icon.
  */
-function autonomie_login_logo(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_login_logo(): void {
 	if ( ! has_site_icon() ) {
 		return;
 	}
@@ -371,7 +370,7 @@ add_action( 'login_enqueue_scripts', 'autonomie_login_logo' );
  *
  * @return string
  */
-function autonomie_oembed_fetch_url( string $provider ): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_oembed_fetch_url( string $provider ): string {
 	$provider = add_query_arg( 'width', 900, $provider );
 	$provider = add_query_arg( 'height', 600, $provider );
 
@@ -386,7 +385,7 @@ add_filter( 'oembed_fetch_url', 'autonomie_oembed_fetch_url', 99 );
  *
  * @return array
  */
-function autonomie_page_menu_args( array $args ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_page_menu_args( array $args ): array {
 	$args['show_home'] = true;
 
 	return $args;
@@ -401,7 +400,7 @@ if ( ! function_exists( 'autonomie_enqueue_scripts' ) ) :
 	 *
 	 * @since Autonomie 1.0.0
 	 */
-	function autonomie_enqueue_scripts(): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+	function autonomie_enqueue_scripts(): void {
 		// Adds JavaScript to pages with the comment form to support sites with
 		// threaded comments (when in use).
 		if (
@@ -484,12 +483,12 @@ if ( ! function_exists( 'autonomie_comment' ) ) :
 	 *
 	 * @since Autonomie 1.0.0
 	 */
-	function autonomie_comment( \WP_Comment $comment, array $args, int $depth ): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+	function autonomie_comment( \WP_Comment $comment, array $args, int $depth ): void {
 		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Required by wp_list_comments() callback.
 		$GLOBALS['comment'] = $comment;
 		?>
 		<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-			<article id="comment-<?php comment_ID(); ?>" class="comment <?php echo esc_attr( $comment->comment_type ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps ?>" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+			<article id="comment-<?php comment_ID(); ?>" class="comment <?php echo esc_attr( $comment->comment_type ); ?>" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
 				<div class="edit-link"><?php edit_comment_link( __( 'Edit', 'autonomie' ), ' ' ); ?></div>
 				<footer class="comment-meta commentmetadata">
 					<address class="comment-author p-author author vcard hcard h-card" itemprop="creator" itemscope itemtype="https://schema.org/Person">
@@ -505,7 +504,6 @@ if ( ! function_exists( 'autonomie_comment' ) ) :
 					</time></a>
 				</footer>
 
-				<?php // phpcs:ignore Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps ?>
 			<?php if ( $comment->comment_approved === '0' ) : ?>
 					<p><em><?php esc_html_e( 'Your comment is awaiting moderation.', 'autonomie' ); ?></em></p>
 				<?php endif; ?>

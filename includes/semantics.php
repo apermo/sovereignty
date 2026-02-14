@@ -24,7 +24,7 @@
  *
  * @return string[]
  */
-function autonomie_body_classes( array $classes ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_body_classes( array $classes ): array {
 	$classes[] = get_theme_mod( 'autonomie_columns', 'multi' ) . '-column';
 
 	if ( ! is_singular() && ! is_404() ) {
@@ -55,7 +55,7 @@ add_filter( 'body_class', 'autonomie_body_classes' );
  *
  * @return string[]
  */
-function autonomie_post_classes( array $classes ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_post_classes( array $classes ): array {
 	$classes = array_diff( $classes, [ 'hentry' ] );
 
 	if ( ! is_singular() ) {
@@ -75,7 +75,7 @@ add_filter( 'post_class', 'autonomie_post_classes', 99 );
  *
  * @return string[]
  */
-function autonomie_comment_classes( array $classes ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_comment_classes( array $classes ): array {
 	$classes[] = 'h-entry';
 	$classes[] = 'h-cite';
 	$classes[] = 'p-comment';
@@ -92,7 +92,7 @@ add_filter( 'comment_class', 'autonomie_comment_classes', 99 );
  *
  * @return string[]
  */
-function autonomie_get_post_classes( array $classes = [] ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_get_post_classes( array $classes = [] ): array {
 	// Adds a class for microformats v2
 	$classes[] = 'h-entry';
 
@@ -111,7 +111,7 @@ function autonomie_get_post_classes( array $classes = [] ): array { // phpcs:ign
  *
  * @return string|null
  */
-function autonomie_author_link( string $link ): ?string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_author_link( string $link ): ?string {
 	// Adds a class for microformats v2
 	return preg_replace( '/(class\s*=\s*[\"|\'])/i', '${1}u-url ', $link );
 }
@@ -127,7 +127,7 @@ add_filter( 'get_comment_author_link', 'autonomie_author_link' );
  *
  * @return array
  */
-function autonomie_pre_get_avatar_data( array $args, $id_or_email ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps, SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint, Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+function autonomie_pre_get_avatar_data( array $args, $id_or_email ): array { // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
 	if ( ! isset( $args['class'] ) ) {
 		$args['class'] = [];
 	}
@@ -142,7 +142,7 @@ function autonomie_pre_get_avatar_data( array $args, $id_or_email ): array { // 
 
 	// Adds default alt attribute
 	if ( empty( $args['alt'] ) ) {
-		$username = get_the_author_meta( 'display_name', $id_or_email ); // phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+		$username = get_the_author_meta( 'display_name', $id_or_email );
 
 		if ( $username ) {
 			// translators: %s: username
@@ -163,7 +163,7 @@ add_filter( 'pre_get_avatar_data', 'autonomie_pre_get_avatar_data', 99, 2 );
  *
  * @return string|null
  */
-function autonomie_semantic_previous_image_link( string $link ): ?string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_semantic_previous_image_link( string $link ): ?string {
 	return preg_replace( '/<a/i', '<a rel="prev"', $link );
 }
 add_filter( 'previous_image_link', 'autonomie_semantic_previous_image_link' );
@@ -175,7 +175,7 @@ add_filter( 'previous_image_link', 'autonomie_semantic_previous_image_link' );
  *
  * @return string|null
  */
-function autonomie_semantic_next_image_link( string $link ): ?string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_semantic_next_image_link( string $link ): ?string {
 	return preg_replace( '/<a/i', '<a rel="next"', $link );
 }
 add_filter( 'next_image_link', 'autonomie_semantic_next_image_link' );
@@ -187,7 +187,7 @@ add_filter( 'next_image_link', 'autonomie_semantic_next_image_link' );
  *
  * @return string
  */
-function autonomie_next_posts_link_attributes( string $attr ): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_next_posts_link_attributes( string $attr ): string {
 	return $attr . ' rel="prev"';
 }
 add_filter( 'next_posts_link_attributes', 'autonomie_next_posts_link_attributes' );
@@ -199,7 +199,7 @@ add_filter( 'next_posts_link_attributes', 'autonomie_next_posts_link_attributes'
  *
  * @return string
  */
-function autonomie_previous_posts_link_attributes( string $attr ): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_previous_posts_link_attributes( string $attr ): string {
 	return $attr . ' rel="next"';
 }
 add_filter( 'previous_posts_link_attributes', 'autonomie_previous_posts_link_attributes' );
@@ -211,7 +211,7 @@ add_filter( 'previous_posts_link_attributes', 'autonomie_previous_posts_link_att
  *
  * @return string|null
  */
-function autonomie_get_search_form( string $form ): ?string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_get_search_form( string $form ): ?string {
 	$form = preg_replace( '/<form/i', '<search><form itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction"', $form );
 	$form = preg_replace( '/<\/form>/i', '<meta itemprop="target" content="' . home_url( '/?s={s} ' ) . '"/></form></search>', $form );
 	$form = preg_replace( '/<input type="search"/i', '<input type="search" enterkeyhint="search" itemprop="query-input"', $form );
@@ -227,7 +227,7 @@ add_filter( 'get_search_form', 'autonomie_get_search_form' );
  *
  * @return array
  */
-function autonomie_get_semantics( ?string $id = null ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_get_semantics( ?string $id = null ): array {
 	$classes = [];
 
 	// add default values
@@ -304,7 +304,7 @@ function autonomie_get_semantics( ?string $id = null ): array { // phpcs:ignore 
  *
  * @return string
  */
-function autonomie_get_the_semantics( string $id ): string { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_get_the_semantics( string $id ): string {
 	$classes = autonomie_get_semantics( $id );
 
 	if ( ! $classes ) {
@@ -327,7 +327,7 @@ function autonomie_get_the_semantics( string $id ): string { // phpcs:ignore Gen
  *
  * @return void
  */
-function autonomie_semantics( string $id ): void { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_semantics( string $id ): void {
 	$classes = autonomie_get_semantics( $id );
 
 	if ( ! $classes ) {
@@ -348,7 +348,7 @@ function autonomie_semantics( string $id ): void { // phpcs:ignore Generic.Namin
  *
  * @return array
  */
-function autonomie_term_links_tag( array $links ): array { // phpcs:ignore Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps
+function autonomie_term_links_tag( array $links ): array {
 	$post = get_post();
 
 	$terms = get_the_terms( $post->ID, 'post_tag' );

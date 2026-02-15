@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0760567fc4534f84e8f5d89bb43b2eca",
+    "content-hash": "79b24a885032fc254fcdbe4acbcc6d9a",
     "packages": [
         {
             "name": "composer/installers",
@@ -156,16 +156,16 @@
     "packages-dev": [
         {
             "name": "apermo/wp-coding-standards",
-            "version": "v1.0.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apermo/wp-coding-standards.git",
-                "reference": "398e6b248e847ebe2e49f47ebb62095b78299fce"
+                "reference": "c936530080e7a78a1b16cf43e43a1247b2f9a089"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apermo/wp-coding-standards/zipball/398e6b248e847ebe2e49f47ebb62095b78299fce",
-                "reference": "398e6b248e847ebe2e49f47ebb62095b78299fce",
+                "url": "https://api.github.com/repos/apermo/wp-coding-standards/zipball/c936530080e7a78a1b16cf43e43a1247b2f9a089",
+                "reference": "c936530080e7a78a1b16cf43e43a1247b2f9a089",
                 "shasum": ""
             },
             "require": {
@@ -177,16 +177,24 @@
                 "wp-coding-standards/wpcs": "^3.0",
                 "yoast/yoastcs": "^3.0"
             },
+            "require-dev": {
+                "phpunit/phpunit": "^11.0"
+            },
             "type": "phpcodesniffer-standard",
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ]
+            },
             "license": [
                 "MIT"
             ],
             "description": "Shared PHPCS coding standards for WordPress projects by Apermo.",
             "support": {
-                "source": "https://github.com/apermo/wp-coding-standards/tree/v1.0.0",
+                "source": "https://github.com/apermo/wp-coding-standards/tree/v1.2.0",
                 "issues": "https://github.com/apermo/wp-coding-standards/issues"
             },
-            "time": "2026-02-14T08:58:22+00:00"
+            "time": "2026-02-15T22:09:43+00:00"
         },
         {
             "name": "automattic/vipwpcs",

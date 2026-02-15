@@ -149,6 +149,16 @@ Do not remove or alter microformat/microdata classes without understanding their
 
 Only add `cc @pfefferle` to the commit message body when fixing **actual bugs** in code inherited from Autonomie (the original theme by Matthias Pfefferle). Do not tag for style changes, refactoring, linting fixes, or personal preferences. When in doubt, ask before tagging.
 
+## Local Testing (DDEV)
+
+The project uses DDEV for local WordPress development and E2E testing. DDEV is available locally and can be used to reproduce CI failures (e.g. Playwright E2E tests). The `.ddev/` directory contains the full orchestration setup — `ddev start && ddev orchestrate` provisions a WordPress instance with seeded content and the theme activated.
+
+To run E2E tests locally:
+```bash
+ddev start && ddev orchestrate
+npx playwright test
+```
+
 ## Known Issues
 
 See `plan.md` "Sovereignty: Current State & Issues" section for the full bug list and feature gaps being addressed in the migration.

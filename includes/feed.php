@@ -52,12 +52,10 @@ function autonomie_get_post_format_archive_feed_link( string $post_format, strin
  * @see https://notiz.blog/2019/09/18/eine-posse/
  * @see https://github.com/dshanske/extra-links
  *
- * @param array $args Optional arguments.
- *
  * @return void
  */
-function autonomie_extend_singular_feed_discovery( array $args = [] ): void {
-	$defaults = [
+function autonomie_extend_singular_feed_discovery(): void {
+	$args = [
 		/* translators: Separator between blog name and feed type in feed links */
 		'separator' => _x( '&raquo;', 'feed link', 'autonomie' ),
 		/* translators: 1: blog name, 2: separator(raquo), 3: post title */
@@ -75,8 +73,6 @@ function autonomie_extend_singular_feed_discovery( array $args = [] ): void {
 		/* translators: 1: blog name, 2: separator(raquo), 3: post type */
 		'posttypetitle' => __( '%1$s %2$s %3$s Post-Type Feed', 'autonomie' ),
 	];
-
-	$args  = wp_parse_args( $args, $defaults );
 	$feeds = [];
 
 	// Post/Page feeds.

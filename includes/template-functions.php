@@ -276,13 +276,13 @@ function autonomie_get_post_format_link( string $post_format ): string {
  * @return string
  */
 function autonomie_get_archive_type(): string {
-	$type = null;
+	$type = '';
 
 	if ( is_author() ) {
 		$type = 'author';
 	}
 
-	return apply_filters( 'autonomie_archive_type', $type );
+	return (string) apply_filters( 'autonomie_archive_type', $type );
 }
 
 /**

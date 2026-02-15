@@ -8,6 +8,7 @@
  * @since Autonomie 1.0.0
  */
 function autonomie_the_post_thumbnail( string $before = '', string $after = '' ): void {
+	// phpcs:disable Apermo.WordPress.ImplicitPostFunction
 	if ( autonomie_has_full_width_featured_image() ) {
 		return;
 	}
@@ -26,7 +27,7 @@ function autonomie_the_post_thumbnail( string $before = '', string $after = '' )
 		// Use `u-photo` on photo/gallery posts.
 		if ( in_array( $post_format, [ 'image', 'gallery' ], true ) ) {
 			$class .= ' u-photo';
-		} else { // Otherwise use `u-featured`.
+		} else { // Otherwise use u-featured.
 			$class .= ' u-featured';
 		}
 
@@ -45,6 +46,7 @@ function autonomie_the_post_thumbnail( string $before = '', string $after = '' )
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $after contains trusted HTML from template.
 		echo $after;
 	}
+	// phpcs:enable Apermo.WordPress.ImplicitPostFunction
 }
 
 /**
@@ -57,6 +59,7 @@ function autonomie_the_post_thumbnail( string $before = '', string $after = '' )
  * @since Autonomie 1.0.0
  */
 function autonomie_content_post_thumbnail( string $content ): string {
+	// phpcs:disable Apermo.WordPress.ImplicitPostFunction
 	if ( get_the_post_thumbnail() !== '' ) {
 		$image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'post-thumbnail' );
 
@@ -71,7 +74,7 @@ function autonomie_content_post_thumbnail( string $content ): string {
 		// Use `u-photo` on photo/gallery posts.
 		if ( in_array( $post_format, [ 'image', 'gallery' ], true ) ) {
 			$class .= ' u-photo';
-		} else { // Otherwise use `u-featured`.
+		} else { // Otherwise use u-featured.
 			$class .= ' u-featured';
 		}
 
@@ -88,6 +91,7 @@ function autonomie_content_post_thumbnail( string $content ): string {
 		return sprintf( '<p>%s</p>%s', $thumbnail, $content );
 	}
 
+	// phpcs:enable Apermo.WordPress.ImplicitPostFunction
 	return $content;
 }
 add_filter( 'the_content', 'autonomie_content_post_thumbnail' );
@@ -163,11 +167,16 @@ add_action( 'save_post', 'autonomie_save_post', 5, 1 );
  * @return bool Whether the post has a full-width featured image.
  */
 function autonomie_has_full_width_featured_image(): bool {
-	// If this isn't a Single post type, or we don't have a Featured Image set.
-	if ( ! ( is_single() || is_page() ) || ! has_post_thumbnail() ) {
+	if ( ! is_singular() ) {
 		return false;
 	}
 
+	// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
+	if ( ! has_post_thumbnail() ) {
+		return false;
+	}
+
+	// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
 	$full_width_featured_image = get_post_meta( get_the_ID(), 'full_width_featured_image', true );
 
 	// If "Use featured image as Post Cover" has been checked in the Featured Image meta box, return true.
@@ -183,6 +192,7 @@ function autonomie_has_full_width_featured_image(): bool {
  */
 function autonomie_enqueue_featured_image_scripts(): void {
 	if ( is_singular() && autonomie_has_full_width_featured_image() ) {
+		// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
 		$image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
 
 		$css = '.entry-header {

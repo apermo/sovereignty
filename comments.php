@@ -21,7 +21,6 @@
 			 * but don't kill the script entirely -- we still have
 			 * to fully load the template.
 			 */
-
 			return;
 		endif;
 	?>

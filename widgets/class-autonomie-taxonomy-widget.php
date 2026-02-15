@@ -10,10 +10,9 @@ class Autonomie_Taxonomy_Widget extends WP_Widget {
 	 * Constructor.
 	 */
 	public function __construct() {
-
 		parent::__construct(
-			'autonomie-taxonomy',  // Base ID
-			'Entry Taxonomy (Autonomie)'   // Name
+			'autonomie-taxonomy',        // Base ID.
+			'Entry Taxonomy (Autonomie)' // Name.
 		);
 	}
 

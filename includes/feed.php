@@ -82,6 +82,7 @@ function autonomie_extend_singular_feed_discovery( array $args = [] ): void {
 	// Post/Page feeds.
 	if ( is_singular() ) {
 		// Add tag feeds.
+		// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
 		foreach ( wp_get_post_terms( get_the_ID(), [ 'post_tag', 'category' ] ) as $term ) {
 			$tax = get_taxonomy( $term->taxonomy );
 
@@ -91,6 +92,7 @@ function autonomie_extend_singular_feed_discovery( array $args = [] ): void {
 			];
 		}
 
+		// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
 		$post = get_post();
 
 		$author_id = $post->post_author;

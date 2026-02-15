@@ -93,10 +93,10 @@ add_filter( 'comment_class', 'autonomie_comment_classes', 99 );
  * @return string[]
  */
 function autonomie_get_post_classes( array $classes = [] ): array {
-	// Adds a class for microformats v2
+	// Adds a class for microformats v2.
 	$classes[] = 'h-entry';
 
-	// add hentry to the same tag as h-entry
+	// Add hentry to the same tag as h-entry.
 	$classes[] = 'hentry';
 
 	return array_unique( $classes );
@@ -112,7 +112,7 @@ function autonomie_get_post_classes( array $classes = [] ): array {
  * @return string|null
  */
 function autonomie_author_link( string $link ): ?string {
-	// Adds a class for microformats v2
+	// Adds a class for microformats v2.
 	return preg_replace( '/(class\s*=\s*[\"|\'])/i', '${1}u-url ', $link );
 }
 add_filter( 'get_comment_author_link', 'autonomie_author_link' );
@@ -136,16 +136,16 @@ function autonomie_pre_get_avatar_data( array $args, $id_or_email ): array { // 
 		$args['class'] = [ $args['class'] ];
 	}
 
-	// Adds a class for microformats v2
+	// Adds a class for microformats v2.
 	$args['class'] = array_unique( array_merge( $args['class'], [ 'u-photo' ] ) );
 	$args['extra_attr'] .= ' itemprop="image" loading="lazy"';
 
-	// Adds default alt attribute
+	// Adds default alt attribute.
 	if ( empty( $args['alt'] ) ) {
 		$username = get_the_author_meta( 'display_name', $id_or_email );
 
 		if ( $username !== '' ) {
-			// translators: %s: username
+			// translators: %s: username.
 			$args['alt'] = sprintf( __( 'User Avatar of %s' ), $username );
 		} else {
 			$args['alt'] = __( 'User Avatar' );
@@ -230,7 +230,7 @@ add_filter( 'get_search_form', 'autonomie_get_search_form' );
 function autonomie_get_semantics( ?string $id = null ): array {
 	$classes = [];
 
-	// add default values
+	// Add default values.
 	switch ( $id ) {
 		case 'body':
 			if ( is_search() ) {
@@ -286,6 +286,7 @@ function autonomie_get_semantics( ?string $id = null ): array {
 				$classes['itemscope'] = [ '' ];
 				$classes['itemtype'] = [ 'https://schema.org/BlogPosting' ];
 				$classes['itemref'] = [ 'site-publisher' ];
+				// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
 				$classes['itemid'] = [ get_permalink() ];
 			}
 			break;
@@ -349,6 +350,7 @@ function autonomie_semantics( string $id ): void {
  * @return array
  */
 function autonomie_term_links_tag( array $links ): array {
+	// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
 	$post = get_post();
 
 	$terms = get_the_terms( $post->ID, 'post_tag' );

@@ -50,13 +50,13 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 		 */
 		load_theme_textdomain( 'autonomie', get_template_directory() . '/languages' );
 
-		// Add default posts and comments RSS feed links to head
+		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
-		// This theme uses post thumbnails
+		// This theme uses post thumbnails.
 		add_theme_support( 'post-thumbnails' );
 
-		set_post_thumbnail_size( $content_width, 9999 ); // Unlimited height, soft crop
+		set_post_thumbnail_size( $content_width, 9999 ); // Unlimited height, soft crop.
 
 		// Register custom image size for image post formats.
 		add_image_size( 'autonomie-image-post', $content_width, 1250 );
@@ -174,7 +174,7 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 		 */
 		add_theme_support( 'title-tag' );
 
-		// custom logo support
+		// Custom logo support.
 		add_theme_support(
 			'custom-logo',
 			[
@@ -183,7 +183,7 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 			]
 		);
 
-		// This theme supports a custom header
+		// This theme supports a custom header.
 
 		$custom_header_args = [
 			'width'       => 1250,
@@ -200,10 +200,10 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 		add_theme_support( 'microdata' );
 		add_theme_support( 'indieweb' );
 
-		// enable service workers
+		// Enable service workers.
 		add_theme_support( 'service_worker', true );
 
-		// add starter content
+		// Add starter content.
 		add_theme_support(
 			'starter-content',
 			[
@@ -285,7 +285,7 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 			]
 		);
 	}
-endif; // autonomie_setup
+endif; // End autonomie_setup.
 
 /**
  * Tell WordPress to run autonomie_setup() when the 'after_setup_theme' hook is run.
@@ -545,11 +545,6 @@ require get_template_directory() . '/includes/widgets.php';
  * Adds the featured image functionality
  */
 require get_template_directory() . '/includes/featured-image.php';
-
-/**
- * All customizer functions
- */
-require get_template_directory() . '/includes/customizer.php';
 
 /**
  * Adds some awesome websemantics like microformats(2) and microdata

@@ -26,21 +26,17 @@
 				$title_element = 'h2';
 			}
 			?>
-		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<<?php echo esc_html( $title_element ); ?> class="entry-title p-name" itemprop="name headline">
 			<?php // translators: %s: Post title. ?>
 			<a href="<?php the_permalink(); ?>" class="u-url url" title="<?php printf( esc_attr__( 'Permalink to %s', 'autonomie' ), the_title_attribute( [ 'echo' => false ] ) ); ?>" rel="bookmark" itemprop="url">
 				<?php the_title(); ?>
 			</a>
-		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</<?php echo esc_html( $title_element ); ?>>
 		<?php endif; ?>
 
-		<?php // if ( ! is_singular() ) : ?>
 		<div class="entry-meta">
 			<?php autonomie_posted_by(); ?> <span class="sep"> · </span> <?php autonomie_posted_on(); ?> <span class="sep"> · </span> <?php autonomie_reading_time(); ?>
 		</div>
-		<?php // endif; ?>
 	</div>
 </header><!-- .entry-header -->
 

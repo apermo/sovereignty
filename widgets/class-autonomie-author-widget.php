@@ -10,10 +10,9 @@ class Autonomie_Author_Widget extends WP_Widget {
 	 * Constructor.
 	 */
 	public function __construct() {
-
 		parent::__construct(
-			'autonomie-author',  // Base ID
-			'Author Details (Autonomie)'   // Name
+			'autonomie-author',          // Base ID.
+			'Author Details (Autonomie)' // Name.
 		);
 	}
 

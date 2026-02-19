@@ -24,7 +24,7 @@
 		"composer/installers": "^2.2"
 	},
 	"require-dev": {
-		"apermo/wp-coding-standards": "^1.0",
+		"apermo/apermo-coding-standards": "^1.0",
 		"phpstan/phpstan": "^2.0",
 		"szepeviktor/phpstan-wordpress": "^2.0",
 		"roave/security-advisories": "dev-latest",
@@ -33,7 +33,7 @@
 	"repositories": [
 		{
 			"type": "vcs",
-			"url": "https://github.com/apermo/wp-coding-standards"
+			"url": "https://github.com/apermo/apermo-coding-standards"
 		}
 	],
 	"scripts": {

@@ -2,7 +2,7 @@
 	"name": "apermo/sovereignty",
 	"description": "Pure Zen - Fork of Pfefferle's Autonomie Theme",
 	"type": "wordpress-theme",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"license": "MIT",
 	"homepage": "https://github.com/apermo/sovereignty",
 	"support": {
@@ -30,17 +30,12 @@
 		"roave/security-advisories": "dev-latest",
 		"phpstan/phpstan-strict-rules": "^2.0"
 	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/apermo/apermo-coding-standards"
-		}
-	],
 	"scripts": {
 		"lint": "phpcs",
 		"lint:fix": "phpcbf",
 		"analyse": "phpstan analyse --memory-limit=2G",
-		"analyse:strict": "phpstan analyse -c phpstan-strict.neon --memory-limit=2G"
+		"analyse:strict": "phpstan analyse -c phpstan-strict.neon --memory-limit=2G",
+		"generate-version": "@php bin/generate-version.php"
 	},
 	"extra": {
 		"installer-name": "sovereignty"

@@ -5,7 +5,7 @@
 </indie-action>
 
 <div id="share-options" style="display: none;">
-	<p><strong>Sharing is caring</strong></p>
+	<p><strong><?php esc_html_e( 'Sharing is caring', 'autonomie' ); ?></strong></p>
 	<p>
 		<label for="entry-shortlink"><?php esc_html_e( 'Shortlink', 'autonomie' ); ?></label>
 		<input id="entry-shortlink" class="u-url url shortlink" type="text" value="<?php echo esc_url( wp_get_shortlink() ); ?>" />

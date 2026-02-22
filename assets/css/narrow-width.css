@@ -1,7 +1,7 @@
 /* stylelint-disable no-descending-specificity */
 /* stylelint-disable no-descending-specificity */
 html {
-  font-size: 1em;
+	font-size: 1em;
 }
 
 #sidebar,
@@ -11,36 +11,36 @@ html {
 .site-header .page-banner #page-meta,
 .site-navigation,
 .has-full-width-featured-image .entry-header .entry-header-wrapper > * {
-  width: 90%;
+	width: 90%;
 }
 
 .page-banner .avatar {
-  width: 80px;
-  height: 80px;
+	width: 80px;
+	height: 80px;
 }
 
 .page-branding.author #page-description {
-  font-size: 1.2em;
+	font-size: 1.2em;
 }
 
 .site-header .page-banner .page-branding.author #page-title {
-  font-size: 2em;
+	font-size: 2em;
 }
 
 .entry-footer .author .fn,
 .entry-footer .author .note,
 .entry-footer .author .subscribe {
-  margin-left: inherit;
+	margin-left: inherit;
 }
 
 .entry-content p.has-background,
 .entry-summary p.has-background {
-  padding: 30px 5%;
+	padding: 30px 5%;
 }
 
 .entry-footer .author {
-  width: 100%;
-  max-width: 100%;
+	width: 100%;
+	max-width: 100%;
 }
 
 .alignright,
@@ -49,9 +49,9 @@ html {
 .wp-block-image .alignleft,
 .wp-block-button.alignright,
 .wp-block-button.alignleft {
-  float: none;
-  clear: both;
-  margin: 1.2em auto;
+	float: none;
+	clear: both;
+	margin: 1.2em auto;
 }
 
 .entry-content > *,
@@ -66,9 +66,9 @@ html {
 #nav-below,
 .reaction-list,
 .wp-block-quote.is-style-large {
-  max-width: 90%;
-  margin: 1.2em auto;
-  box-sizing: border-box;
+	max-width: 90%;
+	margin: 1.2em auto;
+	box-sizing: border-box;
 }
 
 .type-page h1.entry-title,
@@ -79,51 +79,51 @@ html {
 .format-standard h2.entry-title,
 .format-standard h3.entry-title,
 .format-standard h4.entry-title {
-  font-size: 3em;
+	font-size: 3em;
 }
 
 .entry-content > pre,
 .entry-content > table {
-  max-width: 100%;
+	max-width: 100%;
 }
 
 .entry-header .entry-title {
-  font-size: 2.5em;
+	font-size: 2.5em;
 }
 
 .site-header .page-branding {
-  font-size: 0.8em;
+	font-size: 0.8em;
 }
 .site-header .search-field {
-  width: 100px;
+	width: 100px;
 }
 
 .page-header {
-  width: 100%;
+	width: 100%;
 }
 
 #nav-below .nav-previous {
-  bottom: 20px;
-  z-index: 1;
+	bottom: 20px;
+	z-index: 1;
 }
 #nav-below .nav-next {
-  bottom: 20px;
-  z-index: 1;
+	bottom: 20px;
+	z-index: 1;
 }
 
 .error404 .entry-content .widget,
 #sidebar #secondary,
 #sidebar #tertiary,
 #sidebar #quaternary {
-  width: 90%;
-  clear: both;
+	width: 90%;
+	clear: both;
 }
 
 #sidebar aside {
-  margin: 50px 0;
+	margin: 50px 0;
 }
 
 ul.children {
-  padding-left: 10px;
+	padding-left: 10px;
 }
 /*# sourceMappingURL=narrow-width.css.map */

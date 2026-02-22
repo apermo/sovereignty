@@ -14,13 +14,13 @@ msgstr ""
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
 #: 404.php:15
-msgid "Well this is somewhat embarrassing, isn&rsquo;t it?"
+msgid "Well this is somewhat embarrassing, isn't it?"
 msgstr ""
 
 #: 404.php:19
 msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-"searching, or one of the links below, can help."
+"It seems we can't find what you're looking for. Perhaps searching, or one "
+"of the links below, can help."
 msgstr ""
 
 #: 404.php:26
@@ -46,8 +46,8 @@ msgstr ""
 
 #: archive.php:45 index.php:42
 msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-"searching can help."
+"It seems we can't find what you're looking for. Perhaps searching can "
+"help."
 msgstr ""
 
 #: comments.php:16

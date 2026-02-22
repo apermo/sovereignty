@@ -22,6 +22,9 @@
  * @since Autonomie 1.0.0
  */
 
+$autonomie_composer = json_decode( (string) file_get_contents( __DIR__ . '/composer.json' ), true );
+define( 'AUTONOMIE_VERSION', $autonomie_composer['version'] ?? '1.0.0' );
+
 if ( ! function_exists( 'autonomie_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -33,7 +36,7 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 	 * To override autonomie_setup() in a child theme, add your own autonomie_setup to your child theme's
 	 * functions.php file.
 	 */
-	function autonomie_setup() {
+	function autonomie_setup(): void {
 		defined( 'AUTONOMIE_EXCERPT' ) || define( 'AUTONOMIE_EXCERPT', false );
 		defined( 'AUTONOMIE_EXCERPT_COUNT' ) || define( 'AUTONOMIE_EXCERPT_COUNT', 100 );
 
@@ -47,12 +50,13 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 		 */
 		load_theme_textdomain( 'autonomie', get_template_directory() . '/languages' );
 
-		// Add default posts and comments RSS feed links to head
+		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
-		// This theme uses post thumbnails
+		// This theme uses post thumbnails.
 		add_theme_support( 'post-thumbnails' );
-		set_post_thumbnail_size( $content_width, 9999 ); // Unlimited height, soft crop
+
+		set_post_thumbnail_size( $content_width, 9999 ); // Unlimited height, soft crop.
 
 		// Register custom image size for image post formats.
 		add_image_size( 'autonomie-image-post', $content_width, 1250 );
@@ -63,7 +67,7 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 		 */
 		add_theme_support(
 			'html5',
-			array(
+			[
 				'search-form',
 				'comment-form',
 				'comment-list',
@@ -71,83 +75,83 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 				'caption',
 				'widgets',
 				'script',
-			)
+			]
 		);
 
 		add_theme_support( 'align-wide' );
 
 		add_theme_support(
 			'editor-color-palette',
-			array(
-				array(
+			[
+				[
 					'name'  => __( 'Blue', 'autonomie' ),
 					'slug'  => 'blue',
 					'color' => '#0073aa',
-				),
-				array(
+				],
+				[
 					'name'  => __( 'Lighter blue', 'autonomie' ),
 					'slug'  => 'lighter-blue',
 					'color' => '#229fd8',
-				),
-				array(
+				],
+				[
 					'name'  => __( 'Blue jeans', 'autonomie' ),
 					'slug'  => 'blue-jeans',
 					'color' => '#5bc0eb',
-				),
-				array(
+				],
+				[
 					'name'  => __( 'Orioles orange', 'autonomie' ),
 					'slug'  => 'orioles-orange',
 					'color' => '#fa5b0f',
-				),
-				array(
+				],
+				[
 					'name'  => __( 'USC gold', 'autonomie' ),
 					'slug'  => 'usc-gold',
 					'color' => '#ffcc00',
-				),
-				array(
+				],
+				[
 					'name'  => __( 'Gargoyle gas', 'autonomie' ),
 					'slug'  => 'gargoyle-gas',
 					'color' => '#fde74c',
-				),
-				array(
+				],
+				[
 					'name'  => __( 'Yellow', 'autonomie' ),
 					'slug'  => 'yellow',
 					'color' => '#fff9c0',
-				),
-				array(
+				],
+				[
 					'name'  => __( 'Android green', 'autonomie' ),
 					'slug'  => 'android-green',
 					'color' => '#9bc53d',
-				),
-				array(
+				],
+				[
 					'name'  => __( 'White', 'autonomie' ),
 					'slug'  => 'white',
 					'color' => '#fff',
-				),
-				array(
+				],
+				[
 					'name'  => __( 'Very light gray', 'autonomie' ),
 					'slug'  => 'very-light-gray',
 					'color' => '#eee',
-				),
-				array(
+				],
+				[
 					'name'  => __( 'Very dark gray', 'autonomie' ),
 					'slug'  => 'very-dark-gray',
 					'color' => '#444',
-				),
-			)
+				],
+			]
 		);
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
-			array(
+			[
 				'primary' => __( 'Primary Menu', 'autonomie' ),
-			)
+			]
 		);
 
 		// Add support for the Aside, Gallery Post Formats...
 		add_theme_support(
 			'post-formats',
-			array(
+			[
 				'aside',
 				'gallery',
 				'link',
@@ -157,7 +161,7 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 				'audio',
 				'quote',
 				'chat',
-			)
+			]
 		);
 
 		add_theme_support( 'responsive-embeds' );
@@ -170,21 +174,22 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 		 */
 		add_theme_support( 'title-tag' );
 
-		// custom logo support
+		// Custom logo support.
 		add_theme_support(
 			'custom-logo',
-			array(
+			[
 				'height' => 30,
 				'width'  => 30,
-			)
+			]
 		);
 
-		// This theme supports a custom header
-		$custom_header_args = array(
+		// This theme supports a custom header.
+
+		$custom_header_args = [
 			'width'       => 1250,
 			'height'      => 600,
 			'header-text' => true,
-		);
+		];
 		add_theme_support( 'custom-header', $custom_header_args );
 
 		/**
@@ -195,92 +200,92 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 		add_theme_support( 'microdata' );
 		add_theme_support( 'indieweb' );
 
-		// enable service workers
+		// Enable service workers.
 		add_theme_support( 'service_worker', true );
 
-		// add starter content
+		// Add starter content.
 		add_theme_support(
 			'starter-content',
-			array(
-				'widgets' => array(
-					'sidebar-1' => array(
+			[
+				'widgets' => [
+					'sidebar-1' => [
 						'text_business_info',
 						'search',
 						'text_about',
-					),
+					],
 
-					'sidebar-2' => array(
+					'sidebar-2' => [
 						'text_business_info',
-					),
+					],
 
-					'sidebar-3' => array(
+					'sidebar-3' => [
 						'text_about',
 						'search',
-					),
+					],
 
-					'entry-meta' => array(),
-				),
+					'entry-meta' => [],
+				],
 
-				'posts' => array(
+				'posts' => [
 					'home',
-					'about' => array(
+					'about' => [
 						'thumbnail' => '{{image-sea}}',
-					),
-					'contact' => array(
+					],
+					'contact' => [
 						'thumbnail' => '{{image-lights}}',
-					),
-					'blog' => array(
+					],
+					'blog' => [
 						'thumbnail' => '{{image-beach}}',
-					),
-					'homepage-section' => array(
+					],
+					'homepage-section' => [
 						'thumbnail' => '{{image-lights}}',
-					),
-				),
+					],
+				],
 
-				'attachments' => array(
-					'image-beach' => array(
+				'attachments' => [
+					'image-beach' => [
 						'post_title' => _x( 'Beach', 'Theme starter content', 'autonomie' ),
 						'file' => 'assets/images/beach.jpeg',
-					),
-					'image-sea' => array(
+					],
+					'image-sea' => [
 						'post_title' => _x( 'Sea', 'Theme starter content', 'autonomie' ),
 						'file' => 'assets/images/sea.jpeg',
-					),
-					'image-lights' => array(
+					],
+					'image-lights' => [
 						'post_title' => _x( 'Lights', 'Theme starter content', 'autonomie' ),
 						'file' => 'assets/images/lights.jpeg',
-					),
-				),
+					],
+				],
 
-				'options' => array(
+				'options' => [
 					'show_on_front' => 'page',
 					'page_on_front' => '{{home}}',
 					'page_for_posts' => '{{blog}}',
 					'header_image' => get_theme_file_uri( 'assets/images/beach.jpeg' ),
-				),
+				],
 
-				'theme_mods' => array(
+				'theme_mods' => [
 					'panel_1' => '{{homepage-section}}',
 					'panel_2' => '{{about}}',
 					'panel_3' => '{{blog}}',
 					'panel_4' => '{{contact}}',
-				),
+				],
 
-				'nav_menus' => array(
-					'primary' => array(
+				'nav_menus' => [
+					'primary' => [
 						'name' => __( 'Top Menu', 'autonomie' ),
-						'items' => array(
+						'items' => [
 							'page_home',
 							'page_about',
 							'page_blog',
 							'page_contact',
-						),
-					),
-				),
-			)
+						],
+					],
+				],
+			]
 		);
 	}
-endif; // autonomie_setup
+endif; // End autonomie_setup.
 
 /**
  * Tell WordPress to run autonomie_setup() when the 'after_setup_theme' hook is run.
@@ -290,7 +295,7 @@ add_action( 'after_setup_theme', 'autonomie_setup' );
 /**
  * Add a pingback url auto-discovery header for singularly identifiable articles.
  */
-function autonomie_pingback_header() {
+function autonomie_pingback_header(): void {
 	if ( is_singular() && pings_open() ) {
 		printf( '<link rel="pingback" href="%1$s" />', esc_url( get_bloginfo( 'pingback_url' ) ) );
 	}
@@ -300,17 +305,17 @@ add_action( 'wp_head', 'autonomie_pingback_header' );
 /**
  * Adds a rel-feed if the main page is not a list of posts
  */
-function autonomie_publisher_feed_header() {
-	if ( is_front_page() && 0 !== (int) get_option( 'page_for_posts', 0 ) ) {
-		printf( PHP_EOL . '<link rel="feed" type="text/html" href="%1$s" title="%2$s" />' . PHP_EOL, esc_url( get_post_type_archive_link( 'post' ) ), __( 'POSH Feed', 'autonomie' ) );
+function autonomie_publisher_feed_header(): void {
+	if ( is_front_page() && (int) get_option( 'page_for_posts', 0 ) !== 0 ) {
+		printf( PHP_EOL . '<link rel="feed" type="text/html" href="%1$s" title="%2$s" />' . PHP_EOL, esc_url( get_post_type_archive_link( 'post' ) ), esc_attr__( 'POSH Feed', 'autonomie' ) );
 	}
 }
 add_action( 'wp_head', 'autonomie_publisher_feed_header' );
 
 /**
- * Adds a rel-feed if the main page is not a list of posts
+ * Adds color-scheme meta tag to the head.
  */
-function autonomie_header() {
+function autonomie_header(): void {
 	printf( PHP_EOL . '<meta name="supported-color-schemes" content="light dark">' . PHP_EOL );
 }
 add_action( 'wp_head', 'autonomie_header' );
@@ -322,7 +327,7 @@ add_action( 'wp_head', 'autonomie_header' );
  *
  * @global int $content_width
  */
-function autonomie_content_width() {
+function autonomie_content_width(): void {
 	$content_width = 900;
 
 	$GLOBALS['content_width'] = apply_filters( 'autonomie_content_width', $content_width );
@@ -330,17 +335,22 @@ function autonomie_content_width() {
 add_action( 'after_setup_theme', 'autonomie_content_width', 0 );
 
 /**
- * Set the default maxwith for the embeds
+ * Set the default maxwidth for the embeds.
+ *
+ * @return array{width: int, height: int}
  */
-function autonomie_embed_defaults() {
-	return array(
+function autonomie_embed_defaults(): array {
+	return [
 		'width'  => 900,
 		'height' => 600,
-	);
+	];
 }
 add_filter( 'embed_defaults', 'autonomie_embed_defaults' );
 
-function autonomie_login_logo() {
+/**
+ * Customize the login page logo to use the site icon.
+ */
+function autonomie_login_logo(): void {
 	if ( ! has_site_icon() ) {
 		return;
 	}
@@ -348,7 +358,7 @@ function autonomie_login_logo() {
 	?>
 	<style type="text/css">
 		body.login div#login h1 a {
-			background-image: url( <?php echo get_site_icon_url( 84 ); ?> );
+			background-image: url( <?php echo esc_url( get_site_icon_url( 84 ) ); ?> );
 		}
 	</style>
 	<?php
@@ -356,10 +366,14 @@ function autonomie_login_logo() {
 add_action( 'login_enqueue_scripts', 'autonomie_login_logo' );
 
 /**
- * Set the default with for the embeds
- * Fixes issues with Vimeo
+ * Set the default width for the embeds.
+ * Fixes issues with Vimeo.
+ *
+ * @param string $provider The oEmbed provider URL.
+ *
+ * @return string
  */
-function autonomie_oembed_fetch_url( $provider ) {
+function autonomie_oembed_fetch_url( string $provider ): string {
 	$provider = add_query_arg( 'width', 900, $provider );
 	$provider = add_query_arg( 'height', 600, $provider );
 
@@ -369,8 +383,12 @@ add_filter( 'oembed_fetch_url', 'autonomie_oembed_fetch_url', 99 );
 
 /**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
+ *
+ * @param array $args Page menu arguments.
+ *
+ * @return array
  */
-function autonomie_page_menu_args( $args ) {
+function autonomie_page_menu_args( array $args ): array {
 	$args['show_home'] = true;
 
 	return $args;
@@ -385,15 +403,13 @@ if ( ! function_exists( 'autonomie_enqueue_scripts' ) ) :
 	 *
 	 * @since Autonomie 1.0.0
 	 */
-	function autonomie_enqueue_scripts() {
-		/*
-		 * Adds JavaScript to pages with the comment form to support sites with
-		 * threaded comments (when in use).
-		 */
+	function autonomie_enqueue_scripts(): void {
+		// Adds JavaScript to pages with the comment form to support sites with
+		// threaded comments (when in use).
 		if (
 			is_singular() &&
 			comments_open() &&
-			get_option( 'thread_comments' )
+			(bool) get_option( 'thread_comments' )
 		) {
 			wp_enqueue_script( 'comment-reply' );
 		}
@@ -401,40 +417,40 @@ if ( ! function_exists( 'autonomie_enqueue_scripts' ) ) :
 		wp_enqueue_script(
 			'autonomie-navigation',
 			get_template_directory_uri() . '/assets/js/navigation.js',
-			array(),
-			'1.0.0',
-			array(
+			[],
+			AUTONOMIE_VERSION,
+			[
 				'strategy'  => 'async',
-			)
+			]
 		);
 
 		if ( is_singular() ) {
 			wp_enqueue_script(
 				'autonomie-share',
 				get_template_directory_uri() . '/assets/js/share.js',
-				array(),
-				'1.0.0',
-				array(
+				[],
+				AUTONOMIE_VERSION,
+				[
 					'strategy'  => 'async',
-				)
+				]
 			);
 		}
 
 		wp_enqueue_style( 'dashicons' );
 
 		// Loads our main stylesheet.
-		wp_enqueue_style( 'autonomie-style', get_stylesheet_uri(), array( 'dashicons' ) );
-		wp_enqueue_style( 'autonomie-print-style', get_template_directory_uri() . '/assets/css/print.css', array( 'autonomie-style' ), '1.0.0', 'print' );
-		wp_enqueue_style( 'autonomie-narrow-style', get_template_directory_uri() . '/assets/css/narrow-width.css', array( 'autonomie-style' ), '1.0.0', '(max-width: 800px)' );
-		wp_enqueue_style( 'autonomie-default-style', get_template_directory_uri() . '/assets/css/default-width.css', array( 'autonomie-style' ), '1.0.0', '(min-width: 800px)' );
-		wp_enqueue_style( 'autonomie-wide-style', get_template_directory_uri() . '/assets/css/wide-width.css', array( 'autonomie-style' ), '1.0.0', '(min-width: 1000px)' );
+		wp_enqueue_style( 'autonomie-style', get_stylesheet_uri(), [ 'dashicons' ], AUTONOMIE_VERSION );
+		wp_enqueue_style( 'autonomie-print-style', get_template_directory_uri() . '/assets/css/print.css', [ 'autonomie-style' ], AUTONOMIE_VERSION, 'print' );
+		wp_enqueue_style( 'autonomie-narrow-style', get_template_directory_uri() . '/assets/css/narrow-width.css', [ 'autonomie-style' ], AUTONOMIE_VERSION, '(max-width: 800px)' );
+		wp_enqueue_style( 'autonomie-default-style', get_template_directory_uri() . '/assets/css/default-width.css', [ 'autonomie-style' ], AUTONOMIE_VERSION, '(min-width: 800px)' );
+		wp_enqueue_style( 'autonomie-wide-style', get_template_directory_uri() . '/assets/css/wide-width.css', [ 'autonomie-style' ], AUTONOMIE_VERSION, '(min-width: 1000px)' );
 
 		wp_localize_script(
 			'autonomie',
 			'vars',
-			array(
+			[
 				'template_url' => get_template_directory_uri(),
-			)
+			]
 		);
 
 		if ( has_header_image() ) {
@@ -464,13 +480,18 @@ if ( ! function_exists( 'autonomie_comment' ) ) :
 	 *
 	 * Used as a callback by wp_list_comments() for displaying the comments.
 	 *
+	 * @param \WP_Comment $comment The comment object.
+	 * @param array       $args    Display arguments.
+	 * @param int         $depth   Depth of the comment.
+	 *
 	 * @since Autonomie 1.0.0
 	 */
-	function autonomie_comment( $comment, $args, $depth ) {
+	function autonomie_comment( \WP_Comment $comment, array $args, int $depth ): void {
+		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Required by wp_list_comments() callback.
 		$GLOBALS['comment'] = $comment;
 		?>
 		<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-			<article id="comment-<?php comment_ID(); ?>" class="comment <?php echo $comment->comment_type; ?>" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+			<article id="comment-<?php comment_ID(); ?>" class="comment <?php echo esc_attr( $comment->comment_type ); ?>" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
 				<div class="edit-link"><?php edit_comment_link( __( 'Edit', 'autonomie' ), ' ' ); ?></div>
 				<footer class="comment-meta commentmetadata">
 					<address class="comment-author p-author author vcard hcard h-card" itemprop="creator" itemscope itemtype="https://schema.org/Person">
@@ -478,16 +499,16 @@ if ( ! function_exists( 'autonomie_comment' ) ) :
 						<?php printf( '<cite class="fn p-name" itemprop="name">%s</cite>', get_comment_author_link() ); ?>
 					</address><!-- .comment-author .vcard -->
 
-					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time class="updated published dt-updated dt-published" datetime="<?php comment_time( 'c' ); ?>" itemprop="dateCreated">
+					<a href="<?php echo esc_url( get_comment_link( $comment ) ); ?>"><time class="updated published dt-updated dt-published" datetime="<?php comment_time( 'c' ); ?>" itemprop="dateCreated">
 					<?php
 						/* translators: 1: date, 2: time */
-						printf( __( '%1$s at %2$s', 'autonomie' ), get_comment_date(), get_comment_time() );
+						printf( esc_html__( '%1$s at %2$s', 'autonomie' ), esc_html( get_comment_date() ), esc_html( get_comment_time() ) );
 					?>
 					</time></a>
 				</footer>
 
-				<?php if ( '0' === $comment->comment_approved ) : ?>
-					<p><em><?php _e( 'Your comment is awaiting moderation.', 'autonomie' ); ?></em></p>
+			<?php if ( $comment->comment_approved === '0' ) : ?>
+					<p><em><?php esc_html_e( 'Your comment is awaiting moderation.', 'autonomie' ); ?></em></p>
 				<?php endif; ?>
 
 				<div class="comment-content e-content p-summary p-name" itemprop="text name description"><?php comment_text(); ?></div>
@@ -497,10 +518,10 @@ if ( ! function_exists( 'autonomie_comment' ) ) :
 					comment_reply_link(
 						array_merge(
 							$args,
-							array(
+							[
 								'depth' => $depth,
 								'max_depth' => $args['max_depth'],
-							)
+							]
 						)
 					);
 					?>
@@ -508,7 +529,7 @@ if ( ! function_exists( 'autonomie_comment' ) ) :
 			</article><!-- #comment-## -->
 		<?php
 	}
-endif; // ends check for autonomie_comment()
+endif; // ends check for autonomie_comment().
 
 /**
  * All template functions
@@ -524,11 +545,6 @@ require get_template_directory() . '/includes/widgets.php';
  * Adds the featured image functionality
  */
 require get_template_directory() . '/includes/featured-image.php';
-
-/**
- * All customizer functions
- */
-require get_template_directory() . '/includes/customizer.php';
 
 /**
  * Adds some awesome websemantics like microformats(2) and microdata

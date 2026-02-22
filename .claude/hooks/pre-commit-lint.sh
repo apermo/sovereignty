@@ -25,7 +25,7 @@ fi
 
 # PHPStan
 if command -v vendor/bin/phpstan &> /dev/null; then
-  vendor/bin/phpstan analyse --no-progress --error-format=table 2>&1 >&2
+  vendor/bin/phpstan analyse --no-progress --error-format=table --memory-limit=2G 2>&1 >&2
   if [ $? -ne 0 ]; then
     ERRORS+=("PHPStan found errors")
   fi

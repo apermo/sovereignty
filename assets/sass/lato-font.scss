@@ -1,8 +1,8 @@
 /* lato-300 - latin */
 @font-face {
-	font-family: 'Lato';
+	font-family: Lato;
 	font-style: normal;
-	font-weight: normal;
+	font-weight: 400;
 	font-display: swap;
 	src: url('#{$font_path}lato/lato-v13-latin-300.eot'); /* IE9 Compat Modes */
 	src: local('Lato Light'), local('Lato-Light'),
@@ -11,11 +11,12 @@
 			url('#{$font_path}lato/lato-v13-latin-300.woff') format('woff'), /* Modern Browsers */
 			url('#{$font_path}lato/lato-v13-latin-300.svg#Lato') format('svg'); /* Legacy iOS */
 }
+
 /* lato-300italic - latin */
 @font-face {
-	font-family: 'Lato';
+	font-family: Lato;
 	font-style: italic;
-	font-weight: normal;
+	font-weight: 400;
 	font-display: swap;
 	src: url('#{$font_path}lato/lato-v13-latin-300italic.eot'); /* IE9 Compat Modes */
 	src: local('Lato Light Italic'), local('Lato-LightItalic'),
@@ -24,11 +25,12 @@
 			url('#{$font_path}lato/lato-v13-latin-300italic.woff') format('woff'), /* Modern Browsers */
 			url('#{$font_path}lato/lato-v13-latin-300italic.svg#Lato') format('svg'); /* Legacy iOS */
 }
+
 /* lato-700 - latin */
 @font-face {
-	font-family: 'Lato';
+	font-family: Lato;
 	font-style: normal;
-	font-weight: bold;
+	font-weight: 700;
 	font-display: swap;
 	src: url('#{$font_path}lato/lato-v13-latin-700.eot'); /* IE9 Compat Modes */
 	src: local('Lato Bold'), local('Lato-Bold'),
@@ -37,11 +39,12 @@
 			url('#{$font_path}lato/lato-v13-latin-700.woff') format('woff'), /* Modern Browsers */
 			url('#{$font_path}lato/lato-v13-latin-700.svg#Lato') format('svg'); /* Legacy iOS */
 }
+
 /* lato-700italic - latin */
 @font-face {
-	font-family: 'Lato';
+	font-family: Lato;
 	font-style: italic;
-	font-weight: bold;
+	font-weight: 700;
 	font-display: swap;
 	src: url('#{$font_path}lato/lato-v13-latin-700italic.eot'); /* IE9 Compat Modes */
 	src: local('Lato Bold Italic'), local('Lato-BoldItalic'),

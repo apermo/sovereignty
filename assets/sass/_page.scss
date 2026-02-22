@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .site-header {
 	display: block;
 	position: relative;
@@ -22,8 +23,8 @@
 		padding: 0;
 		display: inline-block;
 		font-size: 1.5em;
-		font-family: "Lato", sans-serif;
-		font-weight: bold;
+		font-family: Lato, sans-serif;
+		font-weight: 700;
 		line-height: 1.5;
 
 		a {
@@ -110,6 +111,7 @@
 }
 
 .custom-header {
+
 	.page-banner {
 		width: 100%;
 		position: relative;
@@ -172,6 +174,7 @@
 
 // 404 page
 .error404 .entry-content {
+
 	.widget {
 		float: left;
 		width: 33%;
@@ -182,7 +185,7 @@
 		}
 	}
 
-	.widget_tag_cloud {
+	.widget_tag_cloud { /* stylelint-disable-line selector-class-pattern */
 		clear: both;
 		float: none;
 		width: 100%;

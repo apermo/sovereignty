@@ -17,10 +17,10 @@
 		<?php autonomie_the_content(); ?>
 		<?php
 		wp_link_pages(
-			array(
+			[
 				'before' => '<div class="page-link">' . __( 'Pages:', 'autonomie' ),
 				'after' => '</div>',
-			)
+			]
 		);
 		?>
 	</div><!-- .entry-content -->

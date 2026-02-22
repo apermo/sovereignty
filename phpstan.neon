@@ -1,5 +1,6 @@
 includes:
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
     level: 5
@@ -7,8 +8,11 @@ parameters:
         - .
     excludePaths:
         - vendor
-        - node_modules
-        - .ddev
-    scanDirectories:
-        - .ddev/wordpress/wp-includes
-        - .ddev/wordpress/wp-admin
+        - node_modules (?)
+        - .ddev (?)
+    strictRules:
+        allRules: false
+        booleansInConditions: true
+        disallowedLooseComparison: true
+        strictFunctionCalls: true
+        disallowedEmpty: false

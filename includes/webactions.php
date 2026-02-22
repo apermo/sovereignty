@@ -9,26 +9,30 @@
  *
  * @return string The new reply link.
  */
-function autonomie_webaction_comment_reply_link( $link, $args, $comment, $post ) {
+function autonomie_webaction_comment_reply_link( string $link, array $args, WP_Comment $comment, WP_Post $post ): string {
 	$permalink = get_permalink( $post->ID );
 	return '<indie-action do="reply" with="' . esc_url( add_query_arg( 'replytocom', $comment->comment_ID, $permalink ) ) . '">' . $link . '</indie-action>';
 }
-add_filter( 'comment_reply_link', 'autonomie_webaction_comment_reply_link', null, 4 );
+add_filter( 'comment_reply_link', 'autonomie_webaction_comment_reply_link', 10, 4 );
 
 /**
  * Surround comment form with a reply action.
+ *
+ * @return void
  */
-function autonomie_webaction_comment_form_before() {
+function autonomie_webaction_comment_form_before(): void {
 	$post = get_queried_object();
 	$permalink = get_permalink( $post->ID );
-	echo '<indie-action do="reply" with="' . $permalink . '">';
+	echo '<indie-action do="reply" with="' . esc_url( $permalink ) . '">';
 }
 add_action( 'comment_form_before', 'autonomie_webaction_comment_form_before', 0 );
 
 /**
  * Surround comment form with a reply action.
+ *
+ * @return void
  */
-function autonomie_webaction_comment_form_after() {
+function autonomie_webaction_comment_form_after(): void {
 	echo '</indie-action>';
 }
 add_action( 'comment_form_after', 'autonomie_webaction_comment_form_after', 0 );

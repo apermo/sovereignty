@@ -1,26 +1,26 @@
-( function() {
-  entry_share = document.getElementById('entry-share');
+(function () {
+	const entryShare = document.getElementById('entry-share');
 
-  if ( ! entry_share ) {
-    return false;
-  }
+	if (!entryShare) {
+		return false;
+	}
 
-  entry_share.onclick = function share() {
-    if (navigator.share) {
-      navigator.share(
-        {
-          title: document.querySelector('title').textContent,
-          url: document.querySelector('link[rel="canonical"]').getAttribute('href')
-        }
-      );
-    } else {
-      var citation_options = document.getElementById('share-options');
-      if (citation_options.style.display === 'none') {
-        citation_options.style.display = 'block';
-      } else {
-        citation_options.style.display = 'none';
-      }
-    }
-    return false;
-  }
+	entryShare.onclick = function share() {
+		if (navigator.share) {
+			navigator.share({
+				title: document.querySelector('title').textContent,
+				url: document
+					.querySelector('link[rel="canonical"]')
+					.getAttribute('href'),
+			});
+		} else {
+			const citationOptions = document.getElementById('share-options');
+			if (citationOptions.style.display === 'none') {
+				citationOptions.style.display = 'block';
+			} else {
+				citationOptions.style.display = 'none';
+			}
+		}
+		return false;
+	};
 })();

@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 #comments {
 	clear: both;
 
@@ -75,8 +76,8 @@ a.comment-reply-link {
 	height: 16px;
 	line-height: 16px;
 
-	&:before {
-		font-family: "Dashicons";
+	&::before {
+		font-family: Dashicons; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
 		content: "\f101";
 		padding-right: 5px;
 		text-decoration: none;
@@ -89,7 +90,7 @@ li.comment {
 
 	.comment-meta cite {
 		font-style: normal;
-		font-weight: normal;
+		font-weight: 400;
 	}
 
 	img.avatar {
@@ -107,6 +108,7 @@ li.comment {
 }
 
 .comment-meta {
+
 	address {
 		line-height: 1.2;
 	}
@@ -146,16 +148,13 @@ ul.children {
 
 .comment-content {
 	font-size: 1.1em;
-	line-height: 2em;
+	line-height: 2;
 
 	cite {
 		font-style: normal;
-		font-weight: normal;
+		font-weight: 400;
 		font-size: 12px;
 	}
-}
-
-.commentlist .odd article {
 }
 
 .bypostauthor {

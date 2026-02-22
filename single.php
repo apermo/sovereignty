@@ -18,8 +18,8 @@ get_header(); ?>
 				<?php get_template_part( 'templates/content', get_post_format() ); ?>
 
 				<?php
-				// If comments are open or we have at least one comment, load up the comment template
-				if ( comments_open() || '0' !== get_comments_number() ) {
+				// If comments are open, or we have at least one comment, load up the comment template.
+				if ( comments_open() || get_comments_number() !== '0' ) {
 					comments_template( '', true );
 				}
 				?>

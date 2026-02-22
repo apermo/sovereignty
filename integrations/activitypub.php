@@ -13,16 +13,17 @@
 /**
  * Add ActivityPub information to the archive author metadata.
  *
- * @param  array $meta      the meta array
- * @param  int   $author_id the author id
+ * @param  array $meta      The meta array.
+ * @param  int   $author_id The author id.
  *
- * @return array            the filtered meta array
+ * @return array            The filtered meta array.
  */
-function autonomie_activitypub_archive_author_meta( $meta, $author_id ) {
+function autonomie_activitypub_archive_author_meta( array $meta, int $author_id ): array {
 	$meta[] = sprintf(
-		// translators:
+		// translators: how to follow an author on the fediverse, 1: the author archive URL, 2: the author's webfinger resource.
 		__( '<indie-action do="follow" with="%1$s">Follow <code>%2$s</code> (fediverse)</indie-action>', 'autonomie' ),
 		get_author_posts_url( $author_id ),
+		// @phpstan-ignore-next-line
 		\Activitypub\get_webfinger_resource( $author_id )
 	);
 
@@ -31,17 +32,17 @@ function autonomie_activitypub_archive_author_meta( $meta, $author_id ) {
 add_filter( 'autonomie_archive_author_meta', 'autonomie_activitypub_archive_author_meta', 10, 2 );
 
 /**
- * ActivityPub follower counter
+ * ActivityPub follower counter.
  *
  * @param  int $followers The follower counter.
  * @param  int $author_id The author id.
  *
  * @return int            The filtered counter.
  */
-function autonomie_activitypub_followers( $followers, $author_id ) {
+function autonomie_activitypub_followers( int $followers, int $author_id ): int {
 	$activitypub_followers = get_user_option( 'activitypub_followers', $author_id );
 
-	if ( $activitypub_followers ) {
+	if ( is_array( $activitypub_followers ) ) {
 		$activitypub_followers = count( $activitypub_followers );
 	} else {
 		$activitypub_followers = 0;

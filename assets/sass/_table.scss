@@ -1,8 +1,9 @@
+/* stylelint-disable no-descending-specificity */
+
 /* =Tables
 -------------------------------------------------------------- */
 
 table {
-	*border-collapse: collapsed;
 	background-color: transparent;
 	border-collapse: separate;
 	border-left: 0;
@@ -14,7 +15,7 @@ table {
 	width: 100%;
 
 	th {
-		font-weight: bold;
+		font-weight: 700;
 	}
 
 	thead th {

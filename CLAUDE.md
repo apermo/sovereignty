@@ -141,15 +141,23 @@ Do not remove or alter microformat/microdata classes without understanding their
 
 ## Coding Standards
 
-- Follow WordPress-Core coding standard (tabs for indentation in PHP)
-- SCSS uses 2-space indentation
-- JS uses 2-space indentation
+- Tabs for indentation across all file types (see `.editorconfig`)
 - Keep functions pluggable (`function_exists()` check) where the original theme uses them
 - Maintain i18n — all user-facing strings through `__()` / `_e()` / `esc_html__()` with `autonomie` text domain
 
 ## Upstream Attribution
 
-When fixing bugs in code inherited from Autonomie (the original theme by Matthias Pfefferle), add `cc @pfefferle` to the commit message body so he has visibility into issues found in the original code.
+Only add `cc @pfefferle` to the commit message body when fixing **actual bugs** in code inherited from Autonomie (the original theme by Matthias Pfefferle). Do not tag for style changes, refactoring, linting fixes, or personal preferences. When in doubt, ask before tagging.
+
+## Local Testing (DDEV)
+
+The project uses DDEV for local WordPress development and E2E testing. DDEV is available locally and can be used to reproduce CI failures (e.g. Playwright E2E tests). The `.ddev/` directory contains the full orchestration setup — `ddev start && ddev orchestrate` provisions a WordPress instance with seeded content and the theme activated.
+
+To run E2E tests locally:
+```bash
+ddev start && ddev orchestrate
+npx playwright test
+```
 
 ## Known Issues
 

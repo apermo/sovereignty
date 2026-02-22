@@ -17,13 +17,13 @@ msgstr ""
 "X-Loco-Version: 2.4.1; wp-5.4.2"
 
 #: 404.php:15
-msgid "Well this is somewhat embarrassing, isn&rsquo;t it?"
+msgid "Well this is somewhat embarrassing, isn't it?"
 msgstr "Dit is een beetje beschamend, niet?"
 
 #: 404.php:19
 msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-"searching, or one of the links below, can help."
+"It seems we can't find what you're looking for. Perhaps searching, or one "
+"of the links below, can help."
 msgstr ""
 "Het lijkt er op dat we niet kunnen vinden waar je naar op zoek bent. "
 "Misschien kan zoeken helpen, of een van onderstaande koppelingen."
@@ -51,8 +51,8 @@ msgstr "Niets gevonden"
 
 #: archive.php:45 index.php:42
 msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-"searching can help."
+"It seems we can't find what you're looking for. Perhaps searching can "
+"help."
 msgstr ""
 "Het lijkt er op dat we niet kunnen vinden waar je naar op zoek bent. "
 "Misschien kan zoeken helpen."

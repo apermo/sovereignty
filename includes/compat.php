@@ -11,7 +11,7 @@
  */
 
 /**
- * adds compat handling for WP versions pre-*.
+ * Adds compat handling for WP versions pre-*.
  *
  * @category pre-all
  */
@@ -22,7 +22,7 @@
  * @param array $fields The comment form fields.
  * @return array
  */
-function autonomie_comment_autocomplete( $fields ) {
+function autonomie_comment_autocomplete( array $fields ): array {
 	$fields['author'] = preg_replace( '/<input/', '<input autocomplete="nickname name" enterkeyhint="next" ', $fields['author'] );
 	$fields['email'] = preg_replace( '/<input/', '<input autocomplete="email" inputmode="email" enterkeyhint="next" ', $fields['email'] );
 	$fields['url'] = preg_replace( '/<input/', '<input autocomplete="url" inputmode="url" enterkeyhint="send" ', $fields['url'] );
@@ -34,10 +34,10 @@ add_filter( 'comment_form_default_fields', 'autonomie_comment_autocomplete' );
 /**
  * Adds the new HTML5 input types to the comment-text-area
  *
- * @param string $field
+ * @param string $field The comment textarea field.
  * @return string
  */
-function autonomie_comment_field_input_type( $field ) {
+function autonomie_comment_field_input_type( string $field ): string {
 	return preg_replace( '/<textarea/', '<textarea enterkeyhint="next"', $field );
 }
 add_filter( 'comment_form_field_comment', 'autonomie_comment_field_input_type' );
@@ -45,24 +45,26 @@ add_filter( 'comment_form_field_comment', 'autonomie_comment_field_input_type' )
 /**
  * Fix archive for "standard" post type
  *
- * @param WP_Query $query
+ * @param WP_Query $query The WordPress query object.
+ *
+ * @return void
  */
-function autonomie_query_format_standard( $query ) {
+function autonomie_query_format_standard( WP_Query $query ): void {
 	if (
 		isset( $query->query_vars['post_format'] ) &&
-		'post-format-standard' === $query->query_vars['post_format']
+		$query->query_vars['post_format'] === 'post-format-standard'
 	) {
 		$post_formats = get_theme_support( 'post-formats' );
 
 		if (
-			$post_formats &&
-			is_array( $post_formats[0] ) && count( $post_formats[0] )
+			is_array( $post_formats ) &&
+			is_array( $post_formats[0] ) && count( $post_formats[0] ) > 0
 		) {
-			$terms = array();
+			$terms = [];
 			foreach ( $post_formats[0] as $format ) {
 				$terms[] = 'post-format-' . $format;
 			}
-			$query->is_tax = null;
+			$query->is_tax = false;
 
 			unset(
 				$query->query_vars['post_format'],
@@ -72,15 +74,15 @@ function autonomie_query_format_standard( $query ) {
 
 			$query->set(
 				'tax_query',
-				array(
+				[
 					'relation' => 'AND',
-					array(
+					[
 						'taxonomy' => 'post_format',
 						'terms' => $terms,
 						'field' => 'slug',
 						'operator' => 'NOT IN',
-					),
-				)
+					],
+				]
 			);
 		}
 	}
@@ -92,29 +94,34 @@ add_action( 'pre_get_posts', 'autonomie_query_format_standard' );
  *
  * @see https://www.webrocker.de/2019/08/20/wordpress-filter-for-lazy-loading-src/
  *
- * @param string $content
+ * @param string $content The post content.
  *
  * @return string the filtered content
  */
-function autonomie_add_lazy_loading( $content ) {
+function autonomie_add_lazy_loading( string $content ): string {
 	$content = preg_replace( '/(<[^>]*?)(\ssrc=)(.*?\/?>)/', '\1 loading="lazy" src=\3', $content );
 
 	return $content;
 }
 add_filter( 'the_content', 'autonomie_add_lazy_loading', 99 );
 
-add_filter(
-	'wp_lazy_loading_enabled',
-	function ( $default, $tag_name, $context ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.defaultFound
-		if ( 'the_content' === $context ) {
-			return false;
-		}
+/**
+ * Disable WP native lazy loading for the_content since we handle it ourselves.
+ *
+ * @param bool   $is_enabled Whether lazy loading is enabled.
+ * @param string $tag_name   The HTML tag name.
+ * @param string $context    The context where lazy loading is applied.
+ *
+ * @return bool
+ */
+function autonomie_disable_native_lazy_loading( bool $is_enabled, string $tag_name, string $context ): bool {
+	if ( $context === 'the_content' ) {
+		return false;
+	}
 
-		return $default;
-	},
-	20,
-	3
-);
+	return $is_enabled;
+}
+add_filter( 'wp_lazy_loading_enabled', 'autonomie_disable_native_lazy_loading', 20, 3 );
 
 if ( ! function_exists( 'get_self_link' ) ) {
 	/**
@@ -124,8 +131,9 @@ if ( ! function_exists( 'get_self_link' ) ) {
 	 *
 	 * @return string Correct link for the atom:self element.
 	 */
-	function get_self_link() {
-		$host = @parse_url( home_url() );
+	function get_self_link(): string {
+		$host = wp_parse_url( home_url() );
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Polyfill for WP core function.
 		return set_url_scheme( 'http://' . $host['host'] . wp_unslash( $_SERVER['REQUEST_URI'] ) );
 	}
 }

@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity, no-duplicate-selectors */
 body {
 	background-color: $white;
 	background-color: var(--color-background);
@@ -49,7 +50,7 @@ figure {
 	font-style: italic;
 	position: relative;
 	line-height: 1.5;
-	font-family: "Merriweather", serif;
+	font-family: Merriweather, serif;
 
 	small,
 	figcaption,
@@ -59,18 +60,20 @@ figure {
 		display: block;
 		font-size: .7em;
 		font-style: normal;
-		font-weight: normal;
+		font-weight: 400;
 	}
 
 	cite,
 	small {
-		&:before {
+
+		&::before {
 			content: "\2014 \00A0";
 		}
 	}
 }
 
 blockquote {
+
 	small,
 	figcaption,
 	cite {
@@ -132,10 +135,10 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: "Merriweather", serif;
+	font-family: Merriweather, serif;
 	font-weight: 100;
 	margin-bottom: 0;
-	line-height: 1.2em;
+	line-height: 1.2;
 }
 
 h1 {

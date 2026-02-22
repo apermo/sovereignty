@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 // Syndication Links
 ul.relsyn {
 	display: block;
@@ -37,7 +38,7 @@ ul.relsyn {
 
 .has-full-width-featured-image .entry-header .kind .svg-icon {
 	color: $white;
-	fill: currentColor;
+	fill: currentcolor;
 }
 
 .jp-relatedposts {
@@ -45,7 +46,7 @@ ul.relsyn {
 }
 
 .reaction-list {
-	padding: 0px;
+	padding: 0;
 }
 
 .activitypub-follower-block h3 {

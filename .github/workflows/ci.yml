@@ -71,6 +71,22 @@ jobs:
       - name: Validate PR commits
         run: npx --no -- commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
+  version-check:
+    name: Version Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Regenerate version.php
+        run: php bin/generate-version.php
+
+      - name: Check version.php is up to date
+        run: git diff --exit-code version.php
+
   e2e:
     name: E2E Tests
     runs-on: ubuntu-latest

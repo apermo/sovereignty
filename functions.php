@@ -22,8 +22,7 @@
  * @since Autonomie 1.0.0
  */
 
-$autonomie_composer = json_decode( (string) file_get_contents( __DIR__ . '/composer.json' ), true );
-define( 'AUTONOMIE_VERSION', $autonomie_composer['version'] ?? '1.0.0' );
+require __DIR__ . '/version.php';
 
 if ( ! function_exists( 'autonomie_setup' ) ) :
 	/**

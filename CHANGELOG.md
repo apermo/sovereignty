@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Define AUTONOMIE_VERSION at build time instead of runtime
 - Require PHP 8.3 (up from 7.4)
 - Enforce strict typing across all PHP files
 - Enforce snake_case naming convention (WordPress standard)

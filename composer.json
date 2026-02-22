@@ -34,7 +34,8 @@
 		"lint": "phpcs",
 		"lint:fix": "phpcbf",
 		"analyse": "phpstan analyse --memory-limit=2G",
-		"analyse:strict": "phpstan analyse -c phpstan-strict.neon --memory-limit=2G"
+		"analyse:strict": "phpstan analyse -c phpstan-strict.neon --memory-limit=2G",
+		"generate-version": "@php bin/generate-version.php"
 	},
 	"extra": {
 		"installer-name": "sovereignty"

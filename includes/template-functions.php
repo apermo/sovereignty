@@ -12,7 +12,8 @@ if ( ! function_exists( 'autonomie_content_nav' ) ) :
 		<?php if ( is_home() || is_archive() || is_search() ) : // Navigation links for home, archive, and search pages. ?>
 		<nav id="archive-nav">
 			<div class="assistive-text"><?php esc_html_e( 'Post navigation', 'autonomie' ); ?></div>
-			<?php echo wp_kses_post( paginate_links() ); ?>
+			<?php // @phpstan-ignore-next-line paginate_links() returns null on single-page results ?>
+			<?php echo wp_kses_post( paginate_links() ?? '' ); ?>
 		</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
 		<?php endif; ?>
 		<?php

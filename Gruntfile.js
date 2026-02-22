@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 			main: {
 				options: {
 					implementation: sass,
-					outputStyle: 'compressed',
+					outputStyle: 'expanded',
 					sourceComments: false,
 					sourceMap: true,
 				},
@@ -149,8 +149,35 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-compress');
 
+	// Convert leading spaces to tabs in compiled CSS.
+	grunt.registerTask('indent-tabs', function () {
+		const files = [
+			'style.css',
+			'assets/css/editor-style.css',
+			'assets/css/print.css',
+			'assets/css/narrow-width.css',
+			'assets/css/default-width.css',
+			'assets/css/wide-width.css',
+		];
+		files.forEach(function (file) {
+			if (grunt.file.exists(file)) {
+				const css = grunt.file
+					.read(file)
+					.replace(/^( +)/gm, (match) =>
+						'\t'.repeat(match.length / 2)
+					);
+				grunt.file.write(file, css);
+			}
+		});
+	});
+
 	// Default task(s).
-	grunt.registerTask('default', ['sass', 'string-replace', 'makepot']);
+	grunt.registerTask('default', [
+		'sass',
+		'indent-tabs',
+		'string-replace',
+		'makepot',
+	]);
 
 	grunt.registerTask('build', [
 		'default',

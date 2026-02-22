@@ -6,44 +6,44 @@
 .site-header .page-banner #page-title,
 .site-header .page-banner #page-description,
 .has-full-width-featured-image .entry-header .entry-header-wrapper > * {
-  width: 900px;
+	width: 900px;
 }
 
 .entry-content .wp-block-image,
 .entry-content .entry-attachment {
-  width: 900px;
-  max-width: 900px;
+	width: 900px;
+	max-width: 900px;
 }
 .entry-content .wp-block-image.alignfull {
-  width: 100%;
-  max-width: 100%;
+	width: 100%;
+	max-width: 100%;
 }
 
 #sidebar {
-  width: 1300px;
-  max-width: 100%;
+	width: 1300px;
+	max-width: 100%;
 }
 #sidebar aside {
-  margin: 50px 50px;
+	margin: 50px 50px;
 }
 #sidebar #secondary {
-  display: inline-block;
-  float: left;
-  width: 33%;
+	display: inline-block;
+	float: left;
+	width: 33%;
 }
 #sidebar #tertiary {
-  display: inline-block;
-  float: left;
-  width: 33%;
+	display: inline-block;
+	float: left;
+	width: 33%;
 }
 #sidebar #quaternary {
-  display: inline-block;
-  float: left;
-  width: 33%;
+	display: inline-block;
+	float: left;
+	width: 33%;
 }
 
 .entry-content > span {
-  display: inline-block;
+	display: inline-block;
 }
 
 .entry-content > object,
@@ -56,8 +56,8 @@
 .entry-summary > iframe,
 .entry-summary > figure,
 .entry-summary .wp-block-pullquote {
-  max-width: 900px;
-  box-sizing: border-box;
+	max-width: 900px;
+	box-sizing: border-box;
 }
 .entry-content > object small,
 .entry-content > object figcaption,
@@ -89,116 +89,116 @@
 .entry-summary .wp-block-pullquote small,
 .entry-summary .wp-block-pullquote figcaption,
 .entry-summary .wp-block-pullquote cite {
-  margin-right: 100px;
+	margin-right: 100px;
 }
 
 .entry-content > table,
 .entry-content > pre,
 .entry-summary > table,
 .entry-summary > pre {
-  width: 900px;
-  max-width: 900px;
-  box-sizing: border-box;
+	width: 900px;
+	max-width: 900px;
+	box-sizing: border-box;
 }
 
 .wp-audio-shortcode {
-  width: 700px !important;
+	width: 700px !important;
 }
 
 figure.alignleft,
 .wp-block-cover.alignleft,
 .wp-block-gallery.alignleft,
 .wp-block-button.alignleft {
-  float: left;
-  margin-top: 0.3em;
-  margin-right: 2em;
-  margin-left: calc(50% - 350px);
+	float: left;
+	margin-top: 0.3em;
+	margin-right: 2em;
+	margin-left: calc(50% - 350px);
 }
 figure.alignright,
 .wp-block-cover.alignright,
 .wp-block-gallery.alignright,
 .wp-block-button.alignright {
-  float: right;
-  margin-top: 0.3em;
-  margin-left: 2em;
-  margin-right: calc(50% - 350px);
+	float: right;
+	margin-top: 0.3em;
+	margin-left: 2em;
+	margin-right: calc(50% - 350px);
 }
 
 p.alignleft {
-  font-size: 0.9em;
-  font-style: italic;
-  float: left;
-  color: rgb(102.5423728814, 113.7288135593, 117.4576271186);
-  color: var(--color-light-gray);
-  padding: 1em 0 1em 0;
-  margin-right: 2.5em;
-  margin-left: calc(50% - 450px);
-  width: 400px;
-  border-top: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
-  border-top-color: var(--color-light-gray);
-  border-bottom: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
-  border-bottom-color: var(--color-light-gray);
+	font-size: 0.9em;
+	font-style: italic;
+	float: left;
+	color: rgb(102.5423728814, 113.7288135593, 117.4576271186);
+	color: var(--color-light-gray);
+	padding: 1em 0 1em 0;
+	margin-right: 2.5em;
+	margin-left: calc(50% - 450px);
+	width: 400px;
+	border-top: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
+	border-top-color: var(--color-light-gray);
+	border-bottom: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
+	border-bottom-color: var(--color-light-gray);
 }
 p.alignright {
-  font-size: 0.9em;
-  font-style: italic;
-  float: right;
-  color: rgb(102.5423728814, 113.7288135593, 117.4576271186);
-  color: var(--color-light-gray);
-  padding: 1em 0 1em 0;
-  margin-left: 2.5em;
-  margin-right: calc(50% - 450px);
-  width: 400px;
-  border-top: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
-  border-top-color: var(--color-light-gray);
-  border-bottom: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
-  border-bottom-color: var(--color-light-gray);
+	font-size: 0.9em;
+	font-style: italic;
+	float: right;
+	color: rgb(102.5423728814, 113.7288135593, 117.4576271186);
+	color: var(--color-light-gray);
+	padding: 1em 0 1em 0;
+	margin-left: 2.5em;
+	margin-right: calc(50% - 450px);
+	width: 400px;
+	border-top: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
+	border-top-color: var(--color-light-gray);
+	border-bottom: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
+	border-bottom-color: var(--color-light-gray);
 }
 
 .alignright figcaption {
-  display: block;
-  height: 68px;
-  margin-top: 0;
-  text-align: left;
-  width: 100px;
-  margin-left: 20px;
-  word-break: break-word;
-  word-wrap: break-word;
-  float: right;
+	display: block;
+	height: 68px;
+	margin-top: 0;
+	text-align: left;
+	width: 100px;
+	margin-left: 20px;
+	word-break: break-word;
+	word-wrap: break-word;
+	float: right;
 }
 .alignright figcaption::before {
-  width: 25%;
-  margin-right: 75%;
-  border-top: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
-  border-top-color: var(--color-light-gray);
-  display: block;
-  content: "";
-  margin-bottom: 10px;
+	width: 25%;
+	margin-right: 75%;
+	border-top: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
+	border-top-color: var(--color-light-gray);
+	display: block;
+	content: "";
+	margin-bottom: 10px;
 }
 
 .alignleft figcaption {
-  display: block;
-  height: 68px;
-  margin-top: 0;
-  text-align: right;
-  width: 100px;
-  margin-right: 20px;
-  word-break: break-word;
-  word-wrap: break-word;
-  float: left;
+	display: block;
+	height: 68px;
+	margin-top: 0;
+	text-align: right;
+	width: 100px;
+	margin-right: 20px;
+	word-break: break-word;
+	word-wrap: break-word;
+	float: left;
 }
 .alignleft figcaption::before {
-  width: 25%;
-  margin-left: 75%;
-  border-top: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
-  border-top-color: var(--color-light-gray);
-  display: block;
-  content: "";
-  margin-bottom: 10px;
+	width: 25%;
+	margin-left: 75%;
+	border-top: 1px solid rgb(102.5423728814, 113.7288135593, 117.4576271186);
+	border-top-color: var(--color-light-gray);
+	display: block;
+	content: "";
+	margin-bottom: 10px;
 }
 
 article.error404 .entry-content {
-  width: 900px;
-  margin: auto auto;
+	width: 900px;
+	margin: auto auto;
 }
 /*# sourceMappingURL=wide-width.css.map */

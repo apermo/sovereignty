@@ -3,8 +3,12 @@ module.exports = function (grunt) {
 	const sass = require('sass');
 
 	// Project configuration.
+	const pkg = grunt.file.readJSON('package.json');
+	// Resolve primary author from authors[] array.
+	pkg.author = pkg.authors?.[0] || pkg.author || {};
+
 	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
+		pkg,
 		sass: {
 			main: {
 				options: {
@@ -45,7 +49,7 @@ module.exports = function (grunt) {
 						},
 						{
 							pattern: '@@license',
-							replacement: '<%= pkg.license.name %>',
+							replacement: '<%= pkg.license %>',
 						},
 						{
 							pattern: '@@license_url',
@@ -85,11 +89,13 @@ module.exports = function (grunt) {
 				options: {
 					domainPath: '/languages',
 					exclude: [
-						'bin/.*',
+						'.ddev/.*',
 						'.git/.*',
-						'vendor/.*',
-						'node_modules/.*',
 						'_build/.*',
+						'bin/.*',
+						'node_modules/.*',
+						'tests/.*',
+						'vendor/.*',
 					],
 					potFilename: 'autonomie.pot',
 					type: 'wp-theme',

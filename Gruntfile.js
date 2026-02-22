@@ -4,8 +4,14 @@ module.exports = function (grunt) {
 
 	// Project configuration.
 	const pkg = grunt.file.readJSON('package.json');
+	const composer = grunt.file.readJSON('composer.json');
 	// Resolve primary author from authors[] array.
 	pkg.author = pkg.authors?.[0] || pkg.author || {};
+	// Derive GitHub slug and PHP version from project metadata.
+	const repoUrl = (pkg.repository?.url || '').replace(/\.git$/, '');
+	pkg.github_slug = repoUrl.replace('https://github.com/', '');
+	pkg.github_url = repoUrl;
+	pkg.requires_php = (composer.require?.php || '').replace(/^[>=^~]+/, '');
 
 	grunt.initConfig({
 		pkg,
@@ -67,6 +73,18 @@ module.exports = function (grunt) {
 						{
 							pattern: '@@homepage',
 							replacement: '<%= pkg.homepage %>',
+						},
+						{
+							pattern: '@@requires_php',
+							replacement: '<%= pkg.requires_php %>',
+						},
+						{
+							pattern: '@@github_slug',
+							replacement: '<%= pkg.github_slug %>',
+						},
+						{
+							pattern: '@@github_url',
+							replacement: '<%= pkg.github_url %>',
 						},
 						{
 							pattern: '@@tags',

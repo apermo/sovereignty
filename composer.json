@@ -30,12 +30,6 @@
 		"roave/security-advisories": "dev-latest",
 		"phpstan/phpstan-strict-rules": "^2.0"
 	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/apermo/apermo-coding-standards"
-		}
-	],
 	"scripts": {
 		"lint": "phpcs",
 		"lint:fix": "phpcbf",

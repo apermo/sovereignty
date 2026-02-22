@@ -566,6 +566,11 @@ require get_template_directory() . '/includes/compat.php';
 require get_template_directory() . '/includes/feed.php';
 
 /**
+ * PWA support (manifest, favicons, app icons)
+ */
+require get_template_directory() . '/includes/pwa.php';
+
+/**
  * Compatibility with other plugins, mostly IndieWeb related
  */
 

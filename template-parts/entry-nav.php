@@ -12,7 +12,7 @@
 			setup_postdata( $post );
 			?>
 		<div class="previous-post" style="background-image: url( <?php echo esc_url( get_the_post_thumbnail_url( $post->ID, 'medium' ) ); ?>">
-			<a class="previous" href="<?php the_permalink(); ?>">&laquo; <?php esc_html_e( 'Previous Story', 'autonomie' ); ?></a>
+			<a class="previous" href="<?php the_permalink(); ?>"><span aria-hidden="true">&larr;</span> <?php esc_html_e( 'Previous Story', 'autonomie' ); ?></a>
 			<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 			<small><?php the_date( 'F j, Y' ); ?></small>
 		</div>
@@ -34,7 +34,7 @@
 			setup_postdata( $post );
 			?>
 		<div class="next-post" style="background-image: url( <?php echo esc_url( get_the_post_thumbnail_url( $post->ID, 'medium' ) ); ?>">
-			<a class="next" href="<?php the_permalink(); ?>"><?php esc_html_e( 'Next Story', 'autonomie' ); ?> &raquo;</a>
+			<a class="next" href="<?php the_permalink(); ?>"><?php esc_html_e( 'Next Story', 'autonomie' ); ?> <span aria-hidden="true">&rarr;</span></a>
 			<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 			<small><?php the_date( 'F j, Y' ); ?></small>
 		</div>

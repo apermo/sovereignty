@@ -2,9 +2,9 @@
 # This file is distributed under the MIT.=!>
 msgid ""
 msgstr ""
-"Project-Id-Version: sovereignty 1.1.0\n"
+"Project-Id-Version: sovereignty 1.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/sovereignty\n"
-"POT-Creation-Date: 2026-02-22 21:21:39+00:00\n"
+"POT-Creation-Date: 2026-03-14 21:17:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -205,50 +205,50 @@ msgstr ""
 msgid "Post navigation"
 msgstr ""
 
-#: includes/template-functions.php:43
+#: includes/template-functions.php:44
 #. translators: %s is the author name.
 msgid "View all posts by %s"
 msgstr ""
 
-#: includes/template-functions.php:185
+#: includes/template-functions.php:186
 #. translators: The title of the search results page.
 msgid "Search Results for: %s"
 msgstr ""
 
-#: includes/template-functions.php:227
+#: includes/template-functions.php:228
 msgid "Attachment"
 msgstr ""
 
-#: includes/template-functions.php:231
+#: includes/template-functions.php:232
 msgid "Page"
 msgstr ""
 
-#: includes/template-functions.php:238
+#: includes/template-functions.php:239
 msgid "Text"
 msgstr ""
 
-#: includes/template-functions.php:298
+#: includes/template-functions.php:299
 #. translators: list of followers.
 msgid "%s Followers"
 msgstr ""
 
-#: includes/template-functions.php:303
+#: includes/template-functions.php:304
 #. translators: a post counter.
 msgid "%s Posts"
 msgstr ""
 
-#: includes/template-functions.php:309
+#: includes/template-functions.php:310
 msgid "Subscribe"
 msgstr ""
 
-#: includes/template-functions.php:340
+#: includes/template-functions.php:341
 #. translators: Description for search results.
 msgid "Found %1$s search result for <strong>%2$s</strong>."
 msgid_plural "Found %1$s search results for <strong>%2$s</strong>."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/template-functions.php:382 includes/template-functions.php:391
+#: includes/template-functions.php:383 includes/template-functions.php:392
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 

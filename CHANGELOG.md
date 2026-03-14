@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.1] - 2026-03-14
+
+### Added
+
+- Gemini Code Assist configuration with code review settings and style guide
+
 ## [1.1.0] - 2025-02-22
 
 ### Added
@@ -50,5 +56,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Renamed theme to Sovereignty
 - Updated Composer package name to `apermo/sovereignty`
 
+[1.1.1]: https://github.com/apermo/sovereignty/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/apermo/sovereignty/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/apermo/sovereignty/releases/tag/1.0.0

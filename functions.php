@@ -329,6 +329,13 @@ add_action( 'wp_head', 'autonomie_header' );
 function autonomie_content_width(): void {
 	$content_width = 900;
 
+	/**
+	 * Filters the content width in pixels.
+	 *
+	 * @param int $content_width The content width.
+	 *
+	 * @return int The filtered content width.
+	 */
 	$GLOBALS['content_width'] = apply_filters( 'autonomie_content_width', $content_width );
 }
 add_action( 'after_setup_theme', 'autonomie_content_width', 0 );

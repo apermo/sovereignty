@@ -69,13 +69,13 @@ if ( ! function_exists( 'autonomie_posted_on' ) ) :
 		// phpcs:disable Apermo.WordPress.ImplicitPostFunction
 		if ( $type === 'updated' ) {
 			// Updated.
-			$time = get_the_modified_time();
+			$time      = get_the_modified_time();
 			$date_c    = get_the_modified_date( 'c' );
 			$date      = get_the_modified_date();
 			$item_prop = 'dateModified';
 		} else {
 			// Published.
-			$time = get_the_time();
+			$time      = get_the_time();
 			$date_c    = get_the_date( 'c' );
 			$date      = get_the_date();
 			$item_prop = 'datePublished';
@@ -118,8 +118,15 @@ function autonomie_get_post_id(): string {
 	// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
 	$post_id = 'post-' . get_the_ID();
 
-	// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
-	return apply_filters( 'autonomie_post_id', $post_id, get_the_ID() );
+	/**
+	 * Filters the post ID attribute value.
+	 *
+	 * @param string $post_id The post ID attribute.
+	 * @param int    $id      The numeric post ID.
+	 *
+	 * @return string The filtered post ID attribute.
+	 */
+	return apply_filters( 'autonomie_post_id', $post_id, get_the_ID() ); // phpcs:ignore Apermo.WordPress.ImplicitPostFunction
 }
 
 /**
@@ -165,6 +172,8 @@ function autonomie_get_main_class( string|array $class = '' ): array { // phpcs:
 	 *
 	 * @param string[] $classes An array of main class names.
 	 * @param string[] $class   An array of additional class names added to the main.
+	 *
+	 * @return string[] The filtered class names.
 	 */
 	$classes = apply_filters( 'autonomie_main_class', $classes, $class );
 
@@ -283,6 +292,13 @@ function autonomie_get_archive_type(): string {
 		$type = 'author';
 	}
 
+	/**
+	 * Filters the archive type identifier.
+	 *
+	 * @param string $type The archive type.
+	 *
+	 * @return string The filtered archive type.
+	 */
 	return (string) apply_filters( 'autonomie_archive_type', $type );
 }
 
@@ -297,6 +313,14 @@ function autonomie_get_archive_author_meta(): string {
 	$meta[] = sprintf(
 		// translators: list of followers.
 		__( '%s Followers', 'autonomie' ),
+		/**
+		 * Filters the follower count for an author archive.
+		 *
+		 * @param int $count     The follower count.
+		 * @param int $author_id The author user ID.
+		 *
+		 * @return int The filtered follower count.
+		 */
 		apply_filters( 'autonomie_archive_author_followers', 0, get_the_author_meta( 'ID' ) )
 	);
 	$meta[] = sprintf(
@@ -310,6 +334,14 @@ function autonomie_get_archive_author_meta(): string {
 		__( 'Subscribe', 'autonomie' )
 	);
 
+	/**
+	 * Filters the author archive meta items.
+	 *
+	 * @param string[] $meta      The meta items.
+	 * @param string   $author_id The author user ID.
+	 *
+	 * @return string[] The filtered meta items.
+	 */
 	$meta = apply_filters( 'autonomie_archive_author_meta', $meta, get_the_author_meta( 'ID' ) );
 
 	return implode( ' | ', $meta );

@@ -27,7 +27,7 @@ function autonomie_get_post_format_archive_feed_link( string $post_format, strin
 	}
 
 	if ( (bool) get_option( 'permalink_structure' ) ) {
-		$link  = trailingslashit( $link );
+		$link = trailingslashit( $link );
 		$link .= 'feed/';
 		if ( $feed !== $default_feed ) {
 			$link .= "$feed/";
@@ -41,8 +41,10 @@ function autonomie_get_post_format_archive_feed_link( string $post_format, strin
 	 *
 	 * @param string $link The post type archive feed link.
 	 * @param string $feed Feed type. Possible values include 'rss2', 'atom'.
+	 *
+	 * @return string The filtered feed link.
 	 */
-	return apply_filters( 'post_format_archive_feed_link', $link, $feed );
+	return apply_filters( 'sovereignty_post_format_archive_feed_link', $link, $feed );
 }
 
 /**

@@ -16,18 +16,23 @@
 			<meta itemprop="url" content="<?php echo esc_url( home_url( '/' ) ); ?>" />
 			<?php
 			if ( has_custom_logo() ) {
-				$image = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ) );
+				$sovereignty_image = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ) );
 				?>
 				<div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-					<meta itemprop="url" content="<?php echo esc_url( current( $image ) ); ?>" />
-					<meta itemprop="width" content="<?php echo esc_attr( next( $image ) ); ?>" />
-					<meta itemprop="height" content="<?php echo esc_attr( next( $image ) ); ?>" />
+					<meta itemprop="url" content="<?php echo esc_url( current( $sovereignty_image ) ); ?>" />
+					<meta itemprop="width" content="<?php echo esc_attr( next( $sovereignty_image ) ); ?>" />
+					<meta itemprop="height" content="<?php echo esc_attr( next( $sovereignty_image ) ); ?>" />
 				</div>
 			<?php } ?>
 		</div>
 
 		<div id="site-generator">
-			<?php do_action( 'autonomie_credits' ); ?>
+			<?php
+			/**
+			 * Fires in the footer before the credits.
+			 */
+			do_action( 'autonomie_credits' );
+			?>
 			<?php
 			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- Contains intentional HTML links for attribution.
 			printf(

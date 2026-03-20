@@ -28,12 +28,24 @@
 if ( function_exists( 'wp_body_open' ) ) {
 	wp_body_open();
 } else {
-	do_action( 'wp_body_open' );
+	/**
+	 * Fires when the template calls for the wp_body_open action.
+	 *
+	 * @since WordPress 5.2.0
+	 */
+	do_action( 'wp_body_open' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WP core hook.
 }
 ?>
 <div id="page">
 	<div class="skip-link screen-reader-text"><a href="#primary" title="<?php esc_attr_e( 'Skip to content', 'autonomie' ); ?>"><?php esc_html_e( 'Skip to content', 'autonomie' ); ?></a></div>
-	<?php do_action( 'before' ); ?>
+	<?php
+	/**
+	 * Fires before the site header.
+	 *
+	 * @todo Rename to sovereignty_before in a future release.
+	 */
+	do_action( 'before' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook, renaming would break consumers.
+	?>
 	<header id="site-header" class="site-header">
 		<div class="site-branding">
 			<?php
@@ -42,16 +54,16 @@ if ( function_exists( 'wp_body_open' ) ) {
 			}
 
 			if ( is_home() ) {
-				$site_title_element = 'h1';
+				$sovereignty_site_title_element = 'h1';
 			} else {
-				$site_title_element = 'div';
+				$sovereignty_site_title_element = 'div';
 			}
 			?>
-			<<?php echo esc_html( $site_title_element ); ?> id="site-title"<?php autonomie_semantics( 'site-title' ); ?>>
+			<<?php echo esc_html( $sovereignty_site_title_element ); ?> id="site-title"<?php autonomie_semantics( 'site-title' ); ?>>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"<?php autonomie_semantics( 'site-url' ); ?>>
 				<?php bloginfo( 'name' ); ?>
 				</a>
-			</<?php echo esc_html( $site_title_element ); ?>>
+			</<?php echo esc_html( $sovereignty_site_title_element ); ?>>
 
 			<?php get_search_form( [ 'echo' => true ] ); ?>
 		</div>

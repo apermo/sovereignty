@@ -13,9 +13,9 @@ function autonomie_widgets_init(): void {
 
 	register_sidebar(
 		[
-			'name' => __( 'Sidebar 1', 'autonomie' ),
-			'id' => 'sidebar-1',
-			'description' => __( 'A sidebar area', 'autonomie' ),
+			'name'          => __( 'Sidebar 1', 'autonomie' ),
+			'id'            => 'sidebar-1',
+			'description'   => __( 'A sidebar area', 'autonomie' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -25,9 +25,9 @@ function autonomie_widgets_init(): void {
 
 	register_sidebar(
 		[
-			'name' => __( 'Sidebar 2', 'autonomie' ),
-			'id' => 'sidebar-2',
-			'description' => __( 'A second sidebar area', 'autonomie' ),
+			'name'          => __( 'Sidebar 2', 'autonomie' ),
+			'id'            => 'sidebar-2',
+			'description'   => __( 'A second sidebar area', 'autonomie' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -37,9 +37,9 @@ function autonomie_widgets_init(): void {
 
 	register_sidebar(
 		[
-			'name' => __( 'Sidebar 3', 'autonomie' ),
-			'id' => 'sidebar-3',
-			'description' => __( 'A third sidebar area', 'autonomie' ),
+			'name'          => __( 'Sidebar 3', 'autonomie' ),
+			'id'            => 'sidebar-3',
+			'description'   => __( 'A third sidebar area', 'autonomie' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -49,9 +49,9 @@ function autonomie_widgets_init(): void {
 
 	register_sidebar(
 		[
-			'name' => __( 'Entry-Meta', 'autonomie' ),
-			'id' => 'entry-meta',
-			'description' => __( 'Extend the Entry-Meta', 'autonomie' ),
+			'name'          => __( 'Entry-Meta', 'autonomie' ),
+			'id'            => 'entry-meta',
+			'description'   => __( 'Extend the Entry-Meta', 'autonomie' ),
 			'before_widget' => '',
 			'after_widget'  => '',
 			'before_title'  => '',

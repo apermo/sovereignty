@@ -9,3 +9,4 @@ plan.md
 tests/e2e/results/
 test-results/
 playwright-report/
+wp-content/

@@ -227,7 +227,7 @@ add_filter( 'get_search_form', 'autonomie_get_search_form' );
  *
  * @return array
  */
-function autonomie_get_semantics( ?string $id = null ): array {
+function autonomie_get_semantics( ?string $id = null ): array { // phpcs:ignore SlevomatCodingStandard.Functions.FunctionLength.FunctionLength -- @todo Break into per-element semantic helpers.
 	$classes = [];
 
 	// Add default values.

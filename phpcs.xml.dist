@@ -10,6 +10,7 @@
 	<exclude-pattern>node_modules/*</exclude-pattern>
 	<exclude-pattern>.ddev/*</exclude-pattern>
 	<exclude-pattern>bin/*</exclude-pattern>
+	<exclude-pattern>wp-content/*</exclude-pattern>
 
 	<arg name="extensions" value="php"/>
 

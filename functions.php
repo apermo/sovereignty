@@ -35,7 +35,7 @@ if ( ! function_exists( 'autonomie_setup' ) ) {
 	 * To override autonomie_setup() in a child theme, add your own autonomie_setup to your child theme's
 	 * functions.php file.
 	 */
-	function autonomie_setup(): void {
+	function autonomie_setup(): void { // phpcs:ignore SlevomatCodingStandard.Functions.FunctionLength.FunctionLength -- @todo Split into smaller setup functions.
 		defined( 'AUTONOMIE_EXCERPT' ) || define( 'AUTONOMIE_EXCERPT', false );
 		defined( 'AUTONOMIE_EXCERPT_COUNT' ) || define( 'AUTONOMIE_EXCERPT_COUNT', 100 );
 
@@ -409,7 +409,7 @@ if ( ! function_exists( 'autonomie_enqueue_scripts' ) ) {
 	 *
 	 * @since Autonomie 1.0.0
 	 */
-	function autonomie_enqueue_scripts(): void {
+	function autonomie_enqueue_scripts(): void { // phpcs:ignore SlevomatCodingStandard.Functions.FunctionLength.FunctionLength -- @todo Split into smaller enqueue functions.
 		// Adds JavaScript to pages with the comment form to support sites with
 		// threaded comments (when in use).
 		if (

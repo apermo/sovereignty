@@ -30,7 +30,8 @@
 		"roave/security-advisories": "dev-latest",
 		"phpstan/phpstan-strict-rules": "^2.0",
 		"apermo/phpstan-wordpress-rules": "^0.2",
-		"phpstan/extension-installer": "^1.4"
+		"phpstan/extension-installer": "^1.4",
+		"pfefferle/wordpress-activitypub": "^8.0"
 	},
 	"scripts": {
 		"lint": "phpcs",

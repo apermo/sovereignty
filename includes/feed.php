@@ -56,7 +56,7 @@ function autonomie_get_post_format_archive_feed_link( string $post_format, strin
  *
  * @return void
  */
-function autonomie_extend_singular_feed_discovery(): void {
+function autonomie_extend_singular_feed_discovery(): void { // phpcs:ignore SlevomatCodingStandard.Functions.FunctionLength.FunctionLength -- @todo Refactor feed discovery logic.
 	$args = [
 		/* translators: Separator between blog name and feed type in feed links */
 		'separator' => _x( '&raquo;', 'feed link', 'autonomie' ),

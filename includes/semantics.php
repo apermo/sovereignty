@@ -146,9 +146,9 @@ function autonomie_pre_get_avatar_data( array $args, $id_or_email ): array { // 
 
 		if ( $username !== '' ) {
 			// translators: %s: username.
-			$args['alt'] = sprintf( __( 'User Avatar of %s' ), $username );
+			$args['alt'] = sprintf( __( 'User Avatar of %s', 'autonomie' ), $username );
 		} else {
-			$args['alt'] = __( 'User Avatar' );
+			$args['alt'] = __( 'User Avatar', 'autonomie' );
 		}
 	}
 
@@ -292,7 +292,26 @@ function autonomie_get_semantics( ?string $id = null ): array {
 			break;
 	}
 
+	/**
+	 * Filters the semantic attributes for a given element.
+	 *
+	 * @param array  $classes The semantic attributes.
+	 * @param string $id      The element identifier.
+	 *
+	 * @return array The filtered semantic attributes.
+	 */
 	$classes = apply_filters( 'autonomie_semantics', $classes, $id );
+
+	/**
+	 * Filters the semantic attributes for a specific element by ID.
+	 *
+	 * The dynamic portion of the hook name, `$id`, refers to the element identifier.
+	 *
+	 * @param array  $classes The semantic attributes.
+	 * @param string $id      The element identifier.
+	 *
+	 * @return array The filtered semantic attributes.
+	 */
 	$classes = apply_filters( "autonomie_semantics_{$id}", $classes, $id );
 
 	return $classes;

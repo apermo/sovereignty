@@ -41,7 +41,12 @@
 		"generate-version": "@php bin/generate-version.php"
 	},
 	"extra": {
-		"installer-name": "sovereignty"
+		"installer-name": "sovereignty",
+		"installer-paths": {
+			"vendor/{$vendor}/{$name}/": [
+				"type:wordpress-plugin"
+			]
+		}
 	},
 	"config": {
 		"allow-plugins": {

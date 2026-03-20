@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [1.2.0] - Unreleased
+## [1.2.0] - 2026-03-21
 
 ### Added
 
@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - PHPStan WordPress rules (`apermo/phpstan-wordpress-rules`)
 - PHPStan extension installer for automatic extension discovery
 - `.wordpress-org/` assets directory
+- ActivityPub plugin as dev dependency for static analysis
 
 ### Changed
 
@@ -29,6 +30,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Add `sovereignty` text domain and `Apermo\Sovereignty` namespace prefix to PHPCS config
 - Update `.gitattributes` with comprehensive export-ignore list
 - Replace Probot stale config with GitHub Actions stale workflow
+- Upgrade `apermo-coding-standards` to v2 with auto-fixes (trailing commas, curly braces)
+- Replace deprecated `get_webfinger_resource()` with `Webfinger::get_user_resource()`
+- Prefix global variables in template files with `sovereignty_`
+- Install WordPress plugin dependencies into `vendor/` instead of `wp-content/`
+
+### Fixed
+
+- All PHPCS errors resolved (missing text domain, unprefixed globals, hook PHPDoc, alignment)
+- Legacy hook names documented with `@todo` for future renaming
 
 ### Removed
 

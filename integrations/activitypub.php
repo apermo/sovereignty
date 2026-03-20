@@ -9,6 +9,7 @@
  * @package Autonomie
  * @subpackage indieweb
  */
+use function Activitypub\get_webfinger_resource;
 
 /**
  * Add ActivityPub information to the archive author metadata.
@@ -24,7 +25,7 @@ function autonomie_activitypub_archive_author_meta( array $meta, int $author_id 
 		__( '<indie-action do="follow" with="%1$s">Follow <code>%2$s</code> (fediverse)</indie-action>', 'autonomie' ),
 		get_author_posts_url( $author_id ),
 		// @phpstan-ignore-next-line
-		\Activitypub\get_webfinger_resource( $author_id )
+		get_webfinger_resource( $author_id ),
 	);
 
 	return $meta;

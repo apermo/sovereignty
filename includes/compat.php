@@ -69,7 +69,7 @@ function autonomie_query_format_standard( WP_Query $query ): void {
 			unset(
 				$query->query_vars['post_format'],
 				$query->query_vars['taxonomy'],
-				$query->query_vars['term']
+				$query->query_vars['term'],
 			);
 
 			$query->set(
@@ -82,7 +82,7 @@ function autonomie_query_format_standard( WP_Query $query ): void {
 						'field' => 'slug',
 						'operator' => 'NOT IN',
 					],
-				]
+				],
 			);
 		}
 	}

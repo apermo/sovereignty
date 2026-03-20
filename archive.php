@@ -15,13 +15,13 @@ get_header(); ?>
 
 			<main id="primary" <?php autonomie_main_class(); ?><?php autonomie_semantics( 'main' ); ?>>
 
-				<?php if ( have_posts() ) : ?>
+				<?php if ( have_posts() ) { ?>
 
 					<?php rewind_posts(); ?>
 
 					<?php
 					/* Start the Loop */
-					while ( have_posts() ) :
+					while ( have_posts() ) {
 						the_post();
 						?>
 
@@ -34,11 +34,11 @@ get_header(); ?>
 						get_template_part( 'templates/content', get_post_format() );
 						?>
 
-					<?php endwhile; ?>
+					<?php } ?>
 
 					<?php autonomie_content_nav( 'nav-below' ); ?>
 
-					<?php else : ?>
+					<?php } else { ?>
 
 					<article id="post-0" class="post no-results not-found">
 						<header class="entry-header">
@@ -51,7 +51,7 @@ get_header(); ?>
 						</div><!-- .entry-content -->
 					</article><!-- #post-0 -->
 
-				<?php endif; ?>
+				<?php } ?>
 
 			</main><!-- #content -->
 

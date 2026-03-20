@@ -39,7 +39,7 @@
 				// translators: %1$s: Link to WordPress, %2$s: Link to Autonomie theme.
 				__( 'This site is powered by %1$s and styled with the %2$s theme', 'autonomie' ),
 				'<a href="https://wordpress.org/" rel="generator">WordPress</a>',
-				'<a href="https://notiz.blog/projects/autonomie/">Autonomie</a>'
+				'<a href="https://notiz.blog/projects/autonomie/">Autonomie</a>',
 			);
 			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>

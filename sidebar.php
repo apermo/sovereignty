@@ -20,15 +20,15 @@
 			<?php dynamic_sidebar( 'sidebar-1' ); ?>
 		</div><!-- #secondary .widget-area -->
 
-		<?php if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
+		<?php if ( is_active_sidebar( 'sidebar-2' ) ) { ?>
 		<div id="tertiary" class="widget-area" role="complementary">
 			<?php dynamic_sidebar( 'sidebar-2' ); ?>
 		</div><!-- #tertiary .widget-area -->
-		<?php endif; ?>
+		<?php } ?>
 
-		<?php if ( is_active_sidebar( 'sidebar-3' ) ) : ?>
+		<?php if ( is_active_sidebar( 'sidebar-3' ) ) { ?>
 		<div id="quaternary" class="widget-area" role="complementary">
 			<?php dynamic_sidebar( 'sidebar-3' ); ?>
 		</div><!-- #quaternary .widget-area -->
-		<?php endif; ?>
+		<?php } ?>
 	</div>

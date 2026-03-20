@@ -145,7 +145,7 @@ function autonomie_extend_singular_feed_discovery(): void {
 				'<link rel="alternate" type="%s" title="%s" href="%s" />',
 				esc_attr( feed_content_type() ),
 				esc_attr( $feed['title'] ),
-				esc_url( $feed['href'] )
+				esc_url( $feed['href'] ),
 			);
 			echo PHP_EOL;
 		}

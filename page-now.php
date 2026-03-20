@@ -20,7 +20,7 @@ get_header(); ?>
 		<main id="primary" <?php autonomie_main_class( 'h-now' ); ?><?php autonomie_semantics( 'main' ); ?>>
 
 			<?php
-			while ( have_posts() ) :
+			while ( have_posts() ) {
 				the_post();
 				?>
 
@@ -28,7 +28,7 @@ get_header(); ?>
 
 				<?php comments_template( '', true ); ?>
 
-			<?php endwhile; // end of the loop. ?>
+			<?php } // end of the loop. ?>
 
 		</main><!-- #content -->
 

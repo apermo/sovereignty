@@ -11,7 +11,7 @@ get_header(); ?>
 			<main id="primary" <?php autonomie_main_class(); ?><?php autonomie_semantics( 'main' ); ?>>
 
 			<?php
-			while ( have_posts() ) :
+			while ( have_posts() ) {
 				the_post();
 				?>
 
@@ -37,8 +37,8 @@ get_header(); ?>
 											'post_mime_type' => 'image',
 											'order' => 'ASC',
 											'orderby' => 'menu_order ID',
-										]
-									)
+										],
+									),
 								);
 								$sovereignty_k = 0;
 								foreach ( $sovereignty_attachments as $sovereignty_k => $sovereignty_attachment ) {
@@ -76,11 +76,11 @@ get_header(); ?>
 													?>
 								</a>
 
-								<?php if ( ! empty( $post->post_excerpt ) ) : ?>
+								<?php if ( ! empty( $post->post_excerpt ) ) { ?>
 								<figcaption class="entry-caption">
 									<?php the_excerpt(); ?>
 								</figcaption>
-								<?php endif; ?>
+								<?php } ?>
 							</figure><!-- .attachment -->
 						</div><!-- .entry-attachment -->
 
@@ -90,7 +90,7 @@ get_header(); ?>
 							[
 								'before' => '<div class="page-link">' . __( 'Pages:', 'autonomie' ),
 								'after' => '</div>',
-							]
+							],
 						);
 						?>
 					</div><!-- .entry-content -->
@@ -100,7 +100,7 @@ get_header(); ?>
 
 				<?php comments_template(); ?>
 
-			<?php endwhile; // end of the loop. ?>
+			<?php } // end of the loop. ?>
 
 			</main><!-- #content -->
 

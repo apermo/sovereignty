@@ -20,7 +20,7 @@ function autonomie_widgets_init(): void {
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
-		]
+		],
 	);
 
 	register_sidebar(
@@ -32,7 +32,7 @@ function autonomie_widgets_init(): void {
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
-		]
+		],
 	);
 
 	register_sidebar(
@@ -44,7 +44,7 @@ function autonomie_widgets_init(): void {
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
-		]
+		],
 	);
 
 	register_sidebar(
@@ -56,7 +56,7 @@ function autonomie_widgets_init(): void {
 			'after_widget'  => '',
 			'before_title'  => '',
 			'after_title'   => '',
-		]
+		],
 	);
 }
 add_action( 'widgets_init', 'autonomie_widgets_init' );
@@ -99,7 +99,7 @@ function autonomie_activate(): void {
 		[
 			2              => [ 'title' => '' ],
 			'_multiwidget' => 1,
-		]
+		],
 	);
 
 	update_option(
@@ -107,7 +107,7 @@ function autonomie_activate(): void {
 		[
 			2              => [ 'title' => '' ],
 			'_multiwidget' => 1,
-		]
+		],
 	);
 
 	update_option(
@@ -131,7 +131,7 @@ function autonomie_activate(): void {
 				1 => 'autonomie-taxonomy-2',
 			],
 			'array_version'       => 3,
-		]
+		],
 	);
 }
 add_action( 'after_switch_theme', 'autonomie_activate' );

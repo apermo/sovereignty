@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54b0196e91ed4ad8d8bdc3b58c5bdb06",
+    "content-hash": "66a7fdad730621d4e6fb519fba25ac3c",
     "packages": [
         {
             "name": "composer/installers",
@@ -156,21 +156,21 @@
     "packages-dev": [
         {
             "name": "apermo/apermo-coding-standards",
-            "version": "1.3.0",
+            "version": "v2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apermo/apermo-coding-standards.git",
-                "reference": "2dd0d9f406283ee10ddf2a44737ffe292d506288"
+                "reference": "20b19db6b4d09844c6aedcc108baefdc11c696a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apermo/apermo-coding-standards/zipball/2dd0d9f406283ee10ddf2a44737ffe292d506288",
-                "reference": "2dd0d9f406283ee10ddf2a44737ffe292d506288",
+                "url": "https://api.github.com/repos/apermo/apermo-coding-standards/zipball/20b19db6b4d09844c6aedcc108baefdc11c696a7",
+                "reference": "20b19db6b4d09844c6aedcc108baefdc11c696a7",
                 "shasum": ""
             },
             "require": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-                "php": ">=8.3",
+                "php": ">=7.4",
                 "phpcompatibility/phpcompatibility-wp": "^2.1",
                 "slevomat/coding-standard": "^8.0",
                 "squizlabs/php_codesniffer": "^3.10",
@@ -178,14 +178,17 @@
                 "yoast/yoastcs": "^3.0"
             },
             "require-dev": {
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
                 "phpunit/phpunit": "^11.0"
             },
             "type": "phpcodesniffer-standard",
-            "scripts": {
-                "test": [
-                    "phpunit"
+            "autoload": {
+                "files": [
+                    "Apermo/polyfills.php"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -207,7 +210,7 @@
                 "issues": "https://github.com/apermo/apermo-coding-standards/issues",
                 "source": "https://github.com/apermo/apermo-coding-standards"
             },
-            "time": "2026-02-19T14:55:01+00:00"
+            "time": "2026-03-20T22:24:55+00:00"
         },
         {
             "name": "apermo/phpstan-wordpress-rules",

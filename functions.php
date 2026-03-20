@@ -24,7 +24,7 @@
 
 require __DIR__ . '/version.php';
 
-if ( ! function_exists( 'autonomie_setup' ) ) :
+if ( ! function_exists( 'autonomie_setup' ) ) {
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -74,7 +74,7 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 				'caption',
 				'widgets',
 				'script',
-			]
+			],
 		);
 
 		add_theme_support( 'align-wide' );
@@ -137,14 +137,14 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 					'slug'  => 'very-dark-gray',
 					'color' => '#444',
 				],
-			]
+			],
 		);
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			[
 				'primary' => __( 'Primary Menu', 'autonomie' ),
-			]
+			],
 		);
 
 		// Add support for the Aside, Gallery Post Formats...
@@ -160,7 +160,7 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 				'audio',
 				'quote',
 				'chat',
-			]
+			],
 		);
 
 		add_theme_support( 'responsive-embeds' );
@@ -179,7 +179,7 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 			[
 				'height' => 30,
 				'width'  => 30,
-			]
+			],
 		);
 
 		// This theme supports a custom header.
@@ -281,10 +281,10 @@ if ( ! function_exists( 'autonomie_setup' ) ) :
 						],
 					],
 				],
-			]
+			],
 		);
 	}
-endif; // End autonomie_setup.
+} // End autonomie_setup.
 
 /**
  * Tell WordPress to run autonomie_setup() when the 'after_setup_theme' hook is run.
@@ -401,7 +401,7 @@ function autonomie_page_menu_args( array $args ): array {
 }
 add_filter( 'wp_page_menu_args', 'autonomie_page_menu_args' );
 
-if ( ! function_exists( 'autonomie_enqueue_scripts' ) ) :
+if ( ! function_exists( 'autonomie_enqueue_scripts' ) ) {
 	/**
 	 * Enqueue theme scripts
 	 *
@@ -427,7 +427,7 @@ if ( ! function_exists( 'autonomie_enqueue_scripts' ) ) :
 			AUTONOMIE_VERSION,
 			[
 				'strategy'  => 'async',
-			]
+			],
 		);
 
 		if ( is_singular() ) {
@@ -438,7 +438,7 @@ if ( ! function_exists( 'autonomie_enqueue_scripts' ) ) :
 				AUTONOMIE_VERSION,
 				[
 					'strategy'  => 'async',
-				]
+				],
 			);
 		}
 
@@ -456,7 +456,7 @@ if ( ! function_exists( 'autonomie_enqueue_scripts' ) ) :
 			'vars',
 			[
 				'template_url' => get_template_directory_uri(),
-			]
+			],
 		);
 
 		if ( has_header_image() ) {
@@ -473,11 +473,11 @@ if ( ! function_exists( 'autonomie_enqueue_scripts' ) ) :
 			wp_add_inline_style( 'autonomie-style', $css );
 		}
 	}
-endif;
+}
 
 add_action( 'wp_enqueue_scripts', 'autonomie_enqueue_scripts' );
 
-if ( ! function_exists( 'autonomie_comment' ) ) :
+if ( ! function_exists( 'autonomie_comment' ) ) {
 	/**
 	 * Template for comments and pingbacks.
 	 *
@@ -492,7 +492,7 @@ if ( ! function_exists( 'autonomie_comment' ) ) :
 	 *
 	 * @since Autonomie 1.0.0
 	 */
-	function autonomie_comment( \WP_Comment $comment, array $args, int $depth ): void {
+	function autonomie_comment( WP_Comment $comment, array $args, int $depth ): void {
 		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Required by wp_list_comments() callback.
 		$GLOBALS['comment'] = $comment;
 		?>
@@ -513,9 +513,9 @@ if ( ! function_exists( 'autonomie_comment' ) ) :
 					</time></a>
 				</footer>
 
-			<?php if ( $comment->comment_approved === '0' ) : ?>
+			<?php if ( $comment->comment_approved === '0' ) { ?>
 					<p><em><?php esc_html_e( 'Your comment is awaiting moderation.', 'autonomie' ); ?></em></p>
-				<?php endif; ?>
+				<?php } ?>
 
 				<div class="comment-content e-content p-summary p-name" itemprop="text name description"><?php comment_text(); ?></div>
 
@@ -527,15 +527,15 @@ if ( ! function_exists( 'autonomie_comment' ) ) :
 							[
 								'depth' => $depth,
 								'max_depth' => $args['max_depth'],
-							]
-						)
+							],
+						),
 					);
 					?>
 				</div><!-- .reply -->
 			</article><!-- #comment-## -->
 		<?php
 	}
-endif; // ends check for autonomie_comment().
+} // ends check for autonomie_comment().
 
 /**
  * All template functions

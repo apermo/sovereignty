@@ -16,14 +16,14 @@
 					autonomie_get_post_format(),
 					get_post_type(),
 					esc_url( autonomie_get_post_format_link( autonomie_get_post_format() ) ),
-					autonomie_get_post_format_string()
-				)
+					autonomie_get_post_format_string(),
+				),
 			);
 			?>
 		</div>
 
 		<?php
-		if ( ! in_array( get_post_format(), [ 'aside', 'quote', 'status' ], true ) && ! empty( get_the_title() ) ) :
+		if ( ! in_array( get_post_format(), [ 'aside', 'quote', 'status' ], true ) && ! empty( get_the_title() ) ) {
 			if ( is_singular() ) {
 
 				$sovereignty_title_element = 'h1';
@@ -38,7 +38,7 @@
 				<?php the_title(); ?>
 			</a>
 		</<?php echo esc_html( $sovereignty_title_element ); ?>>
-		<?php endif; ?>
+		<?php } ?>
 
 		<div class="entry-meta">
 			<?php autonomie_posted_by(); ?> <span class="sep"> · </span> <?php autonomie_posted_on(); ?> <span class="sep"> · </span> <?php autonomie_reading_time(); ?>

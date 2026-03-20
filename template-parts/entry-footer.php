@@ -8,7 +8,12 @@
 		</div>
 
 		<?php dynamic_sidebar( 'entry-meta' ); ?>
-		<?php do_action( 'autonomie_entry_footer' ); ?>
+		<?php
+		/**
+		 * Fires in the entry footer after the entry meta sidebar.
+		 */
+		do_action( 'autonomie_entry_footer' );
+		?>
 	</footer><!-- #entry-meta -->
 <?php else : ?>
 	<footer class="entry-footer entry-meta">

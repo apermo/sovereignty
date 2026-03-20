@@ -2,8 +2,14 @@
 	<div class="entry-header-wrapper">
 		<div class="entry-meta post-format">
 			<?php
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- apply_filters() output contains safe HTML.
-			echo apply_filters(
+			/**
+			 * Filters the post format link HTML.
+			 *
+			 * @param string $html The post format link HTML.
+			 *
+			 * @return string The filtered HTML.
+			 */
+			echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- apply_filters() output contains safe HTML.
 				'autonomie_post_format',
 				sprintf(
 					'<a class="entry-format entry-format-%s entry-type-%s" href="%s">%s</a>',
@@ -20,18 +26,18 @@
 		if ( ! in_array( get_post_format(), [ 'aside', 'quote', 'status' ], true ) && ! empty( get_the_title() ) ) :
 			if ( is_singular() ) {
 
-				$title_element = 'h1';
+				$sovereignty_title_element = 'h1';
 			} else {
 
-				$title_element = 'h2';
+				$sovereignty_title_element = 'h2';
 			}
 			?>
-		<<?php echo esc_html( $title_element ); ?> class="entry-title p-name" itemprop="name headline">
+		<<?php echo esc_html( $sovereignty_title_element ); ?> class="entry-title p-name" itemprop="name headline">
 			<?php // translators: %s: Post title. ?>
 			<a href="<?php the_permalink(); ?>" class="u-url url" title="<?php printf( esc_attr__( 'Permalink to %s', 'autonomie' ), the_title_attribute( [ 'echo' => false ] ) ); ?>" rel="bookmark" itemprop="url">
 				<?php the_title(); ?>
 			</a>
-		</<?php echo esc_html( $title_element ); ?>>
+		</<?php echo esc_html( $sovereignty_title_element ); ?>>
 		<?php endif; ?>
 
 		<div class="entry-meta">
@@ -40,4 +46,9 @@
 	</div>
 </header><!-- .entry-header -->
 
-<?php do_action( 'autonomie_before_entry_content' ); ?>
+<?php
+/**
+ * Fires before the entry content.
+ */
+do_action( 'autonomie_before_entry_content' );
+?>

@@ -34,8 +34,10 @@
 		"pfefferle/wordpress-activitypub": "^8.0"
 	},
 	"scripts": {
-		"lint": "phpcs",
-		"lint:fix": "phpcbf",
+		"cs": "phpcs",
+		"cs:fix": "phpcbf",
+		"lint": "@cs",
+		"lint:fix": "@cs:fix",
 		"analyse": "phpstan analyse -c phpstan.neon.dist --memory-limit=2G",
 		"analyse:strict": "phpstan analyse -c phpstan-strict.neon --memory-limit=2G",
 		"generate-version": "@php bin/generate-version.php"

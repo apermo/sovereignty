@@ -146,9 +146,9 @@ function autonomie_pre_get_avatar_data( array $args, $id_or_email ): array { // 
 
 		if ( $username !== '' ) {
 			// translators: %s: username.
-			$args['alt'] = sprintf( __( 'User Avatar of %s', 'autonomie' ), $username );
+			$args['alt'] = sprintf( __( 'User Avatar of %s' ), $username ); // phpcs:ignore WordPress.WP.I18n.MissingArgDomain -- Intentionally uses default domain.
 		} else {
-			$args['alt'] = __( 'User Avatar', 'autonomie' );
+			$args['alt'] = __( 'User Avatar' ); // phpcs:ignore WordPress.WP.I18n.MissingArgDomain -- Intentionally uses default domain.
 		}
 	}
 

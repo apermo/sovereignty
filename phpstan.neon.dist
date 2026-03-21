@@ -3,9 +3,13 @@ parameters:
     paths:
         - .
     excludePaths:
-        - vendor
-        - node_modules
-        - .ddev
+        analyseAndScan:
+            - node_modules
+            - .ddev
+        analyse:
+            - vendor
+    scanDirectories:
+        - vendor/pfefferle/activitypub/includes
     strictRules:
         allRules: false
         booleansInConditions: true

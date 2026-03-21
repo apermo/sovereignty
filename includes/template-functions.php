@@ -316,8 +316,8 @@ function autonomie_get_archive_author_meta(): string {
 		/**
 		 * Filters the follower count for an author archive.
 		 *
-		 * @param int $count     The follower count.
-		 * @param int $author_id The author user ID.
+		 * @param int    $count     The follower count.
+		 * @param string $author_id The author user ID.
 		 *
 		 * @return int The filtered follower count.
 		 */

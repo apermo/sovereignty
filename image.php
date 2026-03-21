@@ -40,18 +40,18 @@ get_header(); ?>
 										],
 									),
 								);
-								$sovereignty_k = 0;
-								foreach ( $sovereignty_attachments as $sovereignty_k => $sovereignty_attachment ) {
+								$sovereignty_attachments_key = 0;
+								foreach ( $sovereignty_attachments as $sovereignty_attachments_key => $sovereignty_attachment ) {
 									if ( $sovereignty_attachment->ID === $post->ID ) {
 										break;
 									}
 								}
-								$sovereignty_k++;
+								$sovereignty_attachments_key++;
 								// If there is more than 1 attachment in a gallery.
 								if ( count( $sovereignty_attachments ) > 1 ) {
-									if ( isset( $sovereignty_attachments[ $sovereignty_k ] ) ) {
+									if ( isset( $sovereignty_attachments[ $sovereignty_attachments_key ] ) ) {
 										// Get the URL of the next image attachment.
-										$sovereignty_next_url = get_attachment_link( $sovereignty_attachments[ $sovereignty_k ]->ID );
+										$sovereignty_next_url = get_attachment_link( $sovereignty_attachments[ $sovereignty_attachments_key ]->ID );
 									} else {
 										// Or get the URL of the first image attachment.
 										$sovereignty_next_url = get_attachment_link( $sovereignty_attachments[0]->ID );

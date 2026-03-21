@@ -4,8 +4,8 @@ parameters:
         - .
     excludePaths:
         analyseAndScan:
-            - node_modules
-            - .ddev
+            - node_modules (?)
+            - .ddev (?)
         analyse:
             - vendor
     scanDirectories:

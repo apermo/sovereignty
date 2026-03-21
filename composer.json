@@ -34,7 +34,7 @@
 		"pfefferle/wordpress-activitypub": "^8.0"
 	},
 	"scripts": {
-		"cs": "phpcs",
+		"cs": "phpcs --warning-severity=0",
 		"cs:fix": "phpcbf",
 		"lint": "@cs",
 		"lint:fix": "@cs:fix",

@@ -2,7 +2,7 @@
 	"name": "apermo/sovereignty",
 	"description": "Pure Zen - Fork of Pfefferle's Autonomie Theme",
 	"type": "wordpress-theme",
-	"version": "1.1.1",
+	"version": "1.2.0",
 	"license": "MIT",
 	"homepage": "https://github.com/apermo/sovereignty",
 	"support": {
@@ -24,26 +24,37 @@
 		"composer/installers": "^2.2"
 	},
 	"require-dev": {
-		"apermo/apermo-coding-standards": "^1.0",
+		"apermo/apermo-coding-standards": "^2.6.2",
 		"phpstan/phpstan": "^2.0",
 		"szepeviktor/phpstan-wordpress": "^2.0",
 		"roave/security-advisories": "dev-latest",
-		"phpstan/phpstan-strict-rules": "^2.0"
+		"phpstan/phpstan-strict-rules": "^2.0",
+		"apermo/phpstan-wordpress-rules": "^0.2",
+		"phpstan/extension-installer": "^1.4",
+		"pfefferle/wordpress-activitypub": "^8.0"
 	},
 	"scripts": {
-		"lint": "phpcs",
-		"lint:fix": "phpcbf",
-		"analyse": "phpstan analyse --memory-limit=2G",
+		"cs": "phpcs --warning-severity=0",
+		"cs:fix": "phpcbf",
+		"lint": "@cs",
+		"lint:fix": "@cs:fix",
+		"analyse": "phpstan analyse -c phpstan.neon.dist --memory-limit=2G",
 		"analyse:strict": "phpstan analyse -c phpstan-strict.neon --memory-limit=2G",
 		"generate-version": "@php bin/generate-version.php"
 	},
 	"extra": {
-		"installer-name": "sovereignty"
+		"installer-name": "sovereignty",
+		"installer-paths": {
+			"vendor/{$vendor}/{$name}/": [
+				"type:wordpress-plugin"
+			]
+		}
 	},
 	"config": {
 		"allow-plugins": {
 			"composer/installers": true,
-			"dealerdirect/phpcodesniffer-composer-installer": true
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
 		}
 	}
 }

@@ -9,16 +9,3 @@ database:
     version: "10.11"
 composer_version: "2"
 nodejs_version: "22"
-web_environment:
-    - WP_VERSION=latest
-    - WP_LOCALE=en_US
-    - WP_TITLE=Sovereignty Dev
-    - ADMIN_USER=admin
-    - ADMIN_PASS=admin
-    - ADMIN_EMAIL=admin@example.com
-    - THEME_NAME=sovereignty
-
-hooks:
-    pre-start:
-        - exec-host: |
-              mkdir -p .ddev/wordpress/wp-content/themes/${DDEV_PROJECT}

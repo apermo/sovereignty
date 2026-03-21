@@ -27,7 +27,7 @@ function autonomie_get_post_format_archive_feed_link( string $post_format, strin
 	}
 
 	if ( (bool) get_option( 'permalink_structure' ) ) {
-		$link  = trailingslashit( $link );
+		$link = trailingslashit( $link );
 		$link .= 'feed/';
 		if ( $feed !== $default_feed ) {
 			$link .= "$feed/";
@@ -41,8 +41,10 @@ function autonomie_get_post_format_archive_feed_link( string $post_format, strin
 	 *
 	 * @param string $link The post type archive feed link.
 	 * @param string $feed Feed type. Possible values include 'rss2', 'atom'.
+	 *
+	 * @return string The filtered feed link.
 	 */
-	return apply_filters( 'post_format_archive_feed_link', $link, $feed );
+	return apply_filters( 'sovereignty_post_format_archive_feed_link', $link, $feed );
 }
 
 /**
@@ -54,7 +56,7 @@ function autonomie_get_post_format_archive_feed_link( string $post_format, strin
  *
  * @return void
  */
-function autonomie_extend_singular_feed_discovery(): void {
+function autonomie_extend_singular_feed_discovery(): void { // phpcs:ignore SlevomatCodingStandard.Functions.FunctionLength.FunctionLength -- @todo Refactor feed discovery logic.
 	$args = [
 		/* translators: Separator between blog name and feed type in feed links */
 		'separator' => _x( '&raquo;', 'feed link', 'autonomie' ),
@@ -143,7 +145,7 @@ function autonomie_extend_singular_feed_discovery(): void {
 				'<link rel="alternate" type="%s" title="%s" href="%s" />',
 				esc_attr( feed_content_type() ),
 				esc_attr( $feed['title'] ),
-				esc_url( $feed['href'] )
+				esc_url( $feed['href'] ),
 			);
 			echo PHP_EOL;
 		}

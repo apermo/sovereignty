@@ -12,7 +12,7 @@
  */
 ?>
 	<div id="comments">
-	<?php if ( post_password_required() ) : ?>
+	<?php if ( post_password_required() ) { ?>
 		<p class="nopassword"><?php esc_html_e( 'This post is password protected. Enter the password to view any comments.', 'autonomie' ); ?></p>
 	</div><!-- #comments -->
 		<?php
@@ -22,12 +22,12 @@
 			 * to fully load the template.
 			 */
 			return;
-		endif;
+	}
 	?>
 
 	<?php // You can start editing here -- including this comment! ?>
 
-	<?php if ( have_comments() ) : ?>
+	<?php if ( have_comments() ) { ?>
 		<h2 id="comments-title">
 			<?php
 			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- Output contains intentional HTML (span tag) and translated strings with HTML entities.
@@ -38,22 +38,22 @@
 					'One thought on &ldquo;%2$s&rdquo;', // phpcs:ignore WordPress.WP.I18n.MissingSingularPlaceholder -- Translator instructions added.
 					'%1$s thoughts on &ldquo;%2$s&rdquo;',
 					get_comments_number(),
-					'autonomie'
+					'autonomie',
 				),
 				number_format_i18n( get_comments_number() ),
-				'<span>' . get_the_title() . '</span>'
+				'<span>' . get_the_title() . '</span>',
 			);
 			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>
 		</h2>
 
-		<?php if ( get_comment_pages_count() > 1 && (bool) get_option( 'page_comments' ) ) : ?>
+		<?php if ( get_comment_pages_count() > 1 && (bool) get_option( 'page_comments' ) ) { ?>
 		<nav id="comment-nav-above">
 			<div class="assistive-text"><?php esc_html_e( 'Comment navigation', 'autonomie' ); ?></div>
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'autonomie' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'autonomie' ) ); ?></div>
 		</nav>
-		<?php endif; ?>
+		<?php } ?>
 
 		<ol class="commentlist">
 			<?php
@@ -68,27 +68,27 @@
 					[
 						'callback' => 'autonomie_comment',
 						'format' => '',
-					]
+					],
 				);
 			?>
 		</ol>
 
-		<?php if ( get_comment_pages_count() > 1 && (bool) get_option( 'page_comments' ) ) : ?>
+		<?php if ( get_comment_pages_count() > 1 && (bool) get_option( 'page_comments' ) ) { ?>
 		<nav id="comment-nav-below">
 			<div class="assistive-text"><?php esc_html_e( 'Comment navigation', 'autonomie' ); ?></div>
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'autonomie' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'autonomie' ) ); ?></div>
 		</nav>
-		<?php endif; ?>
+		<?php } ?>
 
-	<?php endif; // /have_comments ?>
+	<?php } // /have_comments ?>
 
 	<?php
 	// If comments are closed and there are no comments, let's leave a little note, shall we?
-	if ( ! comments_open() && get_comments_number() !== '0' && post_type_supports( get_post_type(), 'comments' ) ) :
+	if ( ! comments_open() && get_comments_number() !== '0' && post_type_supports( get_post_type(), 'comments' ) ) {
 		?>
 		<p class="nocomments"><?php esc_html_e( 'Comments are closed.', 'autonomie' ); ?></p>
-	<?php endif; ?>
+	<?php } ?>
 
 	<?php comment_form(); ?>
 

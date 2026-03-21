@@ -1,6 +1,6 @@
-<?php if ( autonomie_show_page_banner() ) : ?>
+<?php if ( autonomie_show_page_banner() ) { ?>
 <div class="page-banner">
-	<?php if ( ! is_singular() ) : ?>
+	<?php if ( ! is_singular() ) { ?>
 	<div class="page-branding">
 		<?php if ( autonomie_get_the_archive_title() !== '' ) { ?>
 		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- autonomie_get_the_archive_title() may contain HTML. ?>
@@ -12,6 +12,6 @@
 		<?php } ?>
 	</div>
 		<?php printf( '<link itemprop="mainEntityOfPage" href="%s" />', esc_url( get_self_link() ) ); ?>
-	<?php endif; ?>
+	<?php } ?>
 </div>
-<?php endif; ?>
+<?php } ?>

@@ -1,5 +1,5 @@
 <?php
-if ( ! function_exists( 'autonomie_content_nav' ) ) :
+if ( ! function_exists( 'autonomie_content_nav' ) ) {
 	/**
 	 * Display navigation to next/previous pages when applicable.
 	 *
@@ -9,18 +9,18 @@ if ( ! function_exists( 'autonomie_content_nav' ) ) :
 	 */
 	function autonomie_content_nav( string $nav_id ): void {
 		?>
-		<?php if ( is_home() || is_archive() || is_search() ) : // Navigation links for home, archive, and search pages. ?>
+		<?php if ( is_home() || is_archive() || is_search() ) { // Navigation links for home, archive, and search pages. ?>
 		<nav id="archive-nav">
 			<div class="assistive-text"><?php esc_html_e( 'Post navigation', 'autonomie' ); ?></div>
 			<?php // @phpstan-ignore-next-line paginate_links() returns null on single-page results ?>
 			<?php echo wp_kses_post( paginate_links() ?? '' ); ?>
 		</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
-		<?php endif; ?>
+		<?php } ?>
 		<?php
 	}
-endif; // End autonomie_content_nav.
+} // End autonomie_content_nav.
 
-if ( ! function_exists( 'autonomie_posted_by' ) ) :
+if ( ! function_exists( 'autonomie_posted_by' ) ) {
 	/**
 	 * Prints HTML with meta information for the current author.
 	 * Create your own autonomie_posted_by to override in a child theme.
@@ -42,12 +42,12 @@ if ( ! function_exists( 'autonomie_posted_by' ) ) :
 			esc_url( get_author_posts_url( (int) get_the_author_meta( 'ID' ) ) ),
 			// translators: %s is the author name.
 			esc_attr( sprintf( __( 'View all posts by %s', 'autonomie' ), get_the_author() ) ),
-			esc_html( get_the_author() )
+			esc_html( get_the_author() ),
 		);
 	}
-endif;
+}
 
-if ( ! function_exists( 'autonomie_posted_on' ) ) :
+if ( ! function_exists( 'autonomie_posted_on' ) ) {
 	/**
 	 * Prints HTML with meta information for the current post-date/time.
 	 * Create your own autonomie_posted_on to override in a child theme.
@@ -69,13 +69,13 @@ if ( ! function_exists( 'autonomie_posted_on' ) ) :
 		// phpcs:disable Apermo.WordPress.ImplicitPostFunction
 		if ( $type === 'updated' ) {
 			// Updated.
-			$time = get_the_modified_time();
+			$time      = get_the_modified_time();
 			$date_c    = get_the_modified_date( 'c' );
 			$date      = get_the_modified_date();
 			$item_prop = 'dateModified';
 		} else {
 			// Published.
-			$time = get_the_time();
+			$time      = get_the_time();
 			$date_c    = get_the_date( 'c' );
 			$date      = get_the_date();
 			$item_prop = 'datePublished';
@@ -94,7 +94,7 @@ if ( ! function_exists( 'autonomie_posted_on' ) ) :
 			esc_html( $item_prop ),
 		);
 	}
-endif;
+}
 
 /**
  * Display the id for the post div.
@@ -118,8 +118,15 @@ function autonomie_get_post_id(): string {
 	// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
 	$post_id = 'post-' . get_the_ID();
 
-	// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
-	return apply_filters( 'autonomie_post_id', $post_id, get_the_ID() );
+	/**
+	 * Filters the post ID attribute value.
+	 *
+	 * @param string $post_id The post ID attribute.
+	 * @param int    $id      The numeric post ID.
+	 *
+	 * @return string The filtered post ID attribute.
+	 */
+	return apply_filters( 'autonomie_post_id', $post_id, get_the_ID() ); // phpcs:ignore Apermo.WordPress.ImplicitPostFunction
 }
 
 /**
@@ -165,6 +172,8 @@ function autonomie_get_main_class( string|array $class = '' ): array { // phpcs:
 	 *
 	 * @param string[] $classes An array of main class names.
 	 * @param string[] $class   An array of additional class names added to the main.
+	 *
+	 * @return string[] The filtered class names.
 	 */
 	$classes = apply_filters( 'autonomie_main_class', $classes, $class );
 
@@ -283,6 +292,13 @@ function autonomie_get_archive_type(): string {
 		$type = 'author';
 	}
 
+	/**
+	 * Filters the archive type identifier.
+	 *
+	 * @param string $type The archive type.
+	 *
+	 * @return string The filtered archive type.
+	 */
 	return (string) apply_filters( 'autonomie_archive_type', $type );
 }
 
@@ -297,19 +313,35 @@ function autonomie_get_archive_author_meta(): string {
 	$meta[] = sprintf(
 		// translators: list of followers.
 		__( '%s Followers', 'autonomie' ),
-		apply_filters( 'autonomie_archive_author_followers', 0, get_the_author_meta( 'ID' ) )
+		/**
+		 * Filters the follower count for an author archive.
+		 *
+		 * @param int    $count     The follower count.
+		 * @param string $author_id The author user ID.
+		 *
+		 * @return int The filtered follower count.
+		 */
+		apply_filters( 'autonomie_archive_author_followers', 0, get_the_author_meta( 'ID' ) ),
 	);
 	$meta[] = sprintf(
 		// translators: a post counter.
 		__( '%s Posts', 'autonomie' ),
-		count_user_posts( (int) get_the_author_meta( 'ID' ) )
+		count_user_posts( (int) get_the_author_meta( 'ID' ) ),
 	);
 	$meta[] = sprintf(
 		'<indie-action do="follow" with="%1$s"><a rel="alternate" class="feed u-feed openwebicons-feed" href="%1$s">%2$s</a></indie-action>',
 		get_author_feed_link( (int) get_the_author_meta( 'ID' ) ),
-		__( 'Subscribe', 'autonomie' )
+		__( 'Subscribe', 'autonomie' ),
 	);
 
+	/**
+	 * Filters the author archive meta items.
+	 *
+	 * @param string[] $meta      The meta items.
+	 * @param string   $author_id The author user ID.
+	 *
+	 * @return string[] The filtered meta items.
+	 */
 	$meta = apply_filters( 'autonomie_archive_author_meta', $meta, get_the_author_meta( 'ID' ) );
 
 	return implode( ' | ', $meta );
@@ -361,9 +393,9 @@ function autonomie_reading_time(): void {
 			'<span class="entry-duration"><time datetime="PT%1$sM" class="dt-duration" itemprop="timeRequired">%1$s minute</time> to read</span>', // phpcs:ignore WordPress.WP.I18n.NoHtmlWrappedStrings
 			'<span class="entry-duration"><time datetime="PT%1$sM" class="dt-duration" itemprop="timeRequired">%1$s minutes</time> to read</span>', // phpcs:ignore WordPress.WP.I18n.NoHtmlWrappedStrings
 			$readingtime,
-			'autonomie'
+			'autonomie',
 		),
-		esc_html( number_format_i18n( $readingtime ) )
+		esc_html( number_format_i18n( $readingtime ) ),
 	);
 }
 

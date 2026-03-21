@@ -5,6 +5,46 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] - 2026-03-21
+
+### Added
+
+- GitHub issue templates (bug report, feature request) and PR template
+- PR validation workflow (CHANGELOG check, conventional commits)
+- CHANGELOG-driven release workflow (automatic GitHub releases)
+- Prerelease workflow for release/* branches
+- WordPress beta/RC nightly compatibility workflow
+- WordPress.org SVN deploy workflow on release
+- E2E test workflow using reusable workflows
+- Renovate for automated dependency updates (replaces Dependabot)
+- PHPStan WordPress rules (`apermo/phpstan-wordpress-rules`)
+- PHPStan extension installer for automatic extension discovery
+- `.wordpress-org/` assets directory
+- ActivityPub plugin as dev dependency for static analysis
+
+### Changed
+
+- Migrate CI to `apermo/reusable-workflows` for PHP linting
+- Rename `phpcs.xml` to `phpcs.xml.dist` (allows local overrides)
+- Rename `phpstan.neon` to `phpstan.neon.dist` (allows local overrides)
+- Add `sovereignty` text domain and `Apermo\Sovereignty` namespace prefix to PHPCS config
+- Update `.gitattributes` with comprehensive export-ignore list
+- Replace Probot stale config with GitHub Actions stale workflow
+- Upgrade `apermo-coding-standards` to v2 with auto-fixes (trailing commas, curly braces)
+- Replace deprecated `get_webfinger_resource()` with `Webfinger::get_user_resource()`
+- Prefix global variables in template files with `sovereignty_`
+- Install WordPress plugin dependencies into `vendor/` instead of `wp-content/`
+
+### Fixed
+
+- All PHPCS errors resolved (missing text domain, unprefixed globals, hook PHPDoc, alignment)
+- Legacy hook names documented with `@todo` for future renaming
+
+### Removed
+
+- Dependabot configuration (replaced by Renovate)
+- Probot stale bot configuration (replaced by Actions workflow)
+
 ## [1.1.1] - 2026-03-14
 
 ### Added
@@ -56,6 +96,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Renamed theme to Sovereignty
 - Updated Composer package name to `apermo/sovereignty`
 
+[1.2.0]: https://github.com/apermo/sovereignty/compare/1.1.1...1.2.0
 [1.1.1]: https://github.com/apermo/sovereignty/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/apermo/sovereignty/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/apermo/sovereignty/releases/tag/1.0.0

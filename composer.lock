@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8440f6203cca1939e4247ec3aadf31ec",
+    "content-hash": "9979d8b0e2567153384758086c25fb71",
     "packages": [
         {
             "name": "composer/installers",
@@ -156,21 +156,21 @@
     "packages-dev": [
         {
             "name": "apermo/apermo-coding-standards",
-            "version": "1.3.0",
+            "version": "v2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apermo/apermo-coding-standards.git",
-                "reference": "2dd0d9f406283ee10ddf2a44737ffe292d506288"
+                "reference": "20b19db6b4d09844c6aedcc108baefdc11c696a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apermo/apermo-coding-standards/zipball/2dd0d9f406283ee10ddf2a44737ffe292d506288",
-                "reference": "2dd0d9f406283ee10ddf2a44737ffe292d506288",
+                "url": "https://api.github.com/repos/apermo/apermo-coding-standards/zipball/20b19db6b4d09844c6aedcc108baefdc11c696a7",
+                "reference": "20b19db6b4d09844c6aedcc108baefdc11c696a7",
                 "shasum": ""
             },
             "require": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-                "php": ">=8.3",
+                "php": ">=7.4",
                 "phpcompatibility/phpcompatibility-wp": "^2.1",
                 "slevomat/coding-standard": "^8.0",
                 "squizlabs/php_codesniffer": "^3.10",
@@ -178,14 +178,17 @@
                 "yoast/yoastcs": "^3.0"
             },
             "require-dev": {
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
                 "phpunit/phpunit": "^11.0"
             },
             "type": "phpcodesniffer-standard",
-            "scripts": {
-                "test": [
-                    "phpunit"
+            "autoload": {
+                "files": [
+                    "Apermo/polyfills.php"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -207,7 +210,70 @@
                 "issues": "https://github.com/apermo/apermo-coding-standards/issues",
                 "source": "https://github.com/apermo/apermo-coding-standards"
             },
-            "time": "2026-02-19T14:55:01+00:00"
+            "time": "2026-03-20T22:24:55+00:00"
+        },
+        {
+            "name": "apermo/phpstan-wordpress-rules",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/apermo/apermo-phpstan-wordpress-rules.git",
+                "reference": "83b4dca12185beb79d98fca5cb53b1fcee60f99b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/apermo/apermo-phpstan-wordpress-rules/zipball/83b4dca12185beb79d98fca5cb53b1fcee60f99b",
+                "reference": "83b4dca12185beb79d98fca5cb53b1fcee60f99b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "swissspidy/phpstan-no-private": "^1.0",
+                "szepeviktor/phpstan-wordpress": "^2.0"
+            },
+            "require-dev": {
+                "apermo/apermo-coding-standards": "^2.0",
+                "phpunit/phpunit": "^11.0"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "rules.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Apermo\\PhpStanWordPressRules\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Daum",
+                    "homepage": "https://christoph-daum.de"
+                }
+            ],
+            "description": "Custom PHPStan rules for WordPress projects by Apermo.",
+            "homepage": "https://github.com/apermo/apermo-phpstan-wordpress-rules",
+            "keywords": [
+                "PHPStan",
+                "custom-rules",
+                "static-analysis",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/apermo/apermo-phpstan-wordpress-rules/issues",
+                "source": "https://github.com/apermo/apermo-phpstan-wordpress-rules"
+            },
+            "time": "2026-03-01T13:45:14+00:00"
         },
         {
             "name": "automattic/vipwpcs",
@@ -358,6 +424,62 @@
                 }
             ],
             "time": "2025-11-11T04:32:07+00:00"
+        },
+        {
+            "name": "pfefferle/wordpress-activitypub",
+            "version": "8.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Automattic/wordpress-activitypub.git",
+                "reference": "5c49b39dd520a8c8c672ecd73109cd1272bb7ad0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Automattic/wordpress-activitypub/zipball/5c49b39dd520a8c8c672ecd73109cd1272bb7ad0",
+                "reference": "5c49b39dd520a8c8c672ecd73109cd1272bb7ad0",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "automattic/jetpack-changelogger": "6.0.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
+                "dms/phpunit-arraysubset-asserts": "^0.5.0",
+                "phpcompatibility/php-compatibility": "*",
+                "phpcompatibility/phpcompatibility-wp": "*",
+                "phpcsstandards/phpcsextra": "^1.1.0",
+                "phpunit/phpunit": "^9",
+                "sirbrillig/phpcs-variable-analysis": "^2.11",
+                "squizlabs/php_codesniffer": "3.*",
+                "wp-coding-standards/wpcs": "dev-develop",
+                "yoast/phpunit-polyfills": "^4.0"
+            },
+            "type": "wordpress-plugin",
+            "extra": {
+                "changelogger": {
+                    "changes-dir": ".github/changelog/",
+                    "link-template": "https://github.com/Automattic/wordpress-activitypub/compare/${old}...${new}"
+                },
+                "installer-name": "activitypub"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Pfefferle",
+                    "email": "pfefferle@gmail.com"
+                }
+            ],
+            "description": "The ActivityPub protocol is a decentralized social networking protocol based upon the ActivityStreams 2.0 data format.",
+            "support": {
+                "issues": "https://github.com/Automattic/wordpress-activitypub/issues",
+                "source": "https://github.com/Automattic/wordpress-activitypub/tree/8.0.2"
+            },
+            "time": "2026-03-17T11:21:25+00:00"
         },
         {
             "name": "php-parallel-lint/php-console-color",
@@ -962,6 +1084,54 @@
             "time": "2025-12-08T14:27:58+00:00"
         },
         {
+            "name": "phpstan/extension-installer",
+            "version": "1.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/extension-installer.git",
+                "reference": "85e90b3942d06b2326fba0403ec24fe912372936"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/extension-installer/zipball/85e90b3942d06b2326fba0403ec24fe912372936",
+                "reference": "85e90b3942d06b2326fba0403ec24fe912372936",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.0",
+                "php": "^7.2 || ^8.0",
+                "phpstan/phpstan": "^1.9.0 || ^2.0"
+            },
+            "require-dev": {
+                "composer/composer": "^2.0",
+                "php-parallel-lint/php-parallel-lint": "^1.2.0",
+                "phpstan/phpstan-strict-rules": "^0.11 || ^0.12 || ^1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "PHPStan\\ExtensionInstaller\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\ExtensionInstaller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Composer plugin for automatic installation of PHPStan extensions",
+            "keywords": [
+                "dev",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/phpstan/extension-installer/issues",
+                "source": "https://github.com/phpstan/extension-installer/tree/1.4.3"
+            },
+            "time": "2024-09-04T20:21:43+00:00"
+        },
+        {
             "name": "phpstan/phpdoc-parser",
             "version": "2.3.2",
             "source": {
@@ -1060,6 +1230,56 @@
                 }
             ],
             "time": "2026-02-11T14:48:56+00:00"
+        },
+        {
+            "name": "phpstan/phpstan-deprecation-rules",
+            "version": "2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan-deprecation-rules.git",
+                "reference": "6b5571001a7f04fa0422254c30a0017ec2f2cacc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan-deprecation-rules/zipball/6b5571001a7f04fa0422254c30a0017ec2f2cacc",
+                "reference": "6b5571001a7f04fa0422254c30a0017ec2f2cacc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0",
+                "phpstan/phpstan": "^2.1.39"
+            },
+            "require-dev": {
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpunit/phpunit": "^9.6"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "rules.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStan rules for detecting usage of deprecated classes, methods, properties, constants and traits.",
+            "keywords": [
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/phpstan/phpstan-deprecation-rules/issues",
+                "source": "https://github.com/phpstan/phpstan-deprecation-rules/tree/2.0.4"
+            },
+            "time": "2026-02-09T13:21:14+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",
@@ -2335,6 +2555,58 @@
                 }
             ],
             "time": "2025-11-04T16:30:35+00:00"
+        },
+        {
+            "name": "swissspidy/phpstan-no-private",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swissspidy/phpstan-no-private.git",
+                "reference": "559cb0e8d092df7314ed4254db83db0427440af2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swissspidy/phpstan-no-private/zipball/559cb0e8d092df7314ed4254db83db0427440af2",
+                "reference": "559cb0e8d092df7314ed4254db83db0427440af2",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0",
+                "phpstan/phpstan": "^2.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
+                "nikic/php-parser": "^v5.3.1",
+                "php-parallel-lint/php-parallel-lint": "^1.4",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpunit/phpunit": "^9.5",
+                "slevomat/coding-standard": "^8.8.0",
+                "squizlabs/php_codesniffer": "^3.5.3"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "rules.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Swissspidy\\PHPStan\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStan rules for detecting usage of pseudo-private functions, classes, and methods.",
+            "support": {
+                "issues": "https://github.com/swissspidy/phpstan-no-private/issues",
+                "source": "https://github.com/swissspidy/phpstan-no-private/tree/v1.0.0"
+            },
+            "time": "2024-11-11T11:04:45+00:00"
         },
         {
             "name": "szepeviktor/phpstan-wordpress",

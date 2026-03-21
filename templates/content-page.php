@@ -20,7 +20,7 @@
 			[
 				'before' => '<div class="page-link">' . __( 'Pages:', 'autonomie' ),
 				'after' => '</div>',
-			]
+			],
 		);
 		?>
 	</div><!-- .entry-content -->

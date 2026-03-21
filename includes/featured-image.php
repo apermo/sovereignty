@@ -40,7 +40,7 @@ function autonomie_the_post_thumbnail( string $before = '', string $after = '' )
 				'class' => $class,
 				'itemprop' => 'image',
 				'loading' => 'lazy',
-			]
+			],
 		);
 
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $after contains trusted HTML from template.
@@ -85,7 +85,7 @@ function autonomie_content_post_thumbnail( string $content ): string {
 				'class' => $class,
 				'itemprop' => 'image',
 				'loading' => 'lazy',
-			]
+			],
 		);
 
 		return sprintf( '<p>%s</p>%s', $thumbnail, $content );
@@ -232,7 +232,7 @@ function autonomie_register_meta(): void {
 			'show_in_rest' => true,
 			'single' => true,
 			'type' => 'boolean',
-		]
+		],
 	);
 }
 add_action( 'init', 'autonomie_register_meta' );
@@ -248,7 +248,7 @@ function autonomie_enqueue_block_editor_assets(): void {
 		get_template_directory_uri() . '/assets/js/block-editor.js',
 		[ 'wp-editor', 'wp-i18n', 'wp-element', 'wp-compose', 'wp-components' ],
 		'1.0.0',
-		true
+		true,
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'autonomie_enqueue_block_editor_assets', 9 );

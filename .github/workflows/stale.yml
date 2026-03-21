@@ -1,0 +1,12 @@
+name: Stale
+
+on:
+    schedule:
+        - cron: '0 6 * * *'
+
+jobs:
+    stale:
+        uses: apermo/reusable-workflows/.github/workflows/reusable-stale.yml@v0.2.0
+        permissions:
+            issues: write
+            pull-requests: write

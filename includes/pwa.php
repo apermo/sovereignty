@@ -56,7 +56,7 @@ function autonomie_manifest_template_redirect(): void {
 
 	header( 'Content-Type: application/manifest+json' );
 	echo wp_json_encode( $manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
-	exit;
+	exit();
 }
 add_action( 'template_redirect', 'autonomie_manifest_template_redirect' );
 

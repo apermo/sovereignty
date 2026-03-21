@@ -13,50 +13,50 @@ function autonomie_widgets_init(): void {
 
 	register_sidebar(
 		[
-			'name' => __( 'Sidebar 1', 'autonomie' ),
-			'id' => 'sidebar-1',
-			'description' => __( 'A sidebar area', 'autonomie' ),
+			'name'          => __( 'Sidebar 1', 'autonomie' ),
+			'id'            => 'sidebar-1',
+			'description'   => __( 'A sidebar area', 'autonomie' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
-		]
+		],
 	);
 
 	register_sidebar(
 		[
-			'name' => __( 'Sidebar 2', 'autonomie' ),
-			'id' => 'sidebar-2',
-			'description' => __( 'A second sidebar area', 'autonomie' ),
+			'name'          => __( 'Sidebar 2', 'autonomie' ),
+			'id'            => 'sidebar-2',
+			'description'   => __( 'A second sidebar area', 'autonomie' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
-		]
+		],
 	);
 
 	register_sidebar(
 		[
-			'name' => __( 'Sidebar 3', 'autonomie' ),
-			'id' => 'sidebar-3',
-			'description' => __( 'A third sidebar area', 'autonomie' ),
+			'name'          => __( 'Sidebar 3', 'autonomie' ),
+			'id'            => 'sidebar-3',
+			'description'   => __( 'A third sidebar area', 'autonomie' ),
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
-		]
+		],
 	);
 
 	register_sidebar(
 		[
-			'name' => __( 'Entry-Meta', 'autonomie' ),
-			'id' => 'entry-meta',
-			'description' => __( 'Extend the Entry-Meta', 'autonomie' ),
+			'name'          => __( 'Entry-Meta', 'autonomie' ),
+			'id'            => 'entry-meta',
+			'description'   => __( 'Extend the Entry-Meta', 'autonomie' ),
 			'before_widget' => '',
 			'after_widget'  => '',
 			'before_title'  => '',
 			'after_title'   => '',
-		]
+		],
 	);
 }
 add_action( 'widgets_init', 'autonomie_widgets_init' );
@@ -99,7 +99,7 @@ function autonomie_activate(): void {
 		[
 			2              => [ 'title' => '' ],
 			'_multiwidget' => 1,
-		]
+		],
 	);
 
 	update_option(
@@ -107,7 +107,7 @@ function autonomie_activate(): void {
 		[
 			2              => [ 'title' => '' ],
 			'_multiwidget' => 1,
-		]
+		],
 	);
 
 	update_option(
@@ -131,7 +131,7 @@ function autonomie_activate(): void {
 				1 => 'autonomie-taxonomy-2',
 			],
 			'array_version'       => 3,
-		]
+		],
 	);
 }
 add_action( 'after_switch_theme', 'autonomie_activate' );

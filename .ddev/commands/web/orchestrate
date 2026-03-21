@@ -1,37 +1,108 @@
-#!/bin/bash
-## Description: Set up the WordPress development environment
-## Usage: orchestrate
-## Example: "ddev orchestrate"
+#!/usr/bin/env bash
 
-mkdir -p "${DDEV_DOCROOT}"
-pushd "${DDEV_DOCROOT}"
-THEME_FOLDER="${DDEV_DOCROOT}/wp-content/themes/${THEME_NAME:-$DDEV_PROJECT}"
-VALID_ARGS=$(getopt -o f --long force -- "$@")
-if [[ $? -ne 0 ]]; then
-    exit 1;
+## Description: Orchestrate a full WordPress environment
+## Usage: orchestrate [--reset]
+## Example: ddev orchestrate
+## Example: ddev orchestrate --reset
+
+set -euo pipefail
+
+ORCHESTRATE_DIR="/var/www/html/.ddev/orchestrate"
+FRAGMENTS_DIR="${ORCHESTRATE_DIR}/fragments"
+PROJECT_FRAGMENTS_DIR="${ORCHESTRATE_DIR}/project"
+
+# Load environment from .ddev/.env if present
+ENV_FILE="/var/www/html/.ddev/.env"
+if [ -f "$ENV_FILE" ]; then
+    set -a
+    # shellcheck source=/dev/null
+    source "$ENV_FILE"
+    set +a
 fi
 
-eval set -- "$VALID_ARGS"
-while [ : ]; do
-  case "$1" in
-    -f | --force)
-        echo "Removing WordPress installation"
-        shift
-        export RECREATE_ENV=1;
-        popd
-        find "${DDEV_DOCROOT}" -mindepth 1 ! -regex "^${THEME_FOLDER}\(/.*\)?" -delete
-        pushd "${DDEV_DOCROOT}"
-        ;;
-    --) shift;
-        break
-        ;;
-  esac
+# Defaults
+export WP_VERSION="${WP_VERSION:-latest}"
+export WP_LOCALE="${WP_LOCALE:-en_US}"
+export WP_ADMIN_USER="${WP_ADMIN_USER:-admin}"
+export WP_ADMIN_PASSWORD="${WP_ADMIN_PASSWORD:-admin}"
+export WP_ADMIN_EMAIL="${WP_ADMIN_EMAIL:-admin@example.com}"
+export PROJECT_MODE="${PROJECT_MODE:-plugin}"
+export WP_MULTISITE="${WP_MULTISITE:-0}"
+export WP_MULTISITE_SUBDOMAIN="${WP_MULTISITE_SUBDOMAIN:-0}"
+export WP_DB_IMPORT="${WP_DB_IMPORT:-}"
+export ORCHESTRATE_SKIP="${ORCHESTRATE_SKIP:-}"
+export DOCROOT="/var/www/html"
+if [ -n "${DDEV_DOCROOT:-}" ] && [ "${DDEV_DOCROOT}" != "." ]; then
+    export WP_PATH="${DOCROOT}/${DDEV_DOCROOT}"
+else
+    export WP_PATH="${DOCROOT}"
+fi
+
+# Handle --reset flag
+if [[ "${1:-}" == "--reset" ]]; then
+    echo "Resetting WordPress..."
+    wp db reset --yes --path="${WP_PATH}" 2>/dev/null || true
+    rm -f "${WP_PATH}/wp-config.php"
+fi
+
+MULTISITE_LABEL="no"
+if [ "${WP_MULTISITE}" = "1" ]; then
+    if [ "${WP_MULTISITE_SUBDOMAIN}" = "1" ]; then
+        MULTISITE_LABEL="yes (subdomain)"
+    else
+        MULTISITE_LABEL="yes (subdirectory)"
+    fi
+fi
+
+echo "=== DDEV Orchestrate ==="
+echo "WordPress: ${WP_VERSION}"
+echo "Locale: ${WP_LOCALE}"
+echo "Mode: ${PROJECT_MODE}"
+echo "Multisite: ${MULTISITE_LABEL}"
+echo ""
+
+# Check if a fragment should be skipped via ORCHESTRATE_SKIP
+should_skip() {
+    local name="$1"
+    if [ -z "$ORCHESTRATE_SKIP" ]; then
+        return 1
+    fi
+    IFS=',' read -ra SKIP_LIST <<< "$ORCHESTRATE_SKIP"
+    for skip in "${SKIP_LIST[@]}"; do
+        skip="$(echo "$skip" | xargs)"
+        if [ "$skip" = "$name" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+# Run addon fragments in order
+for fragment in "${FRAGMENTS_DIR}"/*.sh; do
+    if [ -f "$fragment" ]; then
+        name="$(basename "$fragment")"
+        if should_skip "$name"; then
+            echo "--- Skipping $name (ORCHESTRATE_SKIP) ---"
+            echo ""
+            continue
+        fi
+        echo "--- Running $name ---"
+        # shellcheck source=/dev/null
+        source "$fragment"
+        echo ""
+    fi
 done
 
-# Execute all fragments from orchestrate.d
-if [ -d "${0}.d" ]; then
-    for FN in ${0}.d/*.sh ; do
-      echo $FN
-      source "${FN}"
+# Run project fragments in order
+if [ -d "$PROJECT_FRAGMENTS_DIR" ]; then
+    for fragment in "${PROJECT_FRAGMENTS_DIR}"/*.sh; do
+        if [ -f "$fragment" ]; then
+            echo "--- Running $(basename "$fragment") (project) ---"
+            # shellcheck source=/dev/null
+            source "$fragment"
+            echo ""
+        fi
     done
 fi
+
+echo "=== Orchestration complete ==="

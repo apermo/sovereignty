@@ -16,4 +16,3 @@ jobs:
         uses: apermo/reusable-workflows/.github/workflows/reusable-wp-theme-ci.yml@v0.2.0
         with:
             run-version-check: true
-            version-check-command: 'php bin/generate-version.php && git diff --exit-code version.php'

@@ -7,42 +7,13 @@ on:
 
 jobs:
     php:
-        uses: apermo/reusable-workflows/.github/workflows/reusable-ci.yml@main
+        uses: apermo/reusable-workflows/.github/workflows/reusable-ci.yml@v0.2.0
         with:
             php-versions: '["8.3", "8.4"]'
             test-command: ''
 
-    js-lint:
-        name: JS & CSS Lint
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-
-            - uses: actions/setup-node@v4
-              with:
-                  node-version: '22'
-                  cache: npm
-
-            - run: npm ci
-
-            - name: ESLint
-              run: npm run lint:js
-
-            - name: Stylelint
-              run: npm run lint:css
-
-    version-check:
-        name: Version Check
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-
-            - uses: shivammathur/setup-php@v2
-              with:
-                  php-version: '8.3'
-
-            - name: Regenerate version.php
-              run: php bin/generate-version.php
-
-            - name: Check version.php is up to date
-              run: git diff --exit-code version.php
+    theme:
+        uses: apermo/reusable-workflows/.github/workflows/reusable-wp-theme-ci.yml@v0.2.0
+        with:
+            run-version-check: true
+            version-check-command: 'php bin/generate-version.php && git diff --exit-code version.php'

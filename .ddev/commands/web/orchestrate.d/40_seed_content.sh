@@ -11,14 +11,16 @@ fi
 wp post delete 1 --force 2>/dev/null
 wp post delete 2 --force 2>/dev/null
 
-# Import media from theme assets
-BEACH_ID=$(wp media import "${THEME_FOLDER}/assets/images/beach.jpeg" --title="Beach" --porcelain)
+# Import media from theme assets (use CWD-relative path; after pushd we're in DDEV_DOCROOT)
+THEME_ASSETS="wp-content/themes/${THEME_NAME:-$DDEV_PROJECT}/assets"
+
+BEACH_ID=$(wp media import "${THEME_ASSETS}/images/beach.jpeg" --title="Beach" --porcelain)
 wp post meta update "$BEACH_ID" _wp_attachment_image_alt "Sandy beach with ocean waves"
 
-SEA_ID=$(wp media import "${THEME_FOLDER}/assets/images/sea.jpeg" --title="Sea" --porcelain)
+SEA_ID=$(wp media import "${THEME_ASSETS}/images/sea.jpeg" --title="Sea" --porcelain)
 wp post meta update "$SEA_ID" _wp_attachment_image_alt "Calm sea at the horizon"
 
-LIGHTS_ID=$(wp media import "${THEME_FOLDER}/assets/images/lights.jpeg" --title="Lights" --porcelain)
+LIGHTS_ID=$(wp media import "${THEME_ASSETS}/images/lights.jpeg" --title="Lights" --porcelain)
 wp post meta update "$LIGHTS_ID" _wp_attachment_image_alt "City lights at night"
 
 # Create taxonomy terms

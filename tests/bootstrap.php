@@ -28,6 +28,13 @@ if ( ! class_exists( 'WP_Comment' ) ) {
 		public string $comment_approved = '1';
 	}
 }
+// Stub WP functions that use named parameters (Brain Monkey mocks don't support named params).
+if ( ! function_exists( 'get_the_content' ) ) {
+	// phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint, SlevomatCodingStandard.TypeHints.ReturnTypeHint -- Must match WP core's untyped signature.
+	function get_the_content( $more_link_text = null, $strip_teaser = false, $post = null ) {
+		return $GLOBALS['_test_get_the_content'] ?? '';
+	}
+}
 // phpcs:enable WordPress.NamingConventions.PrefixAllGlobals, PSR1.Classes.ClassDeclaration, Squiz.Commenting, PSR1.Files.SideEffects, Generic.Files.OneObjectStructurePerFile
 
 $wp_tests_dir = getenv( 'WP_TESTS_DIR' );

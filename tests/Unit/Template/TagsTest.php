@@ -41,6 +41,7 @@ class TagsTest extends TestCase {
 	 * @return void
 	 */
 	protected function tearDown(): void {
+		unset( $GLOBALS['_test_get_the_content'] );
 		Config::reset();
 		Monkey\tearDown();
 		parent::tearDown();
@@ -79,7 +80,8 @@ class TagsTest extends TestCase {
 	 * @return void
 	 */
 	public function test_reading_time_outputs_time_element(): void {
-		Functions\expect( 'get_the_content' )->andReturn( \str_repeat( 'word ', 400 ) );
+		$GLOBALS['_test_get_the_content'] = \str_repeat( 'word ', 400 );
+
 		Functions\stubs(
 			[
 				'apply_filters'      => static fn ( $hook, $value ) => $value,

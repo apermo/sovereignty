@@ -202,7 +202,7 @@ class Tags {
 	 * @return int Reading time in minutes (minimum 1).
 	 */
 	public static function get_reading_time( WP_Post $post ): int {
-		$content    = get_the_content( null, false, $post );
+		$content    = get_the_content( post: $post );
 		$word_count = \str_word_count( wp_strip_all_tags( $content ) );
 
 		return (int) \max( 1, (int) \round( $word_count / Config::int( 'sovereignty.reading.wordsPerMinute' ) ) );

@@ -79,14 +79,17 @@ class TagsTest extends TestCase {
 	 * @return void
 	 */
 	public function test_reading_time_outputs_time_element(): void {
-		Functions\expect( 'get_post_field' )->once()->andReturn( \str_repeat( 'word ', 400 ) );
+		Functions\expect( 'get_the_content' )->andReturn( \str_repeat( 'word ', 400 ) );
 		Functions\stubs(
 			[
 				'apply_filters'      => static fn ( $hook, $value ) => $value,
 				'wp_strip_all_tags'  => static fn ( $text ) => $text,
 				'_n'                 => static fn ( $singular, $plural, $count ) => $count > 1 ? $plural : $singular,
 				'esc_html'           => static fn ( $value ) => $value,
+				'esc_attr'           => static fn ( $value ) => $value,
 				'number_format_i18n' => static fn ( $value ) => (string) $value,
+				'absint'             => static fn ( $value ) => \abs( (int) $value ),
+				'__'                 => static fn ( $text ) => $text,
 			],
 		);
 

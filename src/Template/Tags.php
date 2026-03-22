@@ -42,7 +42,10 @@ class Tags {
 	 * @return void
 	 */
 	public static function posted_by( WP_Post $post ): void {
-		$author_id = (int) $post->post_author;
+		$author_id   = (int) $post->post_author;
+		$author_name = get_the_author_meta( 'display_name', $author_id );
+		$author_url  = get_author_posts_url( $author_id );
+		$avatar_size = Config::int( 'sovereignty.avatar.size' );
 
 		\printf(
 			'<address class="byline">
@@ -54,11 +57,11 @@ class Tags {
 					<link itemprop="url" href="%2$s" />
 				</span>
 			</address>',
-			get_avatar( $author_id, Config::int( 'sovereignty.avatar.size' ) ),
-			esc_url( get_author_posts_url( $author_id ) ),
-			// translators: %s is the author name.
-			esc_attr( \sprintf( __( 'View all posts by %s', 'sovereignty' ), get_the_author_meta( 'display_name', $author_id ) ) ),
-			esc_html( get_the_author_meta( 'display_name', $author_id ) ),
+			get_avatar( $author_id, $avatar_size ),
+			esc_url( $author_url ),
+			/* translators: %s is the author name. */
+			esc_attr( \sprintf( __( 'View all posts by %s', 'sovereignty' ), $author_name ) ),
+			esc_html( $author_name ),
 		);
 	}
 
@@ -80,14 +83,14 @@ class Tags {
 		}
 
 		if ( $type === 'updated' ) {
-			$time      = get_the_modified_time( '', $post );
-			$date_c    = get_the_modified_date( 'c', $post );
-			$date      = get_the_modified_date( '', $post );
+			$time      = get_the_modified_time( post: $post );
+			$date_c    = get_the_modified_date( format: 'c', post: $post );
+			$date      = get_the_modified_date( post: $post );
 			$item_prop = 'dateModified';
 		} else {
-			$time      = get_the_time( '', $post );
-			$date_c    = get_the_date( 'c', $post );
-			$date      = get_the_date( '', $post );
+			$time      = get_the_time( post: $post );
+			$date_c    = get_the_date( format: 'c', post: $post );
+			$date      = get_the_date( post: $post );
 			$item_prop = 'datePublished';
 		}
 
@@ -120,24 +123,24 @@ class Tags {
 	}
 
 	/**
-	 * Retrieve the id for the post div.
+	 * Retrieve the HTML id attribute value for the post element.
 	 *
 	 * @param WP_Post $post The post object.
 	 *
-	 * @return string The post-id.
+	 * @return string The HTML id attribute value (e.g. "post-42").
 	 */
 	public static function get_post_id( WP_Post $post ): string {
-		$post_id = 'post-' . $post->ID;
+		$html_id = 'post-' . $post->ID;
 
 		/**
-		 * Filters the post ID attribute value.
+		 * Filters the post HTML id attribute value.
 		 *
-		 * @param string $post_id The post ID attribute.
+		 * @param string $html_id The HTML id attribute value.
 		 * @param int    $id      The numeric post ID.
 		 *
-		 * @return string The filtered post ID attribute.
+		 * @return string The filtered HTML id attribute value.
 		 */
-		return apply_filters( 'sovereignty_post_id', $post_id, $post->ID );
+		return apply_filters( 'sovereignty_post_id', $html_id, $post->ID );
 	}
 
 	/**
@@ -190,26 +193,40 @@ class Tags {
 	}
 
 	/**
-	 * Display estimated reading time.
+	 * Get the estimated reading time in minutes.
+	 *
+	 * @see wp-includes/blocks/post-time-to-read.php render_block_core_post_time_to_read()
+	 *
+	 * @param WP_Post $post The post object.
+	 *
+	 * @return int Reading time in minutes (minimum 1).
+	 */
+	public static function get_reading_time( WP_Post $post ): int {
+		$content    = get_the_content( null, false, $post );
+		$word_count = \str_word_count( wp_strip_all_tags( $content ) );
+
+		return (int) \max( 1, (int) \round( $word_count / Config::int( 'sovereignty.reading.wordsPerMinute' ) ) );
+	}
+
+	/**
+	 * Display estimated reading time with microformat markup.
 	 *
 	 * @param WP_Post $post The post object.
 	 *
 	 * @return void
 	 */
 	public static function reading_time( WP_Post $post ): void {
-		$content     = get_post_field( 'post_content', $post );
-		$word_count  = \str_word_count( wp_strip_all_tags( $content ) );
-		$readingtime = (int) \ceil( $word_count / Config::int( 'sovereignty.reading.wordsPerMinute' ) );
+		$minutes   = self::get_reading_time( $post );
+		$formatted = number_format_i18n( $minutes );
+
+		/* translators: %s: number of minutes. */
+		$duration = \sprintf( _n( '%s minute', '%s minutes', $minutes, 'sovereignty' ), $formatted );
 
 		\printf(
-			// translators: %1$s = reading time in minutes.
-			_n( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output contains intentional HTML markup from translation strings.
-				'<span class="entry-duration"><time datetime="PT%1$sM" class="dt-duration" itemprop="timeRequired">%1$s minute</time> to read</span>', // phpcs:ignore WordPress.WP.I18n.NoHtmlWrappedStrings
-				'<span class="entry-duration"><time datetime="PT%1$sM" class="dt-duration" itemprop="timeRequired">%1$s minutes</time> to read</span>', // phpcs:ignore WordPress.WP.I18n.NoHtmlWrappedStrings
-				$readingtime,
-				'sovereignty',
-			),
-			esc_html( number_format_i18n( $readingtime ) ),
+			'<span class="entry-duration"><time datetime="PT%dM" class="dt-duration" itemprop="timeRequired">%s</time> %s</span>',
+			absint( $minutes ),
+			esc_html( $duration ),
+			esc_html( __( 'to read', 'sovereignty' ) ),
 		);
 	}
 

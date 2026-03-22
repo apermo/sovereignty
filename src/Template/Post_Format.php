@@ -32,19 +32,19 @@ class Post_Format {
 	 * @return string
 	 */
 	public static function get_format_string( WP_Post $post ): string {
-		if ( get_post_type( $post ) === 'attachment' ) {
+		$post_type = get_post_type( $post );
+
+		if ( $post_type === 'attachment' ) {
 			return __( 'Attachment', 'sovereignty' );
 		}
 
-		if ( get_post_type( $post ) === 'page' ) {
+		if ( $post_type === 'page' ) {
 			return __( 'Page', 'sovereignty' );
 		}
 
-		if ( get_post_format( $post ) ) {
-			return get_post_format( $post );
-		}
+		$format = get_post_format( $post );
 
-		return __( 'Text', 'sovereignty' );
+		return $format ?: __( 'Text', 'sovereignty' );
 	}
 
 	/**

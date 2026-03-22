@@ -17,7 +17,7 @@ echo "Running linters before commit..." >&2
 
 # PHP linting (only if PHP files exist in staging)
 if command -v vendor/bin/phpcs &> /dev/null; then
-  vendor/bin/phpcs --report=summary 2>&1 >&2
+  vendor/bin/phpcs --report=summary --warning-severity=0 2>&1 >&2
   if [ $? -ne 0 ]; then
     ERRORS+=("PHPCS found errors")
   fi

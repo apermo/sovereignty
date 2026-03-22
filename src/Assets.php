@@ -49,11 +49,14 @@ class Assets {
 
 		wp_enqueue_style( 'dashicons' );
 
-		wp_enqueue_style( 'sovereignty-style', get_stylesheet_uri(), [ 'dashicons' ], \SOVEREIGNTY_VERSION );
-		wp_enqueue_style( 'sovereignty-print-style', get_template_directory_uri() . '/assets/css/print.css', [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, 'print' );
-		wp_enqueue_style( 'sovereignty-narrow-style', get_template_directory_uri() . '/assets/css/narrow-width.css', [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(max-width: 800px)' );
-		wp_enqueue_style( 'sovereignty-default-style', get_template_directory_uri() . '/assets/css/default-width.css', [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(min-width: 800px)' );
-		wp_enqueue_style( 'sovereignty-wide-style', get_template_directory_uri() . '/assets/css/wide-width.css', [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(min-width: 1000px)' );
+		$suffix    = \defined( 'SCRIPT_DEBUG' ) && \SCRIPT_DEBUG ? '' : '.min';
+		$theme_uri = get_template_directory_uri();
+
+		wp_enqueue_style( 'sovereignty-style', get_stylesheet_directory_uri() . "/style{$suffix}.css", [ 'dashicons' ], \SOVEREIGNTY_VERSION );
+		wp_enqueue_style( 'sovereignty-print-style', $theme_uri . "/assets/css/print{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, 'print' );
+		wp_enqueue_style( 'sovereignty-narrow-style', $theme_uri . "/assets/css/narrow-width{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(max-width: 800px)' );
+		wp_enqueue_style( 'sovereignty-default-style', $theme_uri . "/assets/css/default-width{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(min-width: 800px)' );
+		wp_enqueue_style( 'sovereignty-wide-style', $theme_uri . "/assets/css/wide-width{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(min-width: 1000px)' );
 
 		wp_localize_script(
 			'sovereignty',

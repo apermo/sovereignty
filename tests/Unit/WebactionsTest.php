@@ -10,18 +10,31 @@ use Brain\Monkey\Functions;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
+/**
+ * Tests for the Webactions class.
+ */
+#[CoversClass( Apermo\Sovereignty\Webactions::class )]
 class WebactionsTest extends TestCase {
 
+	/**
+	 * Set up Brain Monkey before each test.
+	 */
 	protected function setUp(): void {
 		parent::setUp();
 		Monkey\setUp();
 	}
 
+	/**
+	 * Tear down Brain Monkey after each test.
+	 */
 	protected function tearDown(): void {
 		Monkey\tearDown();
 		parent::tearDown();
 	}
 
+	/**
+	 * Verify that comment_reply_link wraps the reply link in an indie-action element.
+	 */
 	public function test_comment_reply_link_wraps_in_indie_action(): void {
 		$comment          = new stdClass();
 		$comment->comment_ID = 42;
@@ -56,8 +69,14 @@ class WebactionsTest extends TestCase {
 		$this->assertStringContainsString( '<a class="reply">Reply</a>', $result );
 	}
 
+	/**
+	 * Verify that comment_form_after outputs the closing indie-action tag.
+	 */
 	public function test_comment_form_after_closes_indie_action(): void {
-		$this->expectOutputString( '</indie-action>' );
+		\ob_start();
 		Webactions::comment_form_after();
+		$output = \ob_get_clean();
+
+		$this->assertSame( '</indie-action>', $output );
 	}
 }

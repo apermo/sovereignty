@@ -11,14 +11,8 @@
 	<exclude-pattern>.ddev/*</exclude-pattern>
 	<exclude-pattern>bin/*</exclude-pattern>
 
-	<!-- Test files: relax rules for test infrastructure and test methods -->
+	<!-- Test files: allow non-prefixed globals and WP test constants -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
-		<exclude-pattern>tests/*</exclude-pattern>
-	</rule>
-	<rule ref="Squiz.Commenting.FunctionComment.Missing">
-		<exclude-pattern>tests/*</exclude-pattern>
-	</rule>
-	<rule ref="Squiz.Commenting.ClassComment.Missing">
 		<exclude-pattern>tests/*</exclude-pattern>
 	</rule>
 

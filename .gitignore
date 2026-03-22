@@ -12,5 +12,7 @@ playwright-report/
 .phpunit.cache/
 style.css
 style.css.map
+style.min.css
 assets/css/*.css
+assets/css/*.min.css
 assets/css/*.css.map

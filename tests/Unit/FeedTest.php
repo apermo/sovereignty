@@ -9,18 +9,31 @@ use Brain\Monkey;
 use Brain\Monkey\Functions;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests for the Feed class.
+ */
+#[CoversClass( Apermo\Sovereignty\Feed::class )]
 class FeedTest extends TestCase {
 
+	/**
+	 * Set up Brain Monkey before each test.
+	 */
 	protected function setUp(): void {
 		parent::setUp();
 		Monkey\setUp();
 	}
 
+	/**
+	 * Tear down Brain Monkey after each test.
+	 */
 	protected function tearDown(): void {
 		Monkey\tearDown();
 		parent::tearDown();
 	}
 
+	/**
+	 * Verify that an empty format link returns false.
+	 */
 	public function test_get_post_format_archive_feed_link_returns_false_for_empty_link(): void {
 		Functions\expect( 'get_default_feed' )->once()->andReturn( 'rss2' );
 		// Post_Format::get_format_link() for 'standard' with page type returns permalink.
@@ -36,6 +49,9 @@ class FeedTest extends TestCase {
 		$this->assertFalse( $result );
 	}
 
+	/**
+	 * Verify that the feed link appends a /feed/ path when pretty permalinks are enabled.
+	 */
 	public function test_get_post_format_archive_feed_link_appends_feed_with_permalinks(): void {
 		Functions\expect( 'get_default_feed' )->once()->andReturn( 'rss2' );
 		Functions\stubs(
@@ -53,6 +69,9 @@ class FeedTest extends TestCase {
 		$this->assertStringContainsString( '/feed/', $result );
 	}
 
+	/**
+	 * Verify that the feed link uses a query argument when pretty permalinks are disabled.
+	 */
 	public function test_get_post_format_archive_feed_link_uses_query_arg_without_permalinks(): void {
 		Functions\expect( 'get_default_feed' )->once()->andReturn( 'rss2' );
 		Functions\stubs(

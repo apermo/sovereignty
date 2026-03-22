@@ -2,7 +2,7 @@
 
 /**
  * Build script: compiles SASS, converts indentation to tabs,
- * and replaces @@placeholders in style.css with package metadata.
+ * replaces @@placeholders in style.css, and generates minified CSS.
  */
 
 const { execSync } = require('child_process');
@@ -45,27 +45,18 @@ const replacements = {
 	'@@tags': (pkg.keywords || []).join(', '),
 };
 
-// Step 1: Compile SASS.
+// Step 1: Compile SASS (expanded + source maps).
 console.log('Compiling SASS...');
 for (const [output, source] of Object.entries(sassFiles)) {
 	const outputPath = path.join(root, output);
 	const sourcePath = path.join(root, source);
-	const mapPath = `${outputPath}.map`;
 	execSync(
 		`npx sass --no-error-css --style=expanded --source-map "${sourcePath}:${outputPath}"`,
 		{ cwd: root, stdio: 'inherit' }
 	);
-	// Remove source map files (not distributed).
-	if (fs.existsSync(mapPath)) {
-		fs.unlinkSync(mapPath);
-	}
-	// Remove source map comment from CSS.
-	let css = fs.readFileSync(outputPath, 'utf8');
-	css = css.replace(/\/\*# sourceMappingURL=.*\*\/\s*$/, '');
-	fs.writeFileSync(outputPath, css);
 }
 
-// Step 2: Convert leading spaces to tabs.
+// Step 2: Convert leading spaces to tabs in expanded CSS.
 console.log('Converting indentation to tabs...');
 for (const output of Object.keys(sassFiles)) {
 	const filePath = path.join(root, output);
@@ -86,5 +77,27 @@ for (const placeholder of sortedKeys) {
 	styleContent = styleContent.split(placeholder).join(replacements[placeholder]);
 }
 fs.writeFileSync(stylePath, styleContent);
+
+// Step 4: Generate minified CSS.
+console.log('Generating minified CSS...');
+for (const [output, source] of Object.entries(sassFiles)) {
+	const minOutput = output.replace('.css', '.min.css');
+	const outputPath = path.join(root, minOutput);
+	const sourcePath = path.join(root, source);
+	execSync(
+		`npx sass --no-error-css --style=compressed --no-source-map "${sourcePath}:${outputPath}"`,
+		{ cwd: root, stdio: 'inherit' }
+	);
+}
+
+// Replace placeholders in style.min.css too.
+const minStylePath = path.join(root, 'style.min.css');
+if (fs.existsSync(minStylePath)) {
+	let minContent = fs.readFileSync(minStylePath, 'utf8');
+	for (const placeholder of sortedKeys) {
+		minContent = minContent.split(placeholder).join(replacements[placeholder]);
+	}
+	fs.writeFileSync(minStylePath, minContent);
+}
 
 console.log('Build complete.');

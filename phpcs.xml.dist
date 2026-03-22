@@ -11,6 +11,17 @@
 	<exclude-pattern>.ddev/*</exclude-pattern>
 	<exclude-pattern>bin/*</exclude-pattern>
 
+	<!-- Test files: relax rules for test infrastructure and test methods -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.FunctionComment.Missing">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.ClassComment.Missing">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
 	<arg name="extensions" value="php"/>
 
 	<rule ref="Apermo"/>
@@ -18,7 +29,6 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="autonomie"/>
 				<element value="sovereignty"/>
 			</property>
 		</properties>
@@ -27,7 +37,6 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
-				<element value="autonomie"/>
 				<element value="sovereignty"/>
 				<element value="Apermo\Sovereignty"/>
 			</property>

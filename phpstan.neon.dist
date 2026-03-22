@@ -6,6 +6,7 @@ parameters:
         analyseAndScan:
             - node_modules (?)
             - .ddev (?)
+            - tests (?)
         analyse:
             - vendor
     scanDirectories:

@@ -10,7 +10,7 @@ jobs:
         uses: apermo/reusable-workflows/.github/workflows/reusable-ci.yml@v0.2.0
         with:
             php-versions: '["8.3", "8.4"]'
-            test-command: ''
+            test-command: 'test:unit'
 
     theme:
         uses: apermo/reusable-workflows/.github/workflows/reusable-wp-theme-ci.yml@v0.2.0

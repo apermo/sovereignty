@@ -10,7 +10,7 @@ const { __ } = wp.i18n;
 
 wp.hooks.addFilter(
 	'editor.PostFeaturedImage',
-	'autonomie/full_width_featured_image',
+	'sovereignty/full_width_featured_image',
 	wrapPostFeaturedImage
 );
 
@@ -31,7 +31,7 @@ class FullWidthFeaturedImageCheckBox extends wp.element.Component {
 		const { meta, updateFullWidthFeaturedImage } = this.props;
 
 		return el(wp.components.CheckboxControl, {
-			label: __('Use as post cover (full-width)', 'autonomie'),
+			label: __('Use as post cover (full-width)', 'sovereignty'),
 			checked: meta.full_width_featured_image,
 			onChange: (value) => {
 				this.setState({ isChecked: value });

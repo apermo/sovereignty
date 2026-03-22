@@ -31,16 +31,27 @@
 		"phpstan/phpstan-strict-rules": "^2.0",
 		"apermo/phpstan-wordpress-rules": "^0.2",
 		"phpstan/extension-installer": "^1.4",
-		"pfefferle/wordpress-activitypub": "^8.0"
+		"pfefferle/wordpress-activitypub": "^8.0",
+		"brain/monkey": "^2.6",
+		"phpunit/phpunit": "^11.0",
+		"yoast/phpunit-polyfills": "^3.0"
 	},
 	"scripts": {
 		"cs": "phpcs --warning-severity=0",
 		"cs:fix": "phpcbf",
 		"lint": "@cs",
 		"lint:fix": "@cs:fix",
+		"test": "phpunit",
+		"test:unit": "phpunit --testsuite Unit",
+		"test:integration": "phpunit --testsuite Integration",
 		"analyse": "phpstan analyse -c phpstan.neon.dist --memory-limit=2G",
 		"analyse:strict": "phpstan analyse -c phpstan-strict.neon --memory-limit=2G",
 		"generate-version": "@php bin/generate-version.php"
+	},
+	"autoload": {
+		"psr-4": {
+			"Apermo\\Sovereignty\\": "src/"
+		}
 	},
 	"extra": {
 		"installer-name": "sovereignty",

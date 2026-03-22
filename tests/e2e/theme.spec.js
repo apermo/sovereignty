@@ -8,7 +8,7 @@ test.describe('Theme basics', () => {
 
 	test('theme stylesheet is loaded', async ({ page }) => {
 		await page.goto('/');
-		const stylesheet = page.locator('#autonomie-style-css');
+		const stylesheet = page.locator('#sovereignty-style-css');
 		await expect(stylesheet).toBeAttached();
 	});
 

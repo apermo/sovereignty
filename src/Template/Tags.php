@@ -242,11 +242,13 @@ class Tags {
 	 */
 	public static function the_content( WP_Post $post ): void {
 		if ( is_search() ) {
-			echo get_the_excerpt( $post ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Excerpt is filtered by WP.
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Filtered by WP.
+			echo get_the_excerpt( $post );
 			return;
 		}
 
 		$more_text = __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'sovereignty' );
+		$raw       = get_the_content( $more_text, false, $post );
 
 		if ( is_singular() ) {
 			/**
@@ -254,21 +256,26 @@ class Tags {
 			 *
 			 * @see wp-includes/post-template.php
 			 */
-			echo apply_filters( 'the_content', get_the_content( more_link_text: $more_text, post: $post ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WP core filter.
+			$content = apply_filters( 'the_content', $raw ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Filtered by WP.
+			echo $content;
 			return;
 		}
 
-		$count = \str_word_count( wp_strip_all_tags( get_the_content( post: $post ) ) );
+		$count = \str_word_count( wp_strip_all_tags( $raw ) );
 
 		if ( \defined( 'SOVEREIGNTY_EXCERPT' ) && \SOVEREIGNTY_EXCERPT && ( get_post_format( $post ) === false || $count > \SOVEREIGNTY_EXCERPT_COUNT ) ) { // @phpstan-ignore constant.notFound
-			echo get_the_excerpt( $post ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Excerpt is filtered by WP.
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Filtered by WP.
+			echo get_the_excerpt( $post );
 		} else {
 			/**
 			 * Filters the post content.
 			 *
 			 * @see wp-includes/post-template.php
 			 */
-			echo apply_filters( 'the_content', get_the_content( more_link_text: $more_text, post: $post ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WP core filter.
+			$content = apply_filters( 'the_content', $raw ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Filtered by WP.
+			echo $content;
 		}
 	}
 

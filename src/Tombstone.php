@@ -99,17 +99,26 @@ class Tombstone {
 			return;
 		}
 
-		$selected = $post->post_status === self::STATUS ? ' selected="selected"' : '';
-		$label    = __( 'Tombstone (Gone)', 'sovereignty' );
+		$label = __( 'Tombstone (Gone)', 'sovereignty' );
 
 		?>
 		<script>
-			jQuery( document ).ready( function() {
-				jQuery( 'select#post_status' ).append(
-					'<option value="<?php echo esc_attr( self::STATUS ); ?>"<?php echo $selected; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Contains HTML attribute from checked source. ?>><?php echo esc_html( $label ); ?></option>'
-				);
+			document.addEventListener( 'DOMContentLoaded', function() {
+				var select = document.getElementById( 'post_status' );
+				if ( select ) {
+					var option = document.createElement( 'option' );
+					option.value = '<?php echo esc_attr( self::STATUS ); ?>';
+					option.textContent = '<?php echo esc_html( $label ); ?>';
+					<?php if ( $post->post_status === self::STATUS ) { ?>
+					option.selected = true;
+					<?php } ?>
+					select.appendChild( option );
+				}
 				<?php if ( $post->post_status === self::STATUS ) { ?>
-				jQuery( '#post-status-display' ).text( '<?php echo esc_js( $label ); ?>' );
+				var display = document.getElementById( 'post-status-display' );
+				if ( display ) {
+					display.textContent = '<?php echo esc_js( $label ); ?>';
+				}
 				<?php } ?>
 			});
 		</script>

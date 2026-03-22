@@ -119,42 +119,50 @@ class TagsTest extends TestCase {
 	 *
 	 * @return void
 	 */
-	public function test_site_title_tag_returns_h1_on_home(): void {
+	public function test_site_title_tag_echoes_h1_on_home(): void {
 		Functions\expect( 'is_home' )->once()->andReturn( true );
 
-		$this->assertSame( 'h1', Tags::site_title_tag() );
+		\ob_start();
+		Tags::site_title_tag();
+		$this->assertSame( 'h1', \ob_get_clean() );
 	}
 
 	/**
-	 * Verify site_title_tag returns div on non-home pages.
+	 * Verify site_title_tag echoes div on non-home pages.
 	 *
 	 * @return void
 	 */
-	public function test_site_title_tag_returns_div_on_non_home(): void {
+	public function test_site_title_tag_echoes_div_on_non_home(): void {
 		Functions\expect( 'is_home' )->once()->andReturn( false );
 
-		$this->assertSame( 'div', Tags::site_title_tag() );
+		\ob_start();
+		Tags::site_title_tag();
+		$this->assertSame( 'div', \ob_get_clean() );
 	}
 
 	/**
-	 * Verify entry_title_tag returns h1 on singular pages.
+	 * Verify entry_title_tag echoes h1 on singular pages.
 	 *
 	 * @return void
 	 */
-	public function test_entry_title_tag_returns_h1_on_singular(): void {
+	public function test_entry_title_tag_echoes_h1_on_singular(): void {
 		Functions\expect( 'is_singular' )->once()->andReturn( true );
 
-		$this->assertSame( 'h1', Tags::entry_title_tag() );
+		\ob_start();
+		Tags::entry_title_tag();
+		$this->assertSame( 'h1', \ob_get_clean() );
 	}
 
 	/**
-	 * Verify entry_title_tag returns h2 on non-singular pages.
+	 * Verify entry_title_tag echoes h2 on non-singular pages.
 	 *
 	 * @return void
 	 */
-	public function test_entry_title_tag_returns_h2_on_non_singular(): void {
+	public function test_entry_title_tag_echoes_h2_on_non_singular(): void {
 		Functions\expect( 'is_singular' )->once()->andReturn( false );
 
-		$this->assertSame( 'h2', Tags::entry_title_tag() );
+		\ob_start();
+		Tags::entry_title_tag();
+		$this->assertSame( 'h2', \ob_get_clean() );
 	}
 }

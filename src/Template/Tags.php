@@ -224,48 +224,69 @@ class Tags {
 	 * @return void
 	 */
 	public static function the_content( WP_Post $post ): void {
-		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound, Apermo.Hooks.RequireHookDocBlock
 		if ( is_search() ) {
-			echo get_the_excerpt( $post );
+			echo get_the_excerpt( $post ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Excerpt is filtered by WP.
 			return;
 		}
 
 		$more_text = __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'sovereignty' );
 
 		if ( is_singular() ) {
-			echo apply_filters( 'the_content', get_the_content( $more_text, false, $post ) );
+			self::echo_the_content( $more_text, $post );
 			return;
 		}
 
-		$count = \str_word_count( wp_strip_all_tags( get_the_content( null, false, $post ) ) );
+		$count = \str_word_count( wp_strip_all_tags( get_the_content( post: $post ) ) );
 
 		if ( \defined( 'SOVEREIGNTY_EXCERPT' ) && \SOVEREIGNTY_EXCERPT && ( get_post_format( $post ) === false || $count > \SOVEREIGNTY_EXCERPT_COUNT ) ) { // @phpstan-ignore constant.notFound
-			echo get_the_excerpt( $post );
+			echo get_the_excerpt( $post ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Excerpt is filtered by WP.
 		} else {
-			echo apply_filters( 'the_content', get_the_content( $more_text, false, $post ) );
+			self::echo_the_content( $more_text, $post );
 		}
-		// phpcs:enable
 	}
 
 	/**
-	 * Get the HTML tag name for the site title element.
+	 * Echo the_content with explicit $post, applying the_content filter.
 	 *
-	 * Returns 'h1' on the homepage (main heading), 'div' elsewhere.
+	 * @see wp-includes/post-template.php the_content()
 	 *
-	 * @return string The HTML tag name.
+	 * @param string  $more_text The "read more" link text.
+	 * @param WP_Post $post      The post object.
+	 *
+	 * @return void
 	 */
-	public static function site_title_tag(): string {
-		return is_home() ? 'h1' : 'div';
+	private static function echo_the_content( string $more_text, WP_Post $post ): void {
+		/**
+		 * Filters the post content.
+		 *
+		 * @see wp-includes/post-template.php
+		 *
+		 * @param string $content Content of the current post.
+		 *
+		 * @return string Filtered content.
+		 */
+		echo apply_filters( 'the_content', get_the_content( more_link_text: $more_text, post: $post ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WP core filter.
 	}
 
 	/**
-	 * Get the HTML tag name for the entry title element.
+	 * Echo the HTML tag name for the site title element.
 	 *
-	 * Returns 'h1' on singular pages, 'h2' in listings.
+	 * Outputs 'h1' on the homepage (main heading), 'div' elsewhere.
 	 *
-	 * @return string The HTML tag name.
+	 * @return void
 	 */
-	public static function entry_title_tag(): string {
-		return is_singular() ? 'h1' : 'h2';
+	public static function site_title_tag(): void {
+		echo is_home() ? 'h1' : 'div'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded tag names.
+	}
+
+	/**
+	 * Echo the HTML tag name for the entry title element.
+	 *
+	 * Outputs 'h1' on singular pages, 'h2' in listings.
+	 *
+	 * @return void
+	 */
+	public static function entry_title_tag(): void {
+		echo is_singular() ? 'h1' : 'h2'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded tag names.
 	}
 }

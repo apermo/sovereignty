@@ -13,7 +13,7 @@ use Apermo\Sovereignty\Featured_Image;
 use Apermo\Sovereignty\Semantics;
 use Apermo\Sovereignty\Template\Tags;
 
-global $post;
+global $post; // Set by the_post() in calling template.
 ?>
 
 <article <?php Tags::post_id( $post ); ?> <?php post_class(); ?><?php Semantics::output( 'post' ); ?>>

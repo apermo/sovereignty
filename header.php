@@ -56,11 +56,11 @@ if ( function_exists( 'wp_body_open' ) ) {
 			}
 
 			?>
-			<<?php echo esc_html( Tags::site_title_tag() ); ?> id="site-title"<?php Semantics::output( 'site-title' ); ?>>
+			<<?php Tags::site_title_tag(); ?> id="site-title"<?php Semantics::output( 'site-title' ); ?>>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"<?php Semantics::output( 'site-url' ); ?>>
 				<?php bloginfo( 'name' ); ?>
 				</a>
-			</<?php echo esc_html( Tags::site_title_tag() ); ?>>
+			</<?php Tags::site_title_tag(); ?>>
 
 			<?php get_search_form( [ 'echo' => true ] ); ?>
 		</div>

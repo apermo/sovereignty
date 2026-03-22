@@ -31,10 +31,11 @@ class Feed {
 			$feed = $default_feed;
 		}
 
-		$current_post = get_post(); // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Utility called from hook context.
+		// phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Utility called from hook context.
+		$current_post = get_post();
 		$link         = $current_post instanceof WP_Post
 			? Post_Format::get_format_link( $post_format, $current_post )
-			: ''; // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Utility called from hook context.
+			: '';
 		if ( empty( $link ) ) {
 			return false;
 		}

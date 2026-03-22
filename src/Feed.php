@@ -89,7 +89,9 @@ class Feed {
 		// Post/Page feeds.
 		if ( is_singular() ) {
 			// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
-			foreach ( wp_get_post_terms( get_the_ID(), [ 'post_tag', 'category' ] ) as $term ) {
+			$post = get_post();
+
+			foreach ( wp_get_post_terms( $post->ID, [ 'post_tag', 'category' ] ) as $term ) {
 				$tax = get_taxonomy( $term->taxonomy );
 
 				$feeds[] = [
@@ -97,9 +99,6 @@ class Feed {
 					'href'  => get_term_feed_link( $term->term_id, $term->taxonomy ),
 				];
 			}
-
-			// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
-			$post = get_post();
 
 			$author_id = $post->post_author;
 			$feeds[]   = [

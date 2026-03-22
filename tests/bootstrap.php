@@ -4,6 +4,32 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals, PSR1.Classes.ClassDeclaration, Universal.Files.SeparateFunctionsFromOO, Squiz.Commenting, PSR1.Files.SideEffects, Generic.Files.OneObjectStructurePerFile
+if ( ! class_exists( 'WP_Post' ) ) {
+	class WP_Post {
+
+		public int $ID = 0;
+
+		public int $post_author = 0;
+
+		public string $post_content = '';
+
+		public string $post_type = 'post';
+	}
+}
+
+if ( ! class_exists( 'WP_Comment' ) ) {
+	class WP_Comment {
+
+		public int $comment_ID = 0;
+
+		public string $comment_type = '';
+
+		public string $comment_approved = '1';
+	}
+}
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals, PSR1.Classes.ClassDeclaration, Squiz.Commenting, PSR1.Files.SideEffects, Generic.Files.OneObjectStructurePerFile
+
 $wp_tests_dir = getenv( 'WP_TESTS_DIR' );
 
 if ( $wp_tests_dir === false ) {

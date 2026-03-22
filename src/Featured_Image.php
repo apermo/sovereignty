@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Apermo\Sovereignty;
 
+use WP_Post;
+
 /**
  * Featured image handling: post thumbnails, post covers, and block editor support.
  *
@@ -14,19 +16,19 @@ class Featured_Image {
 	/**
 	 * Output the post thumbnail with microformat classes.
 	 *
-	 * @param string $before HTML to output before the thumbnail.
-	 * @param string $after  HTML to output after the thumbnail.
+	 * @param WP_Post $post   The post object.
+	 * @param string  $before HTML to output before the thumbnail.
+	 * @param string  $after  HTML to output after the thumbnail.
 	 *
 	 * @return void
 	 */
-	public static function the_post_thumbnail( string $before = '', string $after = '' ): void {
-		// phpcs:disable Apermo.WordPress.ImplicitPostFunction
-		if ( self::has_full_width() ) {
+	public static function the_post_thumbnail( WP_Post $post, string $before = '', string $after = '' ): void {
+		if ( self::has_full_width( $post ) ) {
 			return;
 		}
 
-		if ( get_the_post_thumbnail() !== '' ) {
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'post-thumbnail' );
+		if ( get_the_post_thumbnail( $post ) !== '' ) {
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post ), 'post-thumbnail' );
 
 			if ( $image['1'] <= '400' ) {
 				return;
@@ -34,7 +36,7 @@ class Featured_Image {
 
 			$class = 'photo';
 
-			$post_format = get_post_format();
+			$post_format = get_post_format( $post );
 
 			if ( \in_array( $post_format, [ 'image', 'gallery' ], true ) ) {
 				$class .= ' u-photo';
@@ -42,35 +44,40 @@ class Featured_Image {
 				$class .= ' u-featured';
 			}
 
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $before contains trusted HTML from template.
-			echo $before;
-
-			the_post_thumbnail(
-				'post-thumbnail',
-				[
-					'class'    => $class,
-					'itemprop' => 'image',
-					'loading'  => 'lazy',
-				],
-			);
-
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $after contains trusted HTML from template.
-			echo $after;
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- $before and $after contain trusted HTML from template.
+			echo $before
+				. get_the_post_thumbnail(
+					$post,
+					'post-thumbnail',
+					[
+						'class'    => $class,
+						'itemprop' => 'image',
+						'loading'  => 'lazy',
+					],
+				)
+				. $after;
+			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-		// phpcs:enable Apermo.WordPress.ImplicitPostFunction
 	}
 
 	/**
 	 * Prepend small thumbnails to post content.
+	 *
+	 * Called as a the_content filter — resolves $post internally.
 	 *
 	 * @param string $content The post content.
 	 *
 	 * @return string The modified post content.
 	 */
 	public static function content_post_thumbnail( string $content ): string {
-		// phpcs:disable Apermo.WordPress.ImplicitPostFunction
-		if ( get_the_post_thumbnail() !== '' ) {
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'post-thumbnail' );
+		$post = get_post(); // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Hook callback, no $post parameter available.
+
+		if ( ! $post instanceof WP_Post ) {
+			return $content;
+		}
+
+		if ( get_the_post_thumbnail( $post ) !== '' ) {
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post ), 'post-thumbnail' );
 
 			if ( $image['1'] > '400' ) {
 				return $content;
@@ -78,7 +85,7 @@ class Featured_Image {
 
 			$class = 'alignright photo';
 
-			$post_format = get_post_format();
+			$post_format = get_post_format( $post );
 
 			if ( \in_array( $post_format, [ 'image', 'gallery' ], true ) ) {
 				$class .= ' u-photo';
@@ -87,7 +94,7 @@ class Featured_Image {
 			}
 
 			$thumbnail = get_the_post_thumbnail(
-				null,
+				$post,
 				'post-thumbnail',
 				[
 					'class'    => $class,
@@ -99,7 +106,6 @@ class Featured_Image {
 			return \sprintf( '<p>%s</p>%s', $thumbnail, $content );
 		}
 
-		// phpcs:enable Apermo.WordPress.ImplicitPostFunction
 		return $content;
 	}
 
@@ -167,22 +173,24 @@ class Featured_Image {
 	}
 
 	/**
-	 * Check if the current post has full-width featured image enabled.
+	 * Check if the post has full-width featured image enabled.
+	 *
+	 * When called from hook callbacks (no $post available), pass get_post().
+	 *
+	 * @param WP_Post $post The post object.
 	 *
 	 * @return bool
 	 */
-	public static function has_full_width(): bool {
+	public static function has_full_width( WP_Post $post ): bool {
 		if ( ! is_singular() ) {
 			return false;
 		}
 
-		// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
-		if ( ! has_post_thumbnail() ) {
+		if ( ! has_post_thumbnail( $post ) ) {
 			return false;
 		}
 
-		// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
-		$full_width_featured_image = get_post_meta( get_the_ID(), 'full_width_featured_image', true );
+		$full_width_featured_image = get_post_meta( $post->ID, 'full_width_featured_image', true );
 
 		return $full_width_featured_image === '1';
 	}
@@ -190,12 +198,19 @@ class Featured_Image {
 	/**
 	 * Enqueue inline CSS for full-width featured image header.
 	 *
+	 * Hook callback — resolves $post internally.
+	 *
 	 * @return void
 	 */
 	public static function enqueue_scripts(): void {
-		if ( is_singular() && self::has_full_width() ) {
-			// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
+		$post = get_post(); // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Hook callback, no $post parameter available.
+
+		if ( ! $post instanceof WP_Post ) {
+			return;
+		}
+
+		if ( is_singular() && self::has_full_width( $post ) ) {
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post ), 'full' );
 
 			$css = '.entry-header {
 				background: linear-gradient(190deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url(' . $image[0] . ') no-repeat center center scroll;
@@ -208,14 +223,19 @@ class Featured_Image {
 	/**
 	 * Add full-width-featured-image to post class.
 	 *
+	 * Hook callback — resolves $post internally.
+	 *
 	 * @param array $classes The array of post classes.
 	 *
 	 * @return array The modified array of post classes.
 	 */
 	public static function post_class( array $classes ): array {
-		if ( is_singular() && self::has_full_width() ) {
+		$post = get_post(); // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Hook callback, no $post parameter available.
+
+		if ( $post instanceof WP_Post && is_singular() && self::has_full_width( $post ) ) {
 			$classes[] = 'has-full-width-featured-image';
 		}
+
 		return $classes;
 	}
 

@@ -142,4 +142,52 @@ class Functions {
 
 		return '';
 	}
+
+	/**
+	 * Check if an archive title is available.
+	 *
+	 * @return bool
+	 */
+	public static function has_archive_title(): bool {
+		return self::get_the_archive_title() !== '';
+	}
+
+	/**
+	 * Check if an archive description is available.
+	 *
+	 * @return bool
+	 */
+	public static function has_archive_description(): bool {
+		return self::get_the_archive_description() !== '';
+	}
+
+	/**
+	 * Echo the archive title.
+	 *
+	 * @return void
+	 */
+	public static function render_archive_title(): void {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- May contain HTML from WP core.
+		echo self::get_the_archive_title();
+	}
+
+	/**
+	 * Echo the archive description.
+	 *
+	 * @return void
+	 */
+	public static function render_archive_description(): void {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Contains HTML from WP core.
+		echo self::get_the_archive_description();
+	}
+
+	/**
+	 * Echo the author archive meta.
+	 *
+	 * @return void
+	 */
+	public static function render_archive_author_meta(): void {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Contains safe HTML.
+		echo self::get_archive_author_meta();
+	}
 }

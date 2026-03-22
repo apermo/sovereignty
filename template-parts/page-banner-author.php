@@ -9,7 +9,6 @@ use Apermo\Sovereignty\Template\Functions;
 		<?php echo get_avatar( get_the_author_meta( 'ID' ), 150 ); ?>
 		<h1 id="page-title"<?php Semantics::output( 'page-title' ); ?>><?php echo esc_html( get_the_author_meta( 'display_name' ) ); ?></h1>
 		<div id="page-description"<?php Semantics::output( 'page-description' ); ?>><?php echo wp_kses_post( get_the_author_meta( 'description' ) ); ?></div>
-		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Functions::get_archive_author_meta() returns safe HTML. ?>
-		<div id="page-meta"><?php echo Functions::get_archive_author_meta(); ?></div>
+		<div id="page-meta"><?php Functions::render_archive_author_meta(); ?></div>
 	</div>
 </div>

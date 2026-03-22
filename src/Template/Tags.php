@@ -249,7 +249,12 @@ class Tags {
 		$more_text = __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'sovereignty' );
 
 		if ( is_singular() ) {
-			self::echo_the_content( $more_text, $post );
+			/**
+			 * Filters the post content.
+			 *
+			 * @see wp-includes/post-template.php
+			 */
+			echo apply_filters( 'the_content', get_the_content( more_link_text: $more_text, post: $post ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WP core filter.
 			return;
 		}
 
@@ -258,31 +263,13 @@ class Tags {
 		if ( \defined( 'SOVEREIGNTY_EXCERPT' ) && \SOVEREIGNTY_EXCERPT && ( get_post_format( $post ) === false || $count > \SOVEREIGNTY_EXCERPT_COUNT ) ) { // @phpstan-ignore constant.notFound
 			echo get_the_excerpt( $post ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Excerpt is filtered by WP.
 		} else {
-			self::echo_the_content( $more_text, $post );
+			/**
+			 * Filters the post content.
+			 *
+			 * @see wp-includes/post-template.php
+			 */
+			echo apply_filters( 'the_content', get_the_content( more_link_text: $more_text, post: $post ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WP core filter.
 		}
-	}
-
-	/**
-	 * Echo the_content with explicit $post, applying the_content filter.
-	 *
-	 * @see wp-includes/post-template.php the_content()
-	 *
-	 * @param string  $more_text The "read more" link text.
-	 * @param WP_Post $post      The post object.
-	 *
-	 * @return void
-	 */
-	private static function echo_the_content( string $more_text, WP_Post $post ): void {
-		/**
-		 * Filters the post content.
-		 *
-		 * @see wp-includes/post-template.php
-		 *
-		 * @param string $content Content of the current post.
-		 *
-		 * @return string Filtered content.
-		 */
-		echo apply_filters( 'the_content', get_the_content( more_link_text: $more_text, post: $post ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WP core filter.
 	}
 
 	/**

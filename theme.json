@@ -72,9 +72,6 @@
 			"aside", "gallery", "link", "status",
 			"image", "video", "audio", "quote", "chat"
 		],
-		"navMenus": {
-			"primary": "Primary Menu"
-		},
 		"sidebars": [
 			{
 				"id": "sidebar-1",

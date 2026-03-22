@@ -28,7 +28,6 @@ use Apermo\Sovereignty\Template\Functions;
  *
  * @see https://make.wordpress.org/core/2019/04/24/miscellaneous-developer-updates-in-5-2/
  */
-
 if ( function_exists( 'wp_body_open' ) ) {
 	wp_body_open();
 } else {

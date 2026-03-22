@@ -19,8 +19,8 @@ get_header(); ?>
 				</header>
 
 				<div class="entry-content e-content">
-					<p><?php wp_service_worker_error_message_placeholder(); // @phpstan-ignore function.notFound (PWA plugin) ?></p>
-					<p><?php wp_service_worker_error_details_template( '' . esc_html__( 'More Details', 'sovereignty' ) . '' ); // @phpstan-ignore function.notFound (PWA plugin) ?></p>
+					<p><?php wp_service_worker_error_message_placeholder(); ?></p>
+					<p><?php wp_service_worker_error_details_template( '' . esc_html__( 'More Details', 'sovereignty' ) . '' ); ?></p>
 				</div><!-- .entry-content -->
 			</article><!-- #post-0 -->
 

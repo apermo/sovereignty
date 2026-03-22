@@ -200,68 +200,13 @@ class Semantics {
 	 *
 	 * @return array
 	 */
-	public static function get_semantics( ?string $id = null ): array { // phpcs:ignore SlevomatCodingStandard.Functions.FunctionLength.FunctionLength -- @todo Break into per-element helpers.
-		$classes = [];
+	public static function get_semantics( ?string $id = null ): array {
+		$method = 'semantics_' . \str_replace( '-', '_', $id ?? '' );
 
-		switch ( $id ) {
-			case 'body':
-				if ( is_search() ) {
-					$classes['itemscope'] = [ '' ];
-					$classes['itemtype'] = [ 'https://schema.org/Blog', 'https://schema.org/SearchResultsPage' ];
-				} elseif ( is_author() ) {
-					$classes['itemscope'] = [ '' ];
-					$classes['itemtype'] = [ 'https://schema.org/Blog', 'https://schema.org/ProfilePage' ];
-				} elseif ( is_single() ) {
-					$classes['itemscope'] = [ '' ];
-					$classes['itemtype'] = [ 'https://schema.org/BlogPosting' ];
-					$classes['itemref'] = [ 'site-publisher' ];
-				} elseif ( is_page() ) {
-					$classes['itemscope'] = [ '' ];
-					$classes['itemtype'] = [ 'https://schema.org/WebPage' ];
-				} elseif ( ! is_singular() ) {
-					$classes['itemscope'] = [ '' ];
-					$classes['itemtype'] = [ 'https://schema.org/Blog', 'https://schema.org/WebPage' ];
-				}
-
-				$classes['itemid'] = [ get_self_link() ];
-
-				break;
-			case 'main':
-				break;
-			case 'site-title':
-				if ( is_home() ) {
-					$classes['itemprop'] = [ 'name' ];
-					$classes['class'] = [ 'p-name' ];
-				}
-				break;
-			case 'page-title':
-				if ( ! is_singular() && ! is_home() ) {
-					$classes['itemprop'] = [ 'name' ];
-					$classes['class'] = [ 'p-name' ];
-				}
-				break;
-			case 'page-description':
-				if ( ! is_singular() ) {
-					$classes['itemprop'] = [ 'description' ];
-					$classes['class'] = [ 'p-summary', 'e-content' ];
-				}
-				break;
-			case 'site-url':
-				if ( ! is_singular() ) {
-					$classes['itemprop'] = [ 'url' ];
-					$classes['class'] = [ 'u-url', 'url' ];
-				}
-				break;
-			case 'post':
-				if ( ! is_singular() ) {
-					$classes['itemprop'] = [ 'blogPost' ];
-					$classes['itemscope'] = [ '' ];
-					$classes['itemtype'] = [ 'https://schema.org/BlogPosting' ];
-					$classes['itemref'] = [ 'site-publisher' ];
-					// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
-					$classes['itemid'] = [ get_permalink() ];
-				}
-				break;
+		if ( \method_exists( self::class, $method ) ) {
+			$classes = self::$method();
+		} else {
+			$classes = [];
 		}
 
 		/**
@@ -283,6 +228,121 @@ class Semantics {
 		 * @return array The filtered semantic attributes.
 		 */
 		$classes = apply_filters( "sovereignty_semantics_{$id}", $classes, $id );
+
+		return $classes;
+	}
+
+	/**
+	 * Schema.org attributes for the body element.
+	 *
+	 * @return array
+	 */
+	private static function semantics_body(): array {
+		$classes = [];
+
+		if ( is_search() ) {
+			$classes['itemscope'] = [ '' ];
+			$classes['itemtype']  = [ 'https://schema.org/Blog', 'https://schema.org/SearchResultsPage' ];
+		} elseif ( is_author() ) {
+			$classes['itemscope'] = [ '' ];
+			$classes['itemtype']  = [ 'https://schema.org/Blog', 'https://schema.org/ProfilePage' ];
+		} elseif ( is_single() ) {
+			$classes['itemscope'] = [ '' ];
+			$classes['itemtype']  = [ 'https://schema.org/BlogPosting' ];
+			$classes['itemref']   = [ 'site-publisher' ];
+		} elseif ( is_page() ) {
+			$classes['itemscope'] = [ '' ];
+			$classes['itemtype']  = [ 'https://schema.org/WebPage' ];
+		} elseif ( ! is_singular() ) {
+			$classes['itemscope'] = [ '' ];
+			$classes['itemtype']  = [ 'https://schema.org/Blog', 'https://schema.org/WebPage' ];
+		}
+
+		$classes['itemid'] = [ get_self_link() ];
+
+		return $classes;
+	}
+
+	/**
+	 * Schema.org attributes for the site title.
+	 *
+	 * @return array
+	 */
+	private static function semantics_site_title(): array {
+		$classes = [];
+
+		if ( is_home() ) {
+			$classes['itemprop'] = [ 'name' ];
+			$classes['class']    = [ 'p-name' ];
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Schema.org attributes for the page title.
+	 *
+	 * @return array
+	 */
+	private static function semantics_page_title(): array {
+		$classes = [];
+
+		if ( ! is_singular() && ! is_home() ) {
+			$classes['itemprop'] = [ 'name' ];
+			$classes['class']    = [ 'p-name' ];
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Schema.org attributes for the page description.
+	 *
+	 * @return array
+	 */
+	private static function semantics_page_description(): array {
+		$classes = [];
+
+		if ( ! is_singular() ) {
+			$classes['itemprop'] = [ 'description' ];
+			$classes['class']    = [ 'p-summary', 'e-content' ];
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Schema.org attributes for the site URL.
+	 *
+	 * @return array
+	 */
+	private static function semantics_site_url(): array {
+		$classes = [];
+
+		if ( ! is_singular() ) {
+			$classes['itemprop'] = [ 'url' ];
+			$classes['class']    = [ 'u-url', 'url' ];
+		}
+
+		return $classes;
+	}
+
+	/**
+	 * Schema.org attributes for a post element.
+	 *
+	 * @return array
+	 */
+	private static function semantics_post(): array {
+		$classes = [];
+
+		if ( ! is_singular() ) {
+			$classes['itemprop']  = [ 'blogPost' ];
+			$classes['itemscope'] = [ '' ];
+			$classes['itemtype']  = [ 'https://schema.org/BlogPosting' ];
+			$classes['itemref']   = [ 'site-publisher' ];
+			// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
+			$classes['itemid'] = [ get_permalink() ];
+		}
 
 		return $classes;
 	}

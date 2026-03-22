@@ -15,10 +15,12 @@ if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 			printf(
 				'<div class="notice notice-error"><p><strong>%s:</strong> %s</p></div>',
 				esc_html( $theme->get( 'Name' ) ),
-				sprintf(
-					/* translators: %s: composer install command */
-					esc_html__( 'Please run %s to install the required dependencies.', 'sovereignty' ),
-					'<code>composer install</code>',
+				wp_kses_post(
+					sprintf(
+						/* translators: %s: composer install command */
+						__( 'Please run %s to install the required dependencies.', 'sovereignty' ),
+						'<code>composer install</code>',
+					),
 				),
 			);
 		},

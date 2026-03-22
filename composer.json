@@ -19,6 +19,15 @@
 			"homepage": "https://notiz.blog"
 		}
 	],
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org",
+			"only": [
+				"wpackagist-plugin/*"
+			]
+		}
+	],
 	"require": {
 		"php": ">=8.3",
 		"composer/installers": "^2.2"
@@ -34,7 +43,9 @@
 		"pfefferle/wordpress-activitypub": "^8.0",
 		"brain/monkey": "^2.6",
 		"phpunit/phpunit": "^11.0",
-		"yoast/phpunit-polyfills": "^3.0"
+		"yoast/phpunit-polyfills": "^3.0",
+		"wpackagist-plugin/pwa": "*",
+		"wpackagist-plugin/indieweb-post-kinds": "*"
 	},
 	"scripts": {
 		"cs": "phpcs --warning-severity=0",

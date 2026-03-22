@@ -4,8 +4,8 @@
  *
  * The area of the page that contains both current comments
  * and the comment form. The actual display of comments is
- * handled by a callback to sovereignty_comment() which is
- * located in the functions.php file.
+ * handled by a callback to Comment::render() from
+ * the Apermo\Sovereignty\Comment class.
  *
  * @package Sovereignty
  * @since Sovereignty 1.0.0
@@ -60,11 +60,8 @@ use Apermo\Sovereignty\Comment;
 		<ol class="commentlist">
 			<?php
 				/*
-				 * Loop through and list the comments. Tell wp_list_comments()
-				 * to use sovereignty_comment() to format the comments.
-				 * If you want to overload this in a child theme then you can
-				 * define sovereignty_comment() and that will be used instead.
-				 * See sovereignty_comment() in functions.php for more.
+				 * Loop through and list the comments using Comment::render()
+				 * as the callback for formatting each comment.
 				 */
 				wp_list_comments(
 					[

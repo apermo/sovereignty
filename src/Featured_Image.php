@@ -114,9 +114,17 @@ class Featured_Image {
 	public static function admin_thumbnail_html( string $content, int $post_id ): string {
 		$text = esc_html__( 'Use as post cover (full-width)', 'sovereignty' );
 
-		$value = esc_attr( get_post_meta( $post_id, 'full_width_featured_image', true ) );
-		$label = '<input type="hidden" name="full_width_featured_image" value="0">';
-		$label .= '<label for="full_width_featured_image" class="selectit"><input name="full_width_featured_image" type="checkbox" id="full_width_featured_image" value="1" ' . checked( $value, 1, false ) . '> ' . $text . '</label>';
+		$value   = esc_attr( get_post_meta( $post_id, 'full_width_featured_image', true ) );
+		$checked = checked( $value, 1, false );
+
+		$label = \sprintf(
+			'<input type="hidden" name="full_width_featured_image" value="0">'
+			. '<label for="full_width_featured_image" class="selectit">'
+			. '<input name="full_width_featured_image" type="checkbox" id="full_width_featured_image" value="1" %s> %s'
+			. '</label>',
+			$checked,
+			$text,
+		);
 
 		return $content . $label;
 	}
@@ -149,7 +157,7 @@ class Featured_Image {
 				return;
 			}
 		} elseif ( ! current_user_can( 'edit_post', $post_id ) ) {
-				return;
+			return;
 		}
 
 		$full_width_featured_image = sanitize_text_field( wp_unslash( $_POST['full_width_featured_image'] ) );

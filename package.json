@@ -1,6 +1,7 @@
 {
   "name": "sovereignty",
   "version": "1.2.0",
+  "testedUpTo": "6.9",
   "description": "Pure Zen - Semantic, responsive WordPress theme with deep IndieWeb support. Fork of Autonomie.",
   "repository": {
     "type": "git",

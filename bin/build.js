@@ -40,6 +40,7 @@ const replacements = {
 	'@@description': pkg.description || '',
 	'@@homepage': pkg.homepage || '',
 	'@@requires_php': requiresPhp,
+	'@@tested_up_to': pkg.testedUpTo || '',
 	'@@github_slug': githubSlug,
 	'@@github_url': repoUrl,
 	'@@tags': (pkg.keywords || []).join(', '),

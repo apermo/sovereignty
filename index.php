@@ -8,13 +8,16 @@
  * E.g., it puts together the home page when no home.php file exists.
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package Autonomie
- * @since Autonomie 1.0.0
+ * @package Sovereignty
+ * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Semantics;
+use Apermo\Sovereignty\Template\Tags;
 
 get_header(); ?>
 
-		<main id="primary" <?php autonomie_main_class(); ?><?php autonomie_semantics( 'main' ); ?>>
+		<main id="primary" <?php Tags::main_class(); ?><?php Semantics::output( 'main' ); ?>>
 
 		<?php if ( have_posts() ) { ?>
 
@@ -39,11 +42,11 @@ get_header(); ?>
 
 			<article id="post-0" class="post no-results not-found">
 				<header class="entry-header">
-					<h1 class="entry-title p-entry-title"><?php esc_html_e( 'Nothing Found', 'autonomie' ); ?></h1>
+					<h1 class="entry-title p-entry-title"><?php esc_html_e( 'Nothing Found', 'sovereignty' ); ?></h1>
 				</header><!-- .entry-header -->
 
 				<div class="entry-content e-entry-content">
-					<p><?php esc_html_e( "It seems we can't find what you're looking for. Perhaps searching can help.", 'autonomie' ); ?></p>
+					<p><?php esc_html_e( "It seems we can't find what you're looking for. Perhaps searching can help.", 'sovereignty' ); ?></p>
 					<?php get_search_form(); ?>
 				</div><!-- .entry-content -->
 			</article><!-- #post-0 -->
@@ -52,7 +55,7 @@ get_header(); ?>
 
 		</main><!-- #content -->
 
-		<?php autonomie_content_nav( 'nav-below' ); ?>
+		<?php Tags::content_nav( 'nav-below' ); ?>
 
 <?php
 get_footer();

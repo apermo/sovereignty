@@ -2,17 +2,20 @@
 /**
  * The template for displaying 404 pages (Not Found).
  *
- * @package Autonomie
- * @since Autonomie 1.0.0
+ * @package Sovereignty
+ * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Semantics;
+use Apermo\Sovereignty\Template\Tags;
 
 get_header(); ?>
 
-		<main id="primary" <?php autonomie_main_class(); ?><?php autonomie_semantics( 'main' ); ?>>
+		<main id="primary" <?php Tags::main_class(); ?><?php Semantics::output( 'main' ); ?>>
 
 			<article id="post-0" class="post error offline">
 				<header class="entry-header">
-					<h1 class="entry-title p-name"><?php esc_html_e( 'Offline', 'autonomie' ); ?></h1>
+					<h1 class="entry-title p-name"><?php esc_html_e( 'Offline', 'sovereignty' ); ?></h1>
 				</header>
 
 				<div class="entry-content e-content">

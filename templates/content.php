@@ -5,21 +5,25 @@
  * Used for Standard posts and as fallback for all post formats
  * without a dedicated template file.
  *
- * @package Autonomie
- * @since Autonomie 1.0.0
+ * @package Sovereignty
+ * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Featured_Image;
+use Apermo\Sovereignty\Semantics;
+use Apermo\Sovereignty\Template\Tags;
 ?>
 
-<article <?php autonomie_post_id(); ?> <?php post_class(); ?><?php autonomie_semantics( 'post' ); ?>>
+<article <?php Tags::post_id(); ?> <?php post_class(); ?><?php Semantics::output( 'post' ); ?>>
 	<?php get_template_part( 'template-parts/entry-header' ); ?>
 
-	<?php autonomie_the_post_thumbnail( '<div class="entry-media">', '</div>' ); ?>
+	<?php Featured_Image::the_post_thumbnail( '<div class="entry-media">', '</div>' ); ?>
 	<div class="entry-content e-content" itemprop="description articleBody">
-		<?php autonomie_the_content(); ?>
+		<?php Tags::the_content(); ?>
 		<?php
 		wp_link_pages(
 			[
-				'before' => '<div class="page-link">' . __( 'Pages:', 'autonomie' ),
+				'before' => '<div class="page-link">' . __( 'Pages:', 'sovereignty' ),
 				'after' => '</div>',
 			],
 		);

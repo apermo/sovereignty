@@ -4,16 +4,18 @@
  *
  * The area of the page that contains both current comments
  * and the comment form. The actual display of comments is
- * handled by a callback to autonomie_comment() which is
+ * handled by a callback to sovereignty_comment() which is
  * located in the functions.php file.
  *
- * @package Autonomie
- * @since Autonomie 1.0.0
+ * @package Sovereignty
+ * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Comment;
 ?>
 	<div id="comments">
 	<?php if ( post_password_required() ) { ?>
-		<p class="nopassword"><?php esc_html_e( 'This post is password protected. Enter the password to view any comments.', 'autonomie' ); ?></p>
+		<p class="nopassword"><?php esc_html_e( 'This post is password protected. Enter the password to view any comments.', 'sovereignty' ); ?></p>
 	</div><!-- #comments -->
 		<?php
 			/*
@@ -38,7 +40,7 @@
 					'One thought on &ldquo;%2$s&rdquo;', // phpcs:ignore WordPress.WP.I18n.MissingSingularPlaceholder -- Translator instructions added.
 					'%1$s thoughts on &ldquo;%2$s&rdquo;',
 					get_comments_number(),
-					'autonomie',
+					'sovereignty',
 				),
 				number_format_i18n( get_comments_number() ),
 				'<span>' . get_the_title() . '</span>',
@@ -49,9 +51,9 @@
 
 		<?php if ( get_comment_pages_count() > 1 && (bool) get_option( 'page_comments' ) ) { ?>
 		<nav id="comment-nav-above">
-			<div class="assistive-text"><?php esc_html_e( 'Comment navigation', 'autonomie' ); ?></div>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'autonomie' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'autonomie' ) ); ?></div>
+			<div class="assistive-text"><?php esc_html_e( 'Comment navigation', 'sovereignty' ); ?></div>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'sovereignty' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'sovereignty' ) ); ?></div>
 		</nav>
 		<?php } ?>
 
@@ -59,14 +61,14 @@
 			<?php
 				/*
 				 * Loop through and list the comments. Tell wp_list_comments()
-				 * to use autonomie_comment() to format the comments.
+				 * to use sovereignty_comment() to format the comments.
 				 * If you want to overload this in a child theme then you can
-				 * define autonomie_comment() and that will be used instead.
-				 * See autonomie_comment() in autonomie/functions.php for more.
+				 * define sovereignty_comment() and that will be used instead.
+				 * See sovereignty_comment() in functions.php for more.
 				 */
 				wp_list_comments(
 					[
-						'callback' => 'autonomie_comment',
+						'callback' => [ Comment::class, 'render' ],
 						'format' => '',
 					],
 				);
@@ -75,9 +77,9 @@
 
 		<?php if ( get_comment_pages_count() > 1 && (bool) get_option( 'page_comments' ) ) { ?>
 		<nav id="comment-nav-below">
-			<div class="assistive-text"><?php esc_html_e( 'Comment navigation', 'autonomie' ); ?></div>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'autonomie' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'autonomie' ) ); ?></div>
+			<div class="assistive-text"><?php esc_html_e( 'Comment navigation', 'sovereignty' ); ?></div>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'sovereignty' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'sovereignty' ) ); ?></div>
 		</nav>
 		<?php } ?>
 
@@ -87,7 +89,7 @@
 	// If comments are closed and there are no comments, let's leave a little note, shall we?
 	if ( ! comments_open() && get_comments_number() !== '0' && post_type_supports( get_post_type(), 'comments' ) ) {
 		?>
-		<p class="nocomments"><?php esc_html_e( 'Comments are closed.', 'autonomie' ); ?></p>
+		<p class="nocomments"><?php esc_html_e( 'Comments are closed.', 'sovereignty' ); ?></p>
 	<?php } ?>
 
 	<?php comment_form(); ?>

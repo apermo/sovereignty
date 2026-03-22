@@ -2,7 +2,7 @@
 	<footer class="entry-footer entry-meta">
 		<div class="entry-actions">
 			<?php if ( comments_open() || get_comments_number() !== 0 ) { ?>
-			<indie-action do="reply" with="<?php the_permalink(); ?>"><div class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'autonomie' ), __( '1 Comment', 'autonomie' ), __( '% Comments', 'autonomie' ) ); ?></div></indie-action>
+			<indie-action do="reply" with="<?php the_permalink(); ?>"><div class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'sovereignty' ), __( '1 Comment', 'sovereignty' ), __( '% Comments', 'sovereignty' ) ); ?></div></indie-action>
 			<?php } ?>
 			<?php get_template_part( 'template-parts/entry', 'share' ); ?>
 		</div>
@@ -12,14 +12,14 @@
 		/**
 		 * Fires in the entry footer after the entry meta sidebar.
 		 */
-		do_action( 'autonomie_entry_footer' );
+		do_action( 'sovereignty_entry_footer' );
 		?>
 	</footer><!-- #entry-meta -->
 <?php } else { ?>
 	<footer class="entry-footer entry-meta">
 		<?php if ( comments_open() || get_comments_number() !== 0 ) { ?>
 		<div class="entry-actions">
-			<indie-action do="reply" with="<?php the_permalink(); ?>"><div class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'autonomie' ), __( '1 Comment', 'autonomie' ), __( '% Comments', 'autonomie' ) ); ?></div></indie-action>
+			<indie-action do="reply" with="<?php the_permalink(); ?>"><div class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'sovereignty' ), __( '1 Comment', 'sovereignty' ), __( '% Comments', 'sovereignty' ) ); ?></div></indie-action>
 		</div>
 		<?php } ?>
 	</footer><!-- #entry-meta -->

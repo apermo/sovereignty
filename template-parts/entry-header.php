@@ -1,3 +1,8 @@
+<?php
+use Apermo\Sovereignty\Template\Post_Format;
+use Apermo\Sovereignty\Template\Tags;
+?>
+
 <header class="entry-header">
 	<div class="entry-header-wrapper">
 		<div class="entry-meta post-format">
@@ -10,13 +15,13 @@
 			 * @return string The filtered HTML.
 			 */
 			echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- apply_filters() output contains safe HTML.
-				'autonomie_post_format',
+				'sovereignty_post_format',
 				sprintf(
 					'<a class="entry-format entry-format-%s entry-type-%s" href="%s">%s</a>',
-					autonomie_get_post_format(),
+					Post_Format::get_format(),
 					get_post_type(),
-					esc_url( autonomie_get_post_format_link( autonomie_get_post_format() ) ),
-					autonomie_get_post_format_string(),
+					esc_url( Post_Format::get_format_link( Post_Format::get_format() ) ),
+					Post_Format::get_format_string(),
 				),
 			);
 			?>
@@ -34,14 +39,14 @@
 			?>
 		<<?php echo esc_html( $sovereignty_title_element ); ?> class="entry-title p-name" itemprop="name headline">
 			<?php // translators: %s: Post title. ?>
-			<a href="<?php the_permalink(); ?>" class="u-url url" title="<?php printf( esc_attr__( 'Permalink to %s', 'autonomie' ), the_title_attribute( [ 'echo' => false ] ) ); ?>" rel="bookmark" itemprop="url">
+			<a href="<?php the_permalink(); ?>" class="u-url url" title="<?php printf( esc_attr__( 'Permalink to %s', 'sovereignty' ), the_title_attribute( [ 'echo' => false ] ) ); ?>" rel="bookmark" itemprop="url">
 				<?php the_title(); ?>
 			</a>
 		</<?php echo esc_html( $sovereignty_title_element ); ?>>
 		<?php } ?>
 
 		<div class="entry-meta">
-			<?php autonomie_posted_by(); ?> <span class="sep"> · </span> <?php autonomie_posted_on(); ?> <span class="sep"> · </span> <?php autonomie_reading_time(); ?>
+			<?php Tags::posted_by(); ?> <span class="sep"> · </span> <?php Tags::posted_on(); ?> <span class="sep"> · </span> <?php Tags::reading_time(); ?>
 		</div>
 	</div>
 </header><!-- .entry-header -->
@@ -50,5 +55,5 @@
 /**
  * Fires before the entry content.
  */
-do_action( 'autonomie_before_entry_content' );
+do_action( 'sovereignty_before_entry_content' );
 ?>

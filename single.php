@@ -2,13 +2,16 @@
 /**
  * The Template for displaying all single posts.
  *
- * @package Autonomie
- * @since Autonomie 1.0.0
+ * @package Sovereignty
+ * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Semantics;
+use Apermo\Sovereignty\Template\Tags;
 
 get_header(); ?>
 
-			<main id="primary" <?php autonomie_main_class(); ?><?php autonomie_semantics( 'main' ); ?>>
+			<main id="primary" <?php Tags::main_class(); ?><?php Semantics::output( 'main' ); ?>>
 
 			<?php
 			while ( have_posts() ) {
@@ -28,7 +31,7 @@ get_header(); ?>
 
 			</main><!-- #content -->
 
-			<?php autonomie_content_nav( 'nav-below' ); ?>
+			<?php Tags::content_nav( 'nav-below' ); ?>
 
 <?php
 get_footer();

@@ -17,18 +17,18 @@ class Setup {
 	 * @return void
 	 */
 	public static function setup(): void { // phpcs:ignore SlevomatCodingStandard.Functions.FunctionLength.FunctionLength -- Theme setup is inherently long.
-		\defined( 'SOVEREIGNTY_EXCERPT' ) || \define( 'SOVEREIGNTY_EXCERPT', false );
-		\defined( 'SOVEREIGNTY_EXCERPT_COUNT' ) || \define( 'SOVEREIGNTY_EXCERPT_COUNT', 100 );
+		\defined( 'SOVEREIGNTY_EXCERPT' ) || \define( 'SOVEREIGNTY_EXCERPT', Config::bool( 'sovereignty.excerpt.enabled' ) );
+		\defined( 'SOVEREIGNTY_EXCERPT_COUNT' ) || \define( 'SOVEREIGNTY_EXCERPT_COUNT', Config::int( 'sovereignty.excerpt.wordCount' ) );
 
-		$content_width = 900;
+		$content_width = Config::int( 'sovereignty.embed.width' );
 
 		load_theme_textdomain( 'sovereignty', get_template_directory() . '/languages' );
 
 		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'post-thumbnails' );
 
-		set_post_thumbnail_size( $content_width, 9999 );
-		add_image_size( 'sovereignty-image-post', $content_width, 1250 );
+		set_post_thumbnail_size( Config::int( 'sovereignty.images.thumbnailMaxWidth' ), Config::int( 'sovereignty.images.thumbnailMaxHeight' ) );
+		add_image_size( 'sovereignty-image-post', $content_width, Config::int( 'sovereignty.images.postImageMaxHeight' ) );
 
 		add_theme_support(
 			'html5',
@@ -45,66 +45,8 @@ class Setup {
 
 		add_theme_support( 'align-wide' );
 
-		add_theme_support(
-			'editor-color-palette',
-			[
-				[
-					'name'  => __( 'Blue', 'sovereignty' ),
-					'slug'  => 'blue',
-					'color' => '#0073aa',
-				],
-				[
-					'name'  => __( 'Lighter blue', 'sovereignty' ),
-					'slug'  => 'lighter-blue',
-					'color' => '#229fd8',
-				],
-				[
-					'name'  => __( 'Blue jeans', 'sovereignty' ),
-					'slug'  => 'blue-jeans',
-					'color' => '#5bc0eb',
-				],
-				[
-					'name'  => __( 'Orioles orange', 'sovereignty' ),
-					'slug'  => 'orioles-orange',
-					'color' => '#fa5b0f',
-				],
-				[
-					'name'  => __( 'USC gold', 'sovereignty' ),
-					'slug'  => 'usc-gold',
-					'color' => '#ffcc00',
-				],
-				[
-					'name'  => __( 'Gargoyle gas', 'sovereignty' ),
-					'slug'  => 'gargoyle-gas',
-					'color' => '#fde74c',
-				],
-				[
-					'name'  => __( 'Yellow', 'sovereignty' ),
-					'slug'  => 'yellow',
-					'color' => '#fff9c0',
-				],
-				[
-					'name'  => __( 'Android green', 'sovereignty' ),
-					'slug'  => 'android-green',
-					'color' => '#9bc53d',
-				],
-				[
-					'name'  => __( 'White', 'sovereignty' ),
-					'slug'  => 'white',
-					'color' => '#fff',
-				],
-				[
-					'name'  => __( 'Very light gray', 'sovereignty' ),
-					'slug'  => 'very-light-gray',
-					'color' => '#eee',
-				],
-				[
-					'name'  => __( 'Very dark gray', 'sovereignty' ),
-					'slug'  => 'very-dark-gray',
-					'color' => '#444',
-				],
-			],
-		);
+		// Color palette is now defined in theme.json settings.color.palette.
+		// WP processes it automatically — no add_theme_support needed.
 
 		register_nav_menus(
 			[
@@ -112,20 +54,7 @@ class Setup {
 			],
 		);
 
-		add_theme_support(
-			'post-formats',
-			[
-				'aside',
-				'gallery',
-				'link',
-				'status',
-				'image',
-				'video',
-				'audio',
-				'quote',
-				'chat',
-			],
-		);
+		add_theme_support( 'post-formats', Config::array( 'sovereignty.postFormats' ) );
 
 		add_theme_support( 'responsive-embeds' );
 		add_theme_support( 'title-tag' );
@@ -133,16 +62,16 @@ class Setup {
 		add_theme_support(
 			'custom-logo',
 			[
-				'height' => 30,
-				'width'  => 30,
+				'height' => Config::int( 'sovereignty.customLogo.height' ),
+				'width'  => Config::int( 'sovereignty.customLogo.width' ),
 			],
 		);
 
 		add_theme_support(
 			'custom-header',
 			[
-				'width'       => 1250,
-				'height'      => 600,
+				'width'       => Config::int( 'sovereignty.customHeader.width' ),
+				'height'      => Config::int( 'sovereignty.customHeader.height' ),
 				'header-text' => true,
 			],
 		);

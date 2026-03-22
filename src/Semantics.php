@@ -340,7 +340,7 @@ class Semantics {
 			$classes['itemscope'] = [ '' ];
 			$classes['itemtype']  = [ 'https://schema.org/BlogPosting' ];
 			$classes['itemref']   = [ 'site-publisher' ];
-			$classes['itemid'] = [ get_permalink( get_post() ) ]; // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Called from get_semantics() without post context.
+			$classes['itemid']    = [ get_permalink( get_post() ) ]; // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Called from get_semantics() without post context.
 		}
 
 		return $classes;

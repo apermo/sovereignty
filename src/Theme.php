@@ -27,6 +27,7 @@ class Theme {
 		self::init_webactions();
 		self::init_pwa();
 		self::init_widgets();
+		self::init_tombstone();
 		self::init_integrations();
 	}
 
@@ -151,6 +152,18 @@ class Theme {
 		add_action( 'widgets_init', [ Widgets::class, 'widgets_init' ] );
 		add_filter( 'get_theme_starter_content', [ Widgets::class, 'starter_content_add_widget' ], 10, 2 );
 		add_action( 'after_switch_theme', [ Widgets::class, 'activate' ] );
+	}
+
+	/**
+	 * HTTP 410 tombstone support for removed content.
+	 *
+	 * @return void
+	 */
+	private static function init_tombstone(): void {
+		add_action( 'init', [ Tombstone::class, 'register_post_status' ] );
+		add_action( 'template_redirect', [ Tombstone::class, 'template_redirect' ] );
+		add_action( 'admin_footer-post.php', [ Tombstone::class, 'admin_footer_edit' ] );
+		add_action( 'admin_footer-post-new.php', [ Tombstone::class, 'admin_footer_edit' ] );
 	}
 
 	/**

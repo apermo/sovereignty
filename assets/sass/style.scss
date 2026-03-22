@@ -10,8 +10,8 @@
  * License: @@license
  * License URI: @@license_url
  * Tags: @@tags
- * Text Domain: autonomie
- * Tested up to: 6.9
+ * Text Domain: sovereignty
+ * Tested up to: @@tested_up_to
  * Requires PHP: @@requires_php
  *
  * GitHub Theme URI: @@github_slug
@@ -20,10 +20,6 @@
  * Use it to make something cool, have fun, and share what you've learned with others.
  */
 
-$font_path: "assets/font/";
-
-@import "lato-font";
-@import "merriweather-font";
 @import "vars";
 @import "mixins";
 @import "openwebicons";

@@ -6,10 +6,13 @@ parameters:
         analyseAndScan:
             - node_modules (?)
             - .ddev (?)
+            - tests (?)
         analyse:
             - vendor
     scanDirectories:
         - vendor/pfefferle/activitypub/includes
+        - vendor/wpackagist-plugin/pwa
+        - vendor/wpackagist-plugin/indieweb-post-kinds
     strictRules:
         allRules: false
         booleansInConditions: true

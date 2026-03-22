@@ -2,20 +2,24 @@
 /**
  * The Template for displaying all single posts.
  *
- * @package Autonomie
- * @since Autonomie 1.0.0
+ * @package Sovereignty
+ * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Semantics;
+use Apermo\Sovereignty\Template\Tags;
 
 get_header(); ?>
 
-			<main id="primary" <?php autonomie_main_class(); ?><?php autonomie_semantics( 'main' ); ?>>
+			<main id="primary" <?php Tags::main_class(); ?><?php Semantics::output( 'main' ); ?>>
 
 			<?php
 			while ( have_posts() ) {
 				the_post();
+				global $post;
 				?>
 
-				<?php get_template_part( 'templates/content', get_post_format() ); ?>
+				<?php get_template_part( 'templates/content', get_post_format( $post ) ); ?>
 
 				<?php
 				// If comments are open, or we have at least one comment, load up the comment template.
@@ -28,7 +32,7 @@ get_header(); ?>
 
 			</main><!-- #content -->
 
-			<?php autonomie_content_nav( 'nav-below' ); ?>
+			<?php Tags::content_nav( 'nav-below' ); ?>
 
 <?php
 get_footer();

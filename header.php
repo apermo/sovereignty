@@ -4,9 +4,13 @@
  *
  * Displays all of the <head> section and everything up till <div id="main">
  *
- * @package Autonomie
- * @since Autonomie 1.0.0
+ * @package Sovereignty
+ * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Semantics;
+use Apermo\Sovereignty\Template\Functions;
+use Apermo\Sovereignty\Template\Tags;
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -18,7 +22,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?><?php autonomie_semantics( 'body' ); ?>>
+<body <?php body_class(); ?><?php Semantics::output( 'body' ); ?>>
 <?php
 /**
  * Fire the wp_body_open action for theme compatibility.
@@ -37,14 +41,12 @@ if ( function_exists( 'wp_body_open' ) ) {
 }
 ?>
 <div id="page">
-	<div class="skip-link screen-reader-text"><a href="#primary" title="<?php esc_attr_e( 'Skip to content', 'autonomie' ); ?>"><?php esc_html_e( 'Skip to content', 'autonomie' ); ?></a></div>
+	<div class="skip-link screen-reader-text"><a href="#primary" title="<?php esc_attr_e( 'Skip to content', 'sovereignty' ); ?>"><?php esc_html_e( 'Skip to content', 'sovereignty' ); ?></a></div>
 	<?php
 	/**
 	 * Fires before the site header.
-	 *
-	 * @todo Rename to sovereignty_before in a future release.
 	 */
-	do_action( 'before' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook, renaming would break consumers.
+	do_action( 'sovereignty_before' );
 	?>
 	<header id="site-header" class="site-header">
 		<div class="site-branding">
@@ -53,26 +55,21 @@ if ( function_exists( 'wp_body_open' ) ) {
 				echo get_custom_logo(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Returns safe HTML from core.
 			}
 
-			if ( is_home() ) {
-				$sovereignty_site_title_element = 'h1';
-			} else {
-				$sovereignty_site_title_element = 'div';
-			}
 			?>
-			<<?php echo esc_html( $sovereignty_site_title_element ); ?> id="site-title"<?php autonomie_semantics( 'site-title' ); ?>>
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"<?php autonomie_semantics( 'site-url' ); ?>>
+			<<?php Tags::site_title_tag(); ?> id="site-title"<?php Semantics::output( 'site-title' ); ?>>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"<?php Semantics::output( 'site-url' ); ?>>
 				<?php bloginfo( 'name' ); ?>
 				</a>
-			</<?php echo esc_html( $sovereignty_site_title_element ); ?>>
+			</<?php Tags::site_title_tag(); ?>>
 
 			<?php get_search_form( [ 'echo' => true ] ); ?>
 		</div>
 
 		<nav id="site-navigation" class="site-navigation">
-			<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'autonomie' ); ?></button>
+			<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'sovereignty' ); ?></button>
 
 			<?php wp_nav_menu( [ 'theme_location' => 'primary' ] ); ?>
 		</nav><!-- #site-navigation -->
 
-		<?php get_template_part( 'template-parts/page-banner', autonomie_get_archive_type() ); ?>
+		<?php get_template_part( 'template-parts/page-banner', Functions::get_archive_type() ); ?>
 	</header><!-- #site-header -->

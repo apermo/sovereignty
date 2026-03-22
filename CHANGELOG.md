@@ -5,6 +5,50 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.3.0] - 2026-03-22
+
+### Added
+
+- Namespace migration: 24 classes under `Apermo\Sovereignty\` with PSR-4 autoloading
+- Unit test infrastructure: PHPUnit 11 + Brain Monkey (73 tests, 100 assertions)
+- `theme.json` with WP-standard settings and custom `sovereignty` config section
+- `Config` class with dot-notation access and `sovereignty_config` filter for multisite
+- HTTP 410 tombstone support for deleted posts (custom post status + template)
+- System font stack replacing bundled Lato + Merriweather (zero network requests)
+- Minified CSS output (`.min.css`) with `SCRIPT_DEBUG` support
+- Automated `Tested up to` field via `package.json` + build script
+- Install script (`bin/install.sh`) for fresh clone setup
+- Title tag helpers (`Tags::site_title_tag()`, `Tags::entry_title_tag()`)
+- Page banner render/check helpers (`Functions::has_archive_title()`, `render_archive_title()`, etc.)
+- `PostKindsTest` for integration testing
+- wpackagist dev dependencies (PWA, Post Kinds) for static analysis
+- Playwright E2E test suite expanded from 9 to 31 tests
+
+### Changed
+
+- Replace Grunt with npm scripts (`bin/build.js`) for SASS, placeholders, minification
+- Remove generated CSS from git (build via `npm run build`)
+- Rename `autonomie_` to `sovereignty_` (text domain, hooks, constants, CSS handles, widget IDs)
+- `functions.php` reduced from 600 lines to 50-line bootstrap (`Theme::init()`)
+- Template files use `use` statements and static method calls
+- Pass explicit `WP_Post` to all post-dependent functions
+- Replace `the_content()`/`the_excerpt()` with `get_*` variants for explicit `$post` support
+- Rename legacy hooks (`before` → `sovereignty_before`, `before_sidebar` → `sovereignty_before_sidebar`)
+- Break down `Semantics::get_semantics()` into per-element helper methods
+- Modernize JavaScript: classList API, querySelector, addEventListener, CSS class toggle
+- Externalize all hardcoded config values to `theme.json` sovereignty section
+- Color palette moved from PHP `add_theme_support` to `theme.json` `settings.color.palette`
+- Migrate to `ddev-orchestrate` addon v0.3.0
+
+### Removed
+
+- Grunt and all Grunt dependencies (8 packages)
+- Bundled Lato and Merriweather font files (16 files)
+- `includes/`, `integrations/`, `widgets/` directories (moved to `src/`)
+- All `autonomie_` prefixed functions and hooks
+- Hardcoded configuration values across 10 PHP classes
+- Unused `entry-nav.php` template part (dead code since 2019)
+
 ## [1.2.0] - 2026-03-21
 
 ### Added
@@ -96,6 +140,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Renamed theme to Sovereignty
 - Updated Composer package name to `apermo/sovereignty`
 
+[1.3.0]: https://github.com/apermo/sovereignty/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/apermo/sovereignty/compare/1.1.1...1.2.0
 [1.1.1]: https://github.com/apermo/sovereignty/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/apermo/sovereignty/compare/1.0.0...1.1.0

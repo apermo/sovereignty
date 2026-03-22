@@ -5,12 +5,12 @@
 * Theme URI: https://github.com/apermo/sovereignty
 * Author: Christoph Daum
 * Author URI: https://christoph-daum.com
-* Description: Pure Zen - Semantic, responsive WordPress theme with deep IndieWeb support. Fork of Autonomie.
-* Version: 1.1.1
+* Description: Semantic, responsive WordPress theme with deep IndieWeb support. Fork of Autonomie by Matthias Pfefferle.
+* Version: 1.3.0
 * License: MIT
 * License URI: https://opensource.org/licenses/MIT
 * Tags: custom-menu, custom-colors, custom-header, custom-logo, featured-image-header, flexible-header, sticky-post, microformats, rtl-language-support, translation-ready, full-width-template, post-formats, threaded-comments, footer-widgets, one-column, editor-style, featured-images, theme-options, blog, news, photography, wide-blocks
-* Text Domain: autonomie
+* Text Domain: sovereignty
 * Tested up to: 6.9
 * Requires PHP: 8.3
 *
@@ -19,74 +19,6 @@
 *
 * Use it to make something cool, have fun, and share what you've learned with others.
 */
-/* lato-300 - latin */
-@font-face {
-	font-family: Lato;
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: url("assets/font/lato/lato-v13-latin-300.eot"); /* IE9 Compat Modes */
-	src: local("Lato Light"), local("Lato-Light"), url("assets/font/lato/lato-v13-latin-300.eot?#iefix") format("embedded-opentype"), url("assets/font/lato/lato-v13-latin-300.woff2") format("woff2"), url("assets/font/lato/lato-v13-latin-300.woff") format("woff"), url("assets/font/lato/lato-v13-latin-300.svg#Lato") format("svg"); /* Legacy iOS */
-}
-/* lato-300italic - latin */
-@font-face {
-	font-family: Lato;
-	font-style: italic;
-	font-weight: 400;
-	font-display: swap;
-	src: url("assets/font/lato/lato-v13-latin-300italic.eot"); /* IE9 Compat Modes */
-	src: local("Lato Light Italic"), local("Lato-LightItalic"), url("assets/font/lato/lato-v13-latin-300italic.eot?#iefix") format("embedded-opentype"), url("assets/font/lato/lato-v13-latin-300italic.woff2") format("woff2"), url("assets/font/lato/lato-v13-latin-300italic.woff") format("woff"), url("assets/font/lato/lato-v13-latin-300italic.svg#Lato") format("svg"); /* Legacy iOS */
-}
-/* lato-700 - latin */
-@font-face {
-	font-family: Lato;
-	font-style: normal;
-	font-weight: 700;
-	font-display: swap;
-	src: url("assets/font/lato/lato-v13-latin-700.eot"); /* IE9 Compat Modes */
-	src: local("Lato Bold"), local("Lato-Bold"), url("assets/font/lato/lato-v13-latin-700.eot?#iefix") format("embedded-opentype"), url("assets/font/lato/lato-v13-latin-700.woff2") format("woff2"), url("assets/font/lato/lato-v13-latin-700.woff") format("woff"), url("assets/font/lato/lato-v13-latin-700.svg#Lato") format("svg"); /* Legacy iOS */
-}
-/* lato-700italic - latin */
-@font-face {
-	font-family: Lato;
-	font-style: italic;
-	font-weight: 700;
-	font-display: swap;
-	src: url("assets/font/lato/lato-v13-latin-700italic.eot"); /* IE9 Compat Modes */
-	src: local("Lato Bold Italic"), local("Lato-BoldItalic"), url("assets/font/lato/lato-v13-latin-700italic.eot?#iefix") format("embedded-opentype"), url("assets/font/lato/lato-v13-latin-700italic.woff2") format("woff2"), url("assets/font/lato/lato-v13-latin-700italic.woff") format("woff"), url("assets/font/lato/lato-v13-latin-700italic.svg#Lato") format("svg"); /* Legacy iOS */
-}
-@font-face {
-	font-family: Merriweather;
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: url("assets/font/merriweather/merriweather-v15-latin-300.eot");
-	src: local("Merriweather Light"), local("Merriweather-Light"), url("assets/font/merriweather/merriweather-v15-latin-300.eot?#iefix") format("embedded-opentype"), url("assets/font/merriweather/merriweather-v15-latin-300.woff2") format("woff2"), url("assets/font/merriweather/merriweather-v15-latin-300.woff") format("woff"), url("assets/font/merriweather/merriweather-v15-latin-300.svg#Merriweather") format("svg");
-}
-@font-face {
-	font-family: Merriweather;
-	font-style: italic;
-	font-weight: 400;
-	font-display: swap;
-	src: url("assets/font/merriweather/merriweather-v15-latin-300italic.eot");
-	src: local("Merriweather Light Italic"), local("Merriweather-LightItalic"), url("assets/font/merriweather/merriweather-v15-latin-300italic.eot?#iefix") format("embedded-opentype"), url("assets/font/merriweather/merriweather-v15-latin-300italic.woff2") format("woff2"), url("assets/font/merriweather/merriweather-v15-latin-300italic.woff") format("woff"), url("assets/font/merriweather/merriweather-v15-latin-300italic.svg#Merriweather") format("svg");
-}
-@font-face {
-	font-family: Merriweather;
-	font-style: italic;
-	font-weight: 700;
-	font-display: swap;
-	src: url("assets/font/merriweather/merriweather-v15-latin-700italic.eot");
-	src: local("Merriweather Bold Italic"), local("Merriweather-BoldItalic"), url("assets/font/merriweather/merriweather-v15-latin-700italic.eot?#iefix") format("embedded-opentype"), url("assets/font/merriweather/merriweather-v15-latin-700italic.woff2") format("woff2"), url("assets/font/merriweather/merriweather-v15-latin-700italic.woff") format("woff"), url("assets/font/merriweather/merriweather-v15-latin-700italic.svg#Merriweather") format("svg");
-}
-@font-face {
-	font-family: Merriweather;
-	font-style: normal;
-	font-weight: 700;
-	font-display: swap;
-	src: url("assets/font/merriweather/merriweather-v15-latin-700.eot");
-	src: local("Merriweather Bold"), local("Merriweather-Bold"), url("assets/font/merriweather/merriweather-v15-latin-700.eot?#iefix") format("embedded-opentype"), url("assets/font/merriweather/merriweather-v15-latin-700.woff2") format("woff2"), url("assets/font/merriweather/merriweather-v15-latin-700.woff") format("woff"), url("assets/font/merriweather/merriweather-v15-latin-700.svg#Merriweather") format("svg");
-}
 /* stylelint-disable no-descending-specificity */
 /* stylelint-disable font-family-no-missing-generic-family-keyword */
 @font-face {
@@ -713,7 +645,7 @@ li[class^=openwebicons-], li[class*=" openwebicons-"] {
 *		user zoom.
 */
 html {
-	font-family: sans-serif; /* 1 */
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; /* 1 */
 	-ms-text-size-adjust: 100%; /* 2 */
 	-webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -1156,7 +1088,7 @@ textarea {
 	padding: 0;
 	display: inline-block;
 	font-size: 1.5em;
-	font-family: Lato, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-weight: 700;
 	line-height: 1.5;
 }
@@ -1408,7 +1340,7 @@ li.comment img.avatar {
 .comment-notes,
 .logged-in-as {
 	display: block;
-	font-family: Lato, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	color: rgb(78.7711864407, 87.3644067797, 90.2288135593);
 	color: var(--color-gray);
 }
@@ -1642,7 +1574,7 @@ h4.entry-title a:hover {
 #entry-share {
 	display: inline-block;
 	font-size: 1em;
-	font-family: Lato, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	background-color: rgb(249.9279661017, 250.4110169492, 250.5720338983);
 	background-color: var(--color-background-gray);
 	border: none;
@@ -1682,7 +1614,7 @@ h4.entry-title a:hover {
 .gallery-caption,
 .page-link,
 .page-links {
-	font-family: Lato, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	clear: both;
 	color: rgb(78.7711864407, 87.3644067797, 90.2288135593);
 	color: var(--color-gray);
@@ -1804,7 +1736,7 @@ h4.entry-title a:hover {
 .tag-links li a,
 .cat-links li a {
 	font-size: 1em;
-	font-family: Lato, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	background-color: rgb(249.9279661017, 250.4110169492, 250.5720338983);
 	background-color: var(--color-background-gray);
 	border-radius: 3px;
@@ -1877,7 +1809,7 @@ h4.entry-title a:hover {
 }
 .edit-link a {
 	font-size: 1em;
-	font-family: Lato, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	background-color: rgb(249.9279661017, 250.4110169492, 250.5720338983);
 	background-color: var(--color-background-gray);
 	border-radius: 3px;
@@ -1989,7 +1921,7 @@ h4.entry-title a:hover {
 	margin: 0 auto;
 	border: 0;
 	width: 700px;
-	font-family: Lato, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 .site-navigation::before, .site-navigation::after {
 	content: " ";
@@ -2546,7 +2478,7 @@ body {
 	background-color: var(--color-background);
 	color: #373d3f;
 	color: var(--color-dark-gray);
-	font-family: Lato, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-weight: 400;
 	word-wrap: break-word;
 }
@@ -2590,7 +2522,7 @@ figure {
 	font-style: italic;
 	position: relative;
 	line-height: 1.5;
-	font-family: Merriweather, serif;
+	font-family: "Iowan Old Style", "Apple Garamond", Baskerville, "Times New Roman", "Droid Serif", Times, "Source Serif Pro", serif;
 }
 blockquote small,
 blockquote figcaption,
@@ -2673,7 +2605,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: Merriweather, serif;
+	font-family: "Iowan Old Style", "Apple Garamond", Baskerville, "Times New Roman", "Droid Serif", Times, "Source Serif Pro", serif;
 	font-weight: 100;
 	margin-bottom: 0;
 	line-height: 1.2;
@@ -2957,7 +2889,11 @@ a.button:active {
 	transform: rotate(-0.5deg);
 }
 .entry-footer #share-options {
+	display: none;
 	clear: both;
+}
+.entry-footer #share-options.is-visible {
+	display: block;
 }
 .entry-footer #share-options input[type=text],
 .entry-footer #share-options input[type=url],
@@ -3083,4 +3019,5 @@ ul.relsyn li svg {
 		filter: brightness(0.8) contrast(1.2);
 	}
 }
+
 /*# sourceMappingURL=style.css.map */

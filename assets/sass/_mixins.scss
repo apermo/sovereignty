@@ -24,7 +24,7 @@
 
 	a {
 		font-size: 1em;
-		font-family: Lato, sans-serif;
+		font-family: $font-sans;
 		background-color: $background-gray;
 		background-color: var(--color-background-gray);
 		border-radius: 3px;
@@ -85,7 +85,7 @@
 }
 
 @mixin meta-text {
-	font-family: Lato, sans-serif;
+	font-family: $font-sans;
 	clear: both;
 	color: $light-gray;
 	color: var(--color-light-gray);

@@ -6,7 +6,7 @@
 	margin: 0 auto;
 	border: 0;
 	width: $default-width;
-	font-family: Lato, sans-serif;
+	font-family: $font-sans;
 
 	@include clearfix;
 

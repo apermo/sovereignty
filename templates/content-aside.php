@@ -9,11 +9,7 @@
  */
 
 use Apermo\Sovereignty\Featured_Image;
-
-global $post;
 use Apermo\Sovereignty\Semantics;
-
-global $post;
 use Apermo\Sovereignty\Template\Tags;
 
 global $post;

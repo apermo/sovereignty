@@ -1,18 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Apermo\Sovereignty\Widget;
+
+use WP_Widget;
+
 /**
  * Author widget for displaying author details in the entry-meta sidebar.
+ *
+ * @package Sovereignty
  */
-// phpcs:ignore PSR1.Classes.ClassDeclaration.MissingNamespace, Squiz.Commenting.ClassComment.Missing
-class Autonomie_Author_Widget extends WP_Widget {
+class Author extends WP_Widget {
 
 	/**
 	 * Constructor.
 	 */
 	public function __construct() {
 		parent::__construct(
-			'autonomie-author',           // Base ID.
-			'Author Details (Autonomie)', // Name.
+			'sovereignty-author',
+			'Author Details (Sovereignty)',
 		);
 	}
 

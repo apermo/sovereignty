@@ -1,38 +1,51 @@
 <?php
-/**
- * Add Webactions to the reply links in the comment section.
- *
- * @param string     $link    The HTML markup for the comment reply link.
- * @param array      $args    An array of arguments overriding the defaults.
- * @param WP_Comment $comment The object of the comment being replied.
- * @param WP_Post    $post    The WP_Post object.
- *
- * @return string The new reply link.
- */
-function autonomie_webaction_comment_reply_link( string $link, array $args, WP_Comment $comment, WP_Post $post ): string {
-	$permalink = get_permalink( $post->ID );
-	return '<indie-action do="reply" with="' . esc_url( add_query_arg( 'replytocom', $comment->comment_ID, $permalink ) ) . '">' . $link . '</indie-action>';
-}
-add_filter( 'comment_reply_link', 'autonomie_webaction_comment_reply_link', 10, 4 );
+
+declare(strict_types=1);
+
+namespace Apermo\Sovereignty;
 
 /**
- * Surround comment form with a reply action.
+ * IndieWeb web actions for comment reply links and forms.
  *
- * @return void
+ * Wraps comment links and forms with indie-action elements
+ * to support IndieWeb reply/like/repost interactions.
+ *
+ * @package Sovereignty
  */
-function autonomie_webaction_comment_form_before(): void {
-	$post = get_queried_object();
-	$permalink = get_permalink( $post->ID );
-	echo '<indie-action do="reply" with="' . esc_url( $permalink ) . '">';
-}
-add_action( 'comment_form_before', 'autonomie_webaction_comment_form_before', 0 );
+class Webactions {
 
-/**
- * Surround comment form with a reply action.
- *
- * @return void
- */
-function autonomie_webaction_comment_form_after(): void {
-	echo '</indie-action>';
+	/**
+	 * Wrap comment reply link in an indie-action element.
+	 *
+	 * @param string $link    The HTML markup for the comment reply link.
+	 * @param array  $args    An array of arguments overriding the defaults.
+	 * @param object $comment The comment object.
+	 * @param object $post    The post object.
+	 *
+	 * @return string The wrapped reply link.
+	 */
+	public static function comment_reply_link( string $link, array $args, object $comment, object $post ): string {
+		$permalink = get_permalink( $post->ID );
+		return '<indie-action do="reply" with="' . esc_url( add_query_arg( 'replytocom', $comment->comment_ID, $permalink ) ) . '">' . $link . '</indie-action>';
+	}
+
+	/**
+	 * Open indie-action element before comment form.
+	 *
+	 * @return void
+	 */
+	public static function comment_form_before(): void {
+		$post      = get_queried_object();
+		$permalink = get_permalink( $post->ID );
+		echo '<indie-action do="reply" with="' . esc_url( $permalink ) . '">';
+	}
+
+	/**
+	 * Close indie-action element after comment form.
+	 *
+	 * @return void
+	 */
+	public static function comment_form_after(): void {
+		echo '</indie-action>';
+	}
 }
-add_action( 'comment_form_after', 'autonomie_webaction_comment_form_after', 0 );

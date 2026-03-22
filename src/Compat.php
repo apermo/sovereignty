@@ -1,139 +1,118 @@
 <?php
-/**
- * Autonomie back compat handling
- *
- * Some functions to add backwards compatibility to older WordPress versions
- * or to add some new functions to be more (for example)  compatible
- *
- * @package Autonomie
- * @subpackage compat
- * @since Autonomie 1.5.0
- */
+
+declare(strict_types=1);
+
+namespace Apermo\Sovereignty;
+
+use WP_Query;
 
 /**
- * Adds compat handling for WP versions pre-*.
+ * Backwards compatibility and enhancement layer.
  *
- * @category pre-all
+ * Adds HTML5 input attributes to comment forms,
+ * lazy loading for images, and WP version polyfills.
+ *
+ * @package Sovereignty
  */
+class Compat {
 
-/**
- * Adds the new  input types to the comment-form
- *
- * @param array $fields The comment form fields.
- * @return array
- */
-function autonomie_comment_autocomplete( array $fields ): array {
-	$fields['author'] = preg_replace( '/<input/', '<input autocomplete="nickname name" enterkeyhint="next" ', $fields['author'] );
-	$fields['email'] = preg_replace( '/<input/', '<input autocomplete="email" inputmode="email" enterkeyhint="next" ', $fields['email'] );
-	$fields['url'] = preg_replace( '/<input/', '<input autocomplete="url" inputmode="url" enterkeyhint="send" ', $fields['url'] );
+	/**
+	 * Add autocomplete and enterkeyhint attributes to comment form fields.
+	 *
+	 * @param array $fields The comment form fields.
+	 *
+	 * @return array
+	 */
+	public static function comment_autocomplete( array $fields ): array {
+		$fields['author'] = \preg_replace( '/<input/', '<input autocomplete="nickname name" enterkeyhint="next" ', $fields['author'] );
+		$fields['email']  = \preg_replace( '/<input/', '<input autocomplete="email" inputmode="email" enterkeyhint="next" ', $fields['email'] );
+		$fields['url']    = \preg_replace( '/<input/', '<input autocomplete="url" inputmode="url" enterkeyhint="send" ', $fields['url'] );
 
-	return $fields;
-}
-add_filter( 'comment_form_default_fields', 'autonomie_comment_autocomplete' );
+		return $fields;
+	}
 
-/**
- * Adds the new HTML5 input types to the comment-text-area
- *
- * @param string $field The comment textarea field.
- * @return string
- */
-function autonomie_comment_field_input_type( string $field ): string {
-	return preg_replace( '/<textarea/', '<textarea enterkeyhint="next"', $field );
-}
-add_filter( 'comment_form_field_comment', 'autonomie_comment_field_input_type' );
+	/**
+	 * Add enterkeyhint attribute to the comment textarea.
+	 *
+	 * @param string $field The comment textarea field.
+	 *
+	 * @return string
+	 */
+	public static function comment_field_input_type( string $field ): string {
+		return \preg_replace( '/<textarea/', '<textarea enterkeyhint="next"', $field );
+	}
 
-/**
- * Fix archive for "standard" post type
- *
- * @param WP_Query $query The WordPress query object.
- *
- * @return void
- */
-function autonomie_query_format_standard( WP_Query $query ): void {
-	if (
-		isset( $query->query_vars['post_format'] ) &&
-		$query->query_vars['post_format'] === 'post-format-standard'
-	) {
-		$post_formats = get_theme_support( 'post-formats' );
-
+	/**
+	 * Fix archive for "standard" post type.
+	 *
+	 * @param WP_Query $query The WordPress query object.
+	 *
+	 * @return void
+	 */
+	public static function query_format_standard( WP_Query $query ): void {
 		if (
-			is_array( $post_formats ) &&
-			is_array( $post_formats[0] ) && count( $post_formats[0] ) > 0
+			isset( $query->query_vars['post_format'] ) &&
+			$query->query_vars['post_format'] === 'post-format-standard'
 		) {
-			$terms = [];
-			foreach ( $post_formats[0] as $format ) {
-				$terms[] = 'post-format-' . $format;
-			}
-			$query->is_tax = false;
+			$post_formats = get_theme_support( 'post-formats' );
 
-			unset(
-				$query->query_vars['post_format'],
-				$query->query_vars['taxonomy'],
-				$query->query_vars['term'],
-			);
+			if (
+				\is_array( $post_formats ) &&
+				\is_array( $post_formats[0] ) && \count( $post_formats[0] ) > 0
+			) {
+				$terms = [];
+				foreach ( $post_formats[0] as $format ) {
+					$terms[] = 'post-format-' . $format;
+				}
+				$query->is_tax = false;
 
-			$query->set(
-				'tax_query',
-				[
-					'relation' => 'AND',
+				unset(
+					$query->query_vars['post_format'],
+					$query->query_vars['taxonomy'],
+					$query->query_vars['term'],
+				);
+
+				$query->set(
+					'tax_query',
 					[
-						'taxonomy' => 'post_format',
-						'terms' => $terms,
-						'field' => 'slug',
-						'operator' => 'NOT IN',
+						'relation' => 'AND',
+						[
+							'taxonomy' => 'post_format',
+							'terms'    => $terms,
+							'field'    => 'slug',
+							'operator' => 'NOT IN',
+						],
 					],
-				],
-			);
+				);
+			}
 		}
 	}
-}
-add_action( 'pre_get_posts', 'autonomie_query_format_standard' );
 
-/**
- * Add lazy loading attribute
- *
- * @see https://www.webrocker.de/2019/08/20/wordpress-filter-for-lazy-loading-src/
- *
- * @param string $content The post content.
- *
- * @return string the filtered content
- */
-function autonomie_add_lazy_loading( string $content ): string {
-	$content = preg_replace( '/(<[^>]*?)(\ssrc=)(.*?\/?>)/', '\1 loading="lazy" src=\3', $content );
-
-	return $content;
-}
-add_filter( 'the_content', 'autonomie_add_lazy_loading', 99 );
-
-/**
- * Disable WP native lazy loading for the_content since we handle it ourselves.
- *
- * @param bool   $is_enabled Whether lazy loading is enabled.
- * @param string $tag_name   The HTML tag name.
- * @param string $context    The context where lazy loading is applied.
- *
- * @return bool
- */
-function autonomie_disable_native_lazy_loading( bool $is_enabled, string $tag_name, string $context ): bool {
-	if ( $context === 'the_content' ) {
-		return false;
+	/**
+	 * Add lazy loading attribute to images in content.
+	 *
+	 * @param string $content The post content.
+	 *
+	 * @return string
+	 */
+	public static function add_lazy_loading( string $content ): string {
+		return \preg_replace( '/(<(?![^>]*\bloading=)[^>]*?)(\ssrc=)(.*?\/?>)/', '\1 loading="lazy" src=\3', $content );
 	}
 
-	return $is_enabled;
-}
-add_filter( 'wp_lazy_loading_enabled', 'autonomie_disable_native_lazy_loading', 20, 3 );
-
-if ( ! function_exists( 'get_self_link' ) ) {
 	/**
-	 * Returns the link for the currently displayed feed.
+	 * Disable WP native lazy loading for the_content.
 	 *
-	 * @since 5.3.0
+	 * @param bool   $is_enabled Whether lazy loading is enabled.
+	 * @param string $tag_name   The HTML tag name.
+	 * @param string $context    The context where lazy loading is applied.
 	 *
-	 * @return string Correct link for the atom:self element.
+	 * @return bool
 	 */
-	function get_self_link(): string { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- WP core polyfill.
-		$host = wp_parse_url( home_url() );
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Polyfill for WP core function.
-		return set_url_scheme( 'http://' . $host['host'] . wp_unslash( $_SERVER['REQUEST_URI'] ) );
+	public static function disable_native_lazy_loading( bool $is_enabled, string $tag_name, string $context ): bool {
+		if ( $context === 'the_content' ) {
+			return false;
+		}
+
+		return $is_enabled;
 	}
 }

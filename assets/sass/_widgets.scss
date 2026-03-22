@@ -40,7 +40,12 @@
 	}
 
 	#share-options {
+		display: none;
 		clear: both;
+
+		&.is-visible {
+			display: block;
+		}
 
 		input[type="text"],
 		input[type="url"],

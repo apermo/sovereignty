@@ -2889,7 +2889,11 @@ a.button:active {
 	transform: rotate(-0.5deg);
 }
 .entry-footer #share-options {
+	display: none;
 	clear: both;
+}
+.entry-footer #share-options.is-visible {
+	display: block;
 }
 .entry-footer #share-options input[type=text],
 .entry-footer #share-options input[type=url],

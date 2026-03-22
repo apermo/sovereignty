@@ -20,17 +20,17 @@ global $post;
 				'sovereignty_post_format',
 				sprintf(
 					'<a class="entry-format entry-format-%s entry-type-%s" href="%s">%s</a>',
-					Post_Format::get_format(),
-					get_post_type(),
-					esc_url( Post_Format::get_format_link( Post_Format::get_format() ) ),
-					Post_Format::get_format_string(),
+					Post_Format::get_format( $post ),
+					get_post_type( $post ),
+					esc_url( Post_Format::get_format_link( Post_Format::get_format( $post ), $post ) ),
+					Post_Format::get_format_string( $post ),
 				),
 			);
 			?>
 		</div>
 
 		<?php
-		if ( ! in_array( get_post_format(), [ 'aside', 'quote', 'status' ], true ) && ! empty( get_the_title() ) ) {
+		if ( ! in_array( get_post_format( $post ), [ 'aside', 'quote', 'status' ], true ) && ! empty( get_the_title() ) ) {
 			if ( is_singular() ) {
 
 				$sovereignty_title_element = 'h1';

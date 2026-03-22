@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Apermo\Sovereignty;
 
 use Apermo\Sovereignty\Template\Post_Format;
+use WP_Post;
 
 /**
  * RSS/Atom feed extensions.
@@ -30,7 +31,10 @@ class Feed {
 			$feed = $default_feed;
 		}
 
-		$link = Post_Format::get_format_link( $post_format );
+		$current_post = get_post(); // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Utility called from hook context.
+		$link         = $current_post instanceof WP_Post
+			? Post_Format::get_format_link( $post_format, $current_post )
+			: ''; // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Utility called from hook context.
 		if ( empty( $link ) ) {
 			return false;
 		}
@@ -107,8 +111,8 @@ class Feed {
 			];
 
 			$feeds[] = [
-				'title' => \sprintf( $args['posttypetitle'], get_bloginfo( 'name' ), $args['separator'], get_post_format_string( Post_Format::get_format() ) ),
-				'href'  => self::get_post_format_archive_feed_link( Post_Format::get_format() ),
+				'title' => \sprintf( $args['posttypetitle'], get_bloginfo( 'name' ), $args['separator'], get_post_format_string( Post_Format::get_format( $post ) ) ),
+				'href'  => self::get_post_format_archive_feed_link( Post_Format::get_format( $post ) ),
 			];
 		}
 

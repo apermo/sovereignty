@@ -7,16 +7,20 @@ namespace Apermo\Sovereignty\Tests\Unit;
 use Apermo\Sovereignty\Feed;
 use Brain\Monkey;
 use Brain\Monkey\Functions;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use WP_Post;
 
 /**
  * Tests for the Feed class.
  */
-#[CoversClass( Apermo\Sovereignty\Feed::class )]
+#[CoversClass( Feed::class )]
 class FeedTest extends TestCase {
 
 	/**
 	 * Set up Brain Monkey before each test.
+	 *
+	 * @return void
 	 */
 	protected function setUp(): void {
 		parent::setUp();
@@ -25,6 +29,8 @@ class FeedTest extends TestCase {
 
 	/**
 	 * Tear down Brain Monkey after each test.
+	 *
+	 * @return void
 	 */
 	protected function tearDown(): void {
 		Monkey\tearDown();
@@ -32,13 +38,26 @@ class FeedTest extends TestCase {
 	}
 
 	/**
+	 * Create a mock WP_Post.
+	 *
+	 * @return WP_Post
+	 */
+	private function make_post(): WP_Post {
+		$post     = new WP_Post();
+		$post->ID = 1;
+		return $post;
+	}
+
+	/**
 	 * Verify that an empty format link returns false.
+	 *
+	 * @return void
 	 */
 	public function test_get_post_format_archive_feed_link_returns_false_for_empty_link(): void {
 		Functions\expect( 'get_default_feed' )->once()->andReturn( 'rss2' );
-		// Post_Format::get_format_link() for 'standard' with page type returns permalink.
 		Functions\stubs(
 			[
+				'get_post'      => $this->make_post(),
 				'get_post_type' => 'page',
 				'get_permalink' => '',
 			],
@@ -50,13 +69,16 @@ class FeedTest extends TestCase {
 	}
 
 	/**
-	 * Verify that the feed link appends a /feed/ path when pretty permalinks are enabled.
+	 * Verify the feed link appends /feed/ with pretty permalinks.
+	 *
+	 * @return void
 	 */
 	public function test_get_post_format_archive_feed_link_appends_feed_with_permalinks(): void {
 		Functions\expect( 'get_default_feed' )->once()->andReturn( 'rss2' );
 		Functions\stubs(
 			[
-				'get_post_type' => 'post',
+				'get_post'             => $this->make_post(),
+				'get_post_type'        => 'post',
 				'get_post_format_link' => 'https://example.com/type/standard',
 			],
 		);
@@ -70,13 +92,16 @@ class FeedTest extends TestCase {
 	}
 
 	/**
-	 * Verify that the feed link uses a query argument when pretty permalinks are disabled.
+	 * Verify the feed link uses query args without pretty permalinks.
+	 *
+	 * @return void
 	 */
 	public function test_get_post_format_archive_feed_link_uses_query_arg_without_permalinks(): void {
 		Functions\expect( 'get_default_feed' )->once()->andReturn( 'rss2' );
 		Functions\stubs(
 			[
-				'get_post_type' => 'post',
+				'get_post'             => $this->make_post(),
+				'get_post_type'        => 'post',
 				'get_post_format_link' => 'https://example.com/?post_format=aside',
 			],
 		);

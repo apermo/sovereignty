@@ -1,6 +1,8 @@
 <?php
 use Apermo\Sovereignty\Template\Post_Format;
 use Apermo\Sovereignty\Template\Tags;
+
+global $post;
 ?>
 
 <header class="entry-header">
@@ -46,7 +48,7 @@ use Apermo\Sovereignty\Template\Tags;
 		<?php } ?>
 
 		<div class="entry-meta">
-			<?php Tags::posted_by(); ?> <span class="sep"> · </span> <?php Tags::posted_on(); ?> <span class="sep"> · </span> <?php Tags::reading_time(); ?>
+			<?php Tags::posted_by( $post ); ?> <span class="sep"> · </span> <?php Tags::posted_on( $post ); ?> <span class="sep"> · </span> <?php Tags::reading_time( $post ); ?>
 		</div>
 	</div>
 </header><!-- .entry-header -->

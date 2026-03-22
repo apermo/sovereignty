@@ -340,8 +340,7 @@ class Semantics {
 			$classes['itemscope'] = [ '' ];
 			$classes['itemtype']  = [ 'https://schema.org/BlogPosting' ];
 			$classes['itemref']   = [ 'site-publisher' ];
-			// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
-			$classes['itemid'] = [ get_permalink() ];
+			$classes['itemid'] = [ get_permalink( get_post() ) ]; // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Called from get_semantics() without post context.
 		}
 
 		return $classes;
@@ -397,8 +396,7 @@ class Semantics {
 	 * @return array
 	 */
 	public static function term_links_tag( array $links ): array {
-		// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
-		$post = get_post();
+		$post = get_post(); // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Filter callback, no $post parameter available.
 
 		$terms = get_the_terms( $post->ID, 'post_tag' );
 

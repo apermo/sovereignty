@@ -16,9 +16,10 @@ get_header(); ?>
 			<?php
 			while ( have_posts() ) {
 				the_post();
+				global $post;
 				?>
 
-				<?php get_template_part( 'templates/content', get_post_format() ); ?>
+				<?php get_template_part( 'templates/content', get_post_format( $post ) ); ?>
 
 				<?php
 				// If comments are open, or we have at least one comment, load up the comment template.

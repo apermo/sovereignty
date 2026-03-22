@@ -92,8 +92,7 @@ class Feed {
 
 		// Post/Page feeds.
 		if ( is_singular() ) {
-			// phpcs:ignore Apermo.WordPress.ImplicitPostFunction
-			$post = get_post();
+			$post = get_post(); // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Hook callback, no $post parameter available.
 
 			foreach ( wp_get_post_terms( $post->ID, [ 'post_tag', 'category' ] ) as $term ) {
 				$tax = get_taxonomy( $term->taxonomy );

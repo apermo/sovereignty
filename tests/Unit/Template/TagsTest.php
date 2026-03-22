@@ -103,4 +103,48 @@ class TagsTest extends TestCase {
 
 		$this->assertSame( 'Excerpt text', $output );
 	}
+
+	/**
+	 * Verify site_title_tag returns h1 on the homepage.
+	 *
+	 * @return void
+	 */
+	public function test_site_title_tag_returns_h1_on_home(): void {
+		Functions\expect( 'is_home' )->once()->andReturn( true );
+
+		$this->assertSame( 'h1', Tags::site_title_tag() );
+	}
+
+	/**
+	 * Verify site_title_tag returns div on non-home pages.
+	 *
+	 * @return void
+	 */
+	public function test_site_title_tag_returns_div_on_non_home(): void {
+		Functions\expect( 'is_home' )->once()->andReturn( false );
+
+		$this->assertSame( 'div', Tags::site_title_tag() );
+	}
+
+	/**
+	 * Verify entry_title_tag returns h1 on singular pages.
+	 *
+	 * @return void
+	 */
+	public function test_entry_title_tag_returns_h1_on_singular(): void {
+		Functions\expect( 'is_singular' )->once()->andReturn( true );
+
+		$this->assertSame( 'h1', Tags::entry_title_tag() );
+	}
+
+	/**
+	 * Verify entry_title_tag returns h2 on non-singular pages.
+	 *
+	 * @return void
+	 */
+	public function test_entry_title_tag_returns_h2_on_non_singular(): void {
+		Functions\expect( 'is_singular' )->once()->andReturn( false );
+
+		$this->assertSame( 'h2', Tags::entry_title_tag() );
+	}
 }

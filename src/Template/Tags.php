@@ -245,4 +245,26 @@ class Tags {
 		}
 		// phpcs:enable
 	}
+
+	/**
+	 * Get the HTML tag name for the site title element.
+	 *
+	 * Returns 'h1' on the homepage (main heading), 'div' elsewhere.
+	 *
+	 * @return string The HTML tag name.
+	 */
+	public static function site_title_tag(): string {
+		return is_home() ? 'h1' : 'div';
+	}
+
+	/**
+	 * Get the HTML tag name for the entry title element.
+	 *
+	 * Returns 'h1' on singular pages, 'h2' in listings.
+	 *
+	 * @return string The HTML tag name.
+	 */
+	public static function entry_title_tag(): string {
+		return is_singular() ? 'h1' : 'h2';
+	}
 }

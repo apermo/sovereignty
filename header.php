@@ -10,6 +10,7 @@
 
 use Apermo\Sovereignty\Semantics;
 use Apermo\Sovereignty\Template\Functions;
+use Apermo\Sovereignty\Template\Tags;
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -54,17 +55,12 @@ if ( function_exists( 'wp_body_open' ) ) {
 				echo get_custom_logo(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Returns safe HTML from core.
 			}
 
-			if ( is_home() ) {
-				$sovereignty_site_title_element = 'h1';
-			} else {
-				$sovereignty_site_title_element = 'div';
-			}
 			?>
-			<<?php echo esc_html( $sovereignty_site_title_element ); ?> id="site-title"<?php Semantics::output( 'site-title' ); ?>>
+			<<?php echo esc_html( Tags::site_title_tag() ); ?> id="site-title"<?php Semantics::output( 'site-title' ); ?>>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"<?php Semantics::output( 'site-url' ); ?>>
 				<?php bloginfo( 'name' ); ?>
 				</a>
-			</<?php echo esc_html( $sovereignty_site_title_element ); ?>>
+			</<?php echo esc_html( Tags::site_title_tag() ); ?>>
 
 			<?php get_search_form( [ 'echo' => true ] ); ?>
 		</div>

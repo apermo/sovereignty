@@ -54,9 +54,9 @@ class Assets {
 
 		wp_enqueue_style( 'sovereignty-style', get_stylesheet_directory_uri() . "/style{$suffix}.css", [ 'dashicons' ], \SOVEREIGNTY_VERSION );
 		wp_enqueue_style( 'sovereignty-print-style', $theme_uri . "/assets/css/print{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, 'print' );
-		wp_enqueue_style( 'sovereignty-narrow-style', $theme_uri . "/assets/css/narrow-width{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(max-width: 800px)' );
-		wp_enqueue_style( 'sovereignty-default-style', $theme_uri . "/assets/css/default-width{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(min-width: 800px)' );
-		wp_enqueue_style( 'sovereignty-wide-style', $theme_uri . "/assets/css/wide-width{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(min-width: 1000px)' );
+		wp_enqueue_style( 'sovereignty-narrow-style', $theme_uri . "/assets/css/narrow-width{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(max-width: ' . Config::string( 'sovereignty.layout.breakpoints.narrow' ) . ')' );
+		wp_enqueue_style( 'sovereignty-default-style', $theme_uri . "/assets/css/default-width{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(min-width: ' . Config::string( 'sovereignty.layout.breakpoints.narrow' ) . ')' );
+		wp_enqueue_style( 'sovereignty-wide-style', $theme_uri . "/assets/css/wide-width{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(min-width: ' . Config::string( 'sovereignty.layout.breakpoints.wide' ) . ')' );
 
 		wp_localize_script(
 			'sovereignty',

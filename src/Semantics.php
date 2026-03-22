@@ -242,20 +242,20 @@ class Semantics {
 
 		if ( is_search() ) {
 			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = [ 'https://schema.org/Blog', 'https://schema.org/SearchResultsPage' ];
+			$classes['itemtype']  = Config::array( 'sovereignty.schema.search' );
 		} elseif ( is_author() ) {
 			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = [ 'https://schema.org/Blog', 'https://schema.org/ProfilePage' ];
+			$classes['itemtype']  = Config::array( 'sovereignty.schema.author' );
 		} elseif ( is_single() ) {
 			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = [ 'https://schema.org/BlogPosting' ];
+			$classes['itemtype']  = Config::array( 'sovereignty.schema.single' );
 			$classes['itemref']   = [ 'site-publisher' ];
 		} elseif ( is_page() ) {
 			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = [ 'https://schema.org/WebPage' ];
+			$classes['itemtype']  = Config::array( 'sovereignty.schema.page' );
 		} elseif ( ! is_singular() ) {
 			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = [ 'https://schema.org/Blog', 'https://schema.org/WebPage' ];
+			$classes['itemtype']  = Config::array( 'sovereignty.schema.archive' );
 		}
 
 		$classes['itemid'] = [ get_self_link() ];
@@ -338,7 +338,7 @@ class Semantics {
 		if ( ! is_singular() ) {
 			$classes['itemprop']  = [ 'blogPost' ];
 			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = [ 'https://schema.org/BlogPosting' ];
+			$classes['itemtype']  = Config::array( 'sovereignty.schema.single' );
 			$classes['itemref']   = [ 'site-publisher' ];
 			$classes['itemid']    = [ get_permalink( get_post() ) ]; // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Called from get_semantics() without post context.
 		}

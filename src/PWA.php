@@ -34,30 +34,24 @@ class PWA {
 		}
 
 		$theme_uri = get_template_directory_uri();
-		$manifest  = [
+		$icons     = [];
+
+		foreach ( Config::array( 'sovereignty.pwa.icons' ) as $icon ) {
+			$icons[] = [
+				'src'   => $theme_uri . '/' . $icon['src'],
+				'sizes' => $icon['sizes'],
+				'type'  => $icon['type'],
+			];
+		}
+
+		$manifest = [
 			'name'             => get_bloginfo( 'name' ),
 			'short_name'       => get_bloginfo( 'name' ),
 			'description'      => get_bloginfo( 'description' ),
-			'icons'            => [
-				[
-					'src'   => $theme_uri . '/assets/icons/192x192.png',
-					'sizes' => '192x192',
-					'type'  => 'image/png',
-				],
-				[
-					'src'   => $theme_uri . '/assets/icons/512x512.png',
-					'sizes' => '512x512',
-					'type'  => 'image/png',
-				],
-				[
-					'src'   => $theme_uri . '/assets/favicon.svg',
-					'sizes' => 'any',
-					'type'  => 'image/svg+xml',
-				],
-			],
-			'theme_color'      => '#eeeeee',
-			'background_color' => '#eeeeee',
-			'display'          => 'browser',
+			'icons'            => $icons,
+			'theme_color'      => Config::string( 'sovereignty.pwa.themeColor.light' ),
+			'background_color' => Config::string( 'sovereignty.pwa.backgroundColor' ),
+			'display'          => Config::string( 'sovereignty.pwa.display' ),
 		];
 
 		\header( 'Content-Type: application/manifest+json' );
@@ -80,10 +74,10 @@ class PWA {
 		$theme_uri = get_template_directory_uri();
 
 		\printf( '<link rel="manifest" href="%s">' . \PHP_EOL, esc_url( home_url( '?sovereignty_manifest=1' ) ) );
-		\printf( '<link rel="icon" href="%s" type="image/svg+xml">' . \PHP_EOL, esc_url( $theme_uri . '/assets/favicon.svg' ) );
-		\printf( '<link rel="icon" href="%s" sizes="32x32">' . \PHP_EOL, esc_url( $theme_uri . '/assets/favicon.ico' ) );
-		\printf( '<link rel="apple-touch-icon" href="%s">' . \PHP_EOL, esc_url( $theme_uri . '/assets/icons/180x180.png' ) );
-		\printf( '<meta name="theme-color" content="#eeeeee" media="(prefers-color-scheme: light)">' . \PHP_EOL );
-		\printf( '<meta name="theme-color" content="#222222" media="(prefers-color-scheme: dark)">' . \PHP_EOL );
+		\printf( '<link rel="icon" href="%s" type="image/svg+xml">' . \PHP_EOL, esc_url( $theme_uri . '/' . Config::string( 'sovereignty.pwa.favicon.svg' ) ) );
+		\printf( '<link rel="icon" href="%s" sizes="32x32">' . \PHP_EOL, esc_url( $theme_uri . '/' . Config::string( 'sovereignty.pwa.favicon.ico' ) ) );
+		\printf( '<link rel="apple-touch-icon" href="%s">' . \PHP_EOL, esc_url( $theme_uri . '/' . Config::string( 'sovereignty.pwa.appleTouchIcon' ) ) );
+		\printf( '<meta name="theme-color" content="%s" media="(prefers-color-scheme: light)">' . \PHP_EOL, esc_attr( Config::string( 'sovereignty.pwa.themeColor.light' ) ) );
+		\printf( '<meta name="theme-color" content="%s" media="(prefers-color-scheme: dark)">' . \PHP_EOL, esc_attr( Config::string( 'sovereignty.pwa.themeColor.dark' ) ) );
 	}
 }

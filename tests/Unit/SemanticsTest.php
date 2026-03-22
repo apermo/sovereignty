@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Apermo\Sovereignty\Tests\Unit;
 
+use Apermo\Sovereignty\Config;
 use Apermo\Sovereignty\Semantics;
 use Brain\Monkey;
 use Brain\Monkey\Functions;
@@ -21,12 +22,14 @@ class SemanticsTest extends TestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		Monkey\setUp();
+		Config::reset();
 	}
 
 	/**
 	 * Tear down Brain Monkey after each test.
 	 */
 	protected function tearDown(): void {
+		Config::reset();
 		Monkey\tearDown();
 		parent::tearDown();
 	}
@@ -142,14 +145,15 @@ class SemanticsTest extends TestCase {
 	public function test_output_echoes_semantic_attributes(): void {
 		Functions\stubs(
 			[
-				'is_search'    => false,
-				'is_author'    => false,
-				'is_single'    => false,
-				'is_page'      => false,
-				'is_singular'  => false,
-				'get_self_link' => 'https://example.com/',
-				'esc_attr'     => static fn ( $val ) => $val,
-				'apply_filters' => static fn ( $hook, $val ) => $val,
+				'is_search'              => false,
+				'is_author'              => false,
+				'is_single'              => false,
+				'is_page'                => false,
+				'is_singular'            => false,
+				'get_self_link'          => 'https://example.com/',
+				'esc_attr'               => static fn ( $text ) => $text,
+				'apply_filters'          => static fn ( $hook, $value ) => $value,
+				'get_template_directory' => \dirname( __DIR__, 2 ),
 			],
 		);
 
@@ -167,7 +171,7 @@ class SemanticsTest extends TestCase {
 	public function test_get_semantics_returns_empty_for_unknown_id(): void {
 		Functions\stubs(
 			[
-				'apply_filters' => static fn ( $hook, $val ) => $val,
+				'apply_filters' => static fn ( $hook, $value ) => $value,
 			],
 		);
 

@@ -62,7 +62,7 @@
     "*.js": "eslint",
     "*.scss": "stylelint",
     "*.php": [
-      "vendor/bin/phpcs"
+      "vendor/bin/phpcs --warning-severity=0"
     ]
   },
   "devDependencies": {

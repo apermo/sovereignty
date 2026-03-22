@@ -23,53 +23,19 @@ class Widgets {
 		register_widget( Author::class );
 		register_widget( Taxonomy::class );
 
-		register_sidebar(
-			[
-				'name'          => __( 'Sidebar 1', 'sovereignty' ),
-				'id'            => 'sidebar-1',
-				'description'   => __( 'A sidebar area', 'sovereignty' ),
-				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</aside>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
-			],
-		);
-
-		register_sidebar(
-			[
-				'name'          => __( 'Sidebar 2', 'sovereignty' ),
-				'id'            => 'sidebar-2',
-				'description'   => __( 'A second sidebar area', 'sovereignty' ),
-				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</aside>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
-			],
-		);
-
-		register_sidebar(
-			[
-				'name'          => __( 'Sidebar 3', 'sovereignty' ),
-				'id'            => 'sidebar-3',
-				'description'   => __( 'A third sidebar area', 'sovereignty' ),
-				'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</aside>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
-			],
-		);
-
-		register_sidebar(
-			[
-				'name'          => __( 'Entry-Meta', 'sovereignty' ),
-				'id'            => 'entry-meta',
-				'description'   => __( 'Extend the Entry-Meta', 'sovereignty' ),
-				'before_widget' => '',
-				'after_widget'  => '',
-				'before_title'  => '',
-				'after_title'   => '',
-			],
-		);
+		foreach ( Config::array( 'sovereignty.sidebars' ) as $sidebar ) {
+			register_sidebar(
+				[
+					'name'          => $sidebar['name'],
+					'id'            => $sidebar['id'],
+					'description'   => $sidebar['description'],
+					'before_widget' => $sidebar['beforeWidget'],
+					'after_widget'  => $sidebar['afterWidget'],
+					'before_title'  => $sidebar['beforeTitle'],
+					'after_title'   => $sidebar['afterTitle'],
+				],
+			);
+		}
 	}
 
 	/**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Apermo\Sovereignty\Tests\Unit;
 
+use Apermo\Sovereignty\Config;
 use Apermo\Sovereignty\PWA;
 use Brain\Monkey;
 use Brain\Monkey\Functions;
@@ -21,12 +22,14 @@ class PwaTest extends TestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		Monkey\setUp();
+		Config::reset();
 	}
 
 	/**
 	 * Tear down Brain Monkey after each test.
 	 */
 	protected function tearDown(): void {
+		Config::reset();
 		Monkey\tearDown();
 		parent::tearDown();
 	}
@@ -60,9 +63,16 @@ class PwaTest extends TestCase {
 	 */
 	public function test_pwa_head_outputs_links_when_no_site_icon(): void {
 		Functions\expect( 'has_site_icon' )->once()->andReturn( false );
-		Functions\expect( 'get_template_directory_uri' )->once()->andReturn( 'https://example.com/theme' );
+		Functions\expect( 'get_template_directory_uri' )->andReturn( 'https://example.com/theme' );
 		Functions\expect( 'home_url' )->once()->andReturn( 'https://example.com/?sovereignty_manifest=1' );
-		Functions\stubs( [ 'esc_url' => static fn ( $url ) => $url ] );
+		Functions\stubs(
+			[
+				'esc_url'                => static fn ( $url ) => $url,
+				'esc_attr'               => static fn ( $text ) => $text,
+				'get_template_directory' => \dirname( __DIR__, 2 ),
+				'apply_filters'          => static fn ( $hook, $value ) => $value,
+			],
+		);
 
 		\ob_start();
 		PWA::head();

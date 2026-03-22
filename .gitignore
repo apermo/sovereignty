@@ -16,3 +16,4 @@ style.min.css
 assets/css/*.css
 assets/css/*.min.css
 assets/css/*.css.map
+.claude/settings.local.json

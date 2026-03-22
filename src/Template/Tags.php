@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Apermo\Sovereignty\Template;
 
+use Apermo\Sovereignty\Config;
 use Apermo\Sovereignty\Semantics;
 use WP_Post;
 
@@ -53,7 +54,7 @@ class Tags {
 					<link itemprop="url" href="%2$s" />
 				</span>
 			</address>',
-			get_avatar( $author_id, 40 ),
+			get_avatar( $author_id, Config::int( 'sovereignty.avatar.size' ) ),
 			esc_url( get_author_posts_url( $author_id ) ),
 			// translators: %s is the author name.
 			esc_attr( \sprintf( __( 'View all posts by %s', 'sovereignty' ), get_the_author_meta( 'display_name', $author_id ) ) ),
@@ -198,7 +199,7 @@ class Tags {
 	public static function reading_time( WP_Post $post ): void {
 		$content     = get_post_field( 'post_content', $post );
 		$word_count  = \str_word_count( wp_strip_all_tags( $content ) );
-		$readingtime = (int) \ceil( $word_count / 200 );
+		$readingtime = (int) \ceil( $word_count / Config::int( 'sovereignty.reading.wordsPerMinute' ) );
 
 		\printf(
 			// translators: %1$s = reading time in minutes.

@@ -33,7 +33,7 @@ class Comment {
 				<div class="edit-link"><?php edit_comment_link( __( 'Edit', 'sovereignty' ), ' ' ); ?></div>
 				<footer class="comment-meta commentmetadata">
 					<address class="comment-author p-author author vcard hcard h-card" itemprop="creator" itemscope itemtype="https://schema.org/Person">
-						<?php echo get_avatar( $comment, 40 ); ?>
+						<?php echo get_avatar( $comment, Config::int( 'sovereignty.avatar.size' ) ); ?>
 						<?php \printf( '<cite class="fn p-name" itemprop="name">%s</cite>', get_comment_author_link() ); ?>
 					</address><!-- .comment-author .vcard -->
 

@@ -30,7 +30,7 @@ class Featured_Image {
 		if ( get_the_post_thumbnail( $post ) !== '' ) {
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post ), 'post-thumbnail' );
 
-			if ( $image['1'] <= '400' ) {
+			if ( $image['1'] <= Config::int( 'sovereignty.images.inlineThreshold' ) ) {
 				return;
 			}
 
@@ -79,7 +79,7 @@ class Featured_Image {
 		if ( get_the_post_thumbnail( $post ) !== '' ) {
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post ), 'post-thumbnail' );
 
-			if ( $image['1'] > '400' ) {
+			if ( $image['1'] > Config::int( 'sovereignty.images.inlineThreshold' ) ) {
 				return $content;
 			}
 
@@ -212,11 +212,11 @@ class Featured_Image {
 		if ( is_singular() && self::has_full_width( $post ) ) {
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post ), 'full' );
 
-			$css = '.entry-header {
+			$style = '.entry-header {
 				background: linear-gradient(190deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url(' . $image[0] . ') no-repeat center center scroll;
 			}' . \PHP_EOL;
 
-			wp_add_inline_style( 'sovereignty-style', $css );
+			wp_add_inline_style( 'sovereignty-style', $style );
 		}
 	}
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Apermo\Sovereignty\Tests\Unit\Template;
 
+use Apermo\Sovereignty\Config;
 use Apermo\Sovereignty\Template\Tags;
 use Brain\Monkey;
 use Brain\Monkey\Functions;
@@ -25,6 +26,13 @@ class TagsTest extends TestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		Monkey\setUp();
+		Config::reset();
+
+		Functions\stubs(
+			[
+				'get_template_directory' => \dirname( __DIR__, 3 ),
+			],
+		);
 	}
 
 	/**
@@ -33,6 +41,7 @@ class TagsTest extends TestCase {
 	 * @return void
 	 */
 	protected function tearDown(): void {
+		Config::reset();
 		Monkey\tearDown();
 		parent::tearDown();
 	}
@@ -57,7 +66,7 @@ class TagsTest extends TestCase {
 	 * @return void
 	 */
 	public function test_get_post_id_returns_prefixed_id(): void {
-		Functions\expect( 'apply_filters' )->once()->andReturnUsing( static fn ( $hook, $val ) => $val );
+		Functions\expect( 'apply_filters' )->once()->andReturnUsing( static fn ( $hook, $value ) => $value );
 
 		$result = Tags::get_post_id( $this->make_post( 42 ) );
 
@@ -73,10 +82,11 @@ class TagsTest extends TestCase {
 		Functions\expect( 'get_post_field' )->once()->andReturn( \str_repeat( 'word ', 400 ) );
 		Functions\stubs(
 			[
+				'apply_filters'      => static fn ( $hook, $value ) => $value,
 				'wp_strip_all_tags'  => static fn ( $text ) => $text,
-				'_n'                 => static fn ( $s, $p, $n ) => $n > 1 ? $p : $s,
-				'esc_html'           => static fn ( $val ) => $val,
-				'number_format_i18n' => static fn ( $val ) => (string) $val,
+				'_n'                 => static fn ( $singular, $plural, $count ) => $count > 1 ? $plural : $singular,
+				'esc_html'           => static fn ( $value ) => $value,
+				'number_format_i18n' => static fn ( $value ) => (string) $value,
 			],
 		);
 

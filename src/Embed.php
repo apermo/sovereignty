@@ -17,7 +17,7 @@ class Embed {
 	 * @return void
 	 */
 	public static function content_width(): void {
-		$content_width = 900;
+		$content_width = Config::int( 'sovereignty.embed.width' );
 
 		/**
 		 * Filters the content width in pixels.
@@ -36,8 +36,8 @@ class Embed {
 	 */
 	public static function defaults(): array {
 		return [
-			'width'  => 900,
-			'height' => 600,
+			'width'  => Config::int( 'sovereignty.embed.width' ),
+			'height' => Config::int( 'sovereignty.embed.height' ),
 		];
 	}
 
@@ -49,8 +49,8 @@ class Embed {
 	 * @return string
 	 */
 	public static function fetch_url( string $provider ): string {
-		$provider = add_query_arg( 'width', 900, $provider );
-		$provider = add_query_arg( 'height', 600, $provider );
+		$provider = add_query_arg( 'width', Config::int( 'sovereignty.embed.width' ), $provider );
+		$provider = add_query_arg( 'height', Config::int( 'sovereignty.embed.height' ), $provider );
 
 		return $provider;
 	}

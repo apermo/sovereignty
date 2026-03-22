@@ -24,7 +24,7 @@ class Login {
 		?>
 		<style type="text/css">
 			body.login div#login h1 a {
-				background-image: url( <?php echo esc_url( get_site_icon_url( 84 ) ); ?> );
+				background-image: url( <?php echo esc_url( get_site_icon_url( Config::int( 'sovereignty.login.iconSize' ) ) ); ?> );
 			}
 		</style>
 		<?php

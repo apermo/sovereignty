@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Apermo\Sovereignty\Tests\Unit;
 
+use Apermo\Sovereignty\Config;
 use Apermo\Sovereignty\Login;
 use Brain\Monkey;
 use Brain\Monkey\Functions;
@@ -21,12 +22,21 @@ class LoginTest extends TestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		Monkey\setUp();
+		Config::reset();
+
+		Functions\stubs(
+			[
+				'get_template_directory' => \dirname( __DIR__, 2 ),
+				'apply_filters'          => static fn ( $hook, $value ) => $value,
+			],
+		);
 	}
 
 	/**
 	 * Tear down Brain Monkey after each test.
 	 */
 	protected function tearDown(): void {
+		Config::reset();
 		Monkey\tearDown();
 		parent::tearDown();
 	}

@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Page banner render/check helpers (`Functions::has_archive_title()`, `render_archive_title()`, etc.)
 - `PostKindsTest` for integration testing
 - wpackagist dev dependencies (PWA, Post Kinds) for static analysis
+- Playwright E2E test suite expanded from 9 to 31 tests
 
 ### Changed
 
@@ -46,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `includes/`, `integrations/`, `widgets/` directories (moved to `src/`)
 - All `autonomie_` prefixed functions and hooks
 - Hardcoded configuration values across 10 PHP classes
+- Unused `entry-nav.php` template part (dead code since 2019)
 
 ## [1.2.0] - 2026-03-21
 

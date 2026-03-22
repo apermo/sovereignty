@@ -2,13 +2,16 @@
 /**
  * The template for displaying image attachments.
  *
- * @package Autonomie
- * @since Autonomie 1.0.0
+ * @package Sovereignty
+ * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Semantics;
+use Apermo\Sovereignty\Template\Tags;
 
 get_header(); ?>
 
-			<main id="primary" <?php autonomie_main_class(); ?><?php autonomie_semantics( 'main' ); ?>>
+			<main id="primary" <?php Tags::main_class(); ?><?php Semantics::output( 'main' ); ?>>
 
 			<?php
 			while ( have_posts() ) {
@@ -71,7 +74,7 @@ get_header(); ?>
 													 *
 													 * @return int The filtered size.
 													 */
-													$sovereignty_attachment_size = apply_filters( 'autonomie_attachment_size', 1200 );
+													$sovereignty_attachment_size = apply_filters( 'sovereignty_attachment_size', 1200 );
 													echo wp_get_attachment_image( $post->ID, [ $sovereignty_attachment_size, $sovereignty_attachment_size ], false, [ 'itemprop' => 'image contentURL' ] );
 													?>
 								</a>
@@ -88,7 +91,7 @@ get_header(); ?>
 						<?php
 						wp_link_pages(
 							[
-								'before' => '<div class="page-link">' . __( 'Pages:', 'autonomie' ),
+								'before' => '<div class="page-link">' . __( 'Pages:', 'sovereignty' ),
 								'after' => '</div>',
 							],
 						);

@@ -9,15 +9,18 @@
  * and that other 'pages' on your WordPress site will use a
  * different template.
  *
- * @package Autonomie
- * @since Autonomie 1.0.0
+ * @package Sovereignty
+ * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Semantics;
+use Apermo\Sovereignty\Template\Tags;
 
 set_query_var( 'is_now', true );
 
 get_header(); ?>
 
-		<main id="primary" <?php autonomie_main_class( 'h-now' ); ?><?php autonomie_semantics( 'main' ); ?>>
+		<main id="primary" <?php Tags::main_class( 'h-now' ); ?><?php Semantics::output( 'main' ); ?>>
 
 			<?php
 			while ( have_posts() ) {

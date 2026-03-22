@@ -8,12 +8,12 @@ This is a WordPress theme forked from Autonomie. It uses the WordPress Coding St
 
 - Follow the [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/).
 - Use tabs for indentation (not spaces).
-- All user-facing strings must be translatable using `__()`, `_e()`, `esc_html__()`, `esc_html_e()`, `esc_attr__()`, or `esc_attr_e()` with the `autonomie` text domain.
+- All user-facing strings must be translatable using `__()`, `_e()`, `esc_html__()`, `esc_html_e()`, `esc_attr__()`, or `esc_attr_e()` with the `sovereignty` text domain.
 - Translator comments (`/* translators: ... */`) are required before any translation function call that contains placeholders.
 - All output must be properly escaped using `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`, etc.
 - Use post-increment (`$i++`) over pre-increment (`++$i`).
 - Keep functions pluggable with `function_exists()` checks where the original theme uses them.
-- PHP functions use the `autonomie_` prefix.
+- PHP functions use the `sovereignty_` prefix.
 
 ## Semantic HTML & IndieWeb
 

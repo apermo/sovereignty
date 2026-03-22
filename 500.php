@@ -2,22 +2,25 @@
 /**
  * The template for displaying 404 pages (Not Found).
  *
- * @package Autonomie
- * @since Autonomie 1.0.0
+ * @package Sovereignty
+ * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Semantics;
+use Apermo\Sovereignty\Template\Tags;
 
 get_header(); ?>
 
-		<main id="primary" <?php autonomie_main_class(); ?><?php autonomie_semantics( 'main' ); ?>>
+		<main id="primary" <?php Tags::main_class(); ?><?php Semantics::output( 'main' ); ?>>
 
 			<article id="post-0" class="post error500 internal-server-error">
 				<header class="entry-header">
-					<h1 class="entry-title p-name"><?php esc_html_e( 'Internal Server Error', 'autonomie' ); ?></h1>
+					<h1 class="entry-title p-name"><?php esc_html_e( 'Internal Server Error', 'sovereignty' ); ?></h1>
 				</header>
 
 				<div class="entry-content e-content">
-					<p><?php wp_service_worker_error_message_placeholder(); // @phpstan-ignore function.notFound (PWA plugin) ?></p>
-					<p><?php wp_service_worker_error_details_template( '' . esc_html__( 'More Details', 'autonomie' ) . '' ); // @phpstan-ignore function.notFound (PWA plugin) ?></p>
+					<p><?php wp_service_worker_error_message_placeholder(); ?></p>
+					<p><?php wp_service_worker_error_details_template( '' . esc_html__( 'More Details', 'sovereignty' ) . '' ); ?></p>
 				</div><!-- .entry-content -->
 			</article><!-- #post-0 -->
 

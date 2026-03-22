@@ -2,18 +2,16 @@
 /**
  * The Sidebar containing the main widget areas.
  *
- * @package Autonomie
- * @since Autonomie 1.0.0
+ * @package Sovereignty
+ * @since Sovereignty 1.0.0
  */
 ?>
 	<div id="sidebar">
 		<?php
 		/**
 		 * Fires before the sidebar widgets.
-		 *
-		 * @todo Rename to sovereignty_before_sidebar in a future release.
 		 */
-		do_action( 'before_sidebar' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook, renaming would break consumers.
+		do_action( 'sovereignty_before_sidebar' );
 		?>
 
 		<div id="secondary" class="widget-area" role="complementary">

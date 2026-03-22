@@ -11,6 +11,11 @@
 	<exclude-pattern>.ddev/*</exclude-pattern>
 	<exclude-pattern>bin/*</exclude-pattern>
 
+	<!-- Test files: allow non-prefixed globals and WP test constants -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
 	<arg name="extensions" value="php"/>
 
 	<rule ref="Apermo"/>
@@ -18,7 +23,6 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="autonomie"/>
 				<element value="sovereignty"/>
 			</property>
 		</properties>
@@ -27,7 +31,6 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
-				<element value="autonomie"/>
 				<element value="sovereignty"/>
 				<element value="Apermo\Sovereignty"/>
 			</property>

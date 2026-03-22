@@ -184,7 +184,7 @@ h4.entry-title {
 #entry-share {
 	display: inline-block;
 	font-size: 1em;
-	font-family: Lato, sans-serif;
+	font-family: $font-sans;
 	background-color: $background-gray;
 	background-color: var(--color-background-gray);
 	border: none;
@@ -226,7 +226,7 @@ h4.entry-title {
 .gallery-caption,
 .page-link,
 .page-links {
-	font-family: Lato, sans-serif;
+	font-family: $font-sans;
 	clear: both;
 	color: $gray;
 	color: var(--color-gray);

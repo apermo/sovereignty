@@ -5,7 +5,7 @@ body {
 	color: $dark-gray;
 	color: var(--color-dark-gray);
 
-	font-family: Lato, sans-serif;
+	font-family: $font-sans;
 	font-weight: 400;
 	word-wrap: break-word;
 }
@@ -50,7 +50,7 @@ figure {
 	font-style: italic;
 	position: relative;
 	line-height: 1.5;
-	font-family: Merriweather, serif;
+	font-family: $font-serif;
 
 	small,
 	figcaption,
@@ -135,7 +135,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: Merriweather, serif;
+	font-family: $font-serif;
 	font-weight: 100;
 	margin-bottom: 0;
 	line-height: 1.2;

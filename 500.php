@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying 404 pages (Not Found).
+ * The template for displaying 500 pages (Internal Server Error).
  *
  * @package Sovereignty
  * @since Sovereignty 1.0.0

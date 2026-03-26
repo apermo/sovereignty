@@ -19,7 +19,7 @@ global $post; // Set by the_post() in calling template.
 	<?php get_template_part( 'template-parts/entry-header' ); ?>
 
 	<?php Featured_Image::the_post_thumbnail( $post, '<div class="entry-media">', '</div>' ); ?>
-	<div class="entry-title p-name entry-content e-content" itemprop="name headline description articleBody">
+	<div class="entry-title p-name entry-content e-content">
 		<?php Tags::the_content( $post ); ?>
 		<?php
 		wp_link_pages(

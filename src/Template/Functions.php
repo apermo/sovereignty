@@ -95,7 +95,7 @@ class Functions {
 			count_user_posts( (int) get_the_author_meta( 'ID' ) ),
 		);
 		$meta[] = \sprintf(
-			'<indie-action do="follow" with="%1$s"><a rel="alternate" class="feed u-feed openwebicons-feed" href="%1$s">%2$s</a></indie-action>',
+			'<a rel="alternate" class="feed u-feed openwebicons-feed" href="%1$s">%2$s</a>',
 			get_author_feed_link( (int) get_the_author_meta( 'ID' ) ),
 			__( 'Subscribe', 'sovereignty' ),
 		);

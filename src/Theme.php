@@ -24,7 +24,6 @@ class Theme {
 		self::init_featured_image();
 		self::init_feed();
 		self::init_compat();
-		self::init_webactions();
 		self::init_pwa();
 		self::init_widgets();
 		self::init_tombstone();
@@ -120,17 +119,6 @@ class Theme {
 		add_action( 'pre_get_posts', [ Compat::class, 'query_format_standard' ] );
 		add_filter( 'the_content', [ Compat::class, 'add_lazy_loading' ], 99 );
 		add_filter( 'wp_lazy_loading_enabled', [ Compat::class, 'disable_native_lazy_loading' ], 20, 3 );
-	}
-
-	/**
-	 * IndieWeb web actions on comment links and forms.
-	 *
-	 * @return void
-	 */
-	private static function init_webactions(): void {
-		add_filter( 'comment_reply_link', [ Webactions::class, 'comment_reply_link' ], 10, 4 );
-		add_action( 'comment_form_before', [ Webactions::class, 'comment_form_before' ], 0 );
-		add_action( 'comment_form_after', [ Webactions::class, 'comment_form_after' ], 0 );
 	}
 
 	/**

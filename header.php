@@ -14,7 +14,7 @@ use Apermo\Sovereignty\Template\Tags;
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>" />
+	<meta charset="<?php echo esc_attr( get_bloginfo( 'charset' ) ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="profile" href="https://microformats.org/profile/specs" />
 	<link rel="profile" href="https://microformats.org/profile/hatom" />
@@ -44,7 +44,7 @@ wp_body_open();
 			?>
 			<<?php Tags::site_title_tag(); ?> id="site-title"<?php Semantics::output( 'site-title' ); ?>>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"<?php Semantics::output( 'site-url' ); ?>>
-				<?php bloginfo( 'name' ); ?>
+				<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
 				</a>
 			</<?php Tags::site_title_tag(); ?>>
 

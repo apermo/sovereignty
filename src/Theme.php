@@ -63,6 +63,7 @@ class Theme {
 		add_action( 'wp_head', [ Head::class, 'pingback' ] );
 		add_action( 'wp_head', [ Head::class, 'publisher_feed' ] );
 		add_action( 'wp_head', [ Head::class, 'color_scheme_meta' ] );
+		add_action( 'wp_head', [ Schema::class, 'output' ], 99 );
 	}
 
 	/**

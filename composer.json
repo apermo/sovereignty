@@ -45,7 +45,8 @@
 		"phpunit/phpunit": "^11.0",
 		"yoast/phpunit-polyfills": "^3.0",
 		"wpackagist-plugin/pwa": "*",
-		"wpackagist-plugin/indieweb-post-kinds": "*"
+		"wpackagist-plugin/indieweb-post-kinds": "*",
+		"yoast/wordpress-seo": "^27.2"
 	},
 	"scripts": {
 		"cs": "phpcs --warning-severity=0",

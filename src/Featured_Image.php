@@ -50,9 +50,8 @@ class Featured_Image {
 					$post,
 					'post-thumbnail',
 					[
-						'class'    => $class,
-						'itemprop' => 'image',
-						'loading'  => 'lazy',
+						'class'   => $class,
+						'loading' => 'lazy',
 					],
 				)
 				. $after;
@@ -97,9 +96,8 @@ class Featured_Image {
 				$post,
 				'post-thumbnail',
 				[
-					'class'    => $class,
-					'itemprop' => 'image',
-					'loading'  => 'lazy',
+					'class'   => $class,
+					'loading' => 'lazy',
 				],
 			);
 

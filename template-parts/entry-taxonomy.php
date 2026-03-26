@@ -19,7 +19,7 @@ if ( $sovereignty_categories_list !== '' ) {
 $sovereignty_tags_list = get_the_tag_list( '<ul><li>', '</li><li>', '</li></ul>' );
 if ( $sovereignty_tags_list ) {
 	?>
-<div class="tag-links" itemprop="keywords">
+<div class="tag-links">
 	<?php echo esc_html__( 'Tags', 'sovereignty' ); ?>
 	<?php
 	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $sovereignty_tags_list contains safe HTML from get_the_tag_list().

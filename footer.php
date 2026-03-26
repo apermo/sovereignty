@@ -11,21 +11,6 @@
 	<footer id="colophon">
 		<?php get_sidebar(); ?>
 
-		<div id="site-publisher" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-			<meta itemprop="name" content="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" />
-			<meta itemprop="url" content="<?php echo esc_url( home_url( '/' ) ); ?>" />
-			<?php
-			if ( has_custom_logo() ) {
-				$sovereignty_image = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ) );
-				?>
-				<div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-					<meta itemprop="url" content="<?php echo esc_url( current( $sovereignty_image ) ); ?>" />
-					<meta itemprop="width" content="<?php echo esc_attr( next( $sovereignty_image ) ); ?>" />
-					<meta itemprop="height" content="<?php echo esc_attr( next( $sovereignty_image ) ); ?>" />
-				</div>
-			<?php } ?>
-		</div>
-
 		<div id="site-generator">
 			<?php
 			/**

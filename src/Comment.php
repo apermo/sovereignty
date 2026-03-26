@@ -29,15 +29,15 @@ class Comment {
 		$GLOBALS['comment'] = $comment;
 		?>
 		<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-			<article id="comment-<?php comment_ID(); ?>" class="comment <?php echo esc_attr( $comment->comment_type ); ?>" itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+			<article id="comment-<?php comment_ID(); ?>" class="comment <?php echo esc_attr( $comment->comment_type ); ?>">
 				<div class="edit-link"><?php edit_comment_link( __( 'Edit', 'sovereignty' ), ' ' ); ?></div>
 				<footer class="comment-meta commentmetadata">
-					<address class="comment-author p-author author vcard hcard h-card" itemprop="creator" itemscope itemtype="https://schema.org/Person">
+					<address class="comment-author p-author author vcard hcard h-card">
 						<?php echo get_avatar( $comment, Config::int( 'sovereignty.avatar.size' ) ); ?>
-						<?php \printf( '<cite class="fn p-name" itemprop="name">%s</cite>', get_comment_author_link() ); ?>
+						<?php \printf( '<cite class="fn p-name">%s</cite>', get_comment_author_link() ); ?>
 					</address><!-- .comment-author .vcard -->
 
-					<a href="<?php echo esc_url( get_comment_link( $comment ) ); ?>"><time class="updated published dt-updated dt-published" datetime="<?php comment_time( 'c' ); ?>" itemprop="dateCreated">
+					<a href="<?php echo esc_url( get_comment_link( $comment ) ); ?>"><time class="updated published dt-updated dt-published" datetime="<?php comment_time( 'c' ); ?>">
 					<?php
 						/* translators: 1: date, 2: time */
 						\printf( esc_html__( '%1$s at %2$s', 'sovereignty' ), esc_html( get_comment_date() ), esc_html( get_comment_time() ) );
@@ -49,7 +49,7 @@ class Comment {
 					<p><em><?php esc_html_e( 'Your comment is awaiting moderation.', 'sovereignty' ); ?></em></p>
 				<?php } ?>
 
-				<div class="comment-content e-content p-summary p-name" itemprop="text name description"><?php comment_text(); ?></div>
+				<div class="comment-content e-content p-summary p-name"><?php comment_text(); ?></div>
 
 				<div class="reply">
 					<?php

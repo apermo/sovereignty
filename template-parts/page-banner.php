@@ -14,7 +14,6 @@ use Apermo\Sovereignty\Template\Functions;
 		<div id="page-description"<?php Semantics::output( 'page-description' ); ?>><?php Functions::render_archive_description(); ?></div>
 		<?php } ?>
 	</div>
-		<?php printf( '<link itemprop="mainEntityOfPage" href="%s" />', esc_url( get_self_link() ) ); ?>
 	<?php } ?>
 </div>
 <?php } ?>

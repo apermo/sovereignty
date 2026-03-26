@@ -49,12 +49,11 @@ class Tags {
 
 		\printf(
 			'<address class="byline">
-				<span class="author p-author vcard hcard h-card" itemprop="author" itemscope itemtype="https://schema.org/Person">
+				<span class="author p-author vcard hcard h-card">
 					%1$s
 					<a class="url uid u-url u-uid fn p-name" href="%2$s" title="%3$s" rel="author">
-						<span itemprop="name">%4$s</span>
+						%4$s
 					</a>
-					<link itemprop="url" href="%2$s" />
 				</span>
 			</address>',
 			get_avatar( $author_id, $avatar_size ),
@@ -83,26 +82,22 @@ class Tags {
 		}
 
 		if ( $type === 'updated' ) {
-			$time      = get_the_modified_time( post: $post );
-			$date_c    = get_the_modified_date( format: 'c', post: $post );
-			$date      = get_the_modified_date( post: $post );
-			$item_prop = 'dateModified';
+			$time   = get_the_modified_time( post: $post );
+			$date_c = get_the_modified_date( format: 'c', post: $post );
+			$date   = get_the_modified_date( post: $post );
 		} else {
-			$time      = get_the_time( post: $post );
-			$date_c    = get_the_date( format: 'c', post: $post );
-			$date      = get_the_date( post: $post );
-			$item_prop = 'datePublished';
+			$time   = get_the_time( post: $post );
+			$date_c = get_the_date( format: 'c', post: $post );
+			$date   = get_the_date( post: $post );
 		}
 
 		\printf(
-			// translators: %1$s = post permalink, %2$s = post date, %3$s = ISO 8601 date, %4$s = display date, %5$s = date type, %6$s = itemprop.
-			'<a href="%1$s" title="%2$s" rel="bookmark" class="url u-url" itemprop="mainEntityOfPage"><time class="entry-date %5$s dt-%5$s" datetime="%3$s" itemprop="%6$s">%4$s</time></a>',
+			'<a href="%1$s" title="%2$s" rel="bookmark" class="url u-url"><time class="entry-date %5$s dt-%5$s" datetime="%3$s">%4$s</time></a>',
 			esc_url( get_permalink( $post ) ),
 			esc_attr( $time ),
 			esc_attr( $date_c ),
 			esc_html( $date ),
 			esc_html( $type ),
-			esc_html( $item_prop ),
 		);
 	}
 
@@ -223,7 +218,7 @@ class Tags {
 		$duration = \sprintf( _n( '%s minute', '%s minutes', $minutes, 'sovereignty' ), $formatted );
 
 		\printf(
-			'<span class="entry-duration"><time datetime="PT%dM" class="dt-duration" itemprop="timeRequired">%s</time> %s</span>',
+			'<span class="entry-duration"><time datetime="PT%dM" class="dt-duration">%s</time> %s</span>',
 			absint( $minutes ),
 			esc_html( $duration ),
 			esc_html( __( 'to read', 'sovereignty' ) ),

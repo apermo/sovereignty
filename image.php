@@ -18,10 +18,10 @@ get_header(); ?>
 				the_post();
 				?>
 
-				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>itemscope itemtype="https://schema.org/ImageObject">
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 					<?php get_template_part( 'template-parts/entry-header' ); ?>
 
-					<div class="entry-content e-content" itemprop="description">
+					<div class="entry-content e-content">
 
 						<div class="entry-attachment">
 							<figure class="attachment">
@@ -75,7 +75,7 @@ get_header(); ?>
 													 * @return int The filtered size.
 													 */
 													$sovereignty_attachment_size = apply_filters( 'sovereignty_attachment_size', 1200 );
-													echo wp_get_attachment_image( $post->ID, [ $sovereignty_attachment_size, $sovereignty_attachment_size ], false, [ 'itemprop' => 'image contentURL' ] );
+													echo wp_get_attachment_image( $post->ID, [ $sovereignty_attachment_size, $sovereignty_attachment_size ] );
 													?>
 								</a>
 

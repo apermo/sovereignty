@@ -126,34 +126,25 @@ class SemanticsTest extends TestCase {
 	}
 
 	/**
-	 * Verify that get_search_form wraps the form in a search element with Schema.org markup.
+	 * Verify that get_search_form wraps the form in a search element.
 	 */
-	public function test_get_search_form_adds_schema_markup(): void {
-		Functions\expect( 'home_url' )->once()->andReturn( 'https://example.com/?s={s}' );
-
+	public function test_get_search_form_adds_search_wrapper(): void {
 		$form = '<form><input type="search" /></form>';
 		$result = Semantics::get_search_form( $form );
 
 		$this->assertStringContainsString( '<search>', $result );
-		$this->assertStringContainsString( 'SearchAction', $result );
 		$this->assertStringContainsString( 'enterkeyhint="search"', $result );
+		$this->assertStringNotContainsString( 'itemprop', $result );
+		$this->assertStringNotContainsString( 'SearchAction', $result );
 	}
 
 	/**
-	 * Verify that output echoes semantic HTML attributes for a given element.
+	 * Verify that body output is empty after microdata removal.
 	 */
-	public function test_output_echoes_semantic_attributes(): void {
+	public function test_body_output_is_empty(): void {
 		Functions\stubs(
 			[
-				'is_search'              => false,
-				'is_author'              => false,
-				'is_single'              => false,
-				'is_page'                => false,
-				'is_singular'            => false,
-				'get_self_link'          => 'https://example.com/',
-				'esc_attr'               => static fn ( $text ) => $text,
-				'apply_filters'          => static fn ( $hook, $value ) => $value,
-				'get_template_directory' => \dirname( __DIR__, 2 ),
+				'apply_filters' => static fn ( $hook, $value ) => $value,
 			],
 		);
 
@@ -161,8 +152,7 @@ class SemanticsTest extends TestCase {
 		Semantics::output( 'body' );
 		$output = \ob_get_clean();
 
-		$this->assertStringContainsString( 'itemscope', $output );
-		$this->assertStringContainsString( 'schema.org', $output );
+		$this->assertSame( '', $output );
 	}
 
 	/**

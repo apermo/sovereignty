@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be0c306edc847ccb9e1ca4b0d66708ce",
+    "content-hash": "18c385663c0bd42a4a5f44212174874e",
     "packages": [
         {
             "name": "composer/installers",
@@ -4868,6 +4868,90 @@
                 "source": "https://github.com/Yoast/PHPUnit-Polyfills"
             },
             "time": "2025-02-09T18:36:24+00:00"
+        },
+        {
+            "name": "yoast/wordpress-seo",
+            "version": "27.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Yoast-dist/wordpress-seo.git",
+                "reference": "c68bb61a72c52f96795b5f88be8b85cc609f516c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/c68bb61a72c52f96795b5f88be8b85cc609f516c",
+                "reference": "c68bb61a72c52f96795b5f88be8b85cc609f516c",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "^1.12 || ^2.0",
+                "ext-filter": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "7.10.0",
+                "humbug/php-scoper": "^0.13.4",
+                "league/oauth2-client": "2.9.0",
+                "psr/container": "1.1.1",
+                "psr/log": "^1.0",
+                "symfony/config": "^5.4.46",
+                "symfony/dependency-injection": "^5.4.48",
+                "wpackagist-plugin/easy-digital-downloads": "dev-trunk",
+                "wpackagist-plugin/google-site-kit": "dev-trunk",
+                "wpackagist-plugin/woocommerce": "dev-trunk",
+                "yoast/wp-test-utils": "^1.2.1",
+                "yoast/yoastcs": "^3.4.0"
+            },
+            "suggest": {
+                "ext-bcmath": "For more accurate calculations",
+                "ext-dom": "Improves image sitemap",
+                "ext-libxml": "Improves image sitemap",
+                "ext-mbstring": "For cyrillic support"
+            },
+            "type": "wordpress-plugin",
+            "extra": {
+                "installer-paths": {
+                    "vendor/{$name}": [
+                        "wpackagist-plugin/easy-digital-downloads",
+                        "wpackagist-plugin/google-site-kit",
+                        "wpackagist-plugin/woocommerce"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "admin/",
+                    "inc/",
+                    "vendor_prefixed/",
+                    "src/",
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Team Yoast",
+                    "email": "support@yoast.com",
+                    "homepage": "https://yoa.st/1--"
+                }
+            ],
+            "description": "Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the Yoast SEO plugin.",
+            "homepage": "https://yoa.st/1ui",
+            "keywords": [
+                "seo",
+                "wordpress"
+            ],
+            "support": {
+                "forum": "https://wordpress.org/support/plugin/wordpress-seo",
+                "issues": "https://github.com/Yoast/wordpress-seo/issues",
+                "security": "https://yoast.com/security-program/",
+                "source": "https://github.com/Yoast/wordpress-seo",
+                "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
+            },
+            "time": "2026-03-17T09:28:17+00:00"
         },
         {
             "name": "yoast/yoastcs",

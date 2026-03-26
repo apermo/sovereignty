@@ -2,7 +2,7 @@
 	<footer class="entry-footer entry-meta">
 		<div class="entry-actions">
 			<?php if ( comments_open() || get_comments_number() !== 0 ) { ?>
-			<indie-action do="reply" with="<?php the_permalink(); ?>"><div class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'sovereignty' ), __( '1 Comment', 'sovereignty' ), __( '% Comments', 'sovereignty' ) ); ?></div></indie-action>
+			<div class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'sovereignty' ), __( '1 Comment', 'sovereignty' ), __( '% Comments', 'sovereignty' ) ); ?></div>
 			<?php } ?>
 			<?php get_template_part( 'template-parts/entry', 'share' ); ?>
 		</div>
@@ -19,7 +19,7 @@
 	<footer class="entry-footer entry-meta">
 		<?php if ( comments_open() || get_comments_number() !== 0 ) { ?>
 		<div class="entry-actions">
-			<indie-action do="reply" with="<?php the_permalink(); ?>"><div class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'sovereignty' ), __( '1 Comment', 'sovereignty' ), __( '% Comments', 'sovereignty' ) ); ?></div></indie-action>
+			<div class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'sovereignty' ), __( '1 Comment', 'sovereignty' ), __( '% Comments', 'sovereignty' ) ); ?></div>
 		</div>
 		<?php } ?>
 	</footer><!-- #entry-meta -->

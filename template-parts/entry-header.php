@@ -32,9 +32,9 @@ global $post; // Set by the_post() in calling template.
 		<?php
 		if ( ! in_array( get_post_format( $post ), [ 'aside', 'quote', 'status' ], true ) && ! empty( get_the_title() ) ) {
 			?>
-		<<?php Tags::entry_title_tag(); ?> class="entry-title p-name" itemprop="name headline">
+		<<?php Tags::entry_title_tag(); ?> class="entry-title p-name">
 			<?php // translators: %s: Post title. ?>
-			<a href="<?php the_permalink(); ?>" class="u-url url" title="<?php printf( esc_attr__( 'Permalink to %s', 'sovereignty' ), the_title_attribute( [ 'echo' => false ] ) ); ?>" rel="bookmark" itemprop="url">
+			<a href="<?php the_permalink(); ?>" class="u-url url" title="<?php printf( esc_attr__( 'Permalink to %s', 'sovereignty' ), the_title_attribute( [ 'echo' => false ] ) ); ?>" rel="bookmark">
 				<?php the_title(); ?>
 			</a>
 		</<?php Tags::entry_title_tag(); ?>>

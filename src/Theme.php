@@ -184,5 +184,9 @@ class Theme {
 		if ( \class_exists( '\Activitypub\Activitypub' ) ) {
 			Integration\ActivityPub::register();
 		}
+
+		if ( \defined( 'WPSEO_VERSION' ) ) {
+			Integration\Yoast::register();
+		}
 	}
 }

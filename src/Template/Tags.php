@@ -219,7 +219,7 @@ class Tags {
 
 		\printf(
 			'<span class="entry-duration"><time datetime="PT%dM" class="dt-duration">%s</time> %s</span>',
-			$minutes, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- int from get_reading_time(), %d format specifier enforces integer.
+			(int) $minutes,
 			esc_html( $duration ),
 			esc_html( __( 'to read', 'sovereignty' ) ),
 		);

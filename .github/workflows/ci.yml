@@ -7,12 +7,12 @@ on:
 
 jobs:
     php:
-        uses: apermo/reusable-workflows/.github/workflows/reusable-ci.yml@v0.2.0
+        uses: apermo/reusable-workflows/.github/workflows/reusable-ci.yml@main
         with:
             php-versions: '["8.3", "8.4"]'
             test-command: 'test:unit'
 
     theme:
-        uses: apermo/reusable-workflows/.github/workflows/reusable-wp-theme-ci.yml@v0.2.0
+        uses: apermo/reusable-workflows/.github/workflows/reusable-wp-theme-ci.yml@main
         with:
             run-version-check: true

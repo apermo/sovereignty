@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.4.0] - 2026-05-24
+
+### Added
+
+- JSON-LD structured data output via standalone `Schema` class (skipped when an SEO plugin handles `Article` schema)
+- Yoast SEO integration enriching Yoast's `Article` schema with `timeRequired` (reading time) and approved comment count
+- Unit tests for `Schema` and Yoast integration classes
+
+### Removed
+
+- Microdata (`itemprop`/`itemscope`/`itemtype`) from all templates, semantics, tags, comments, and images — replaced by JSON-LD output
+- IndieWeb WebActions (`Webactions` class) — no active client processes these
+- `wp_body_open()` compat shim (function ships with WP since 5.2)
+- `get_self_link()` polyfill (was for WP < 5.3; theme requires WP 6.x+)
+- Dead `wp_localize_script` call targeting a non-existent handle with no JS consumer
+- Redundant `type="text/css"` attribute from the inline style tag
+
+### Fixed
+
+- 500.php template docblock incorrectly described it as serving 404 pages
+- Replaced direct `bloginfo()` echoes with escaped `get_bloginfo()` output
+
+### Changed
+
+- CI: bumped `apermo/reusable-workflows` pin from `@v0.2.0` to `@main` (brings in Composer ≥ 2.9.8 — refs GHSA-f9f8-rm49-7jv2)
+- Adopted `apermo/template-wordpress` husky setup: inline `commit-msg` hook mirrors the CI workflow, and lint-staged now runs project-wide PHPStan on staged PHP changes
+
 ## [1.3.0] - 2026-03-22
 
 ### Added

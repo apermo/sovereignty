@@ -35,7 +35,7 @@ class ActivityPub {
 	 */
 	public static function archive_author_meta( array $meta, int $author_id ): array {
 		$meta[] = \sprintf(
-			// translators: %s: the author's webfinger resource.
+			/* translators: %s: the author's webfinger resource. */
 			__( 'Follow <code>%s</code> (fediverse)', 'sovereignty' ),
 			Webfinger::get_user_resource( $author_id ),
 		);

@@ -9,6 +9,8 @@ use Apermo\Sovereignty\Schema;
 use Brain\Monkey;
 use Brain\Monkey\Functions;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 use WP_Comment;
 
@@ -51,11 +53,14 @@ class SchemaTest extends TestCase {
 
 	/**
 	 * Verify that output is skipped when Yoast is active.
+	 *
+	 * Runs in a separate process because WPSEO_VERSION is a global
+	 * constant that cannot be undefined once set.
 	 */
+	#[RunInSeparateProcess]
+	#[PreserveGlobalState( false )]
 	public function test_output_is_empty_when_yoast_active(): void {
-		if ( ! \defined( 'WPSEO_VERSION' ) ) {
-			\define( 'WPSEO_VERSION', '27.0' );
-		}
+		\define( 'WPSEO_VERSION', '27.0' );
 
 		\ob_start();
 		Schema::output();

@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- JSON-LD structured data output via standalone `Schema` class (skipped when an SEO plugin handles `Article` schema)
-- Yoast SEO integration enriching Yoast's `Article` schema with `timeRequired` (reading time) and approved comment count
+- JSON-LD structured data output via standalone `Schema` class (skipped when Yoast SEO is active)
+- Yoast SEO integration enriching Yoast's `Article` schema with `timeRequired` (reading time) and an embedded list of approved comments
 - Unit tests for `Schema` and Yoast integration classes
 
 ### Removed

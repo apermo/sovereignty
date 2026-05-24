@@ -57,7 +57,12 @@ class Schema {
 			'@graph'   => $graph,
 		];
 
-		$json = wp_json_encode( $data, \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE );
+		// JSON_HEX_TAG escapes `<`/`>` as `<`/`>` so values containing
+		// `</script>` can't break out of the surrounding script tag.
+		$json = wp_json_encode(
+			$data,
+			\JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE | \JSON_HEX_TAG | \JSON_HEX_AMP | \JSON_HEX_APOS | \JSON_HEX_QUOT,
+		);
 
 		if ( $json === false ) {
 			return;
@@ -291,8 +296,14 @@ class Schema {
 
 		$metadata = wp_get_attachment_metadata( $post->ID );
 		if ( \is_array( $metadata ) ) {
-			$data['width']  = $metadata['width'];
-			$data['height'] = $metadata['height'];
+			// wp-stubs declares width/height as always-present, but in
+			// practice they can be missing for partial/corrupted metadata.
+			if ( isset( $metadata['width'] ) ) { // @phpstan-ignore isset.offset
+				$data['width'] = $metadata['width'];
+			}
+			if ( isset( $metadata['height'] ) ) { // @phpstan-ignore isset.offset
+				$data['height'] = $metadata['height'];
+			}
 		}
 
 		return $data;
@@ -327,7 +338,7 @@ class Schema {
 			'dateCreated' => get_comment_date( 'c', $comment ),
 			'author'      => [
 				'@type' => 'Person',
-				'name'  => $comment->comment_author,
+				'name'  => wp_strip_all_tags( $comment->comment_author ),
 			],
 		];
 	}

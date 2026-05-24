@@ -57,8 +57,9 @@ class Schema {
 			'@graph'   => $graph,
 		];
 
-		// JSON_HEX_TAG escapes `<`/`>` as `<`/`>` so values containing
-		// `</script>` can't break out of the surrounding script tag.
+		// JSON_HEX_TAG encodes `<` and `>` as the unicode escapes
+		// `\u003C` and `\u003E`, so values containing `</script>`
+		// can't break out of the surrounding script tag.
 		$json = wp_json_encode(
 			$data,
 			\JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE | \JSON_HEX_TAG | \JSON_HEX_AMP | \JSON_HEX_APOS | \JSON_HEX_QUOT,
@@ -169,7 +170,7 @@ class Schema {
 			'mainEntityOfPage' => [
 				'@id' => get_permalink( $post ),
 			],
-			'headline'         => get_the_title( $post ),
+			'headline'         => wp_strip_all_tags( get_the_title( $post ) ),
 			'datePublished'    => get_the_date( 'c', $post ),
 			'dateModified'     => get_the_modified_date( 'c', $post ),
 			'author'           => self::build_person( (int) $post->post_author ),
@@ -179,7 +180,7 @@ class Schema {
 
 		$excerpt = get_the_excerpt( $post );
 		if ( $excerpt !== '' ) {
-			$data['description'] = $excerpt;
+			$data['description'] = wp_strip_all_tags( $excerpt );
 		}
 
 		if ( has_post_thumbnail( $post ) ) {
@@ -227,7 +228,7 @@ class Schema {
 			'mainEntityOfPage' => [
 				'@id' => get_permalink( $post ),
 			],
-			'name'             => get_the_title( $post ),
+			'name'             => wp_strip_all_tags( get_the_title( $post ) ),
 			'datePublished'    => get_the_date( 'c', $post ),
 			'dateModified'     => get_the_modified_date( 'c', $post ),
 			'publisher'        => [ '@id' => home_url( '/#organization' ) ],
@@ -235,7 +236,7 @@ class Schema {
 
 		$excerpt = get_the_excerpt( $post );
 		if ( $excerpt !== '' ) {
-			$data['description'] = $excerpt;
+			$data['description'] = wp_strip_all_tags( $excerpt );
 		}
 
 		return $data;
@@ -286,7 +287,7 @@ class Schema {
 			'@type' => 'ImageObject',
 			'@id'   => get_permalink( $post ),
 			'url'   => wp_get_attachment_url( $post->ID ),
-			'name'  => get_the_title( $post ),
+			'name'  => wp_strip_all_tags( get_the_title( $post ) ),
 		];
 
 		$caption = wp_get_attachment_caption( $post->ID );

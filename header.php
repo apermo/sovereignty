@@ -14,7 +14,7 @@ use Apermo\Sovereignty\Template\Tags;
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>" />
+	<meta charset="<?php echo esc_attr( get_bloginfo( 'charset' ) ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="profile" href="https://microformats.org/profile/specs" />
 	<link rel="profile" href="https://microformats.org/profile/hatom" />
@@ -24,21 +24,7 @@ use Apermo\Sovereignty\Template\Tags;
 
 <body <?php body_class(); ?><?php Semantics::output( 'body' ); ?>>
 <?php
-/**
- * Fire the wp_body_open action for theme compatibility.
- *
- * @see https://make.wordpress.org/core/2019/04/24/miscellaneous-developer-updates-in-5-2/
- */
-if ( function_exists( 'wp_body_open' ) ) {
-	wp_body_open();
-} else {
-	/**
-	 * Fires when the template calls for the wp_body_open action.
-	 *
-	 * @since WordPress 5.2.0
-	 */
-	do_action( 'wp_body_open' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WP core hook.
-}
+wp_body_open();
 ?>
 <div id="page">
 	<div class="skip-link screen-reader-text"><a href="#primary" title="<?php esc_attr_e( 'Skip to content', 'sovereignty' ); ?>"><?php esc_html_e( 'Skip to content', 'sovereignty' ); ?></a></div>
@@ -58,7 +44,7 @@ if ( function_exists( 'wp_body_open' ) ) {
 			?>
 			<<?php Tags::site_title_tag(); ?> id="site-title"<?php Semantics::output( 'site-title' ); ?>>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"<?php Semantics::output( 'site-url' ); ?>>
-				<?php bloginfo( 'name' ); ?>
+				<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
 				</a>
 			</<?php Tags::site_title_tag(); ?>>
 

@@ -55,16 +55,22 @@ test.describe('Single post', () => {
 		await expect(page.locator('.dt-published').first()).toBeAttached();
 	});
 
-	test('post has Schema.org microdata', async ({ page }) => {
+	test('post has Schema.org JSON-LD', async ({ page }) => {
 		await page.goto('/welcome-to-sovereignty/');
-		const body = page.locator('body');
-		await expect(body).toHaveAttribute('itemtype', /BlogPosting/);
+		const jsonLd = page.locator('script[type="application/ld+json"]');
+		await expect(jsonLd).toBeAttached();
+		const content = await jsonLd.textContent();
+		expect(content).toContain('BlogPosting');
 	});
 
 	test('author byline has h-card', async ({ page }) => {
 		await page.goto('/welcome-to-sovereignty/');
-		await expect(page.locator('.entry-header .h-card').first()).toBeAttached();
-		await expect(page.locator('.entry-header .p-author').first()).toBeAttached();
+		await expect(
+			page.locator('.entry-header .h-card').first()
+		).toBeAttached();
+		await expect(
+			page.locator('.entry-header .p-author').first()
+		).toBeAttached();
 	});
 
 	test('comment section renders', async ({ page }) => {
@@ -87,7 +93,9 @@ test.describe('Post formats', () => {
 	test('aside format renders without title heading', async ({ page }) => {
 		await page.goto('/quick-aside/');
 		// Aside format should not show a title heading (h1/h2 with entry-title).
-		await expect(page.locator('h1.entry-title, h2.entry-title')).not.toBeAttached();
+		await expect(
+			page.locator('h1.entry-title, h2.entry-title')
+		).not.toBeAttached();
 	});
 
 	test('quote format renders', async ({ page }) => {
@@ -161,11 +169,12 @@ test.describe('Archives', () => {
 });
 
 test.describe('Semantic markup', () => {
-	test('homepage body has Schema.org attributes', async ({ page }) => {
+	test('homepage has Schema.org JSON-LD', async ({ page }) => {
 		await page.goto('/');
 		const body = page.locator('body');
-		await expect(body).toHaveAttribute('itemscope', '');
-		await expect(body).toHaveAttribute('itemtype', /schema\.org/);
+		await expect(body).not.toHaveAttribute('itemscope');
+		const jsonLd = page.locator('script[type="application/ld+json"]');
+		await expect(jsonLd).toBeAttached();
 	});
 
 	test('posts in listing have h-entry class', async ({ page }) => {
@@ -198,7 +207,7 @@ test.describe('Accessibility', () => {
 		await page.goto('/');
 		await expect(page.locator('html')).toHaveAttribute(
 			'lang',
-			/^[a-z]{2}(-[A-Za-z]+)*$/,
+			/^[a-z]{2}(-[A-Za-z]+)*$/
 		);
 	});
 

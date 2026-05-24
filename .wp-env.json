@@ -1,0 +1,8 @@
+{
+	"core": null,
+	"themes": [ "." ],
+	"phpVersion": "8.4",
+	"lifecycleScripts": {
+		"afterStart": "npx wp-env run cli bash /var/www/html/wp-content/themes/sovereignty/bin/seed-wp-env.sh"
+	}
+}

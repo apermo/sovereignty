@@ -26,6 +26,10 @@ if ( ! class_exists( 'WP_Comment' ) ) {
 		public string $comment_type = '';
 
 		public string $comment_approved = '1';
+
+		public string $comment_content = '';
+
+		public string $comment_author = '';
 	}
 }
 // Stub WP functions that use named parameters (Brain Monkey mocks don't support named params).

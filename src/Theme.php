@@ -24,7 +24,6 @@ class Theme {
 		self::init_featured_image();
 		self::init_feed();
 		self::init_compat();
-		self::init_webactions();
 		self::init_pwa();
 		self::init_widgets();
 		self::init_tombstone();
@@ -63,6 +62,7 @@ class Theme {
 		add_action( 'wp_head', [ Head::class, 'pingback' ] );
 		add_action( 'wp_head', [ Head::class, 'publisher_feed' ] );
 		add_action( 'wp_head', [ Head::class, 'color_scheme_meta' ] );
+		add_action( 'wp_head', [ Schema::class, 'output' ], 99 );
 	}
 
 	/**
@@ -122,17 +122,6 @@ class Theme {
 	}
 
 	/**
-	 * IndieWeb web actions on comment links and forms.
-	 *
-	 * @return void
-	 */
-	private static function init_webactions(): void {
-		add_filter( 'comment_reply_link', [ Webactions::class, 'comment_reply_link' ], 10, 4 );
-		add_action( 'comment_form_before', [ Webactions::class, 'comment_form_before' ], 0 );
-		add_action( 'comment_form_after', [ Webactions::class, 'comment_form_after' ], 0 );
-	}
-
-	/**
 	 * PWA: web manifest, favicons, app icons.
 	 *
 	 * @return void
@@ -182,6 +171,10 @@ class Theme {
 
 		if ( \class_exists( '\Activitypub\Activitypub' ) ) {
 			Integration\ActivityPub::register();
+		}
+
+		if ( \defined( 'WPSEO_VERSION' ) ) {
+			Integration\Yoast::register();
 		}
 	}
 }

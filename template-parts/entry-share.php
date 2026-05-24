@@ -1,8 +1,6 @@
-<indie-action do="post" with="<?php echo esc_url( get_permalink() ); ?>">
-	<button type="share" id="entry-share">
-		<?php esc_html_e( 'share', 'sovereignty' ); ?>
-	</button>
-</indie-action>
+<button type="share" id="entry-share">
+	<?php esc_html_e( 'share', 'sovereignty' ); ?>
+</button>
 
 <div id="share-options" style="display: none;">
 	<p><strong><?php esc_html_e( 'Sharing is caring', 'sovereignty' ); ?></strong></p>

@@ -118,7 +118,7 @@ class Semantics {
 		}
 
 		$args['class'] = \array_unique( \array_merge( $args['class'], [ 'u-photo' ] ) );
-		$args['extra_attr'] .= ' itemprop="image" loading="lazy"';
+		$args['extra_attr'] .= ' loading="lazy"';
 
 		if ( empty( $args['alt'] ) ) {
 			$username = get_the_author_meta( 'display_name', $id_or_email );
@@ -186,9 +186,9 @@ class Semantics {
 	 * @return string|null
 	 */
 	public static function get_search_form( string $form ): ?string {
-		$form = \preg_replace( '/<form/i', '<search><form itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction"', $form );
-		$form = \preg_replace( '/<\/form>/i', '<meta itemprop="target" content="' . home_url( '/?s={s} ' ) . '"/></form></search>', $form );
-		$form = \preg_replace( '/<input type="search"/i', '<input type="search" enterkeyhint="search" itemprop="query-input"', $form );
+		$form = \preg_replace( '/<form/i', '<search><form', $form );
+		$form = \preg_replace( '/<\/form>/i', '</form></search>', $form );
+		$form = \preg_replace( '/<input type="search"/i', '<input type="search" enterkeyhint="search"', $form );
 
 		return $form;
 	}
@@ -233,34 +233,14 @@ class Semantics {
 	}
 
 	/**
-	 * Schema.org attributes for the body element.
+	 * Semantic attributes for the body element.
+	 *
+	 * Schema.org microdata moved to JSON-LD (Schema class).
 	 *
 	 * @return array
 	 */
 	private static function semantics_body(): array {
-		$classes = [];
-
-		if ( is_search() ) {
-			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = Config::array( 'sovereignty.schema.search' );
-		} elseif ( is_author() ) {
-			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = Config::array( 'sovereignty.schema.author' );
-		} elseif ( is_single() ) {
-			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = Config::array( 'sovereignty.schema.single' );
-			$classes['itemref']   = [ 'site-publisher' ];
-		} elseif ( is_page() ) {
-			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = Config::array( 'sovereignty.schema.page' );
-		} elseif ( ! is_singular() ) {
-			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = Config::array( 'sovereignty.schema.archive' );
-		}
-
-		$classes['itemid'] = [ get_self_link() ];
-
-		return $classes;
+		return [];
 	}
 
 	/**
@@ -272,8 +252,7 @@ class Semantics {
 		$classes = [];
 
 		if ( is_home() ) {
-			$classes['itemprop'] = [ 'name' ];
-			$classes['class']    = [ 'p-name' ];
+			$classes['class'] = [ 'p-name' ];
 		}
 
 		return $classes;
@@ -288,8 +267,7 @@ class Semantics {
 		$classes = [];
 
 		if ( ! is_singular() && ! is_home() ) {
-			$classes['itemprop'] = [ 'name' ];
-			$classes['class']    = [ 'p-name' ];
+			$classes['class'] = [ 'p-name' ];
 		}
 
 		return $classes;
@@ -304,8 +282,7 @@ class Semantics {
 		$classes = [];
 
 		if ( ! is_singular() ) {
-			$classes['itemprop'] = [ 'description' ];
-			$classes['class']    = [ 'p-summary', 'e-content' ];
+			$classes['class'] = [ 'p-summary', 'e-content' ];
 		}
 
 		return $classes;
@@ -320,30 +297,21 @@ class Semantics {
 		$classes = [];
 
 		if ( ! is_singular() ) {
-			$classes['itemprop'] = [ 'url' ];
-			$classes['class']    = [ 'u-url', 'url' ];
+			$classes['class'] = [ 'u-url', 'url' ];
 		}
 
 		return $classes;
 	}
 
 	/**
-	 * Schema.org attributes for a post element.
+	 * Semantic attributes for a post element.
+	 *
+	 * Schema.org microdata moved to JSON-LD (Schema class).
 	 *
 	 * @return array
 	 */
 	private static function semantics_post(): array {
-		$classes = [];
-
-		if ( ! is_singular() ) {
-			$classes['itemprop']  = [ 'blogPost' ];
-			$classes['itemscope'] = [ '' ];
-			$classes['itemtype']  = Config::array( 'sovereignty.schema.single' );
-			$classes['itemref']   = [ 'site-publisher' ];
-			$classes['itemid']    = [ get_permalink( get_post() ) ]; // phpcs:ignore Apermo.WordPress.ImplicitPostFunction -- Called from get_semantics() without post context.
-		}
-
-		return $classes;
+		return [];
 	}
 
 	/**

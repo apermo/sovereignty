@@ -58,14 +58,6 @@ class Assets {
 		wp_enqueue_style( 'sovereignty-default-style', $theme_uri . "/assets/css/default-width{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(min-width: ' . Config::string( 'sovereignty.layout.breakpoints.narrow' ) . ')' );
 		wp_enqueue_style( 'sovereignty-wide-style', $theme_uri . "/assets/css/wide-width{$suffix}.css", [ 'sovereignty-style' ], \SOVEREIGNTY_VERSION, '(min-width: ' . Config::string( 'sovereignty.layout.breakpoints.wide' ) . ')' );
 
-		wp_localize_script(
-			'sovereignty',
-			'vars',
-			[
-				'template_url' => get_template_directory_uri(),
-			],
-		);
-
 		if ( has_header_image() ) {
 			if ( is_author() ) {
 				$css = '.page-banner {

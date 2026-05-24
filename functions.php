@@ -32,21 +32,3 @@ require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/version.php';
 
 Theme::init();
-
-/**
- * WP core polyfill: get_self_link() for WP < 5.3.
- */
-if ( ! function_exists( 'get_self_link' ) ) {
-	/**
-	 * Returns the link for the currently displayed feed.
-	 *
-	 * @since 5.3.0
-	 *
-	 * @return string Correct link for the atom:self element.
-	 */
-	function get_self_link(): string { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- WP core polyfill.
-		$host = wp_parse_url( home_url() );
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Polyfill for WP core function.
-		return set_url_scheme( 'http://' . $host['host'] . wp_unslash( $_SERVER['REQUEST_URI'] ) );
-	}
-}

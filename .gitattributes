@@ -7,7 +7,6 @@
 /.phpunit.cache/                export-ignore
 /bin/install.sh                 export-ignore
 /bin/seed-wp-env.sh             export-ignore
-/bin/generate-version.php       export-ignore
 /e2e/                           export-ignore
 /tests/                         export-ignore
 /phpcs.xml.dist                 export-ignore

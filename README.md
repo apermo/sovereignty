@@ -32,7 +32,7 @@ In a GitHub Actions deploy workflow, the same step is available as a
 reusable composite action:
 
 ```yaml
-- uses: apermo/sovereignty/.github/actions/build@v1.4.1
+- uses: apermo/sovereignty/.github/actions/build@v1.4.2
   with:
       working-directory: web/app/themes/sovereignty
 ```

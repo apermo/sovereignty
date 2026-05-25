@@ -38,15 +38,11 @@ else
     exit 1
 fi
 
-# Step 3: Build CSS.
-echo "Building CSS..."
+# Step 3: Build CSS and version.php.
+echo "Building CSS and version.php..."
 npm run build
 
-# Step 4: Generate version.php.
-echo "Generating version.php..."
-composer generate-version
-
-# Step 5: Clean up for production.
+# Step 4: Clean up for production.
 if [[ "$DEV_MODE" -eq 0 ]]; then
     echo "Cleaning up node_modules for production..."
     rm -rf node_modules

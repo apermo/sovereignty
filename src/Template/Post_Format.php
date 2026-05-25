@@ -61,7 +61,9 @@ class Post_Format {
 		}
 
 		if ( $post_format !== 'standard' ) {
-			return get_post_format_link( $post_format );
+			$link = get_post_format_link( $post_format );
+
+			return \is_string( $link ) ? $link : '';
 		}
 
 		global $wp_rewrite;

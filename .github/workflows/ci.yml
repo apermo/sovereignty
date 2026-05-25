@@ -14,5 +14,3 @@ jobs:
 
     theme:
         uses: apermo/reusable-workflows/.github/workflows/reusable-wp-theme-ci.yml@main
-        with:
-            run-version-check: true

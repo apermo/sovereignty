@@ -98,4 +98,24 @@ class PostFormatTest extends TestCase {
 
 		$this->assertSame( 'Text', Post_Format::get_format_string( $this->make_post() ) );
 	}
+
+	/**
+	 * Verify get_format_link returns '' when get_post_format_link returns false.
+	 *
+	 * Regression test for issue #78: WP core's get_post_format_link() returns
+	 * false when the post has no format link, which would violate the : string
+	 * return type and fatal.
+	 *
+	 * @return void
+	 */
+	public function test_get_format_link_returns_empty_string_when_core_returns_false(): void {
+		Functions\stubs(
+			[
+				'get_post_type'        => 'post',
+				'get_post_format_link' => false,
+			],
+		);
+
+		$this->assertSame( '', Post_Format::get_format_link( 'aside', $this->make_post() ) );
+	}
 }

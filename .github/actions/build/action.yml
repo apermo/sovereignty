@@ -1,0 +1,34 @@
+name: Build Sovereignty assets
+description: >
+    Install Node dependencies and compile the theme's SCSS to CSS via
+    `npm run build`. Intended to be called from a consumer project's
+    deploy workflow after Composer has installed the theme.
+
+inputs:
+    working-directory:
+        description: Path to the installed theme directory (containing package.json).
+        required: true
+    node-version:
+        description: Node.js version to use.
+        required: false
+        default: lts/*
+
+runs:
+    using: composite
+    steps:
+        - name: Setup Node.js
+          uses: actions/setup-node@v4
+          with:
+              node-version: ${{ inputs.node-version }}
+              cache: npm
+              cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
+
+        - name: Install Node dependencies
+          shell: bash
+          working-directory: ${{ inputs.working-directory }}
+          run: npm ci
+
+        - name: Build CSS
+          shell: bash
+          working-directory: ${{ inputs.working-directory }}
+          run: npm run build

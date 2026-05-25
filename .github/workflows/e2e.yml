@@ -10,6 +10,47 @@ permissions:
 
 jobs:
     e2e:
-        uses: apermo/reusable-workflows/.github/workflows/reusable-wp-e2e.yml@main
-        with:
-            wp-versions: '["latest"]'
+        name: WP latest
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.4'
+                  coverage: none
+                  tools: composer:^2.9.8
+
+            - name: Install Composer dependencies
+              if: hashFiles('composer.json') != ''
+              run: composer install --no-interaction --prefer-dist
+
+            - name: Build theme assets
+              uses: ./.github/actions/build
+              with:
+                  working-directory: .
+
+            - name: Install wp-env
+              run: npm install -g @wordpress/env
+
+            - name: Start wp-env
+              run: npx wp-env start
+
+            - name: Install Playwright browsers
+              run: npx playwright install --with-deps chromium
+
+            - name: Run Playwright tests
+              run: npx playwright test
+              env:
+                  WP_BASE_URL: http://localhost:8888
+                  WP_ADMIN_USER: admin
+                  WP_ADMIN_PASSWORD: password
+
+            - uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                  name: playwright-report-wp-latest
+                  path: |
+                      playwright-report/
+                      test-results/
+                  retention-days: 7

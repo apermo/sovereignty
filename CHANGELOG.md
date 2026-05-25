@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.4.2] - 2026-05-25
+
+### Changed
+
+- Bumped `actions/setup-node` in the composite build action from v4 to
+  v6 ahead of the GitHub Actions Node 20 runtime removal (forced
+  June 2nd, 2026; removed September 16th, 2026) (#82)
+- Bumped `actions/checkout` (v4 → v6) and `actions/upload-artifact`
+  (v4 → v7) in the e2e workflow for the same Node 20 deprecation
+
 ## [1.4.1] - 2026-05-25
 
 ### Added
@@ -207,6 +217,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Renamed theme to Sovereignty
 - Updated Composer package name to `apermo/sovereignty`
 
+[1.4.2]: https://github.com/apermo/sovereignty/compare/1.4.1...1.4.2
 [1.4.1]: https://github.com/apermo/sovereignty/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/apermo/sovereignty/compare/1.3.0...1.4.0
 [1.3.0]: https://github.com/apermo/sovereignty/compare/1.2.0...1.3.0

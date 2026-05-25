@@ -13,6 +13,7 @@ playwright-report/
 style.css
 style.css.map
 style.min.css
+version.php
 assets/css/*.css
 assets/css/*.min.css
 assets/css/*.css.map

@@ -6,7 +6,7 @@ A semantic, responsive WordPress theme with deep IndieWeb support. Fork of
 ## Requirements
 
 - PHP 8.3+
-- WordPress 6.2+
+- WordPress 6.4+
 
 ## Installation
 

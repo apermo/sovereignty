@@ -57,6 +57,12 @@ if ( ! class_exists( Theme::class ) ) {
 	);
 }
 
-require __DIR__ . '/version.php';
+if ( file_exists( __DIR__ . '/version.php' ) ) {
+	require __DIR__ . '/version.php';
+}
+
+if ( ! defined( 'SOVEREIGNTY_VERSION' ) ) {
+	define( 'SOVEREIGNTY_VERSION', 'dev' );
+}
 
 Theme::init();

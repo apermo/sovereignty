@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.4.1] - 2026-05-25
 
+### Added
+
+- Reusable composite GitHub Action `.github/actions/build` that runs
+  `npm ci && npm run build` at a configurable `working-directory`, so
+  consumer projects (e.g. Bedrock-based deployments) can build the
+  theme's CSS in their own deploy workflow without duplicating the
+  build setup
+
+### Changed
+
+- `package.json`, `package-lock.json`, and `bin/build.js` now ship in
+  Composer dist installs (removed from `export-ignore`) so consumers
+  can run `npm ci && npm run build` against the installed theme
+
+### Removed
+
+- `style.css` is no longer tracked in git — it is built fresh on every
+  install/deploy via `npm run build` (already gitignored, but historically
+  still tracked). Consumer deploys must run the build step before the
+  theme is usable
+
 ### Fixed
 
 - Fatal `TypeError` in `Post_Format::get_format_link()` when WP core's
@@ -15,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Bootstrap false-positived the missing-dependencies admin notice under
   Composer-managed parents (Bedrock), where the parent autoloader already
   provides the theme classes. Load the local `vendor/autoload.php` if
-  present, then gate the notice on `class_exists( Theme::class )`
+  present, then gate the notice on `class_exists( Theme::class )` (#80)
 
 ## [1.4.0] - 2026-05-24
 

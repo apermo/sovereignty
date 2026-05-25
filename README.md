@@ -16,6 +16,27 @@ composer require apermo/sovereignty
 
 Or download the latest release from [GitHub](https://github.com/apermo/sovereignty/releases).
 
+### Building assets after a Composer install
+
+Compiled CSS is **not** committed to the repository — it is generated from
+the SCSS sources by `npm run build`. After installing via Composer in a
+Bedrock-style project, run the build inside the theme directory:
+
+```bash
+cd web/app/themes/sovereignty
+npm ci
+npm run build
+```
+
+In a GitHub Actions deploy workflow, the same step is available as a
+reusable composite action:
+
+```yaml
+- uses: apermo/sovereignty/.github/actions/build@v1.4.1
+  with:
+      working-directory: web/app/themes/sovereignty
+```
+
 ## Development
 
 ### Prerequisites

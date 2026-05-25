@@ -13,7 +13,7 @@ jobs:
         name: WP latest
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
 
             - uses: shivammathur/setup-php@v2
               with:
@@ -46,7 +46,7 @@ jobs:
                   WP_ADMIN_USER: admin
                   WP_ADMIN_PASSWORD: password
 
-            - uses: actions/upload-artifact@v4
+            - uses: actions/upload-artifact@v7
               if: always()
               with:
                   name: playwright-report-wp-latest

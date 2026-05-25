@@ -5,7 +5,9 @@
 /.gitattributes                 export-ignore
 /.gitignore                     export-ignore
 /.phpunit.cache/                export-ignore
-/bin/                           export-ignore
+/bin/install.sh                 export-ignore
+/bin/seed-wp-env.sh             export-ignore
+/bin/generate-version.php       export-ignore
 /e2e/                           export-ignore
 /tests/                         export-ignore
 /phpcs.xml.dist                 export-ignore
@@ -13,8 +15,6 @@
 /phpstan-strict.neon            export-ignore
 /phpunit.xml.dist               export-ignore
 /playwright.config.js           export-ignore
-/package.json                   export-ignore
-/package-lock.json              export-ignore
 /commitlint.config.js           export-ignore
 /wp-tests-config.php.dist      export-ignore
 /.husky/                        export-ignore

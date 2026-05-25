@@ -6,7 +6,11 @@
  */
 use Apermo\Sovereignty\Theme;
 
-if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
+}
+
+if ( ! class_exists( Theme::class ) ) {
 	add_action(
 		'admin_notices',
 		// phpcs:ignore Universal.FunctionDeclarations.NoLongClosures.ExceedsMaximum -- Self-contained notice.
@@ -28,7 +32,6 @@ if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	return;
 }
 
-require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/version.php';
 
 Theme::init();

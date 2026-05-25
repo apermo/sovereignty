@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Fatal `TypeError` in `Post_Format::get_format_link()` when WP core's
   `get_post_format_link()` returned `false` for posts without a format link,
   killing `wp_head()` on every frontend request (#78)
+- Bootstrap false-positived the missing-dependencies admin notice under
+  Composer-managed parents (Bedrock), where the parent autoloader already
+  provides the theme classes. Load the local `vendor/autoload.php` if
+  present, then gate the notice on `class_exists( Theme::class )`
 
 ## [1.4.0] - 2026-05-24
 

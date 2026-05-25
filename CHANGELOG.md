@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.4.1] - 2026-05-25
+
+### Fixed
+
+- Fatal `TypeError` in `Post_Format::get_format_link()` when WP core's
+  `get_post_format_link()` returned `false` for posts without a format link,
+  killing `wp_head()` on every frontend request (#78)
+
 ## [1.4.0] - 2026-05-24
 
 ### Added

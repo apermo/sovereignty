@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Apermo\Sovereignty\Integration;
 
 /**
- * Multisite Language Switcher integration: renders the switcher after the primary navigation.
+ * Multisite Language Switcher integration: renders the switcher next to the search form.
  *
  * @link https://github.com/lloc/Multisite-Language-Switcher
  *
@@ -19,11 +19,11 @@ class Msls {
 	 * @return void
 	 */
 	public static function register(): void {
-		add_action( 'sovereignty_after_navigation', [ self::class, 'display' ] );
+		add_action( 'sovereignty_after_search', [ self::class, 'display' ] );
 	}
 
 	/**
-	 * Display the language switcher after the primary navigation.
+	 * Display the language switcher next to the search form.
 	 *
 	 * @return void
 	 */
@@ -34,8 +34,8 @@ class Msls {
 
 		$switcher = msls_get_switcher();
 
-		if ( $switcher === '' ) {
-			return; // No translation exists for this content — render nothing.
+		if ( ! \is_string( $switcher ) || \trim( $switcher ) === '' ) {
+			return; // No translation, or empty/whitespace markup — render nothing.
 		}
 
 		echo '<nav class="language-switcher" aria-label="' . esc_attr__( 'Languages', 'sovereignty' ) . '">';

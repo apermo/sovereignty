@@ -10,13 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 - Multisite Language Switcher (MSLS) integration that renders a
-  language switcher in the site header next to the primary navigation
-  when the plugin is active (`src/Integration/Msls.php`). Registers
+  language switcher next to the search form in the site header when
+  the plugin is active (`src/Integration/Msls.php`). Registers
   conditionally via `msls_get_switcher()` and emits nothing when no
   translation exists for the current content (#86)
-- New `sovereignty_after_navigation` action hook, fired inside the
-  header after the primary navigation, giving consuming sites a clean
-  slot to inject content next to the nav (#86)
+- New `sovereignty_after_search` action hook, fired inside the site
+  branding after the search form, giving consuming sites a clean slot
+  to inject content next to the search (#86)
 
 ## [1.4.2] - 2026-05-25
 

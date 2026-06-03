@@ -38,12 +38,12 @@ class MslsTest extends TestCase {
 	}
 
 	/**
-	 * Verify register() hooks the switcher into the navigation action.
+	 * Verify register() hooks the switcher into the search action.
 	 *
 	 * @return void
 	 */
 	public function test_register_adds_hook(): void {
-		Functions\expect( 'add_action' )->once()->with( 'sovereignty_after_navigation', [ Msls::class, 'display' ] );
+		Functions\expect( 'add_action' )->once()->with( 'sovereignty_after_search', [ Msls::class, 'display' ] );
 
 		Msls::register();
 	}
@@ -70,6 +70,19 @@ class MslsTest extends TestCase {
 	 */
 	public function test_display_renders_nothing_without_translation(): void {
 		Functions\when( 'msls_get_switcher' )->justReturn( '' );
+
+		$this->expectOutputString( '' );
+
+		Msls::display();
+	}
+
+	/**
+	 * Verify display() renders nothing when the switcher is not a string.
+	 *
+	 * @return void
+	 */
+	public function test_display_renders_nothing_when_not_a_string(): void {
+		Functions\when( 'msls_get_switcher' )->justReturn( false );
 
 		$this->expectOutputString( '' );
 

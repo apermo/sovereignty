@@ -48,7 +48,14 @@ wp_body_open();
 				</a>
 			</<?php Tags::site_title_tag(); ?>>
 
-			<?php get_search_form( [ 'echo' => true ] ); ?>
+			<?php
+			get_search_form( [ 'echo' => true ] );
+
+			/**
+			 * Fires after the search form, inside the site branding.
+			 */
+			do_action( 'sovereignty_after_search' );
+			?>
 		</div>
 
 		<nav id="site-navigation" class="site-navigation">
@@ -57,12 +64,5 @@ wp_body_open();
 			<?php wp_nav_menu( [ 'theme_location' => 'primary' ] ); ?>
 		</nav><!-- #site-navigation -->
 
-		<?php
-		/**
-		 * Fires after the primary navigation, inside the site header.
-		 */
-		do_action( 'sovereignty_after_navigation' );
-
-		get_template_part( 'template-parts/page-banner', Functions::get_archive_type() );
-		?>
+		<?php get_template_part( 'template-parts/page-banner', Functions::get_archive_type() ); ?>
 	</header><!-- #site-header -->

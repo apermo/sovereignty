@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.5.1] - 2026-06-03
+
+### Fixed
+
+- Fatal `ArgumentCountError` in the MSLS integration: `msls_get_switcher()`
+  takes a required `$attr` argument, so calling it with none crashed every
+  front-end page when the Multisite Language Switcher plugin was active.
+  Now called with an empty array
+
 ## [1.5.0] - 2026-06-03
 
 ### Added

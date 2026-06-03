@@ -48,7 +48,14 @@ wp_body_open();
 				</a>
 			</<?php Tags::site_title_tag(); ?>>
 
-			<?php get_search_form( [ 'echo' => true ] ); ?>
+			<?php
+			get_search_form( [ 'echo' => true ] );
+
+			/**
+			 * Fires after the search form, inside the site branding.
+			 */
+			do_action( 'sovereignty_after_search' );
+			?>
 		</div>
 
 		<nav id="site-navigation" class="site-navigation">

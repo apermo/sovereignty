@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.5.0] - 2026-06-03
+
+### Added
+
+- Multisite Language Switcher (MSLS) integration that renders a
+  language switcher next to the search form in the site header when
+  the plugin is active (`src/Integration/Msls.php`). Registers
+  conditionally via `msls_get_switcher()` and emits nothing when no
+  translation exists for the current content (#86)
+- New `sovereignty_after_search` action hook, fired inside the site
+  branding after the search form, giving consuming sites a clean slot
+  to inject content next to the search (#86)
+
+### Changed
+
+- Pinned `@playwright/test` to `^1.60.0` and added an E2E job timeout
+  plus a Playwright browser cache. Fixes a CI hang where the Chromium
+  install stalled on extraction under Node 24.16+
+  (microsoft/playwright#40998)
+
 ## [1.4.2] - 2026-05-25
 
 ### Changed

@@ -176,5 +176,9 @@ class Theme {
 		if ( \defined( 'WPSEO_VERSION' ) ) {
 			Integration\Yoast::register();
 		}
+
+		if ( \function_exists( 'msls_get_switcher' ) ) {
+			Integration\Msls::register();
+		}
 	}
 }

@@ -108,6 +108,29 @@
 		display: inline-block;
 		float: right;
 	}
+
+	.language-switcher {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		float: right;
+		margin: 15px 15px 15px 0;
+		font-family: $font-sans;
+
+		a {
+			color: $dark-gray;
+			color: var(--color-dark-gray);
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		[aria-current="page"] {
+			font-weight: 700;
+		}
+	}
 }
 
 .custom-header {

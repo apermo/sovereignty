@@ -12,6 +12,7 @@ jobs:
     e2e:
         name: WP latest
         runs-on: ubuntu-latest
+        timeout-minutes: 15
         steps:
             - uses: actions/checkout@v6
 
@@ -35,6 +36,12 @@ jobs:
 
             - name: Start wp-env
               run: npx wp-env start
+
+            - name: Cache Playwright browsers
+              uses: actions/cache@v4
+              with:
+                  path: ~/.cache/ms-playwright
+                  key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
 
             - name: Install Playwright browsers
               run: npx playwright install --with-deps chromium

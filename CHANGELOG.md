@@ -18,6 +18,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   branding after the search form, giving consuming sites a clean slot
   to inject content next to the search (#86)
 
+### Changed
+
+- Pinned `@playwright/test` to `^1.60.0` and added an E2E job timeout
+  plus a Playwright browser cache. Fixes a CI hang where the Chromium
+  install stalled on extraction under Node 24.16+
+  (microsoft/playwright#40998)
+
 ## [1.4.2] - 2026-05-25
 
 ### Changed

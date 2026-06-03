@@ -32,7 +32,7 @@ class Msls {
 			return;
 		}
 
-		$switcher = msls_get_switcher();
+		$switcher = msls_get_switcher( [] );
 
 		if ( ! \is_string( $switcher ) || \trim( $switcher ) === '' ) {
 			return; // No translation, or empty/whitespace markup — render nothing.

@@ -54,7 +54,7 @@ class MslsTest extends TestCase {
 	 * @return void
 	 */
 	public function test_display_wraps_switcher_when_present(): void {
-		Functions\when( 'msls_get_switcher' )->justReturn( '<a href="https://example.tld/de/">DE</a>' );
+		Functions\expect( 'msls_get_switcher' )->once()->with( [] )->andReturn( '<a href="https://example.tld/de/">DE</a>' );
 
 		$this->expectOutputString(
 			'<nav class="language-switcher" aria-label="Languages"><a href="https://example.tld/de/">DE</a></nav>',
@@ -69,7 +69,7 @@ class MslsTest extends TestCase {
 	 * @return void
 	 */
 	public function test_display_renders_nothing_without_translation(): void {
-		Functions\when( 'msls_get_switcher' )->justReturn( '' );
+		Functions\expect( 'msls_get_switcher' )->once()->with( [] )->andReturn( '' );
 
 		$this->expectOutputString( '' );
 
@@ -82,7 +82,7 @@ class MslsTest extends TestCase {
 	 * @return void
 	 */
 	public function test_display_renders_nothing_when_not_a_string(): void {
-		Functions\when( 'msls_get_switcher' )->justReturn( false );
+		Functions\expect( 'msls_get_switcher' )->once()->with( [] )->andReturn( false );
 
 		$this->expectOutputString( '' );
 

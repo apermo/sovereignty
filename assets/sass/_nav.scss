@@ -252,3 +252,26 @@
 .menu-toggle {
 	display: none;
 }
+
+.language-switcher {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0 auto;
+	width: $default-width;
+	font-family: $font-sans;
+
+	a {
+		color: $dark-gray;
+		color: var(--color-dark-gray);
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	[aria-current="page"] {
+		font-weight: 700;
+	}
+}

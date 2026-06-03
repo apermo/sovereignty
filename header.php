@@ -57,5 +57,12 @@ wp_body_open();
 			<?php wp_nav_menu( [ 'theme_location' => 'primary' ] ); ?>
 		</nav><!-- #site-navigation -->
 
-		<?php get_template_part( 'template-parts/page-banner', Functions::get_archive_type() ); ?>
+		<?php
+		/**
+		 * Fires after the primary navigation, inside the site header.
+		 */
+		do_action( 'sovereignty_after_navigation' );
+
+		get_template_part( 'template-parts/page-banner', Functions::get_archive_type() );
+		?>
 	</header><!-- #site-header -->

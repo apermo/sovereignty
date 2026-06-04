@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.5.2] - 2026-06-04
+
+### Changed
+
+- The MSLS language switcher now builds the theme's own markup from the
+  plugin's blog collection instead of echoing `msls_get_switcher()`. It
+  shows the current language (marked `aria-current="page"`) alongside the
+  translated ones, and renders friendly two-letter labels (`EN`/`DE`)
+  derived from the locale — independent of the MSLS *Display* setting.
+  Untranslated languages are skipped, and `hreflang` is added to each
+  alternate link (#89)
+
 ## [1.5.1] - 2026-06-03
 
 ### Fixed

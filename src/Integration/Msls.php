@@ -54,7 +54,7 @@ class Msls {
 	 * Returns an empty array when no other language has a translation for the current
 	 * content, so single-language pages render nothing.
 	 *
-	 * @return array<int, array{label: string, locale: string, url: string, current: bool}>
+	 * @return array<int, array{label: string, lang: string, url: string, current: bool}>
 	 */
 	private static function get_languages(): array {
 		$collection = msls_blog_collection();
@@ -89,12 +89,12 @@ class Msls {
 	 * @param string   $url     Translation URL, empty for the current language.
 	 * @param bool     $current Whether this is the current language.
 	 *
-	 * @return array{label: string, locale: string, url: string, current: bool}
+	 * @return array{label: string, lang: string, url: string, current: bool}
 	 */
 	private static function language( MslsBlog $blog, string $url, bool $current ): array {
 		return [
 			'label'   => \strtoupper( $blog->get_alpha2() ),
-			'locale'  => $blog->get_language(),
+			'lang'    => \strtolower( $blog->get_alpha2() ),
 			'url'     => $url,
 			'current' => $current,
 		];
@@ -103,7 +103,7 @@ class Msls {
 	/**
 	 * Renders the switcher markup.
 	 *
-	 * @param array<int, array{label: string, locale: string, url: string, current: bool}> $languages Language entries.
+	 * @param array<int, array{label: string, lang: string, url: string, current: bool}> $languages Language entries.
 	 *
 	 * @return string
 	 */
@@ -111,12 +111,10 @@ class Msls {
 		$html = '<nav class="language-switcher" aria-label="' . esc_attr__( 'Languages', 'sovereignty' ) . '">';
 
 		foreach ( $languages as $language ) {
-			$alpha2 = \strtolower( \substr( $language['locale'], 0, 2 ) );
-
 			if ( $language['current'] ) {
 				$html .= \sprintf(
 					'<span class="current" aria-current="page" lang="%s">%s</span>',
-					esc_attr( $alpha2 ),
+					esc_attr( $language['lang'] ),
 					esc_html( $language['label'] ),
 				);
 				continue;
@@ -125,7 +123,7 @@ class Msls {
 			$html .= \sprintf(
 				'<a href="%s" hreflang="%s">%s</a>',
 				esc_url( $language['url'] ),
-				esc_attr( $alpha2 ),
+				esc_attr( $language['lang'] ),
 				esc_html( $language['label'] ),
 			);
 		}

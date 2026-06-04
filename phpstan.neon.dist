@@ -13,6 +13,7 @@ parameters:
         - vendor/pfefferle/activitypub/includes
         - vendor/wpackagist-plugin/pwa
         - vendor/wpackagist-plugin/indieweb-post-kinds
+        - vendor/wpackagist-plugin/multisite-language-switcher
     strictRules:
         allRules: false
         booleansInConditions: true

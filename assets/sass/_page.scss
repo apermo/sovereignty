@@ -127,8 +127,11 @@
 			}
 		}
 
-		[aria-current="page"] {
+		.current {
+			color: $dark-gray;
+			color: var(--color-dark-gray);
 			font-weight: 700;
+			cursor: default;
 		}
 	}
 }

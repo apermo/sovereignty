@@ -177,7 +177,7 @@ class Theme {
 			Integration\Yoast::register();
 		}
 
-		if ( \function_exists( 'msls_get_switcher' ) ) {
+		if ( \function_exists( 'msls_blog_collection' ) ) {
 			Integration\Msls::register();
 		}
 	}

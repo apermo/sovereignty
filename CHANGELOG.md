@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.5.3] - 2026-06-04
+
+### Fixed
+
+- The MSLS language switcher resolved translation URLs with the generic
+  `msls_options()` singleton, which is not request-aware, so it never
+  found a post's translation and the switcher disappeared on single
+  posts. It now uses `MslsOptions::create()` (the request-aware factory
+  MSLS itself uses), so post translations resolve correctly.
+
+### Changed
+
+- Every language is now always shown in the switcher. When a language
+  has no translation for the current content, it links to that
+  language's home page instead of being hidden.
+
 ## [1.5.2] - 2026-06-04
 
 ### Changed

@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Apermo\Sovereignty\Integration;
 
 use lloc\Msls\MslsBlog;
+use lloc\Msls\MslsBlogCollection;
+use lloc\Msls\MslsOptions;
+use lloc\Msls\OptionsInterface;
 
 /**
  * Multisite Language Switcher integration: renders the switcher next to the search form.
@@ -34,11 +37,11 @@ class Msls {
 	 * @return void
 	 */
 	public static function display(): void {
-		if ( ! \function_exists( 'msls_blog_collection' ) || ! \function_exists( 'msls_options' ) ) {
+		if ( ! \function_exists( 'msls_blog_collection' ) ) {
 			return;
 		}
 
-		$languages = self::get_languages();
+		$languages = self::get_languages( msls_blog_collection(), MslsOptions::create() );
 
 		if ( empty( $languages ) ) {
 			return;
@@ -49,17 +52,19 @@ class Msls {
 	}
 
 	/**
-	 * Collects the current and translated languages from the MSLS blog collection.
+	 * Collects every language from the MSLS blog collection.
 	 *
-	 * Returns an empty array when no other language has a translation for the current
-	 * content, so single-language pages render nothing.
+	 * Each alternate language links to the translated content when it exists, otherwise
+	 * to that language's home page, so the full set of languages is always offered.
+	 * Returns an empty array when no other language exists, so single-language sites
+	 * render nothing.
+	 *
+	 * @param MslsBlogCollection $collection The plugin's blog collection.
+	 * @param OptionsInterface   $options    Request-aware options used to resolve URLs.
 	 *
 	 * @return array<int, array{label: string, lang: string, url: string, current: bool}>
 	 */
-	private static function get_languages(): array {
-		$collection = msls_blog_collection();
-		$options    = msls_options();
-
+	private static function get_languages( MslsBlogCollection $collection, OptionsInterface $options ): array {
 		$languages = [];
 		$has_other = false;
 
@@ -72,7 +77,7 @@ class Msls {
 			$url = $blog->get_url( $options );
 
 			if ( empty( $url ) ) {
-				continue;
+				$url = get_home_url( (int) $blog->userblog_id );
 			}
 
 			$has_other   = true;

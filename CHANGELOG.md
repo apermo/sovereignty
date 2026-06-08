@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+
+- Bump GitHub Actions off the deprecated Node 20 runtime: `actions/cache`
+  v4→v5. GitHub forces JavaScript actions onto Node 24 starting 2026-06-16.
+
 ## [1.5.3] - 2026-06-04
 
 ### Fixed

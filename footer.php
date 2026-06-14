@@ -7,6 +7,9 @@
  * @package Sovereignty
  * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Template\Tags;
+
 ?>
 	<footer id="colophon">
 		<?php get_sidebar(); ?>
@@ -18,7 +21,7 @@
 			 */
 			do_action( 'sovereignty_credits' );
 			?>
-			<p class="site-divider" aria-hidden="true">* * *</p>
+			<?php Tags::separator(); ?>
 			<div class="site-info">
 				<?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional attribution links. ?>
 				<p>

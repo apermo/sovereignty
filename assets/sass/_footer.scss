@@ -1,7 +1,6 @@
 #colophon {
 	width: 100%;
 	margin-top: 80px;
-	border-top: 1px solid var(--color-border);
 	content-visibility: auto;
 
 	@include clearfix;
@@ -9,21 +8,18 @@
 
 #site-generator {
 	clear: both;
-	padding: 2.5em 20px 4em;
+	padding-bottom: 4em;
 	text-align: center;
 	font-family: $font-sans;
 	font-size: .9em;
 	line-height: 1.9;
 	color: var(--color-text-muted);
-}
 
-// Classic asterism section break above the credit.
-.site-divider {
-	margin: 0 0 1.4em;
-	color: var(--color-text-subtle);
-	font-size: 1.1em;
-	letter-spacing: .4em;
-	text-indent: .4em; // compensate the trailing letter-spacing so it stays centred
+	// Reuse the content separator (full-width rule + three dots) as the divider.
+	.separator {
+		margin-top: 0;
+		margin-bottom: 1.6em;
+	}
 }
 
 .site-info {

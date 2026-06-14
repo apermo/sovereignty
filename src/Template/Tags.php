@@ -304,7 +304,13 @@ class Tags {
 	 * @return void
 	 */
 	public static function separator(): void {
+		$svg = Svg::get( 'separator' );
+
+		if ( \trim( $svg ) === '' ) {
+			return;
+		}
+
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Trusted theme-bundled SVG markup.
-		echo '<div class="separator" role="presentation">' . Svg::get( 'separator' ) . '</div>';
+		echo '<div class="separator" role="presentation">' . $svg . '</div>';
 	}
 }

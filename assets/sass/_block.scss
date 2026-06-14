@@ -1,8 +1,7 @@
 .wp-block-preformatted {
 	background-color: inherit;
 	color: inherit;
-	border: 1px solid $lighter-gray;
-	border-color: var(--color-lighter-gray);
+	border: 1px solid var(--color-text-subtle);
 }
 
 .wp-block-columns .aligncenter {

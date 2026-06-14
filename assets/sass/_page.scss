@@ -3,7 +3,7 @@
 	display: block;
 	position: relative;
 	width: 100%;
-	border-bottom: 1px solid $border-gray;
+	border-bottom: 1px solid var(--color-border);
 
 	.site-branding {
 		margin: 0 auto;
@@ -38,11 +38,10 @@
 
 	.page-banner {
 		width: 100%;
-		border-top: 1px solid $border-gray;
+		border-top: 1px solid var(--color-border);
 
 		a {
-			color: $dark-gray;
-			color: var(--color-dark-gray);
+			color: var(--color-text);
 		}
 
 		.page-branding {
@@ -82,8 +81,7 @@
 			display: block;
 			margin: 0 auto;
 			text-align: left;
-			color: $dark-gray;
-			color: var(--color-dark-gray);
+			color: var(--color-text);
 			font-size: 1.5em;
 			width: $wide-width;
 		}
@@ -118,8 +116,7 @@
 		font-family: $font-sans;
 
 		a {
-			color: $dark-gray;
-			color: var(--color-dark-gray);
+			color: var(--color-text);
 			text-decoration: none;
 
 			&:hover {
@@ -128,8 +125,7 @@
 		}
 
 		.current {
-			color: $dark-gray;
-			color: var(--color-dark-gray);
+			color: var(--color-text);
 			font-weight: 700;
 			cursor: default;
 		}
@@ -174,8 +170,7 @@
 
 #colophon {
 	width: 100%;
-	background-color: $background-gray;
-	background-color: var(--color-background-gray);
+	background-color: var(--color-surface-alt);
 	margin-top: 100px;
 	content-visibility: auto;
 
@@ -186,8 +181,7 @@
 	clear: both;
 	padding: 50px 0;
 	text-align: center;
-	background-color: $white;
-	background-color: var(--color-white);
+	background-color: var(--color-surface);
 }
 
 .screen-reader-text,
@@ -221,8 +215,7 @@
 // Notices
 .post .notice,
 .error404 #searchform {
-	background: $light-gray;
-	background: var(--color-light-gray);
+	background: var(--color-text-meta);
 	display: block;
 	padding: 1em;
 }

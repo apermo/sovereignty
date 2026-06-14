@@ -35,22 +35,18 @@
 	}
 
 	input {
-		color: $dark-gray;
-		color: var(--color-dark-gray);
+		color: var(--color-text);
 	}
 
 	button,
 	input[type="submit"] {
-		color: $dark-gray;
-		color: var(--color-dark-gray);
-		background-color: $white;
-		background-color: var(--color-white);
+		color: var(--color-text);
+		background-color: var(--color-surface);
 		border: none;
 		padding: .5em 1em;
 
 		&:hover {
-			background-color: $gray;
-			background-color: var(--color-gray);
+			background-color: var(--color-text-muted);
 		}
 	}
 }

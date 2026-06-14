@@ -1,6 +1,8 @@
 #colophon {
 	width: 100%;
 	margin-top: 80px;
+	border-top: 3px solid rgba(#fff, .2);
+	background-color: #111;
 	content-visibility: auto;
 
 	@include clearfix;
@@ -8,17 +10,23 @@
 
 #site-generator {
 	clear: both;
-	padding-bottom: 4em;
+	padding: 0 20px 4em;
 	text-align: center;
 	font-family: $font-sans;
 	font-size: .9em;
 	line-height: 1.9;
-	color: var(--color-text-muted);
+	color: rgba(#fff, .6);
 
-	// Reuse the content separator (full-width rule + three dots) as the divider.
+	// Reuse the content separator for the three dots (kept at the content-column
+	// position), but the full-width rule is the #colophon border above — so drop
+	// the component's own content-width bar. Tint the dots light for the dark band.
 	.separator {
-		margin-top: 0;
-		margin-bottom: 1.6em;
+		margin: 0 auto 1.8em;
+		border-top: 0;
+
+		.lm {
+			fill: rgba(#fff, .55);
+		}
 	}
 }
 
@@ -29,7 +37,7 @@
 	}
 
 	a {
-		color: var(--color-text-muted);
+		color: rgba(#fff, .82);
 		text-decoration: underline;
 		text-decoration-thickness: 1px;
 		text-underline-offset: 3px;

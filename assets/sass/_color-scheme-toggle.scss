@@ -35,6 +35,16 @@
 	line-height: 0;
 	cursor: pointer;
 
+	// Neutralize the global button hover/focus/active styling (border + fill),
+	// which would otherwise add a 1px border on hover and shift the icon.
+	&:hover,
+	&:focus,
+	&:active {
+		border: 0;
+		background: none;
+		color: inherit;
+	}
+
 	&:focus-visible {
 		outline: 2px solid var(--color-accent);
 		outline-offset: 2px;

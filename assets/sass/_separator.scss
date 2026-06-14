@@ -5,9 +5,7 @@
 // dia -> ~12.34px (66px-wide dots SVG over a 107u viewBox). Color comes only
 // from --color-text, so it adapts to the color scheme like the logo's .lm.
 .separator {
-	margin: 0 auto;
-	margin-top: 80px;
-	margin-bottom: 8px;
+	margin: 80px auto 8px;
 	border-top: 3px solid var(--color-text);
 
 	.separator-chrome {
@@ -20,6 +18,12 @@
 	.lm {
 		fill: var(--color-text);
 	}
+}
+
+// A full-width featured-image post is designed flush against the header, so
+// drop the separator that would otherwise sit above its hero.
+.separator:has(+ .has-full-width-featured-image) {
+	display: none;
 }
 
 // The first separator on a feed/single sits right under the header — trim its

@@ -178,6 +178,10 @@ pre {
 	white-space: pre-wrap;
 	word-wrap: break-word;
 
+	a {
+		color: inherit;
+	}
+
 	code {
 		background-color: inherit;
 		color: inherit;

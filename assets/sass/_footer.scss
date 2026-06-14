@@ -1,11 +1,17 @@
 #colophon {
 	width: 100%;
 	margin-top: 80px;
-	border-top: 3px solid rgba(#fff, .2);
+	border-top: 3px solid #fff;
 	background-color: #111;
 	content-visibility: auto;
 
 	@include clearfix;
+
+	// No widgets here by default — drop the sidebar spacing so the dots sit
+	// right under the full-width rule (the usual separator gap).
+	#sidebar {
+		margin: 0;
+	}
 }
 
 #site-generator {
@@ -17,15 +23,15 @@
 	line-height: 1.9;
 	color: rgba(#fff, .6);
 
-	// Reuse the content separator for the three dots (kept at the content-column
-	// position), but the full-width rule is the #colophon border above — so drop
-	// the component's own content-width bar. Tint the dots light for the dark band.
+	// Reuse the content separator for the three dots, kept at the content-column
+	// position. The full-width rule is the #colophon border above, so drop the
+	// component's own (content-width) bar; the dots are white on the dark band.
 	.separator {
 		margin: 0 auto 1.8em;
 		border-top: 0;
 
 		.lm {
-			fill: rgba(#fff, .55);
+			fill: #fff;
 		}
 	}
 }

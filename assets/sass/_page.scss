@@ -168,22 +168,6 @@
 	margin: 0 auto;
 }
 
-#colophon {
-	width: 100%;
-	background-color: var(--color-surface-alt);
-	margin-top: 100px;
-	content-visibility: auto;
-
-	@include clearfix;
-}
-
-#site-generator {
-	clear: both;
-	padding: 50px 0;
-	text-align: center;
-	background-color: var(--color-surface);
-}
-
 .screen-reader-text,
 .assistive-text {
 	clip: rect(1px 1px 1px 1px);

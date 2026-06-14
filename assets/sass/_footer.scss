@@ -1,7 +1,7 @@
 #colophon {
 	width: 100%;
-	margin-top: 100px;
-	background-color: var(--color-surface-alt);
+	margin-top: 80px;
+	border-top: 1px solid var(--color-border);
 	content-visibility: auto;
 
 	@include clearfix;
@@ -9,55 +9,37 @@
 
 #site-generator {
 	clear: both;
-	padding: 50px 20px 70px;
+	padding: 2.5em 20px 4em;
+	text-align: center;
+	font-family: $font-sans;
+	font-size: .9em;
+	line-height: 1.9;
+	color: var(--color-text-muted);
 }
 
-// Credit rendered as a small terminal window, echoing the logo and code blocks:
-// green-on-dark and mode-independent (no light/dark variants).
-.site-credit {
-	box-sizing: border-box;
-	max-width: min(90%, 32rem);
-	margin: 0 auto;
-	padding: 2.6em 1.6em 1.6em;
-	position: relative;
-	border-radius: 6px;
-	background: var(--color-code-bg);
-	color: var(--color-code-text);
-	font-family: $font-mono;
-	line-height: 1.6;
-	box-shadow: 0 8px 24px 0 var(--color-shadow);
+// Classic asterism section break above the credit.
+.site-divider {
+	margin: 0 0 1.4em;
+	color: var(--color-text-subtle);
+	font-size: 1.1em;
+	letter-spacing: .4em;
+	text-indent: .4em; // compensate the trailing letter-spacing so it stays centred
+}
 
-	// Window-chrome dots, top-left.
-	.separator-chrome {
-		position: absolute;
-		top: 1.1em;
-		left: 1.6em;
-		width: 42px;
-		height: auto;
-
-		.lm {
-			fill: var(--color-code-text);
-			opacity: .55;
-		}
-	}
+.site-info {
 
 	p {
 		margin: .2em 0;
-
-		&::before {
-			content: "> ";
-			opacity: .55;
-		}
 	}
 
 	a {
-		color: var(--color-code-text);
+		color: var(--color-text-muted);
 		text-decoration: underline;
 		text-decoration-thickness: 1px;
 		text-underline-offset: 3px;
 
 		&:hover {
-			text-decoration-color: var(--color-accent-alt);
+			text-decoration-color: var(--color-accent);
 		}
 	}
 }

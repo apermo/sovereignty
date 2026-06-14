@@ -7,9 +7,6 @@
  * @package Sovereignty
  * @since Sovereignty 1.0.0
  */
-
-use Apermo\Sovereignty\Template\Svg;
-
 ?>
 	<footer id="colophon">
 		<?php get_sidebar(); ?>
@@ -21,8 +18,8 @@ use Apermo\Sovereignty\Template\Svg;
 			 */
 			do_action( 'sovereignty_credits' );
 			?>
-			<div class="site-credit">
-				<?php Svg::print( 'separator' ); ?>
+			<p class="site-divider" aria-hidden="true">* * *</p>
+			<div class="site-info">
 				<?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional attribution links. ?>
 				<p>
 					<?php

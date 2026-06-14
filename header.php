@@ -10,6 +10,7 @@
 
 use Apermo\Sovereignty\Semantics;
 use Apermo\Sovereignty\Template\Functions;
+use Apermo\Sovereignty\Template\Svg;
 use Apermo\Sovereignty\Template\Tags;
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -44,7 +45,8 @@ wp_body_open();
 			?>
 			<<?php Tags::site_title_tag(); ?> id="site-title"<?php Semantics::output( 'site-title' ); ?>>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"<?php Semantics::output( 'site-url' ); ?>>
-				<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
+					<?php Svg::print( 'logo' ); ?>
+					<span class="screen-reader-text"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span>
 				</a>
 			</<?php Tags::site_title_tag(); ?>>
 

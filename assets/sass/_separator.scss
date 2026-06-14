@@ -3,8 +3,8 @@
 // active color scheme exactly like the logo's .lm shapes.
 .separator {
 	margin: 0 auto;
-	margin-top: 60px;
-	margin-bottom: 30px;
+	margin-top: 80px;
+	margin-bottom: 8px;
 
 	.separator-chrome {
 		display: block;
@@ -20,5 +20,5 @@
 // The first separator on a feed/single sits right under the header — trim its
 // top margin so it doesn't push the first block down excessively.
 #primary > .separator:first-child {
-	margin-top: 30px;
+	margin-top: 40px;
 }

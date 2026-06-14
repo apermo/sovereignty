@@ -61,9 +61,6 @@
 	}
 }
 
-#primary article:first-child {
-	margin-top: 50px;
-}
 
 h1.entry-title,
 h2.entry-title,
@@ -324,7 +321,7 @@ h4.entry-title {
 
 #primary article {
 	padding: 0;
-	margin-top: 100px;
+	margin-top: 0;
 	position: relative;
 
 	@include clearfix;

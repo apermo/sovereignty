@@ -34,7 +34,7 @@
 			}
 		}
 
-		.entry-meta.post-format .entry-format::before {
+		.entry-format::before {
 			color: var(--color-on-cover);
 		}
 
@@ -231,21 +231,12 @@ h4.entry-title {
 	margin-top: 15px;
 	margin-bottom: 15px;
 
-	&.post-format {
-		padding: 0;
-		margin: 0;
-		margin-bottom: 10px;
+	.entry-format {
+		line-height: 1;
+		text-transform: capitalize;
 	}
 
-	&.post-format a,
-	&.post-format span,
-	&.post-format .entry-format::before {
-		color: var(--color-text-subtle);
-		font-weight: 700;
-		text-transform: lowercase;
-	}
-
-	&.post-format .entry-format::before {
+	.entry-format::before {
 		display: inline-block;
 		font: 400 1.1em Dashicons; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
 		-webkit-font-smoothing: antialiased;
@@ -257,11 +248,7 @@ h4.entry-title {
 		text-decoration: none;
 		top: 2px;
 		vertical-align: text-middle;
-		color: var(--color-text-subtle);
-	}
-
-	.entry-format {
-		line-height: 1;
+		color: var(--color-text-muted);
 	}
 
 	address {
@@ -271,7 +258,8 @@ h4.entry-title {
 	}
 
 	.entry-date,
-	.entry-duration {
+	.entry-duration,
+	.entry-format {
 		font-size: .8em;
 	}
 }
@@ -330,44 +318,48 @@ h4.entry-title {
 		display: none;
 	}
 
-	&.format-quote .post-format .entry-format::before {
+	&.format-quote .entry-format::before {
 		content: "\f122";
 	}
 
-	&.format-aside .post-format .entry-format::before {
+	&.format-aside .entry-format::before {
 		content: "\f123";
 	}
 
-	&.format-video .post-format .entry-format::before {
+	&.format-chat .entry-format::before {
+		content: "\f125";
+	}
+
+	&.format-video .entry-format::before {
 		content: "\f126";
 	}
 
-	&.format-audio .post-format .entry-format::before {
+	&.format-audio .entry-format::before {
 		content: "\f127";
 	}
 
-	&.format-image .post-format .entry-format::before,
-	&.format-photo .post-format .entry-format::before {
+	&.format-image .entry-format::before,
+	&.format-photo .entry-format::before {
 		content: "\f128";
 	}
 
-	&.format-gallery .post-format .entry-format::before {
+	&.format-gallery .entry-format::before {
 		content: "\f161";
 	}
 
-	&.format-link .post-format .entry-format::before {
+	&.format-link .entry-format::before {
 		content: "\f103";
 	}
 
-	&.format-status .post-format .entry-format::before {
+	&.format-status .entry-format::before {
 		content: "\f130";
 	}
 
-	&.format-standard .post-format .entry-format::before {
+	&.format-standard .entry-format::before {
 		content: "\f478";
 	}
 
-	&.type-page .post-format .entry-type-page::before {
+	&.type-page .entry-type-page::before {
 		content: "\f105";
 	}
 }

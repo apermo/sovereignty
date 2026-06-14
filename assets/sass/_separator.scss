@@ -1,0 +1,24 @@
+// Terminal-window chrome reused from the logo as a content-block separator.
+// Colors come only from --color-text (no hardcoded fills), so it adapts to the
+// active color scheme exactly like the logo's .lm shapes.
+.separator {
+	margin: 0 auto;
+	margin-top: 60px;
+	margin-bottom: 30px;
+
+	.separator-chrome {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.lm {
+		fill: var(--color-text);
+	}
+}
+
+// The first separator on a feed/single sits right under the header — trim its
+// top margin so it doesn't push the first block down excessively.
+#primary > .separator:first-child {
+	margin-top: 30px;
+}

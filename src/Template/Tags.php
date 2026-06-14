@@ -295,4 +295,16 @@ class Tags {
 	public static function entry_title_tag(): void {
 		echo is_singular() ? 'h1' : 'h2'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded tag names.
 	}
+
+	/**
+	 * Display the terminal-chrome separator that heads a content block.
+	 *
+	 * Outputs the decorative bar-and-dots mark reused from the site logo.
+	 *
+	 * @return void
+	 */
+	public static function separator(): void {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Trusted theme-bundled SVG markup.
+		echo '<div class="separator" role="presentation">' . Svg::get( 'separator' ) . '</div>';
+	}
 }

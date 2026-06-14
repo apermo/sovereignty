@@ -37,25 +37,30 @@ wp_body_open();
 	?>
 	<header id="site-header" class="site-header">
 		<nav id="meta-navigation" class="meta-navigation" aria-label="<?php esc_attr_e( 'Site tools', 'sovereignty' ); ?>">
-			<fieldset id="color-scheme-toggle" class="color-scheme-toggle">
-				<legend class="screen-reader-text"><?php esc_html_e( 'Color scheme', 'sovereignty' ); ?></legend>
-				<?php
-				$sovereignty_schemes = [
-					'auto'  => __( 'Automatic', 'sovereignty' ),
-					'light' => __( 'Light', 'sovereignty' ),
-					'dark'  => __( 'Dark', 'sovereignty' ),
-				];
-				foreach ( $sovereignty_schemes as $sovereignty_scheme => $sovereignty_label ) {
-					?>
-					<label class="color-scheme-option">
-						<input type="radio" name="color-scheme" value="<?php echo esc_attr( $sovereignty_scheme ); ?>"<?php checked( 'auto', $sovereignty_scheme ); ?> />
-						<?php Svg::print( 'scheme-' . $sovereignty_scheme ); ?>
-						<span class="screen-reader-text"><?php echo esc_html( $sovereignty_label ); ?></span>
-					</label>
+			<div class="color-scheme-toggle">
+				<button type="button" class="color-scheme-trigger" aria-expanded="false" aria-controls="color-scheme-options" aria-label="<?php esc_attr_e( 'Color scheme', 'sovereignty' ); ?>">
+					<?php Svg::print( 'darkmode-switch' ); ?>
+				</button>
+				<fieldset id="color-scheme-options" class="color-scheme-panel">
+					<legend class="screen-reader-text"><?php esc_html_e( 'Color scheme', 'sovereignty' ); ?></legend>
 					<?php
-				}
-				?>
-			</fieldset>
+					$sovereignty_schemes = [
+						'auto'  => __( 'Automatic', 'sovereignty' ),
+						'light' => __( 'Light', 'sovereignty' ),
+						'dark'  => __( 'Dark', 'sovereignty' ),
+					];
+					foreach ( $sovereignty_schemes as $sovereignty_scheme => $sovereignty_label ) {
+						?>
+						<label class="color-scheme-option scheme-<?php echo esc_attr( $sovereignty_scheme ); ?>">
+							<input type="radio" name="color-scheme" value="<?php echo esc_attr( $sovereignty_scheme ); ?>"<?php checked( 'auto', $sovereignty_scheme ); ?> />
+							<?php Svg::print( 'darkmode-switch' ); ?>
+							<span class="screen-reader-text"><?php echo esc_html( $sovereignty_label ); ?></span>
+						</label>
+						<?php
+					}
+					?>
+				</fieldset>
+			</div>
 		</nav><!-- #meta-navigation -->
 
 		<div class="site-branding">

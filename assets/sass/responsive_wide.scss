@@ -13,11 +13,12 @@
 	width: $wide-width;
 }
 
-// Content column matches the header width on wide screens.
-.entry-content > *,
-.entry-summary > *,
-.entry-content > form,
-.entry-content > div,
+// Content column matches the header width on wide screens. Exclude full-width
+// (.alignfull) blocks so Gutenberg full-bleed alignment keeps working.
+.entry-content > *:not(.alignfull),
+.entry-summary > *:not(.alignfull),
+.entry-content > form:not(.alignfull),
+.entry-content > div:not(.alignfull),
 .entry-header,
 .entry-footer > *,
 .entry-reaction,

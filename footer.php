@@ -7,6 +7,9 @@
  * @package Sovereignty
  * @since Sovereignty 1.0.0
  */
+
+use Apermo\Sovereignty\Template\Svg;
+
 ?>
 	<footer id="colophon">
 		<?php get_sidebar(); ?>
@@ -18,16 +21,30 @@
 			 */
 			do_action( 'sovereignty_credits' );
 			?>
-			<?php
-			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- Contains intentional HTML links for attribution.
-			printf(
-				// translators: %1$s: Link to WordPress, %2$s: Link to Autonomie theme.
-				__( 'This site is powered by %1$s and styled with the %2$s theme', 'sovereignty' ),
-				'<a href="https://wordpress.org/" rel="generator">WordPress</a>',
-				'<a href="https://notiz.blog/projects/autonomie/">Autonomie</a>',
-			);
-			// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
-			?>
+			<div class="site-credit">
+				<?php Svg::print( 'separator' ); ?>
+				<?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- Intentional attribution links. ?>
+				<p>
+					<?php
+					printf(
+						/* translators: %1$s: Sovereignty theme link, %2$s: Autonomie theme link. */
+						__( '%1$s based on %2$s', 'sovereignty' ),
+						'<a href="https://github.com/apermo/sovereignty">Sovereignty</a>',
+						'<a href="https://notiz.blog/projects/autonomie/">Autonomie</a>',
+					);
+					?>
+				</p>
+				<p>
+					<?php
+					printf(
+						/* translators: %s: WordPress link. */
+						__( 'Powered by %s', 'sovereignty' ),
+						'<a href="https://wordpress.org/" rel="generator">WordPress</a>',
+					);
+					?>
+				</p>
+				<?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</div>
 		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->

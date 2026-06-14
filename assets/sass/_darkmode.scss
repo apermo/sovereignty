@@ -1,6 +1,7 @@
 :root {
 	// Surfaces & backgrounds.
 	--color-background: #{$white};
+	--color-body-bg: radial-gradient(circle at center, #eee 0%, #ddd 100%);
 	--color-surface: #{$white};
 	--color-surface-alt: #{$background-gray};
 
@@ -42,6 +43,7 @@
 
 	:root {
 		--color-background: #{$dark-gray};
+		--color-body-bg: radial-gradient(circle at center, #222 0%, #111 100%);
 		--color-surface: #{$dark-gray};
 		--color-surface-alt: #{$gray};
 

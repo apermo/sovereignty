@@ -36,6 +36,18 @@ wp_body_open();
 	do_action( 'sovereignty_before' );
 	?>
 	<header id="site-header" class="site-header">
+		<nav id="meta-navigation" class="meta-navigation" aria-label="<?php esc_attr_e( 'Site tools', 'sovereignty' ); ?>">
+			<?php
+			/**
+			 * Fires inside the meta navigation bar.
+			 *
+			 * Reserved for header tools such as search and the color-scheme
+			 * toggle.
+			 */
+			do_action( 'sovereignty_meta_navigation' );
+			?>
+		</nav><!-- #meta-navigation -->
+
 		<div class="site-branding">
 			<?php
 			if ( has_custom_logo() ) {

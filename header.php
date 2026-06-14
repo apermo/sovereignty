@@ -36,6 +36,28 @@ wp_body_open();
 	do_action( 'sovereignty_before' );
 	?>
 	<header id="site-header" class="site-header">
+		<nav id="meta-navigation" class="meta-navigation" aria-label="<?php esc_attr_e( 'Site tools', 'sovereignty' ); ?>">
+			<fieldset id="color-scheme-toggle" class="color-scheme-toggle">
+				<legend class="screen-reader-text"><?php esc_html_e( 'Color scheme', 'sovereignty' ); ?></legend>
+				<?php
+				$sovereignty_schemes = [
+					'auto'  => __( 'Automatic', 'sovereignty' ),
+					'light' => __( 'Light', 'sovereignty' ),
+					'dark'  => __( 'Dark', 'sovereignty' ),
+				];
+				foreach ( $sovereignty_schemes as $sovereignty_scheme => $sovereignty_label ) {
+					?>
+					<label class="color-scheme-option">
+						<input type="radio" name="color-scheme" value="<?php echo esc_attr( $sovereignty_scheme ); ?>"<?php checked( 'auto', $sovereignty_scheme ); ?> />
+						<?php Svg::print( 'scheme-' . $sovereignty_scheme ); ?>
+						<span class="screen-reader-text"><?php echo esc_html( $sovereignty_label ); ?></span>
+					</label>
+					<?php
+				}
+				?>
+			</fieldset>
+		</nav><!-- #meta-navigation -->
+
 		<div class="site-branding">
 			<?php
 			if ( has_custom_logo() ) {

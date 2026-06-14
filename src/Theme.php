@@ -59,6 +59,7 @@ class Theme {
 	 * @return void
 	 */
 	private static function init_head(): void {
+		add_action( 'wp_head', [ Head::class, 'color_scheme_init' ], 1 );
 		add_action( 'wp_head', [ Head::class, 'pingback' ] );
 		add_action( 'wp_head', [ Head::class, 'publisher_feed' ] );
 		add_action( 'wp_head', [ Head::class, 'color_scheme_meta' ] );

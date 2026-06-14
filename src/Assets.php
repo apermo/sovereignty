@@ -35,6 +35,16 @@ class Assets {
 			],
 		);
 
+		wp_enqueue_script(
+			'sovereignty-color-scheme',
+			get_template_directory_uri() . '/assets/js/darkmode.js',
+			[],
+			\SOVEREIGNTY_VERSION,
+			[
+				'strategy' => 'defer',
+			],
+		);
+
 		if ( is_singular() ) {
 			wp_enqueue_script(
 				'sovereignty-share',

@@ -45,4 +45,29 @@ class Head {
 	public static function color_scheme_meta(): void {
 		\printf( \PHP_EOL . '<meta name="supported-color-schemes" content="light dark">' . \PHP_EOL );
 	}
+
+	/**
+	 * Print the inline script that applies the stored color-scheme class.
+	 *
+	 * Runs as early as possible in the head so the forced light/dark choice is
+	 * applied before first paint, preventing a flash of the wrong scheme.
+	 *
+	 * @return void
+	 */
+	public static function color_scheme_init(): void {
+		?>
+		<script>
+			( function () {
+				try {
+					var p = localStorage.getItem( 'sovereignty-color-scheme' );
+					document.documentElement.classList.add(
+						p === 'dark' || p === 'light' ? p + '-mode' : 'auto-mode'
+					);
+				} catch ( e ) {
+					document.documentElement.classList.add( 'auto-mode' );
+				}
+			}() );
+		</script>
+		<?php
+	}
 }

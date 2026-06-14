@@ -1,3 +1,20 @@
+// Dark-scheme variable overrides, shared by automatic (OS) and forced modes.
+@mixin color-scheme-dark {
+	--color-background: #{$dark-gray};
+	--color-surface: #{$dark-gray};
+	--color-surface-alt: #{$gray};
+
+	--color-text: #{$white};
+	--color-text-muted: #{$very-light-gray};
+	--color-text-meta: #{$border-gray};
+	--color-text-subtle: #{$lighter-gray};
+
+	--color-border: #{$light-gray};
+
+	--color-selection-bg: #{rgba($android-green, 0.3)};
+	--color-shadow: #{rgba(#000, 0.5)};
+}
+
 :root {
 	// Surfaces & backgrounds.
 	--color-background: #{$white};
@@ -38,25 +55,33 @@
 	color-scheme: light dark;
 }
 
+// Automatic mode follows the OS. The :not(.light-mode) guard means this also
+// applies before the toggle script runs (no class yet), so the OS preference
+// is honoured without a flash. A forced light choice opts out.
 @media (prefers-color-scheme: dark) {
 
-	:root {
-		--color-background: #{$dark-gray};
-		--color-surface: #{$dark-gray};
-		--color-surface-alt: #{$gray};
+	:root:not(.light-mode) {
 
-		--color-text: #{$white};
-		--color-text-muted: #{$very-light-gray};
-		--color-text-meta: #{$border-gray};
-		--color-text-subtle: #{$lighter-gray};
-
-		--color-border: #{$light-gray};
-
-		--color-selection-bg: #{rgba($android-green, 0.3)};
-		--color-shadow: #{rgba(#000, 0.5)};
+		@include color-scheme-dark;
 	}
 
-	img {
+	:root:not(.light-mode) img {
 		filter: brightness(.8) contrast(1.2);
 	}
+}
+
+// Forced dark wins regardless of the OS preference.
+:root.dark-mode {
+
+	@include color-scheme-dark;
+	color-scheme: dark;
+}
+
+:root.dark-mode img {
+	filter: brightness(.8) contrast(1.2);
+}
+
+// Forced light wins regardless of the OS preference.
+:root.light-mode {
+	color-scheme: light;
 }

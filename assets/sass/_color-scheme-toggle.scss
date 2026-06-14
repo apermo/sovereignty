@@ -1,0 +1,51 @@
+.meta-navigation {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.color-scheme-toggle {
+	display: inline-flex;
+	gap: .25rem;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.color-scheme-option {
+	display: inline-flex;
+	padding: .35rem;
+	border-radius: 4px;
+	color: var(--color-text-meta);
+	line-height: 0;
+	cursor: pointer;
+
+	svg {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	// Visually hide the native radio while keeping it focusable.
+	input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		padding: 0;
+		border: 0;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+	}
+
+	&:hover {
+		color: var(--color-text);
+	}
+
+	&:has(input:checked) {
+		color: var(--color-accent);
+	}
+
+	&:has(input:focus-visible) {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
+	}
+}

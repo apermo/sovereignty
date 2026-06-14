@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity, no-duplicate-selectors */
 body {
-	background-color: var(--color-background);
+	background: var(--color-body-bg) var(--color-background) fixed;
 	color: var(--color-text);
 
 	font-family: $font-sans;

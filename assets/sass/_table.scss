@@ -25,7 +25,7 @@ table {
 
 table th,
 table td {
-	border-top: 1px solid $border-gray;
+	border-top: 1px solid var(--color-border);
 	padding: 10px;
 	text-align: left;
 	vertical-align: top;
@@ -41,7 +41,7 @@ table thead:first-child tr:first-child td {
 }
 
 table tbody + tbody {
-	border-top: 2px solid $border-gray;
+	border-top: 2px solid var(--color-border);
 }
 
 table caption + thead tr:first-child th,
@@ -58,12 +58,10 @@ table tbody:first-child tr:first-child td {
 
 table tbody tr:nth-child(odd) td,
 table tbody tr:nth-child(odd) th {
-	background-color: $background-gray;
-	background-color: var(--color-background-gray);
+	background-color: var(--color-surface-alt);
 }
 
 table tbody tr:hover td,
 table tbody tr:hover th {
-	background-color: $background-gray;
-	background-color: var(--color-background-gray);
+	background-color: var(--color-surface-alt);
 }

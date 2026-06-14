@@ -27,15 +27,15 @@
 		background-size: cover;
 
 		.entry-title, .entry-meta, .entry-format {
-			color: $white;
+			color: var(--color-on-cover);
 
 			a {
-				color: $white;
+				color: var(--color-on-cover);
 			}
 		}
 
 		.entry-meta.post-format .entry-format::before {
-			color: $white;
+			color: var(--color-on-cover);
 		}
 
 		.entry-header-wrapper {
@@ -56,7 +56,7 @@
 		}
 
 		.avatar {
-			border: 2px solid $white;
+			border: 2px solid var(--color-on-cover);
 		}
 	}
 }
@@ -72,7 +72,7 @@
 
 		&::after {
 			content: "";
-			border-top: 1px solid $border-gray;
+			border-top: 1px solid var(--color-border);
 			width: 200px;
 			display: block;
 			text-align: center;
@@ -100,8 +100,7 @@ h4.entry-title {
 		font-size: 1em;
 		line-height: 1;
 		text-decoration: none;
-		color: $dark-gray;
-		color: var(--color-dark-gray);
+		color: var(--color-text);
 
 		&:hover {
 			text-decoration: underline;
@@ -129,8 +128,7 @@ h4.entry-title {
 
 .entry-content,
 .entry-summary {
-	color: $dark-gray;
-	color: var(--color-dark-gray);
+	color: var(--color-text);
 	font-style: normal;
 	font-size: 1.2em;
 	margin: 0 auto;
@@ -157,8 +155,7 @@ h4.entry-title {
 		text-decoration: underline;
 
 		@supports(text-decoration: underline $android-green) {
-			text-decoration: underline $android-green;
-			text-decoration: underline var(--color-android-green);
+			text-decoration: underline var(--color-accent);
 			text-decoration-thickness: 3px;
 			text-underline-offset: 6px;
 		}
@@ -166,8 +163,7 @@ h4.entry-title {
 		&:hover {
 
 			@supports(text-decoration: underline $android-green) {
-				text-decoration: underline $usc-gold;
-				text-decoration: underline var(--color-usc-gold);
+				text-decoration: underline var(--color-accent-alt);
 				text-decoration-thickness: 3px;
 				text-underline-offset: 6px;
 			}
@@ -185,12 +181,10 @@ h4.entry-title {
 	display: inline-block;
 	font-size: 1em;
 	font-family: $font-sans;
-	background-color: $background-gray;
-	background-color: var(--color-background-gray);
+	background-color: var(--color-surface-alt);
 	border: none;
 	border-radius: 3px;
-	color: $dark-gray;
-	color: var(--color-dark-gray);
+	color: var(--color-text);
 	line-height: inherit;
 	padding: 3px 7px;
 	text-decoration: none;
@@ -228,13 +222,11 @@ h4.entry-title {
 .page-links {
 	font-family: $font-sans;
 	clear: both;
-	color: $gray;
-	color: var(--color-gray);
+	color: var(--color-text-muted);
 	display: block;
 
 	a {
-		color: $gray;
-		color: var(--color-gray);
+		color: var(--color-text-muted);
 		text-decoration: none;
 	}
 
@@ -268,8 +260,7 @@ h4.entry-title {
 	&.post-format a,
 	&.post-format span,
 	&.post-format .entry-format::before {
-		color: $lighter-gray;
-		color: var(--color-lighter-gray);
+		color: var(--color-text-subtle);
 		font-weight: 700;
 		text-transform: lowercase;
 	}
@@ -286,8 +277,7 @@ h4.entry-title {
 		text-decoration: none;
 		top: 2px;
 		vertical-align: text-middle;
-		color: $lighter-gray;
-		color: var(--color-lighter-gray);
+		color: var(--color-text-subtle);
 	}
 
 	.entry-format {
@@ -297,8 +287,7 @@ h4.entry-title {
 	address {
 		font-size: 1em;
 		line-height: 1.2;
-		color: $dark-gray;
-		color: var(--color-dark-gray);
+		color: var(--color-text);
 	}
 
 	.entry-date,
@@ -414,8 +403,7 @@ h4.entry-title {
 .more-link {
 	display: block;
 	font-size: .8em;
-	color: $gray;
-	color: var(--color-gray);
+	color: var(--color-text-muted);
 }
 
 .entry-content {
@@ -485,13 +473,11 @@ h4.entry-title {
 	}
 
 	.has-white-background-color {
-		background-color: $white;
-		background-color: var(--color-white);
+		background-color: var(--color-surface);
 	}
 
 	.has-white-color {
-		color: $white;
-		color: var(--color-white);
+		color: var(--color-on-cover);
 	}
 
 	.has-very-light-gray-background-color {
@@ -518,7 +504,7 @@ h4.entry-title {
 }
 
 .wp-block-footnotes {
-	border-top: solid 1px #d3d3d3;
+	border-top: solid 1px var(--color-border);
 	margin-top: 2em;
 	padding-top: 2em;
 	font-size: .8em;

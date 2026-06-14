@@ -2,6 +2,8 @@
 .meta-navigation {
 	display: flex;
 	justify-content: flex-end;
+	margin: 0 auto;
+	padding-top: .75rem;
 }
 
 .color-scheme-toggle {
@@ -10,8 +12,9 @@
 
 .darkmode-switch {
 	display: block;
-	width: 1.75rem;
-	height: 1.75rem;
+	width: 2.25rem;
+	height: 2.25rem;
+	color: var(--color-text);
 
 	.dms-auto,
 	.dms-moon,
@@ -100,8 +103,8 @@
 	cursor: pointer;
 
 	.darkmode-switch {
-		width: 1.5rem;
-		height: 1.5rem;
+		width: 2rem;
+		height: 2rem;
 	}
 
 	// Visually hide the native radio while keeping it focusable.

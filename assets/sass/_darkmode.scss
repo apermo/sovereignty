@@ -30,6 +30,11 @@
 	--color-code-text: #{$terminal-green};
 	--color-code-bg: #{$terminal-green-bg};
 
+	// Terminal-style form fields — green-on-dark in every mode.
+	--color-form-text: #{$terminal-green};
+	--color-form-bg: #{$terminal-green-bg};
+	--color-form-border: #{$terminal-green};
+
 	color-scheme: light dark;
 }
 

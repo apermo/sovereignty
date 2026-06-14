@@ -3,6 +3,7 @@
 @import "mixins";
 
 #sidebar,
+.separator,
 .site-navigation,
 .site-header .meta-navigation,
 .site-header .site-branding,
@@ -10,6 +11,23 @@
 .site-header .page-banner #page-description,
 .has-full-width-featured-image .entry-header .entry-header-wrapper > * {
 	width: $wide-width;
+}
+
+// Content column matches the header width on wide screens. Exclude full-width
+// (.alignfull) blocks so Gutenberg full-bleed alignment keeps working.
+.entry-content > *:not(.alignfull),
+.entry-summary > *:not(.alignfull),
+.entry-content > form:not(.alignfull),
+.entry-content > div:not(.alignfull),
+.entry-header,
+.entry-footer > *,
+.entry-reaction,
+#comments,
+#nav-above,
+#nav-below,
+.reaction-list,
+.wp-block-quote.is-style-large {
+	max-width: $wide-width;
 }
 
 .entry-content {

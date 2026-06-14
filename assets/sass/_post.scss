@@ -34,7 +34,7 @@
 			}
 		}
 
-		.entry-meta.post-format .entry-format::before {
+		.entry-format::before {
 			color: var(--color-on-cover);
 		}
 
@@ -61,26 +61,6 @@
 	}
 }
 
-#primary article:first-child {
-	margin-top: 50px;
-}
-
-.home,
-.archive {
-
-	#primary article {
-
-		&::after {
-			content: "";
-			border-top: 1px solid var(--color-border);
-			width: 200px;
-			display: block;
-			text-align: center;
-			margin: 0 auto;
-			margin-top: 100px;
-		}
-	}
-}
 
 h1.entry-title,
 h2.entry-title,
@@ -251,21 +231,12 @@ h4.entry-title {
 	margin-top: 15px;
 	margin-bottom: 15px;
 
-	&.post-format {
-		padding: 0;
-		margin: 0;
-		margin-bottom: 10px;
+	.entry-format {
+		line-height: 1;
+		text-transform: capitalize;
 	}
 
-	&.post-format a,
-	&.post-format span,
-	&.post-format .entry-format::before {
-		color: var(--color-text-subtle);
-		font-weight: 700;
-		text-transform: lowercase;
-	}
-
-	&.post-format .entry-format::before {
+	.entry-format::before {
 		display: inline-block;
 		font: 400 1.1em Dashicons; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
 		-webkit-font-smoothing: antialiased;
@@ -277,11 +248,7 @@ h4.entry-title {
 		text-decoration: none;
 		top: 2px;
 		vertical-align: text-middle;
-		color: var(--color-text-subtle);
-	}
-
-	.entry-format {
-		line-height: 1;
+		color: var(--color-text-muted);
 	}
 
 	address {
@@ -291,7 +258,8 @@ h4.entry-title {
 	}
 
 	.entry-date,
-	.entry-duration {
+	.entry-duration,
+	.entry-format {
 		font-size: .8em;
 	}
 }
@@ -341,7 +309,7 @@ h4.entry-title {
 
 #primary article {
 	padding: 0;
-	margin-top: 100px;
+	margin-top: 0;
 	position: relative;
 
 	@include clearfix;
@@ -349,47 +317,53 @@ h4.entry-title {
 	.sep:first-of-type {
 		display: none;
 	}
+}
 
-	&.format-quote .post-format .entry-format::before {
-		content: "\f122";
-	}
+// Post-format icons. Scoped to the format class (not a wrapper element) so they
+// apply to both <article> and the <aside> wrapper that aside/status/link use.
+.format-quote .entry-format::before {
+	content: "\f122";
+}
 
-	&.format-aside .post-format .entry-format::before {
-		content: "\f123";
-	}
+.format-aside .entry-format::before {
+	content: "\f123";
+}
 
-	&.format-video .post-format .entry-format::before {
-		content: "\f126";
-	}
+.format-chat .entry-format::before {
+	content: "\f125";
+}
 
-	&.format-audio .post-format .entry-format::before {
-		content: "\f127";
-	}
+.format-video .entry-format::before {
+	content: "\f126";
+}
 
-	&.format-image .post-format .entry-format::before,
-	&.format-photo .post-format .entry-format::before {
-		content: "\f128";
-	}
+.format-audio .entry-format::before {
+	content: "\f127";
+}
 
-	&.format-gallery .post-format .entry-format::before {
-		content: "\f161";
-	}
+.format-image .entry-format::before,
+.format-photo .entry-format::before {
+	content: "\f128";
+}
 
-	&.format-link .post-format .entry-format::before {
-		content: "\f103";
-	}
+.format-gallery .entry-format::before {
+	content: "\f161";
+}
 
-	&.format-status .post-format .entry-format::before {
-		content: "\f130";
-	}
+.format-link .entry-format::before {
+	content: "\f103";
+}
 
-	&.format-standard .post-format .entry-format::before {
-		content: "\f478";
-	}
+.format-status .entry-format::before {
+	content: "\f130";
+}
 
-	&.type-page .post-format .entry-type-page::before {
-		content: "\f105";
-	}
+.format-standard .entry-format::before {
+	content: "\f478";
+}
+
+.type-page .entry-type-page::before {
+	content: "\f105";
 }
 
 .edit-link {

@@ -19,6 +19,8 @@ get_header(); ?>
 				global $post;
 				?>
 
+				<?php Tags::separator(); ?>
+
 				<?php get_template_part( 'templates/content', get_post_format( $post ) ); ?>
 
 				<?php

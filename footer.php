@@ -27,19 +27,11 @@ use Apermo\Sovereignty\Template\Tags;
 				<p>
 					<?php
 					printf(
-						/* translators: %1$s: Sovereignty theme link, %2$s: Autonomie theme link. */
-						__( '%1$s based on %2$s', 'sovereignty' ),
+						/* translators: %1$s: WordPress link, %2$s: Sovereignty theme link, %3$s: Autonomie theme link. */
+						__( 'This site is powered by %1$s and styled with %2$s, based on %3$s', 'sovereignty' ),
+						'<a href="https://wordpress.org/" rel="generator">WordPress</a>',
 						'<a href="https://github.com/apermo/sovereignty">Sovereignty</a>',
 						'<a href="https://notiz.blog/projects/autonomie/">Autonomie</a>',
-					);
-					?>
-				</p>
-				<p>
-					<?php
-					printf(
-						/* translators: %s: WordPress link. */
-						__( 'Powered by %s', 'sovereignty' ),
-						'<a href="https://wordpress.org/" rel="generator">WordPress</a>',
 					);
 					?>
 				</p>

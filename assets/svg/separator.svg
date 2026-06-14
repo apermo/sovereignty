@@ -1,6 +1,5 @@
-<svg class="separator-chrome" viewBox="0 0 1200 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-	<rect class="lm" width="1200" height="5" />
-	<circle class="lm" cx="30" cy="25" r="10" />
-	<circle class="lm" cx="63" cy="25" r="10" />
-	<circle class="lm" cx="97" cy="25" r="10" />
+<svg class="separator-chrome" viewBox="0 0 107 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+	<circle class="lm" cx="30" cy="10" r="10" />
+	<circle class="lm" cx="63" cy="10" r="10" />
+	<circle class="lm" cx="97" cy="10" r="10" />
 </svg>

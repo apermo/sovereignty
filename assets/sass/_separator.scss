@@ -1,15 +1,20 @@
 // Terminal-window chrome reused from the logo as a content-block separator.
-// Colors come only from --color-text (no hardcoded fills), so it adapts to the
-// active color scheme exactly like the logo's .lm shapes.
+// The bar is a fixed-thickness full-width border (flexible width) and the dots
+// are a fixed-size SVG, so both match the logo's chrome exactly at any width.
+// Sizes derive from the logo at 300px (scale 0.617): bar 5u -> ~3px, dots 20u
+// dia -> ~12.34px (66px-wide dots SVG over a 107u viewBox). Color comes only
+// from --color-text, so it adapts to the color scheme like the logo's .lm.
 .separator {
 	margin: 0 auto;
 	margin-top: 80px;
 	margin-bottom: 8px;
+	border-top: 3px solid var(--color-text);
 
 	.separator-chrome {
 		display: block;
-		width: 100%;
+		width: 66px;
 		height: auto;
+		margin-top: 6px;
 	}
 
 	.lm {

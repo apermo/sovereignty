@@ -41,12 +41,13 @@
 		--color-surface-alt: #{$gray};
 
 		--color-text: #{$white};
-		--color-text-muted: #{$white};
-		--color-text-meta: #{$white};
-		--color-text-subtle: #{$white};
+		--color-text-muted: #{$very-light-gray};
+		--color-text-meta: #{$border-gray};
+		--color-text-subtle: #{$lighter-gray};
 
 		--color-border: #{$light-gray};
 
+		--color-selection-bg: #{rgba($android-green, 0.3)};
 		--color-shadow: #{rgba(#000, 0.5)};
 	}
 

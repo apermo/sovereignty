@@ -4,6 +4,7 @@
 	--color-body-bg: radial-gradient(circle at center, #eee 0%, #ddd 100%);
 	--color-surface: #{$white};
 	--color-surface-alt: #{$background-gray};
+	--color-footer-bg: #{$border-gray};
 
 	// Text.
 	--color-text: #{$dark-gray};
@@ -46,6 +47,7 @@
 		--color-body-bg: radial-gradient(circle at center, #222 0%, #111 100%);
 		--color-surface: #{$dark-gray};
 		--color-surface-alt: #{$gray};
+		--color-footer-bg: #0a0a0a;
 
 		--color-text: #{$white};
 		--color-text-muted: #{$very-light-gray};

@@ -49,7 +49,7 @@ class CompatTest extends TestCase {
 
 		$result = Compat::comment_autocomplete( $fields );
 
-		$this->assertStringContainsString( 'autocomplete="nickname name"', $result['author'] );
+		$this->assertStringContainsString( 'autocomplete="name"', $result['author'] );
 		$this->assertStringContainsString( 'enterkeyhint="next"', $result['author'] );
 		$this->assertStringContainsString( 'autocomplete="email"', $result['email'] );
 		$this->assertStringContainsString( 'inputmode="email"', $result['email'] );

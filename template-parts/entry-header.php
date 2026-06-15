@@ -11,8 +11,11 @@ global $post; // Set by the_post() in calling template.
 		if ( ! in_array( get_post_format( $post ), [ 'aside', 'quote', 'status' ], true ) && ! empty( get_the_title() ) ) {
 			?>
 		<<?php Tags::entry_title_tag(); ?> class="entry-title p-name">
-			<?php /* translators: %s: Post title. */ ?>
-			<a href="<?php the_permalink(); ?>" class="u-url url" title="<?php printf( esc_attr__( 'Permalink to %s', 'sovereignty' ), the_title_attribute( [ 'echo' => false ] ) ); ?>" rel="bookmark">
+			<?php
+			/* translators: %s: Post title. */
+			$sovereignty_permalink_title = sprintf( esc_attr__( 'Permalink to %s', 'sovereignty' ), the_title_attribute( [ 'echo' => false ] ) );
+			?>
+			<a href="<?php the_permalink(); ?>" class="u-url url" title="<?php echo $sovereignty_permalink_title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- esc_attr__() and the_title_attribute() pre-escape for the attribute. ?>" rel="bookmark">
 				<?php the_title(); ?>
 			</a>
 		</<?php Tags::entry_title_tag(); ?>>

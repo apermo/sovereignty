@@ -24,7 +24,7 @@ class Compat {
 	 * @return array
 	 */
 	public static function comment_autocomplete( array $fields ): array {
-		$fields['author'] = \preg_replace( '/<input/', '<input autocomplete="nickname name" enterkeyhint="next" ', $fields['author'] );
+		$fields['author'] = \preg_replace( '/<input/', '<input autocomplete="name" enterkeyhint="next" ', $fields['author'] );
 		$fields['email']  = \preg_replace( '/<input/', '<input autocomplete="email" inputmode="email" enterkeyhint="next" ', $fields['email'] );
 		$fields['url']    = \preg_replace( '/<input/', '<input autocomplete="url" inputmode="url" enterkeyhint="send" ', $fields['url'] );
 

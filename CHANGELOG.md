@@ -7,10 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-06-15
+
+### Added
+
+- Animated terminal-style logo backed by an inline SVG icon system
+  (`Apermo\Sovereignty\Template\Svg`, `assets/svg/`).
+- Terminal-chrome content separator and a terminal-window footer credit.
+- Terminal-style form fields and a radial-gradient body background.
+- Semantic CSS custom properties replacing hardcoded colour values.
+- Meta-navigation scaffold in the header, reserved for future search and
+  color-scheme tools.
+- Cross-document view transitions (content cross-fade with a persistent,
+  sliding site header), gated behind `prefers-reduced-motion`.
+- High-contrast (`prefers-contrast: more`) and reduced-motion modes.
+
 ### Changed
 
+- Content column width is now matched to the header width.
 - Bump GitHub Actions off the deprecated Node 20 runtime: `actions/cache`
   v4→v5. GitHub forces JavaScript actions onto Node 24 starting 2026-06-16.
+
+### Fixed
+
+- Accessibility pass driven by axe: primary navigation landmark label,
+  share-button disclosure semantics, pagination arrows, author-less byline
+  fallbacks, valid `autocomplete` on the comment author field, comment
+  reply heading hierarchy, and removal of empty footer widget landmarks.
+- Full-width header divider and footer line; footer colours adapt to the
+  active colour scheme; empty page banner no longer reserves space; the
+  single-sentence footer credit was restored.
 
 ## [1.5.3] - 2026-06-04
 

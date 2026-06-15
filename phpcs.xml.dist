@@ -10,6 +10,7 @@
 	<exclude-pattern>node_modules/*</exclude-pattern>
 	<exclude-pattern>.ddev/*</exclude-pattern>
 	<exclude-pattern>bin/*</exclude-pattern>
+	<exclude-pattern>_misc_cd/*</exclude-pattern>
 
 	<!-- Test files: allow non-prefixed globals and WP test constants -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">

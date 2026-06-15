@@ -1,7 +1,7 @@
 {
   "name": "sovereignty",
-  "version": "1.5.3",
-  "testedUpTo": "6.9",
+  "version": "2.0.0",
+  "testedUpTo": "7.0",
   "description": "Semantic, responsive WordPress theme with deep IndieWeb support. Fork of Autonomie by Matthias Pfefferle.",
   "repository": {
     "type": "git",

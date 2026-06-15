@@ -1,8 +1,8 @@
-<button type="share" id="entry-share">
+<button type="button" id="entry-share" aria-expanded="false" aria-controls="share-options">
 	<?php esc_html_e( 'share', 'sovereignty' ); ?>
 </button>
 
-<div id="share-options" style="display: none;">
+<div id="share-options">
 	<p><strong><?php esc_html_e( 'Sharing is caring', 'sovereignty' ); ?></strong></p>
 	<p>
 		<label for="entry-shortlink"><?php esc_html_e( 'Shortlink', 'sovereignty' ); ?></label>

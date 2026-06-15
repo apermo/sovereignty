@@ -10,6 +10,7 @@
 
 use Apermo\Sovereignty\Semantics;
 use Apermo\Sovereignty\Template\Functions;
+use Apermo\Sovereignty\Template\Svg;
 use Apermo\Sovereignty\Template\Tags;
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -35,6 +36,18 @@ wp_body_open();
 	do_action( 'sovereignty_before' );
 	?>
 	<header id="site-header" class="site-header">
+		<nav id="meta-navigation" class="meta-navigation" aria-label="<?php esc_attr_e( 'Site tools', 'sovereignty' ); ?>">
+			<?php
+			/**
+			 * Fires inside the meta navigation bar.
+			 *
+			 * Reserved for header tools such as search and the color-scheme
+			 * toggle.
+			 */
+			do_action( 'sovereignty_meta_navigation' );
+			?>
+		</nav><!-- #meta-navigation -->
+
 		<div class="site-branding">
 			<?php
 			if ( has_custom_logo() ) {
@@ -44,7 +57,8 @@ wp_body_open();
 			?>
 			<<?php Tags::site_title_tag(); ?> id="site-title"<?php Semantics::output( 'site-title' ); ?>>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"<?php Semantics::output( 'site-url' ); ?>>
-				<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
+					<?php Svg::print( 'logo' ); ?>
+					<span class="screen-reader-text"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span>
 				</a>
 			</<?php Tags::site_title_tag(); ?>>
 
@@ -58,11 +72,15 @@ wp_body_open();
 			?>
 		</div>
 
-		<nav id="site-navigation" class="site-navigation">
+		<nav id="site-navigation" class="site-navigation" aria-label="<?php esc_attr_e( 'Primary', 'sovereignty' ); ?>">
 			<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'sovereignty' ); ?></button>
 
 			<?php wp_nav_menu( [ 'theme_location' => 'primary' ] ); ?>
 		</nav><!-- #site-navigation -->
 
 		<?php get_template_part( 'template-parts/page-banner', Functions::get_archive_type() ); ?>
+
+		<div class="header-divider">
+			<?php Tags::separator(); ?>
+		</div>
 	</header><!-- #site-header -->

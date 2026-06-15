@@ -23,6 +23,8 @@ get_header(); ?>
 				the_post();
 				?>
 
+				<?php Tags::separator(); ?>
+
 				<?php get_template_part( 'templates/content', 'page' ); ?>
 
 				<?php comments_template( '', true ); ?>

@@ -26,8 +26,7 @@
 
 	label {
 		display: block;
-		color: $gray;
-		color: var(--color-gray);
+		color: var(--color-text-muted);
 	}
 
 	.says {
@@ -103,8 +102,7 @@ li.comment {
 .logged-in-as {
 	display: block;
 	font-family: $font-sans;
-	color: $gray;
-	color: var(--color-gray);
+	color: var(--color-text-muted);
 }
 
 .comment-meta {
@@ -121,8 +119,7 @@ li.comment {
 .comment-meta a,
 .comment-reply-link,
 .logged-in-as a {
-	color: $gray;
-	color: var(--color-gray);
+	color: var(--color-text-muted);
 	text-decoration: none;
 
 	&:hover {

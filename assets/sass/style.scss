@@ -37,8 +37,7 @@
 // =============================================================================
 
 html {
-	color: $dark-gray;
-	color: var(--color-dark-gray);
+	color: var(--color-text);
 	font-size: 1em;
 	line-height: 1.6;
 }
@@ -49,7 +48,7 @@ html {
 
 ::-moz-selection,
 ::selection {
-	background: #b3d4fc;
+	background: var(--color-selection-bg);
 	text-shadow: none;
 }
 
@@ -84,9 +83,8 @@ textarea {
 
 .browsehappy,
 .browserupgrade {
-	background: $gray;
-	background: var(--color-gray);
-	color: #000;
+	background: var(--color-text-muted);
+	color: var(--color-surface);
 	margin: .2em 0;
 	padding: .2em 0;
 }
@@ -99,9 +97,13 @@ textarea {
 @import "comment";
 @import "post";
 @import "nav";
+@import "logo";
+@import "meta-navigation";
+@import "separator";
 @import "table";
 @import "media";
 @import "sidebar";
+@import "footer";
 @import "base";
 @import "block";
 @import "form";
@@ -152,3 +154,5 @@ textarea {
 
 @import "integrations";
 @import "darkmode";
+@import "a11y";
+@import "view-transitions";

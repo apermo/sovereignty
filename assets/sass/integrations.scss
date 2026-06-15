@@ -26,13 +26,11 @@ ul.relsyn {
 .kind .svg-icon {
 	height: 15px;
 	width: 15px;
-	color: $light-gray;
-	color: var(--color-light-gray);
+	color: var(--color-text-meta);
 	display: inline-block;
 
 	svg {
-		fill: $light-gray;
-		fill: var(--color-light-gray);
+		fill: var(--color-text-meta);
 	}
 }
 

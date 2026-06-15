@@ -1,0 +1,46 @@
+#colophon {
+	width: 100%;
+	margin-top: 80px;
+	border-top: 3px solid var(--color-text);
+	background-color: var(--color-footer-bg);
+	content-visibility: auto;
+
+	@include clearfix;
+
+	#sidebar {
+		margin: 0;
+	}
+}
+
+#site-generator {
+	clear: both;
+	padding: 0 20px 4em;
+	text-align: center;
+	font-family: $font-sans;
+	font-size: .9em;
+	line-height: 1.9;
+	color: var(--color-text-muted);
+
+	.separator {
+		margin: 0 auto 1.8em;
+		border-top: 0;
+	}
+}
+
+.site-info {
+
+	p {
+		margin: .2em 0;
+	}
+
+	a {
+		color: var(--color-text-muted);
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 3px;
+
+		&:hover {
+			text-decoration-color: var(--color-accent);
+		}
+	}
+}

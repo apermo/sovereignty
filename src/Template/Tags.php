@@ -27,8 +27,18 @@ class Tags {
 		<?php if ( is_home() || is_archive() || is_search() ) { ?>
 		<nav id="archive-nav">
 			<div class="assistive-text"><?php esc_html_e( 'Post navigation', 'sovereignty' ); ?></div>
-			<?php // @phpstan-ignore-next-line paginate_links() returns null on single-page results ?>
-			<?php echo wp_kses_post( paginate_links() ?? '' ); ?>
+			<?php
+			$pagination = paginate_links(
+				[
+					/* translators: Previous page link, with a leftwards arrow. */
+					'prev_text' => __( '&larr; Previous', 'sovereignty' ),
+					/* translators: Next page link, with a rightwards arrow. */
+					'next_text' => __( 'Next &rarr;', 'sovereignty' ),
+				],
+			);
+			// @phpstan-ignore-next-line paginate_links() returns null on single-page results.
+			echo wp_kses_post( $pagination ?? '' );
+			?>
 		</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
 		<?php } ?>
 		<?php
@@ -43,7 +53,7 @@ class Tags {
 	 */
 	public static function posted_by( WP_Post $post ): void {
 		$author_id   = (int) $post->post_author;
-		$author_name = get_the_author_meta( 'display_name', $author_id );
+		$author_name = Functions::author_name( $author_id );
 		$author_url  = get_author_posts_url( $author_id );
 		$avatar_size = Config::int( 'sovereignty.avatar.size' );
 
@@ -294,5 +304,23 @@ class Tags {
 	 */
 	public static function entry_title_tag(): void {
 		echo is_singular() ? 'h1' : 'h2'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Hardcoded tag names.
+	}
+
+	/**
+	 * Display the terminal-chrome separator that heads a content block.
+	 *
+	 * Outputs the decorative bar-and-dots mark reused from the site logo.
+	 *
+	 * @return void
+	 */
+	public static function separator(): void {
+		$svg = Svg::get( 'separator' );
+
+		if ( \trim( $svg ) === '' ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Trusted theme-bundled SVG markup.
+		echo '<div class="separator" role="presentation">' . $svg . '</div>';
 	}
 }

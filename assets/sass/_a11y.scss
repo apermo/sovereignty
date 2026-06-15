@@ -1,0 +1,68 @@
+// Accessibility preference media queries.
+
+// Honour an explicit request for more contrast: flatten the palette to
+// near-pure values and brighten the terminal green so it clears AAA, while
+// keeping the green-on-dark terminal identity. Everything is driven through the
+// semantic custom properties, so the logo, code blocks and form fields follow.
+@media (prefers-contrast: more) {
+
+	:root {
+		--color-background: #{$white};
+		--color-body-bg: #{$white};
+		--color-surface: #{$white};
+		--color-surface-alt: #{$white};
+		--color-footer-bg: #{$white};
+
+		--color-text: #000;
+		--color-text-muted: #000;
+		--color-text-meta: #000;
+		--color-text-subtle: #000;
+
+		--color-border: #000;
+		--color-accent: #000;
+
+		--color-shadow: transparent;
+
+		// Pure-black terminal background so the bright green hits ~16:1 in the
+		// logo, code blocks and form fields.
+		--color-code-text: #{$terminal-green-bright};
+		--color-code-bg: #000;
+		--color-form-text: #{$terminal-green-bright};
+		--color-form-bg: #000;
+		--color-form-border: #{$terminal-green-bright};
+	}
+
+	@media (prefers-color-scheme: dark) {
+
+		:root {
+			--color-background: #000;
+			--color-body-bg: #000;
+			--color-surface: #000;
+			--color-surface-alt: #000;
+			--color-footer-bg: #000;
+
+			--color-text: #{$white};
+			--color-text-muted: #{$white};
+			--color-text-meta: #{$white};
+			--color-text-subtle: #{$white};
+
+			--color-border: #{$white};
+			--color-accent: #{$white};
+		}
+	}
+}
+
+// Respect a request for reduced motion: neutralise transitions and animations.
+@media (prefers-reduced-motion: reduce) {
+
+	*,
+	*::before,
+	*::after {
+		animation-delay: -1ms !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-delay: 0s !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}

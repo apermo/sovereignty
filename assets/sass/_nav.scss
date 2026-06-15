@@ -11,7 +11,6 @@
 	@include clearfix;
 
 	ul {
-		border-top: 1px solid $border-gray;
 		position: relative;
 		z-index: 597;
 		list-style: none;
@@ -22,13 +21,12 @@
 
 		a {
 			border-top: 0 none;
-			color: $dark-gray;
-			color: var(--color-dark-gray);
+			color: var(--color-text);
 			display: block;
 			line-height: 1.5;
 			padding: 7.5px 0;
 			margin-right: 20px;
-			text-decoration: none;
+			text-decoration: underline;
 		}
 
 		li {
@@ -79,9 +77,8 @@
 
 		ul {
 			border: none;
-			background-color: $white;
-			background-color: var(--color-white);
-			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+			background-color: var(--color-surface);
+			box-shadow: 0 8px 16px 0 var(--color-shadow);
 			margin-top: 0;
 			min-width: 190px;
 			position: absolute;
@@ -92,8 +89,7 @@
 			z-index: 598;
 
 			a {
-				color: $dark-gray;
-				color: var(--color-dark-gray);
+				color: var(--color-text);
 				border-top: 0 none;
 				line-height: 1.5;
 				padding: 16px 20px;
@@ -195,8 +191,7 @@
 	}
 
 	a:hover {
-		color: $dark-gray;
-		color: var(--color-dark-gray);
+		color: var(--color-text);
 	}
 }
 
@@ -226,11 +221,10 @@
 	margin-top: 100px;
 
 	.page-numbers {
-		font-size: 1.5em;
+		font-size: 1.1em;
 		display: inline-block;
 		margin: 0 5px;
-		color: $light-gray;
-		color: var(--color-light-gray);
+		color: var(--color-text-meta);
 	}
 
 	a {
@@ -238,14 +232,12 @@
 
 		&:hover {
 			text-decoration: underline;
-			color: $dark-gray;
-			color: var(--color-dark-gray);
+			color: var(--color-text);
 		}
 	}
 
 	.current {
-		color: $dark-gray;
-		color: var(--color-dark-gray);
+		color: var(--color-text);
 	}
 }
 

@@ -1,0 +1,33 @@
+// Terminal-window chrome reused from the logo as a content-block separator.
+// The bar is a fixed-thickness full-width border (flexible width) and the dots
+// are a fixed-size SVG, so both match the logo's chrome exactly at any width.
+// Sizes derive from the logo at 300px (scale 0.617): bar 5u -> ~3px, dots 20u
+// dia -> ~12.34px (66px-wide dots SVG over a 107u viewBox). Color comes only
+// from --color-text, so it adapts to the color scheme like the logo's .lm.
+.separator {
+	margin: 80px auto 8px;
+	border-top: 3px solid var(--color-text);
+
+	.separator-chrome {
+		display: block;
+		width: 66px;
+		height: auto;
+		margin-top: 6px;
+	}
+
+	.lm {
+		fill: var(--color-text);
+	}
+}
+
+// A full-width featured-image post is designed flush against the header, so
+// drop the separator that would otherwise sit above its hero.
+.separator:has(+ .has-full-width-featured-image) {
+	display: none;
+}
+
+// The header divider already heads the content, so the first in-content
+// separator is redundant.
+#primary > .separator:first-child {
+	display: none;
+}

@@ -15,7 +15,7 @@ use Apermo\Sovereignty\Template\Tags;
 global $post; // Set by the_post() in calling template.
 ?>
 
-<aside <?php Tags::post_id( $post ); ?> <?php post_class(); ?><?php Semantics::output( 'post' ); ?>>
+<article <?php Tags::post_id( $post ); ?> <?php post_class(); ?><?php Semantics::output( 'post' ); ?>>
 	<?php get_template_part( 'template-parts/entry-header' ); ?>
 
 	<?php Featured_Image::the_post_thumbnail( $post, '<div class="entry-media">', '</div>' ); ?>
@@ -32,4 +32,4 @@ global $post; // Set by the_post() in calling template.
 	</div><!-- .entry-content -->
 
 	<?php get_template_part( 'template-parts/entry-footer' ); ?>
-</aside><!-- #post-<?php the_ID(); ?> -->
+</article><!-- #post-<?php the_ID(); ?> -->

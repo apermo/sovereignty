@@ -1,9 +1,7 @@
 /* stylelint-disable no-descending-specificity, no-duplicate-selectors */
 body {
-	background-color: $white;
-	background-color: var(--color-background);
-	color: $dark-gray;
-	color: var(--color-dark-gray);
+	background: var(--color-body-bg) var(--color-background) fixed;
+	color: var(--color-text);
 
 	font-family: $font-sans;
 	font-weight: 400;
@@ -19,33 +17,25 @@ address {
 }
 
 a {
-	color: $dark-gray;
-	color: var(--color-dark-gray);
+	color: var(--color-text);
 }
 
 svg {
-	fill: $dark-gray;
-	fill: var(--color-dark-gray);
-}
-
-a:hover {
-	text-decoration: none;
+	fill: var(--color-text);
 }
 
 abbr {
 	font-variant: small-caps;
 
 	&[title] {
-		border-bottom: 1px dotted $gray;
-		border-bottom-color: var(--color-gray);
+		border-bottom: 1px dotted var(--color-text-muted);
 		cursor: help;
 	}
 }
 
 blockquote,
 figure {
-	color: $gray;
-	color: var(--color-gray);
+	color: var(--color-text-muted);
 	font-size: 1em;
 	font-style: italic;
 	position: relative;
@@ -55,8 +45,7 @@ figure {
 	small,
 	figcaption,
 	cite {
-		color: $gray;
-		color: var(--color-gray);
+		color: var(--color-text-muted);
 		display: block;
 		font-size: .7em;
 		font-style: normal;
@@ -107,25 +96,26 @@ iframe {
 
 blockquote {
 	border: 0;
-	border-left: 3px solid $border-gray;
+	border-left: 3px solid var(--color-border);
 	margin: 0;
 	padding-left: 30px;
 	line-height: 1.8;
 }
 
 code {
-	background-color: var(--color-dark-gray);
-	color: var(--color-white);
+	background-color: var(--color-code-bg);
+	color: var(--color-code-text);
 	border-radius: 0.3em;
 	padding: 4px 5px 5px;
 
 	a {
-		color: var(--color-white);
+		color: var(--color-code-text);
 	}
 }
 
 ins {
-	background: $yellow;
+	background: var(--color-mark-bg);
+	color: var(--color-mark-text);
 	text-decoration: none;
 }
 
@@ -137,7 +127,7 @@ h5,
 h6 {
 	font-family: $font-serif;
 	font-weight: 100;
-	margin-bottom: 0;
+	margin-bottom: .5em;
 	line-height: 1.2;
 }
 
@@ -170,19 +160,23 @@ hr {
 	width: 200px;
 	margin: 60px auto !important;
 	border: 0;
-	border-top: 1px solid $border-gray;
+	border-top: 1px solid var(--color-border);
 	text-align: center;
 }
 
 pre {
 	margin-top: 50px;
 	margin-bottom: 50px;
-	background-color: #000;
-	color: #fff;
+	background-color: var(--color-code-bg);
+	color: var(--color-code-text);
 	display: block;
 	padding: 50px;
 	white-space: pre-wrap;
 	word-wrap: break-word;
+
+	a {
+		color: inherit;
+	}
 
 	code {
 		background-color: inherit;

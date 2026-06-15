@@ -1,0 +1,38 @@
+#logo {
+	width: 300px;
+	max-width: 100%;
+	height: auto;
+
+	.lm {
+		fill: var(--color-text);
+	}
+
+	.green {
+		fill: var(--color-code-text);
+	}
+
+	.lbg {
+		fill: var(--color-code-bg);
+	}
+
+	#cursor {
+		fill: var(--color-code-text);
+		fill-opacity: .5;
+	}
+
+	&:hover #cursor {
+		animation: logo-cursor-blink .8s infinite;
+	}
+}
+
+@keyframes logo-cursor-blink {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+	}
+}

@@ -3,12 +3,31 @@
 @import "mixins";
 
 #sidebar,
+.separator,
 .site-navigation,
+.site-header .meta-navigation,
 .site-header .site-branding,
 .site-header .page-banner #page-title,
 .site-header .page-banner #page-description,
 .has-full-width-featured-image .entry-header .entry-header-wrapper > * {
 	width: $wide-width;
+}
+
+// Content column matches the header width on wide screens. Exclude full-width
+// (.alignfull) blocks so Gutenberg full-bleed alignment keeps working.
+.entry-content > *:not(.alignfull),
+.entry-summary > *:not(.alignfull),
+.entry-content > form:not(.alignfull),
+.entry-content > div:not(.alignfull),
+.entry-header,
+.entry-footer > *,
+.entry-reaction,
+#comments,
+#nav-above,
+#nav-below,
+.reaction-list,
+.wp-block-quote.is-style-large {
+	max-width: $wide-width;
 }
 
 .entry-content {
@@ -116,32 +135,26 @@ p {
 		font-size: .9em;
 		font-style: italic;
 		float: left;
-		color: $light-gray;
-		color: var(--color-light-gray);
+		color: var(--color-text-meta);
 		padding: 1em 0 1em 0;
 		margin-right: 2.5em;
 		margin-left: calc( 50% - 450px );
 		width: 400px;
-		border-top: 1px solid $light-gray;
-		border-top-color: var(--color-light-gray);
-		border-bottom: 1px solid $light-gray;
-		border-bottom-color: var(--color-light-gray);
+		border-top: 1px solid var(--color-text-meta);
+		border-bottom: 1px solid var(--color-text-meta);
 	}
 
 	&.alignright {
 		font-size: .9em;
 		font-style: italic;
 		float: right;
-		color: $light-gray;
-		color: var(--color-light-gray);
+		color: var(--color-text-meta);
 		padding: 1em 0 1em 0;
 		margin-left: 2.5em;
 		margin-right: calc( 50% - 450px );
 		width: 400px;
-		border-top: 1px solid $light-gray;
-		border-top-color: var(--color-light-gray);
-		border-bottom: 1px solid $light-gray;
-		border-bottom-color: var(--color-light-gray);
+		border-top: 1px solid var(--color-text-meta);
+		border-bottom: 1px solid var(--color-text-meta);
 	}
 }
 
@@ -161,8 +174,7 @@ p {
 		&::before {
 			width: 25%;
 			margin-right: 75%;
-			border-top: 1px solid $light-gray;
-			border-top-color: var(--color-light-gray);
+			border-top: 1px solid var(--color-text-meta);
 			display: block;
 			content: "";
 			margin-bottom: 10px;
@@ -186,8 +198,7 @@ p {
 		&::before {
 			width: 25%;
 			margin-left: 75%;
-			border-top: 1px solid $light-gray;
-			border-top-color: var(--color-light-gray);
+			border-top: 1px solid var(--color-text-meta);
 			display: block;
 			content: "";
 			margin-bottom: 10px;

@@ -35,6 +35,7 @@ get_header(); ?>
 						 * If you want to overload this in a child theme then include a file
 						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 						 */
+						Tags::separator();
 						get_template_part( 'templates/content', get_post_format( $post ) );
 						?>
 

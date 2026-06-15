@@ -9,6 +9,7 @@ plan.md
 tests/e2e/results/
 test-results/
 playwright-report/
+.playwright-mcp/
 .phpunit.cache/
 style.css
 style.css.map
@@ -18,3 +19,6 @@ assets/css/*.css
 assets/css/*.min.css
 assets/css/*.css.map
 .claude/settings.local.json
+
+# Local scratch / parked experiments (not part of the theme)
+_misc_cd/

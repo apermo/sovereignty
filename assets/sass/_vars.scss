@@ -42,6 +42,8 @@ $very-dark-gray: #444;
 // Terminal aesthetic (green-on-dark), shared with form styling.
 $terminal-green: #1eb100;
 $terminal-green-bg: #203f00;
+// Brighter variant for prefers-contrast: more (9:1 on $terminal-green-bg).
+$terminal-green-bright: #66ff47;
 
 // Selection highlight.
 $selection-bg: #b3d4fc;

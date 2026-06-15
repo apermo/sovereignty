@@ -72,7 +72,7 @@ wp_body_open();
 			?>
 		</div>
 
-		<nav id="site-navigation" class="site-navigation">
+		<nav id="site-navigation" class="site-navigation" aria-label="<?php esc_attr_e( 'Primary', 'sovereignty' ); ?>">
 			<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'sovereignty' ); ?></button>
 
 			<?php wp_nav_menu( [ 'theme_location' => 'primary' ] ); ?>

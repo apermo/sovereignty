@@ -1,0 +1,26 @@
+// Cross-document view transitions. Progressive enhancement; unsupported
+// browsers fall back to instant navigation. Gated on reduced-motion so it
+// composes with the global guard in _a11y.scss.
+@media screen and (prefers-reduced-motion: no-preference) {
+
+	@view-transition {
+		navigation: auto;
+	}
+
+	// Pin the header so it persists across navigations and slides instead
+	// of cross-fading with the content.
+	.site-header {
+		view-transition-name: site-header;
+	}
+
+	// The header height varies between pages (the page banner is only
+	// present on some). Override the default object-fit: fill so the
+	// top-aligned branding and navigation stay stable instead of
+	// stretching while the height animates.
+	::view-transition-old(site-header),
+	::view-transition-new(site-header) {
+		height: 100%;
+		object-fit: none;
+		object-position: top left;
+	}
+}

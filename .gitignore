@@ -9,6 +9,7 @@ plan.md
 tests/e2e/results/
 test-results/
 playwright-report/
+.playwright-mcp/
 .phpunit.cache/
 style.css
 style.css.map

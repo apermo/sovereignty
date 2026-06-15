@@ -26,8 +26,8 @@
 	display: none;
 }
 
-// The first separator on a feed/single sits right under the header — trim its
-// top margin so it doesn't push the first block down excessively.
+// The header divider already heads the content, so the first in-content
+// separator is redundant.
 #primary > .separator:first-child {
-	margin-top: 40px;
+	display: none;
 }

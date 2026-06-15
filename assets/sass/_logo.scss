@@ -36,10 +36,3 @@
 		opacity: 0;
 	}
 }
-
-@media (prefers-reduced-motion: reduce) {
-
-	#logo:hover #cursor {
-		animation: none;
-	}
-}

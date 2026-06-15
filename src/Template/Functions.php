@@ -209,7 +209,7 @@ class Functions {
 		}
 
 		if ( $name === '' ) {
-			$name = __( 'Anonymous', 'sovereignty' );
+			$name = __( 'No Author', 'sovereignty' );
 		}
 
 		return $name;

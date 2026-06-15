@@ -190,4 +190,28 @@ class Functions {
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Contains safe HTML.
 		echo self::get_archive_author_meta();
 	}
+
+	/**
+	 * Get an author's display name with fallbacks.
+	 *
+	 * Guarantees a non-empty name so author links always have discernible
+	 * text, even for posts without a resolvable author.
+	 *
+	 * @param int $author_id The author user ID.
+	 *
+	 * @return string The author name.
+	 */
+	public static function author_name( int $author_id ): string {
+		$name = get_the_author_meta( 'display_name', $author_id );
+
+		if ( $name === '' ) {
+			$name = get_the_author_meta( 'user_login', $author_id );
+		}
+
+		if ( $name === '' ) {
+			$name = __( 'Anonymous', 'sovereignty' );
+		}
+
+		return $name;
+	}
 }

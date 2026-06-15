@@ -79,4 +79,8 @@ wp_body_open();
 		</nav><!-- #site-navigation -->
 
 		<?php get_template_part( 'template-parts/page-banner', Functions::get_archive_type() ); ?>
+
+		<div class="header-divider">
+			<?php Tags::separator(); ?>
+		</div>
 	</header><!-- #site-header -->

@@ -73,20 +73,20 @@ class Feed {
 	public static function extend_singular_feed_discovery(): void { // phpcs:ignore SlevomatCodingStandard.Functions.FunctionLength.FunctionLength -- @todo Refactor feed discovery logic.
 		$args = [
 			/* translators: Separator between blog name and feed type in feed links */
-			'separator'     => _x( '&raquo;', 'feed link', 'sovereignty' ),
-			/* translators: 1: blog name, 2: separator(raquo), 3: post title */
+			'separator'     => _x( '&#8212;', 'feed link', 'sovereignty' ),
+			/* translators: 1: blog name, 2: separator, 3: post title */
 			'singletitle'   => __( '%1$s %2$s %3$s Comments Feed', 'sovereignty' ),
-			/* translators: 1: blog name, 2: separator(raquo), 3: category name */
+			/* translators: 1: blog name, 2: separator, 3: category name */
 			'cattitle'      => __( '%1$s %2$s %3$s Category Feed', 'sovereignty' ),
-			/* translators: 1: blog name, 2: separator(raquo), 3: tag name */
+			/* translators: 1: blog name, 2: separator, 3: tag name */
 			'tagtitle'      => __( '%1$s %2$s %3$s Tag Feed', 'sovereignty' ),
-			/* translators: 1: blog name, 2: separator(raquo), 3: term name, 4: taxonomy singular name */
+			/* translators: 1: blog name, 2: separator, 3: term name, 4: taxonomy singular name */
 			'taxtitle'      => __( '%1$s %2$s %3$s %4$s Feed', 'sovereignty' ),
-			/* translators: 1: blog name, 2: separator(raquo), 3: author name  */
+			/* translators: 1: blog name, 2: separator, 3: author name  */
 			'authortitle'   => __( '%1$s %2$s Posts by %3$s Feed', 'sovereignty' ),
-			/* translators: 1: blog name, 2: separator(raquo), 3: search phrase */
+			/* translators: 1: blog name, 2: separator, 3: search phrase */
 			'searchtitle'   => __( '%1$s %2$s Search Results for &#8220;%3$s&#8221; Feed', 'sovereignty' ),
-			/* translators: 1: blog name, 2: separator(raquo), 3: post type */
+			/* translators: 1: blog name, 2: separator, 3: post type */
 			'posttypetitle' => __( '%1$s %2$s %3$s Post-Type Feed', 'sovereignty' ),
 		];
 		$feeds = [];

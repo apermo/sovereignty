@@ -30,10 +30,10 @@
 					?.getAttribute('href') || window.location.href,
 		};
 
-		// Web Share is reliable on mobile but flaky/absent on desktop, so fall
-		// back to the panel whenever it cannot handle the post or the share is
-		// dismissed for any reason other than the user cancelling it.
-		if (navigator.canShare && navigator.canShare(shareData)) {
+		// Prefer the native share sheet wherever it exists; fall back to the
+		// panel only when Web Share is absent or the share actually fails
+		// (but not when the user simply cancels the sheet).
+		if (navigator.share) {
 			try {
 				await navigator.share(shareData);
 				return;

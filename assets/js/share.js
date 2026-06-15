@@ -25,9 +25,8 @@
 		const shareData = {
 			title: document.title,
 			url:
-				document
-					.querySelector('link[rel="canonical"]')
-					?.getAttribute('href') || window.location.href,
+				document.querySelector('link[rel="canonical"]')?.href ||
+				window.location.href,
 		};
 
 		// Prefer the native share sheet wherever it exists; fall back to the

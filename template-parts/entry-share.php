@@ -1,4 +1,4 @@
-<button type="button" id="entry-share">
+<button type="button" id="entry-share" aria-expanded="false" aria-controls="share-options">
 	<?php esc_html_e( 'share', 'sovereignty' ); ?>
 </button>
 

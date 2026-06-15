@@ -15,7 +15,8 @@
 	const toggleFallback = function () {
 		const shareOptions = document.getElementById('share-options');
 		if (shareOptions) {
-			shareOptions.classList.toggle('is-visible');
+			const isVisible = shareOptions.classList.toggle('is-visible');
+			entryShare.setAttribute('aria-expanded', String(isVisible));
 		}
 	};
 

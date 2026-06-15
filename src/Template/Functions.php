@@ -202,13 +202,13 @@ class Functions {
 	 * @return string The author name.
 	 */
 	public static function author_name( int $author_id ): string {
-		$name = get_the_author_meta( 'display_name', $author_id );
+		$name = (string) get_the_author_meta( 'display_name', $author_id );
 
-		if ( $name === '' ) {
-			$name = get_the_author_meta( 'user_login', $author_id );
+		if ( \trim( $name ) === '' ) {
+			$name = (string) get_the_author_meta( 'user_login', $author_id );
 		}
 
-		if ( $name === '' ) {
+		if ( \trim( $name ) === '' ) {
 			$name = __( 'No Author', 'sovereignty' );
 		}
 

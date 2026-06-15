@@ -51,6 +51,10 @@ class Tags {
 			$author_name = get_the_author_meta( 'user_login', $author_id );
 		}
 
+		if ( $author_name === '' ) {
+			$author_name = __( 'Anonymous', 'sovereignty' );
+		}
+
 		\printf(
 			'<address class="byline">
 				<span class="author p-author vcard hcard h-card">

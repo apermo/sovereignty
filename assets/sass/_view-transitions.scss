@@ -12,4 +12,15 @@
 	.site-header {
 		view-transition-name: site-header;
 	}
+
+	// The header height varies between pages (the page banner is only
+	// present on some). Override the default object-fit: fill so the
+	// top-aligned branding and navigation stay stable instead of
+	// stretching while the height animates.
+	::view-transition-old(site-header),
+	::view-transition-new(site-header) {
+		height: 100%;
+		object-fit: none;
+		object-position: top left;
+	}
 }

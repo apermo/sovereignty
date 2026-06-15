@@ -23,6 +23,9 @@ class Svg {
 	 * @return string The SVG markup, or an empty string when the icon is missing.
 	 */
 	public static function get( string $name ): string {
+		// Guard against path traversal in case a caller ever passes
+		// untrusted input; icon names are alphanumeric with dashes.
+		$name = (string) \preg_replace( '/[^a-zA-Z0-9_-]/', '', $name );
 		$path = get_template_directory() . '/assets/svg/' . $name . '.svg';
 
 		if ( ! \file_exists( $path ) ) {

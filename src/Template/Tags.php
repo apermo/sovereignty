@@ -47,6 +47,10 @@ class Tags {
 		$author_url  = get_author_posts_url( $author_id );
 		$avatar_size = Config::int( 'sovereignty.avatar.size' );
 
+		if ( $author_name === '' ) {
+			$author_name = get_the_author_meta( 'user_login', $author_id );
+		}
+
 		\printf(
 			'<address class="byline">
 				<span class="author p-author vcard hcard h-card">

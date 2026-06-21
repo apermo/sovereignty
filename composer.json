@@ -59,7 +59,8 @@
 		"test:unit": "phpunit --testsuite Unit",
 		"test:integration": "phpunit --testsuite Integration",
 		"analyse": "phpstan analyse -c phpstan.neon.dist --memory-limit=2G",
-		"analyse:strict": "phpstan analyse -c phpstan-strict.neon --memory-limit=2G"
+		"analyse:strict": "phpstan analyse -c phpstan-strict.neon --memory-limit=2G",
+		"make-pot": "wp i18n make-pot . languages/sovereignty.pot --domain=sovereignty --exclude=vendor,tests,e2e,.ddev,node_modules"
 	},
 	"autoload": {
 		"psr-4": {

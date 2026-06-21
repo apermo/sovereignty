@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.1] - 2026-06-21
+
 ### Added
 
 - Self-hosted translation delivery via the Traduttore Registry, sourcing
@@ -318,6 +320,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Renamed theme to Sovereignty
 - Updated Composer package name to `apermo/sovereignty`
 
+[2.0.1]: https://github.com/apermo/sovereignty/compare/2.0.0...2.0.1
+[2.0.0]: https://github.com/apermo/sovereignty/compare/1.4.2...2.0.0
 [1.4.2]: https://github.com/apermo/sovereignty/compare/1.4.1...1.4.2
 [1.4.1]: https://github.com/apermo/sovereignty/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/apermo/sovereignty/compare/1.3.0...1.4.0

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Self-hosted translation delivery via the Traduttore Registry, sourcing
+  catalogs from the GlotPress server at `translate.chrdm.de`. GlotPress is
+  now the single source of truth for translations.
+
+### Removed
+
+- Committed translation catalogs (`de_DE`, `nl_NL`, and the `.pot` template);
+  these are now generated and delivered rather than tracked in the repository.
+
 ## [2.0.0] - 2026-06-15
 
 ### Added

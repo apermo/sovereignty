@@ -17,6 +17,7 @@ class Theme {
 	 * @return void
 	 */
 	public static function init(): void {
+		self::init_i18n();
 		self::init_setup();
 		self::init_assets();
 		self::init_head();
@@ -28,6 +29,15 @@ class Theme {
 		self::init_widgets();
 		self::init_tombstone();
 		self::init_integrations();
+	}
+
+	/**
+	 * Self-hosted translation delivery via Traduttore Registry.
+	 *
+	 * @return void
+	 */
+	private static function init_i18n(): void {
+		add_action( 'init', [ I18n::class, 'add_project' ] );
 	}
 
 	/**

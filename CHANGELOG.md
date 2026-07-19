@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.2] - 2026-07-19
+
+### Fixed
+
+- `TypeError` on author archives when the ActivityPub plugin is active:
+  `get_the_author_meta( 'ID' )` returned a string but the integration's
+  filter callbacks require an `int`. Author IDs are now cast at the filter
+  call sites.
+
+### Removed
+
+- Gemini Code Assist configuration (`.gemini/config.yaml`,
+  `.gemini/styleguide.md`).
+
 ## [2.0.1] - 2026-06-21
 
 ### Added

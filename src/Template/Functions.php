@@ -82,12 +82,12 @@ class Functions {
 			/**
 			 * Filters the follower count for an author archive.
 			 *
-			 * @param int    $count     The follower count.
-			 * @param string $author_id The author user ID.
+			 * @param int $count     The follower count.
+			 * @param int $author_id The author user ID.
 			 *
 			 * @return int The filtered follower count.
 			 */
-			apply_filters( 'sovereignty_archive_author_followers', 0, get_the_author_meta( 'ID' ) ),
+			apply_filters( 'sovereignty_archive_author_followers', 0, (int) get_the_author_meta( 'ID' ) ),
 		);
 		$meta[] = \sprintf(
 			// translators: a post counter.
@@ -104,11 +104,11 @@ class Functions {
 		 * Filters the author archive meta items.
 		 *
 		 * @param string[] $meta      The meta items.
-		 * @param string   $author_id The author user ID.
+		 * @param int      $author_id The author user ID.
 		 *
 		 * @return string[] The filtered meta items.
 		 */
-		$meta = apply_filters( 'sovereignty_archive_author_meta', $meta, get_the_author_meta( 'ID' ) );
+		$meta = apply_filters( 'sovereignty_archive_author_meta', $meta, (int) get_the_author_meta( 'ID' ) );
 
 		return \implode( ' | ', $meta );
 	}

@@ -5,6 +5,6 @@ module.exports = {
 	'*.scss': (files) => [`stylelint ${files.map(shellEscape).join(' ')}`],
 	'*.php': (files) => [
 		`vendor/bin/phpcs --warning-severity=0 ${files.map(shellEscape).join(' ')}`,
-		'vendor/bin/phpstan analyse --no-progress --memory-limit=512M',
+		'composer analyse -- --no-progress',
 	],
 };

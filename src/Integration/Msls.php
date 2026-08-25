@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Apermo\Sovereignty\Integration;
 
-use lloc\Msls\MslsBlog;
-use lloc\Msls\MslsBlogCollection;
-use lloc\Msls\MslsOptions;
-use lloc\Msls\OptionsInterface;
+use lloc\Msls\Blog\Blog as MslsBlog;
+use lloc\Msls\Blog\Collection as MslsBlogCollection;
+use lloc\Msls\Options\Options as MslsOptions;
+use lloc\Msls\Options\OptionsInterface;
 
 /**
  * Multisite Language Switcher integration: renders the switcher next to the search form.
@@ -16,11 +16,19 @@ use lloc\Msls\OptionsInterface;
  * current language is shown and labels are friendly two-letter codes, independent of
  * the MSLS Display admin setting.
  *
+ * Requires MSLS 3.0 or later: 3.0 moved the plugin's classes into per-concern
+ * sub-namespaces, and the pre-3.0 flat names only survive as runtime aliases.
+ *
  * @link https://github.com/lloc/Multisite-Language-Switcher
  *
  * @package Sovereignty
  */
 class Msls {
+
+	/**
+	 * Lowest MSLS version exposing the sub-namespaced classes used here.
+	 */
+	private const MINIMUM_VERSION = '3.0';
 
 	/**
 	 * Register integration hooks.
@@ -37,7 +45,7 @@ class Msls {
 	 * @return void
 	 */
 	public static function display(): void {
-		if ( ! \function_exists( 'msls_blog_collection' ) ) {
+		if ( ! self::is_supported() ) {
 			return;
 		}
 
@@ -49,6 +57,19 @@ class Msls {
 
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render() escapes every dynamic value.
 		echo self::render( $languages );
+	}
+
+	/**
+	 * Determines whether a supported MSLS version is active.
+	 *
+	 * @return bool
+	 */
+	public static function is_supported(): bool {
+		if ( ! \defined( 'MSLS_PLUGIN_VERSION' ) ) {
+			return false;
+		}
+
+		return \version_compare( (string) \MSLS_PLUGIN_VERSION, self::MINIMUM_VERSION, '>=' );
 	}
 
 	/**

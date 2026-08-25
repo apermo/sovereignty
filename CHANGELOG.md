@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- The MSLS integration now requires Multisite Language Switcher 3.0 or
+  later. MSLS 3.0 moved its classes into per-concern sub-namespaces
+  (`lloc\Msls\Blog\Collection`, `lloc\Msls\Options\Options`), keeping the
+  flat pre-3.0 names alive only as runtime `class_alias()` shims. The
+  integration references the real names, so static analysis resolves them
+  again.
+- The integration is gated on `MSLS_PLUGIN_VERSION` instead of
+  `function_exists( 'msls_blog_collection' )`. On MSLS 2.x the switcher is
+  silently skipped rather than fataling on the unresolvable type hints.
+
 ## [2.0.2] - 2026-07-19
 
 ### Fixed

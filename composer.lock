@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5c81ed6633509872d2b64254fad5ecd",
+    "content-hash": "a7dfa73bbef353fee996cd45fb92a42d",
     "packages": [
         {
             "name": "composer/installers",
@@ -4857,15 +4857,15 @@
         },
         {
             "name": "wpackagist-plugin/multisite-language-switcher",
-            "version": "2.10.1",
+            "version": "3.0.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/multisite-language-switcher/",
-                "reference": "tags/2.10.1"
+                "reference": "tags/3.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/multisite-language-switcher.2.10.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/multisite-language-switcher.3.0.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

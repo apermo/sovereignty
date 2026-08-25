@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-08-26
+
+### Added
+
+- `Msls::is_supported()`, reporting whether a supported Multisite Language
+  Switcher version is active.
+
 ### Changed
 
 - The MSLS integration now requires Multisite Language Switcher 3.0 or
@@ -18,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The integration is gated on `MSLS_PLUGIN_VERSION` instead of
   `function_exists( 'msls_blog_collection' )`. On MSLS 2.x the switcher is
   silently skipped rather than fataling on the unresolvable type hints.
+- The pre-commit hook runs `composer analyse` rather than a hard-coded
+  `phpstan --memory-limit=512M`, so it analyses with the same flags as CI.
 
 ## [2.0.2] - 2026-07-19
 
@@ -346,6 +355,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Renamed theme to Sovereignty
 - Updated Composer package name to `apermo/sovereignty`
 
+[2.1.0]: https://github.com/apermo/sovereignty/compare/2.0.2...2.1.0
+[2.0.2]: https://github.com/apermo/sovereignty/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/apermo/sovereignty/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/apermo/sovereignty/compare/1.4.2...2.0.0
 [1.4.2]: https://github.com/apermo/sovereignty/compare/1.4.1...1.4.2

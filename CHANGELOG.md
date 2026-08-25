@@ -27,6 +27,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   silently skipped rather than fataling on the unresolvable type hints.
 - The pre-commit hook runs `composer analyse` rather than a hard-coded
   `phpstan --memory-limit=512M`, so it analyses with the same flags as CI.
+- Development-only coding-standards dependencies updated to clear three
+  advisories: `phpcsstandards/phpcsutils` 1.2.3 (CVE-2026-65954),
+  `squizlabs/php_codesniffer` 3.13.6 (CVE-2026-67434) and
+  `wp-coding-standards/wpcs` 3.4.1 (CVE-2026-45293). None of these ship in
+  the installed theme; `composer audit` is clean again and `composer.lock`
+  is back in sync with `composer.json`.
 
 ## [2.0.2] - 2026-07-19
 

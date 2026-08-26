@@ -7,9 +7,9 @@ namespace Apermo\Sovereignty\Tests\Unit\Integration;
 use Apermo\Sovereignty\Integration\Msls;
 use Brain\Monkey;
 use Brain\Monkey\Functions;
-use lloc\Msls\MslsBlog;
-use lloc\Msls\MslsBlogCollection;
-use lloc\Msls\OptionsInterface;
+use lloc\Msls\Blog\Blog as MslsBlog;
+use lloc\Msls\Blog\Collection as MslsBlogCollection;
+use lloc\Msls\Options\OptionsInterface;
 use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -213,7 +213,16 @@ class MslsTest extends TestCase {
 	}
 
 	/**
-	 * Verify display() renders nothing when the MSLS plugin is inactive.
+	 * Verify is_supported() reports false when no MSLS version is loaded.
+	 *
+	 * @return void
+	 */
+	public function test_is_supported_is_false_without_the_plugin(): void {
+		$this->assertFalse( Msls::is_supported() );
+	}
+
+	/**
+	 * Verify display() renders nothing when no supported MSLS version is active.
 	 *
 	 * @return void
 	 */

@@ -187,7 +187,7 @@ class Theme {
 			Integration\Yoast::register();
 		}
 
-		if ( \function_exists( 'msls_blog_collection' ) ) {
+		if ( Integration\Msls::is_supported() ) {
 			Integration\Msls::register();
 		}
 	}
